@@ -107,6 +107,7 @@
                           tabindex="-1"
                         >
                           <picture class="mega-menu__gallery__picture">
+                            {% assign promo_aspect_ratio = mega_block.settings[key].aspect_ratio | default: 1 %}
                             <img
                               class="mega-menu__gallery__img"
                               srcset="
@@ -119,8 +120,8 @@
                               sizes="(min-width: 800px) 800px, 100vw"
                               src="{{ mega_block.settings[key] | image_url: width: 800 }}"
                               alt="{{ mega_block.settings[key].alt | escape }}"
-                              width="{{ mega_block.settings[key].width }}"
-                              height="{{ mega_block.settings[key].height }}"
+                              width="800"
+                              height="{{ 800 | divided_by: promo_aspect_ratio | round }}"
                               loading="lazy"
                             >
                             {% assign heading_key = 'heading_' | append: i %}
