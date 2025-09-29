@@ -128,6 +128,10 @@
       document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
     </script>
   {% capture boostersnippet %}{% include "booster-apps-common" %}{% endcapture %}{% unless boostersnippet contains "Liquid error" %}{{ boostersnippet }}{% endunless %}
+    {% comment %}Noindex for COA pages{% endcomment %}
+    {% if template.name == 'page' and template.suffix == 'coa' %}
+      <meta name="robots" content="noindex">
+    {% endif %}
 </head>
 
   {% assign template_name = template | handleize %}
