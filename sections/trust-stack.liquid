@@ -1,81 +1,87 @@
-{%- comment -%}
-  Trust Stack section displays product trust details: COA link, batch ID, test date, benefits, policy links, etc.
-  It uses product metafields: coa_url, batch_id, tested_at, cannabinoids_json.
-{%- endcomment -%}
+{% comment %}
+  Trust Stack section
+  - Shows customizable benefits text
+  - Optionally surfaces policy links for Shipping and Returns
+{% endcomment %}
 
-{%- liquid
-  assign metafields_namespace = 'custom'
-  assign coa_url = product.metafields[metafields_namespace].coa_url.value
-  assign batch_id = product.metafields[metafields_namespace].batch_id.value
-  assign tested_at = product.metafields[metafields_namespace].tested_at.value
-  assign cannabinoids_json = product.metafields[metafields_namespace].cannabinoids_json.value
--%}
+{% liquid
+  assign benefits_text = section.settings.benefits_text | strip
+  if benefits_text == blank
+    assign benefits_text = 'trust_stack.benefits_default' | t
+  endif
+%}
 
-<div class="trust-stack" style="padding: 1rem 0; border-top: 1px solid rgba(0,0,0,0.1);">
-  {%- if coa_url != blank -%}
-    <a href="{{ coa_url }}" target="_blank" class="trust-stack__coa-btn" style="display: inline-block; padding: 0.5rem 1rem; border: 1px solid #888; border-radius: 9999px; text-decoration: none; font-size: 0.875rem; margin-bottom: 0.5rem;">
-      View COA
-    </a>
-  {%- else -%}
-    <span class="trust-stack__coa-btn" style="display: inline-block; padding: 0.5rem 1rem; border: 1px solid #888; border-radius: 9999px; font-size: 0.875rem; margin-bottom: 0.5rem; opacity: 0.6; cursor: default;">
-      COA on request
-    </span>
-  {%- endif -%}
+<section class="trust-stack" aria-label="{{ 'trust_stack.aria_label' | t }}">
+  <div class="trust-stack__inner">
+    {% if benefits_text != blank %}
+      <p class="trust-stack__benefits">
+        {{ benefits_text | escape }}
+      </p>
+    {% endif %}
 
-  {%- if batch_id or tested_at -%}
-    <p class="trust-stack__details" style="font-size: 0.75rem; color: #666; margin: 0 0 0.25rem;">
-      {%- if batch_id -%}Batch ID: {{ batch_id }}{%- endif -%}
-      {%- if batch_id and tested_at -%} • {%- endif -%}
-      {%- if tested_at -%}Tested at: {{ tested_at }}{%- endif -%}
-    </p>
-  {%- endif -%}
+    {%- liquid
+      assign show_shipping = section.settings.show_shipping_policy and shop.shipping_policy and shop.shipping_policy.url != blank
+      assign show_returns = section.settings.show_returns_policy and shop.refund_policy and shop.refund_policy.url != blank
+    -%}
+    {% if section.settings.show_policy_links and (show_shipping or show_returns) %}
+      <ul class="trust-stack__policies" role="list">
+        {% if show_shipping %}
+          <li>
+            <a class="trust-stack__policy-link" href="{{ shop.shipping_policy.url }}" target="_blank" rel="noopener">
+              {{ 'trust_stack.shipping' | t }}
+            </a>
+          </li>
+        {% endif %}
+        {% if show_returns %}
+          <li>
+            <a class="trust-stack__policy-link" href="{{ shop.refund_policy.url }}" target="_blank" rel="noopener">
+              {{ 'trust_stack.returns' | t }}
+            </a>
+          </li>
+        {% endif %}
+      </ul>
+    {% endif %}
+  </div>
 
-  <p class="trust-stack__benefits" style="font-size: 0.875rem; margin: 0 0 0.25rem;">
-    {{ section.settings.benefits_text }}
-  </p>
-
-  {%- if section.settings.show_policy_links and shop.policy_links != blank -%}
-    <p class="trust-stack__policies" style="font-size: 0.75rem; margin: 0 0 0.25rem;">
-      {%- if shop.policy_links.shipping_policy -%}
-        <a href="{{ shop.policy_links.shipping_policy.url }}" style="text-decoration: underline;">Shipping</a>
-      {%- endif -%}
-      {%- if shop.policy_links.shipping_policy and shop.policy_links.refund_policy -%} • {%- endif -%}
-      {%- if shop.policy_links.refund_policy -%}
-        <a href="{{ shop.policy_links.refund_policy.url }}" style="text-decoration: underline;">Returns</a>
-      {%- endif -%}
-    </p>
-  {%- endif -%}
-
-  <p class="trust-stack__disclaimer" style="font-size: 0.75rem; color: #666; margin: 0;">
-    Batch-specific data; see COA for details.
-  </p>
-</div>
+  <style>
+    .trust-stack { margin: 1.25rem 0 1.5rem; }
+    .trust-stack__benefits { font-weight: 500; margin: 0; }
+    .trust-stack__policies { margin: 0.5rem 0 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 1rem; }
+    .trust-stack__policy-link { text-decoration: underline; }
+  </style>
+</section>
 
 {% schema %}
 {
   "name": "Trust Stack",
-  "tag": "section",
-  "class": "section-trust-stack",
-  "templates": ["product"],
   "settings": [
     {
-      "type": "text",
+      "type": "textarea",
       "id": "benefits_text",
       "label": "Benefits text",
-      "default": "Lab-tested • Transparent COAs • Fast shipping • Easy returns"
+      "default": "Lab-tested · Transparent COAs · Fast shipping · Easy returns"
     },
     {
       "type": "checkbox",
       "id": "show_policy_links",
       "label": "Show policy links",
       "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_shipping_policy",
+      "label": "Show shipping policy",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_returns_policy",
+      "label": "Show returns policy",
+      "default": true
     }
   ],
   "presets": [
-    {
-      "name": "Trust Stack",
-      "settings": {}
-    }
+    { "name": "Trust Stack" }
   ]
 }
 {% endschema %}
