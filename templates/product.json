@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "breadcrumbs": {
@@ -8,6 +17,13 @@
         "background_color": "rgba(0,0,0,0)",
         "margin-top": 8,
         "margin-bottom": 8
+      }
+    },
+    "trust_stack": {
+      "type": "trust-stack",
+      "settings": {
+        "benefits_text": "Lab-tested · Transparent COAs · Fast shipping · Easy returns",
+        "show_policy_links": true
       }
     },
     "main": {
@@ -271,15 +287,6 @@
         "background_color": "rgba(0,0,0,0)",
         "margin-top": 60,
         "margin-bottom": 60
-      }
-    },
-    "trust_stack": {
-      "type": "trust-stack",
-      "settings": {
-        "benefits_text": "",
-        "show_policy_links": true,
-        "show_shipping_policy": true,
-        "show_returns_policy": true
       }
     }
   },
