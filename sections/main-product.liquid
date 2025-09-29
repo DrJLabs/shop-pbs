@@ -1393,6 +1393,27 @@
   else
     assign seo_media = product.featured_media
   endif
+
+  assign cannabinoid_data = product.metafields.custom.cannabinoids_json.value
+  assign has_cannabinoids = false
+  if product.metafields.custom.cannabinoids_json != blank and cannabinoid_data != blank
+    assign has_cannabinoids = true
+  endif
+
+  assign reviews_metafield = product.metafields.reviews
+  assign has_rating = false
+  assign rating_value = blank
+  assign rating_count = 0
+  if reviews_metafield != blank
+    assign rating_field = reviews_metafield.rating
+    assign rating_count = reviews_metafield.rating_count
+    if rating_field != blank and rating_field.value != blank and rating_count != blank
+      assign rating_value = rating_field.value
+      if rating_value.rating != blank and rating_count > 0
+        assign has_rating = true
+      endif
+    endif
+  endif
 -%}
 
 <script type="application/ld+json">
@@ -1414,6 +1435,27 @@
       "@type": "Brand",
       "name": {{ product.vendor | json }}
     },
+    {% if has_cannabinoids %}
+      "additionalProperty": [
+        {% for entry in cannabinoid_data %}
+          {% assign cannabinoid_name = entry[0] | default: entry.name | default: entry.key %}
+          {% assign cannabinoid_amount = entry[1] | default: entry.value %}
+          {
+            "@type": "PropertyValue",
+            "name": {{ cannabinoid_name | json }},
+            "value": {{ cannabinoid_amount | json }}
+          }{% unless forloop.last %},{% endunless %}
+        {% endfor %}
+      ]{% if has_rating %},{% else %},{% endif %}
+    {% endif %}
+    {% if has_rating %}
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": {{ rating_value.rating | json }},
+        "reviewCount": {{ rating_count | json }}{% if rating_value.scale_max != blank %},
+        "bestRating": {{ rating_value.scale_max | json }}{% endif %}
+      },
+    {% endif %}
     "offers": [
       {%- for variant in product.variants -%}
         {
