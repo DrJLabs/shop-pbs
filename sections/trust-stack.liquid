@@ -19,18 +19,22 @@
       </p>
     {% endif %}
 
-    {% if section.settings.show_policy_links %}
+    {%- liquid
+      assign show_shipping = section.settings.show_shipping_policy and shop.shipping_policy and shop.shipping_policy.url != blank
+      assign show_returns = section.settings.show_returns_policy and shop.refund_policy and shop.refund_policy.url != blank
+    -%}
+    {% if section.settings.show_policy_links and (show_shipping or show_returns) %}
       <ul class="trust-stack__policies" role="list">
-        {% if section.settings.show_shipping_policy and shop.policy_shipping_url %}
+        {% if show_shipping %}
           <li>
-            <a class="trust-stack__policy-link" href="{{ shop.policy_shipping_url }}" target="_blank" rel="noopener">
+            <a class="trust-stack__policy-link" href="{{ shop.shipping_policy.url }}" target="_blank" rel="noopener">
               {{ 'trust_stack.shipping' | t }}
             </a>
           </li>
         {% endif %}
-        {% if section.settings.show_returns_policy and shop.policy_refund_url %}
+        {% if show_returns %}
           <li>
-            <a class="trust-stack__policy-link" href="{{ shop.policy_refund_url }}" target="_blank" rel="noopener">
+            <a class="trust-stack__policy-link" href="{{ shop.refund_policy.url }}" target="_blank" rel="noopener">
               {{ 'trust_stack.returns' | t }}
             </a>
           </li>
