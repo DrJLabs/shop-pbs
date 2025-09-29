@@ -4,6 +4,8 @@
       <img
         src="{{ featured_media | image_url: width: 150 }}"
         alt="{{ featured_media.alt | escape }}"
+        width="{{ featured_media.width }}"
+        height="{{ featured_media.height }}"
         loading="lazy"
       >
     </figure>

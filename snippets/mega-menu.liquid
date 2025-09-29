@@ -119,6 +119,8 @@
                               sizes="(min-width: 800px) 800px, 100vw"
                               src="{{ mega_block.settings[key] | image_url: width: 800 }}"
                               alt="{{ mega_block.settings[key].alt | escape }}"
+                              width="{{ mega_block.settings[key].width }}"
+                              height="{{ mega_block.settings[key].height }}"
                               loading="lazy"
                             >
                             {% assign heading_key = 'heading_' | append: i %}
