@@ -10,25 +10,25 @@
   <section class="coa-summary">
     <div class="coa-summary__inner">
       <h1 class="coa-summary__title">{{ product.title }} COA</h1>
-      {% if product.metafields.custom.batch_id != blank %}
+      {% if product.metafields.custom.batch_id.value != blank %}
         <p><strong>Batch ID:</strong> {{ product.metafields.custom.batch_id.value }}</p>
       {% endif %}
-      {% if product.metafields.custom.tested_at != blank %}
+      {% if product.metafields.custom.tested_at.value != blank %}
         <p><strong>Tested at:</strong> {{ product.metafields.custom.tested_at.value | date: "%B %-d, %Y" }}</p>
       {% endif %}
-      {% if product.metafields.custom.lab_name != blank %}
+      {% if product.metafields.custom.lab_name.value != blank %}
         <p><strong>Lab:</strong> {{ product.metafields.custom.lab_name.value }}</p>
       {% endif %}
-      {% assign cannabinoid_data = product.metafields.custom.cannabinoids_json.value %}
+      {% assign cannabinoid_data = product.metafields.custom.cannabinoids_json.value | parse_json %}
       {% if cannabinoid_data != blank %}
         <table class="coa-summary__table">
           <thead>
-            <tr><th>Cannabinoid</th><th>Amount</th></tr>
+            <tr><th scope="col">Cannabinoid</th><th scope="col">Amount</th></tr>
           </thead>
           <tbody>
             {% for entry in cannabinoid_data %}
               {% assign cannabinoid_name = entry[0] | default: entry.name | default: entry.key %}
-              {% assign cannabinoid_amount = entry[1] | default: entry.value %}
+              {% assign cannabinoid_amount = entry[1] | default: entry.amount | default: entry.value %}
               <tr>
                 <td>{{ cannabinoid_name }}</td>
                 <td>{{ cannabinoid_amount }}</td>
@@ -37,20 +37,44 @@
           </tbody>
         </table>
       {% endif %}
-      {% if product.metafields.custom.coa_url != blank %}
+      {% if product.metafields.custom.coa_url.value != blank %}
         <p><a href="{{ product.metafields.custom.coa_url.value }}" class="coa-summary__button" target="_blank" rel="noopener">View full COA</a></p>
       {% endif %}
     </div>
   </section>
 
   <style>
-    .coa-summary { margin: 2rem 0; }
-    .coa-summary__inner { background:#fff; border-radius:0.75rem; padding:1.5rem; box-shadow:0 2px 6px rgba(0,0,0,0.1); }
-    .coa-summary__title { font-size:1.5rem; margin-bottom:1rem; }
-    .coa-summary__table { width:100%; border-collapse:collapse; margin-top:1rem; }
-    .coa-summary__table th,.coa-summary__table td { padding:0.5rem; border-bottom:1px solid #eee; text-align:left; }
-    .coa-summary__button { display:inline-block; margin-top:1rem; padding:0.75rem 1.25rem; background:#0070f3; color:#fff; border-radius:0.5rem; text-decoration:none; }
-    .coa-summary__button:focus { outline:2px solid #0053a3; }
+    .coa-summary { margin-block: calc(var(--gap) * 4); }
+    .coa-summary__inner {
+      background: var(--color-background);
+      border-radius: var(--border-radius, 12px);
+      padding: calc(var(--gap) * 3);
+      box-shadow: 0 2px 6px rgba(var(--color-overlay-rgb, 0, 0, 0), 0.1);
+    }
+    .coa-summary__title {
+      font-size: calc(var(--font-base-size) * 1.5);
+      margin-bottom: calc(var(--gap) * 2);
+    }
+    .coa-summary__table { width: 100%; border-collapse: collapse; margin-top: calc(var(--gap) * 2); }
+    .coa-summary__table th,
+    .coa-summary__table td {
+      padding: calc(var(--gap) * 1.5);
+      border-bottom: 1px solid var(--color-border);
+      text-align: left;
+    }
+    .coa-summary__button {
+      display: inline-block;
+      margin-top: calc(var(--gap) * 2);
+      padding: calc(var(--gap) * 1.5) calc(var(--gap) * 2.5);
+      background: var(--color-button-primary-background);
+      color: var(--color-button-primary-text);
+      border-radius: var(--border-radius-button, var(--border-radius));
+      text-decoration: none;
+    }
+    .coa-summary__button:focus {
+      outline: 2px solid var(--color-button-primary-background-hover);
+      outline-offset: 2px;
+    }
   </style>
 {% else %}
   <p>No product found. Please set the product handle in the section settings.</p>
