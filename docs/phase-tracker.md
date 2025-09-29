@@ -10,7 +10,7 @@ This document tracks progress across the seven Shopify theme design phases and c
 | Phase 2 — Navigation & Product Discovery | ✅ Done | Clear menus, prominent search, breadcrumbs, footer nav. | `navigation_design_examples.md` | Header shows main actions, search easy to find, orientation maintained. |
 | Phase 3 — Visual Identity & Aesthetic Consistency | 🟡 In progress (locked decisions) | Dark-first theme (light variant for COA/Policy/Wholesale); brand palette; typography (Cinzel + Inter); accessibility guardrails. | Decision Log v1.0, tokenized CSS, Shopify wiring | Next: integrate tokens, color schemes, and fonts into Dawn; preview locally. Open inputs: logo SVG, COA column set, wholesale form fields. |
 | Phase 4 — Conversion Design (CTAs & PDP) | 🟩 Ready | Increase add-to-cart and inquiry conversion via CTA matrix, PDP spec, cart UX. | CTA matrix draft, PDP spec outline, cart UX plan | Acceptance: measurable uplift baseline → variant test. |
-| Phase 5 — Trust-Building & Transparency | ⬜ Planned (with active checklist below) | Reduce buyer hesitation via reviews, COA surfacing, trust content. | See Phase 5 tracker | Acceptance: trust elements on PDP, footer policy access, COA links with batch IDs. |
+| Phase 5 — Trust-Building & Transparency | 🟡 In progress (checklist below) | Reduce buyer hesitation via reviews, COA surfacing, trust content. | See Phase 5 tracker | Acceptance: trust elements on PDP, footer policy access, COA links with batch IDs. |
 | Phase 6 — Compliance & Legal | ⬜ Planned | Age-gate, disclaimers, notices, accessibility, privacy. | Planned: age-check modal, Prop-65 copy, ADA checklist, cookie banner | Acceptance: passes legal/ADA lint; age-gate unobtrusive on mobile. |
 | Phase 7 — Performance & Accessibility (Continuous) | 🟡 Ongoing | LCP ≤2.5s, CLS ≤0.1, TBT ≤200ms; AA contrast. | Lighthouse CI plan, image/font optimization checklist | Actions: lazy-load media, responsive imagery, font `display=swap`, monitor Lighthouse. |
 
@@ -19,9 +19,9 @@ This document tracks progress across the seven Shopify theme design phases and c
 | # | Workstream | Status | Notes / Next Steps |
 | --- | --- | --- | --- |
 | 1 | PDP "Trust Stack" | ✅ Live | Benefits text + policy links toggle; positioned above ATC on default product. Next: spot-check additional product templates. |
-| 2 | COA "light" page/template | ✅ Live | `coa-summary` section + `page.coa` template shipped; COA hub page previewed. Next: confirm `<meta name="robots" content="noindex">` renders when `template.suffix == 'coa'`. |
+| 2 | COA "light" page/template | ✅ Live | `coa-summary` section + `page.coa` template shipped; COA hub page now emits `<meta name="robots" content="noindex">` on `page.coa`. Ongoing: keep content current. |
 | 3 | Navigation & Surface Area | ✅ Live | Main menu item “COAs / Lab Reports” links to hub. Next: optional footer link. |
-| 4 | Structured data / JSON-LD | ⏳ Not started | Merge Product JSON-LD with `additionalProperty` cannabinoid data; remain compatible with theme defaults. |
+| 4 | Structured data / JSON-LD | ✅ Live | Product JSON-LD now outputs cannabinoid `additionalProperty` entries and conditional `aggregateRating`. Next: validate in Google Rich Results once review data exists. |
 | 5 | Reviews & UGC | ⏳ Not installed | Install Judge.me (or similar); add PDP stars near title/price; full widget below Trust Stack; optional collection stars. |
 | 6 | Automation & Moderation (reviews) | ⏳ Not configured | Enable post-purchase review emails (7–10 days primary, 21–28 days backup); allow photo reviews; set moderation rules. |
 | 7 | Policies & trust content | ⏳ Draft | Finalize Shipping, Returns, Age/compliance copy; ensure consistency. |
@@ -35,11 +35,10 @@ This document tracks progress across the seven Shopify theme design phases and c
 
 ### High-Leverage Next Moves
 
-1. Confirm COA `noindex` behavior.
-2. Install reviews app, place PDP stars + widget, enable review email automation.
-3. Update Product JSON-LD for cannabinoid `additionalProperty` data.
-4. Add GA4 tracking for COA/policy/review interactions.
-5. (Optional) Add footer trust icons and COA links in order communications.
+1. Install reviews app, place PDP stars + widget, and enable review email automation.
+2. Add GA4 tracking for COA/policy/review interactions (and confirm `add_to_cart`).
+3. Validate Product JSON-LD in Google Rich Results once reviews are live.
+4. (Optional) Add footer trust icons and COA links in order communications.
 
 ---
 
