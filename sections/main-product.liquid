@@ -1429,7 +1429,7 @@
     {% if has_cannabinoids %}
       "additionalProperty": [
         {% for entry in cannabinoid_data %}
-          {% assign cannabinoid_name = entry[0] | default: entry.name | default: entry.key %}
+          {% assign cannabinoid_name = entry[0] | default: entry.name | default: entry.key | default: 'unknown' %}
           {% assign cannabinoid_amount = entry[1] | default: entry.value %}
           {
             "@type": "PropertyValue",
