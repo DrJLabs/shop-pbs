@@ -15,7 +15,7 @@ export default defineConfig({
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
-    storageState: passwordPresent ? 'storageState.json' : undefined,
+    storageState: passwordPresent ? 'tests/.auth/storageState.json' : undefined,
   },
   projects: [
     {

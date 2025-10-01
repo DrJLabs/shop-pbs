@@ -6,8 +6,8 @@
     "node": ">=20.10.0"
   },
   "scripts": {
-    "format": "prettier --plugin=@shopify/prettier-plugin-liquid --write \"docs/**/*.md\" \"sections/**/*.liquid\" \"snippets/**/*.liquid\" \"templates/**/*.{json,liquid}\" \"config/**/*.json\" \"locales/**/*.json\" \"layout/**/*.liquid\" \"tests/**/*.ts\" \"*.ts\" \"*.json\"",
-    "format:check": "prettier --plugin=@shopify/prettier-plugin-liquid --check \"docs/**/*.md\" \"sections/**/*.liquid\" \"snippets/**/*.liquid\" \"templates/**/*.{json,liquid}\" \"config/**/*.json\" \"locales/**/*.json\" \"layout/**/*.liquid\" \"tests/**/*.ts\" \"*.ts\" \"*.json\"",
+    "format": "prettier --plugin=@shopify/prettier-plugin-liquid --write .",
+    "format:check": "prettier --plugin=@shopify/prettier-plugin-liquid --check .",
     "theme:check": "bash scripts/theme-check.sh",
     "check": "npm run format:check && npm run theme:check",
     "test:smoke": "playwright test tests/smoke --project=chromium"

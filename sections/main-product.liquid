@@ -1390,10 +1390,7 @@
 {% assign seo_media = product.selected_or_first_available_variant.featured_media | default: product.featured_media %}
 
 {% assign cannabinoid_data = product.metafields.custom.cannabinoids_json.value %}
-{% assign has_cannabinoids = false %}
-{% if cannabinoid_data %}
-  {% assign has_cannabinoids = true %}
-{% endif %}
+{% assign has_cannabinoids = cannabinoid_data != blank %}
 
 {% assign has_rating = false %}
 {% assign rating_value = blank %}

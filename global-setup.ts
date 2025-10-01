@@ -1,9 +1,14 @@
+import { mkdirSync } from 'fs';
+import { join } from 'path';
+
 import { chromium, FullConfig } from '@playwright/test';
 import { optionalEnv, resolveShopContext } from './tests/support/shop-config';
 
 export default async function globalSetup(_config: FullConfig) {
   const { shopOrigin, previewUrl } = resolveShopContext();
   const password = optionalEnv('SHOP_PASSWORD', ['STOREFRONT_PASSWORD']);
+  const storageStateDir = join(__dirname, 'tests', '.auth');
+  const storageStatePath = join(storageStateDir, 'storageState.json');
 
   if (!shopOrigin || !password) {
     console.warn('[global-setup] Missing SHOP_URL/BASE_URL or store password; skipping unlock.');
@@ -29,7 +34,8 @@ export default async function globalSetup(_config: FullConfig) {
     }
 
     await page.goto(previewUrl, { waitUntil: 'domcontentloaded' });
-    await context.storageState({ path: 'storageState.json' });
+    mkdirSync(storageStateDir, { recursive: true });
+    await context.storageState({ path: storageStatePath });
   } finally {
     await browser.close();
   }
