@@ -1387,11 +1387,7 @@
   </gallery-fashion>
 {% endif %}
 
-{% if product.selected_or_first_available_variant.featured_media %}
-  {% assign seo_media = product.selected_or_first_available_variant.featured_media %}
-{% else %}
-  {% assign seo_media = product.featured_media %}
-{% endif %}
+{% assign seo_media = product.selected_or_first_available_variant.featured_media | default: product.featured_media %}
 
 {% assign cannabinoid_data = product.metafields.custom.cannabinoids_json.value %}
 {% assign has_cannabinoids = false %}
