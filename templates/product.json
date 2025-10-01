@@ -23,7 +23,9 @@
       "type": "trust-stack",
       "settings": {
         "benefits_text": "Lab-tested · Transparent COAs · Fast shipping · Easy returns",
-        "show_policy_links": true
+        "show_policy_links": true,
+        "show_shipping_policy": true,
+        "show_returns_policy": true
       }
     },
     "main": {
@@ -315,6 +317,13 @@
       "settings": {
         "include_margins": true
       }
+    },
+    "custom_liquid_KWizf8": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "{% if product.metafields.drj.coa_url != blank %}\n  <p><a href=\"{{ product.metafields.drj.coa_url }}\" class=\"button\" target=\"_blank\" rel=\"noopener\">View COA</a></p>\n  <p><strong>Batch ID:</strong> {{ product.metafields.drj.batch_id }}</p>\n  <p><strong>Tested:</strong> {{ product.metafields.drj.tested_at | date: \"%b %d, %Y\" }}</p>\n{% else %}\n  <p>COA available on request.</p>\n{% endif %}\n<ul>\n  <li>3rd-party lab tested</li>\n  <li>Transparent COAs</li>\n  <li>Fast shipping</li>\n  <li>Easy returns</li>\n</ul>\n<p>\n  <a href=\"/pages/shipping-returns\">Shipping & Returns</a> |\n  <a href=\"/pages/compliance-legal\">Compliance & Legal</a>\n</p>"
+      }
     }
   },
   "order": [
@@ -324,6 +333,7 @@
     "features_banner_wiKkaQ",
     "newsletter_pEcrBa",
     "175926373980c9351a",
-    "17592637407c920988"
+    "17592637407c920988",
+    "custom_liquid_KWizf8"
   ]
 }
