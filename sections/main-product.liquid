@@ -78,14 +78,14 @@
 
       <div data-gallery class="{% if section.settings.enable-image-zoom %}photoswipe{% endif %}">
         <div class="card__badges card__badges--product">
-          {% assign custom-badge-1-input = settings['custom-badge-1-input'] | downcase %}
-          {% assign custom-badge-2-input = settings['custom-badge-2-input'] | downcase %}
-          {% assign custom-badge-3-input = settings['custom-badge-3-input'] | downcase %}
-          {% assign custom-badge-4-input = settings['custom-badge-4-input'] | downcase %}
+          {% assign custom_badge_1_input = settings['custom-badge-1-input'] | downcase %}
+          {% assign custom_badge_2_input = settings['custom-badge-2-input'] | downcase %}
+          {% assign custom_badge_3_input = settings['custom-badge-3-input'] | downcase %}
+          {% assign custom_badge_4_input = settings['custom-badge-4-input'] | downcase %}
 
           {% for tag in product.tags %}
             {% assign downcase_tag = tag | downcase %}
-            {% if downcase_tag == custom-badge-1-input %}
+            {% if downcase_tag == custom_badge_1_input %}
               <div class="card__badges--item" data-custom-badge="{{ settings.custom-badge-1-input }}">
                 {% if settings['badges-uppercase'] == 'uppercase' %}
                   {{ settings['custom-badge-1-input'] | upcase }}
@@ -94,7 +94,7 @@
                 {% endif %}
               </div>
             {% endif %}
-            {% if downcase_tag == custom-badge-2-input %}
+            {% if downcase_tag == custom_badge_2_input %}
               <div class="card__badges--item" data-custom-badge="{{ settings.custom-badge-2-input }}">
                 {% if settings['badges-uppercase'] == 'uppercase' %}
                   {{ settings['custom-badge-2-input'] | upcase }}
@@ -103,7 +103,7 @@
                 {% endif %}
               </div>
             {% endif %}
-            {% if downcase_tag == custom-badge-3-input %}
+            {% if downcase_tag == custom_badge_3_input %}
               <div class="card__badges--item" data-custom-badge="{{ settings.custom-badge-3-input }}">
                 {% if settings['badges-uppercase'] == 'uppercase' %}
                   {{ settings['custom-badge-3-input'] | upcase }}
@@ -112,7 +112,7 @@
                 {% endif %}
               </div>
             {% endif %}
-            {% if downcase_tag == custom-badge-4-input %}
+            {% if downcase_tag == custom_badge_4_input %}
               <div class="card__badges--item" data-custom-badge="{{ settings.custom-badge-4-input }}">
                 {% if settings['badges-uppercase'] == 'uppercase' %}
                   {{ settings['custom-badge-4-input'] | upcase }}
@@ -436,7 +436,6 @@
                 {% endif %}
               </div>
             </li>
-            {% assign thumbCounter = thumbCounter | plus: 1 %}
           {% endfor %}
         </ul>
 
@@ -848,7 +847,7 @@
                                 class="wt-product__option__dropdown {% if settings.animations %} scroll-trigger animate--slide-in {% endif %} {% if settings.disabled_animations_on_mobile %} disabled-on-mobile {% endif %}"
                               >
                                 <span>
-                                  {% if option.selected_value == value %}
+                                  {% if option.selected_value != blank %}
                                     {{ option.selected_value }}
                                   {% endif %}
                                 </span>
@@ -1387,25 +1386,27 @@
   </gallery-fashion>
 {% endif %}
 
-{%- liquid
-  if product.selected_or_first_available_variant.featured_media
-    assign seo_media = product.selected_or_first_available_variant.featured_media
-  else
-    assign seo_media = product.featured_media
+{% assign seo_media = product.selected_or_first_available_variant.featured_media | default: product.featured_media %}
+
+{% liquid %}
+  assign cannabinoid_field = product.metafields.custom['cannabinoids_json']
+  assign cannabinoid_data = blank
+
+  if cannabinoid_field != blank and cannabinoid_field.value != blank
+    assign cannabinoid_data = cannabinoid_field.value
   endif
 
-  assign cannabinoid_data = product.metafields.custom.cannabinoids_json.value
   assign has_cannabinoids = cannabinoid_data != blank
+{% endliquid %}
 
-  assign has_rating = false
-  assign rating_value = blank
-  assign rating_count = 0
-  if product.metafields.reviews.rating.value.rating and product.metafields.reviews.rating_count > 0
-    assign has_rating = true
-    assign rating_value = product.metafields.reviews.rating.value
-    assign rating_count = product.metafields.reviews.rating_count
-  endif
--%}
+{% assign has_rating = false %}
+{% assign rating_value = blank %}
+{% assign rating_count = 0 %}
+{% if product.metafields.reviews.rating.value.rating and product.metafields.reviews.rating_count > 0 %}
+  {% assign has_rating = true %}
+  {% assign rating_value = product.metafields.reviews.rating.value %}
+  {% assign rating_count = product.metafields.reviews.rating_count %}
+{% endif %}
 
 <script type="application/ld+json">
   {

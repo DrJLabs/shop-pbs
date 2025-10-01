@@ -9,6 +9,23 @@
   if benefits_text == blank
     assign benefits_text = 'trust_stack.benefits_default' | t
   endif
+
+  assign show_shipping = false
+  if section.settings.show_shipping_policy and shop.shipping_policy and shop.shipping_policy.url != blank
+    assign show_shipping = true
+  endif
+
+  assign show_returns = false
+  if section.settings.show_returns_policy and shop.refund_policy and shop.refund_policy.url != blank
+    assign show_returns = true
+  endif
+
+  assign show_policy_links = false
+  if section.settings.show_policy_links
+    if show_shipping or show_returns
+      assign show_policy_links = true
+    endif
+  endif
 %}
 
 <section class="trust-stack" aria-label="{{ 'trust_stack.aria_label' | t }}">
@@ -19,11 +36,7 @@
       </p>
     {% endif %}
 
-    {%- liquid
-      assign show_shipping = section.settings.show_shipping_policy and shop.shipping_policy and shop.shipping_policy.url != blank
-      assign show_returns = section.settings.show_returns_policy and shop.refund_policy and shop.refund_policy.url != blank
-    -%}
-    {% if section.settings.show_policy_links and (show_shipping or show_returns) %}
+    {% if show_policy_links %}
       <ul class="trust-stack__policies" role="list">
         {% if show_shipping %}
           <li>

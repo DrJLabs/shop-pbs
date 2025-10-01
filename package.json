@@ -1,0 +1,21 @@
+{
+  "name": "shop-pbs",
+  "private": true,
+  "version": "0.1.0",
+  "engines": {
+    "node": ">=20.10.0"
+  },
+  "scripts": {
+    "format": "prettier --plugin=@shopify/prettier-plugin-liquid --write .",
+    "format:check": "prettier --plugin=@shopify/prettier-plugin-liquid --check .",
+    "theme:check": "bash scripts/theme-check.sh",
+    "check": "npm run format:check && npm run theme:check",
+    "test:smoke": "playwright test tests/smoke --project=chromium"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.45.0",
+    "@shopify/cli": "^3.85.4",
+    "@shopify/prettier-plugin-liquid": "^1.8.0",
+    "prettier": "^3.6.2"
+  }
+}
