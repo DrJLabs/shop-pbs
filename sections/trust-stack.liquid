@@ -19,16 +19,21 @@
       </p>
     {% endif %}
 
-    {%- liquid
-      assign show_shipping = section.settings.show_shipping_policy and shop.shipping_policy and shop.shipping_policy.url != blank
-      assign show_returns = section.settings.show_returns_policy and shop.refund_policy and shop.refund_policy.url != blank
-    -%}
-    {% if section.settings.show_policy_links and (show_shipping or show_returns) %}
-      <ul class="trust-stack__policies" role="list">
-        {% if show_shipping %}
-          <li>
-            <a class="trust-stack__policy-link" href="{{ shop.shipping_policy.url }}" target="_blank" rel="noopener">
-              {{ 'trust_stack.shipping' | t }}
+    {% assign show_shipping = false %}
+    {% if section.settings.show_shipping_policy and shop.shipping_policy and shop.shipping_policy.url != blank %}
+      {% assign show_shipping = true %}
+    {% endif %}
+    {% assign show_returns = false %}
+    {% if section.settings.show_returns_policy and shop.refund_policy and shop.refund_policy.url != blank %}
+      {% assign show_returns = true %}
+    {% endif %}
+    {% if section.settings.show_policy_links %}
+      {% if show_shipping or show_returns %}
+        <ul class="trust-stack__policies" role="list">
+          {% if show_shipping %}
+            <li>
+              <a class="trust-stack__policy-link" href="{{ shop.shipping_policy.url }}" target="_blank" rel="noopener">
+                {{ 'trust_stack.shipping' | t }}
             </a>
           </li>
         {% endif %}
@@ -38,8 +43,9 @@
               {{ 'trust_stack.returns' | t }}
             </a>
           </li>
-        {% endif %}
-      </ul>
+          {% endif %}
+        </ul>
+      {% endif %}
     {% endif %}
   </div>
 

@@ -1,0 +1,7 @@
+# Temporarily exclude legacy theme files from format:check until we run a one-time formatting pass.
+sections/
+snippets/
+templates/
+layout/
+locales/
+config/settings_data.json

@@ -1387,25 +1387,26 @@
   </gallery-fashion>
 {% endif %}
 
-{%- liquid
-  if product.selected_or_first_available_variant.featured_media
-    assign seo_media = product.selected_or_first_available_variant.featured_media
-  else
-    assign seo_media = product.featured_media
-  endif
+{% if product.selected_or_first_available_variant.featured_media %}
+  {% assign seo_media = product.selected_or_first_available_variant.featured_media %}
+{% else %}
+  {% assign seo_media = product.featured_media %}
+{% endif %}
 
-  assign cannabinoid_data = product.metafields.custom.cannabinoids_json.value
-  assign has_cannabinoids = cannabinoid_data != blank
+{% assign cannabinoid_data = product.metafields.custom.cannabinoids_json.value %}
+{% assign has_cannabinoids = false %}
+{% if cannabinoid_data %}
+  {% assign has_cannabinoids = true %}
+{% endif %}
 
-  assign has_rating = false
-  assign rating_value = blank
-  assign rating_count = 0
-  if product.metafields.reviews.rating.value.rating and product.metafields.reviews.rating_count > 0
-    assign has_rating = true
-    assign rating_value = product.metafields.reviews.rating.value
-    assign rating_count = product.metafields.reviews.rating_count
-  endif
--%}
+{% assign has_rating = false %}
+{% assign rating_value = blank %}
+{% assign rating_count = 0 %}
+{% if product.metafields.reviews.rating.value.rating and product.metafields.reviews.rating_count > 0 %}
+  {% assign has_rating = true %}
+  {% assign rating_value = product.metafields.reviews.rating.value %}
+  {% assign rating_count = product.metafields.reviews.rating_count %}
+{% endif %}
 
 <script type="application/ld+json">
   {
