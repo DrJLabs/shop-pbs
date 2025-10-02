@@ -1388,16 +1388,10 @@
 
 {% assign seo_media = product.selected_or_first_available_variant.featured_media | default: product.featured_media %}
 
-{% liquid %}
-  assign cannabinoid_field = product.metafields.custom['cannabinoids_json']
-  assign cannabinoid_data = blank
-
-  if cannabinoid_field != blank and cannabinoid_field.value != blank
-    assign cannabinoid_data = cannabinoid_field.value
-  endif
-
+{% liquid
+  assign cannabinoid_data = product.metafields.custom['cannabinoids_json'].value
   assign has_cannabinoids = cannabinoid_data != blank
-{% endliquid %}
+%}
 
 {% assign has_rating = false %}
 {% assign rating_value = blank %}
