@@ -98,7 +98,7 @@
         "show_secondary_image": false,
         "show_vendor": true,
         "show_product_rating": true,
-        "enable_quick_add_button": true,
+        "enable_quick_add_button": false,
         "color-body-text": "rgba(0,0,0,0)",
         "background_color": "rgba(0,0,0,0)",
         "margin-top": 20,
