@@ -84,7 +84,7 @@
       "settings": {
         "title": "Shop our blends",
         "disable_on_mobile": false,
-        "collection": "disposables",
+        "collection": "disposables-1",
         "products_to_show": 11,
         "show_view_all": true,
         "button_select": "primary",
