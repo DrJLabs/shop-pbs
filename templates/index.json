@@ -42,13 +42,13 @@
           "type": "button",
           "settings": {
             "button_select": "primary",
-            "button_label": "Shop Premium Blends",
+            "button_label": "Eplore Blends",
             "disable_on_mobile": false,
             "button_link": "shopify://collections",
             "second_button_select": "primary",
             "second_button_label": "View COAs",
             "second_disable_on_mobile": false,
-            "second_button_link": "shopify://pages/certificates-of-analysis-coas"
+            "second_button_link": "/collections/blends"
           }
         }
       },
