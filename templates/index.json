@@ -48,7 +48,7 @@
             "second_button_select": "primary",
             "second_button_label": "View COAs",
             "second_disable_on_mobile": false,
-            "second_button_link": "/collections/blends"
+            "second_button_link": "/pages/certificates-of-analysis-coas"
           }
         }
       },
