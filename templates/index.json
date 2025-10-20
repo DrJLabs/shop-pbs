@@ -24,7 +24,7 @@
           "type": "text",
           "disabled": true,
           "settings": {
-            "text": "<p>Lab-tested. Fast shipping. Always 21+.</p><p></p>",
+            "text": "<p>Lab-tested. Fast shipping. Always 21+.</p>",
             "disable_on_mobile": false
           }
         },
@@ -48,7 +48,7 @@
         "button_AVNHJf"
       ],
       "settings": {
-        "heading": "",
+        "heading": "Unwind your day with DrJ",
         "full-width-enabled": true,
         "slide_height": "adapt_to_first_image",
         "desktop_fixed_height": 460,
