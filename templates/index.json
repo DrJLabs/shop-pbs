@@ -20,16 +20,6 @@
             "subheading_disable_on_mobile": false
           }
         },
-        "heading_PdceRT": {
-          "type": "heading",
-          "disabled": true,
-          "settings": {
-            "heading": "For curated effects",
-            "disable_on_mobile": false,
-            "size_heading": 100,
-            "size_heading_mobile": 100
-          }
-        },
         "text_mwt6AN": {
           "type": "text",
           "disabled": true,
@@ -54,28 +44,28 @@
       },
       "block_order": [
         "subheading_LRqfVE",
-        "heading_PdceRT",
         "text_mwt6AN",
         "button_AVNHJf"
       ],
       "settings": {
         "heading": "",
         "full-width-enabled": true,
-        "slide_height": "fixed_height",
+        "slide_height": "adapt_to_first_image",
         "desktop_fixed_height": 460,
         "mobile_fixed_height": 460,
-        "desktop_image": "shopify://shop_images/banner.jpg",
-        "desktop_text_vertical_position": "center",
+        "desktop_image": "shopify://shop_images/deep-green-leaves-under-shadows.jpg",
+        "desktop_text_vertical_position": "bottom",
         "desktop_text_horizontal_position": "center",
+        "mobile_image": "shopify://shop_images/dark-green-healthy-plant-leaves.jpg",
         "mobile_text_vertical_position": "center",
         "mobile_text_horizontal_position": "center",
-        "color-heading": "rgba(0,0,0,0)",
-        "section-color-overlay": "rgba(0,0,0,0)",
-        "section-color-overlay-opacity": 100,
-        "color-body-text": "rgba(0,0,0,0)",
+        "color-heading": "#ffffff",
+        "section-color-overlay": "#0e1012",
+        "section-color-overlay-opacity": 0,
+        "color-body-text": "#f1e8e8",
         "text-container-color": "rgba(0,0,0,0)",
         "color-overlay-opacity": 100,
-        "margin-top": 0,
+        "margin-top": 100,
         "margin-bottom": 0
       }
     },
