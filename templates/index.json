@@ -65,7 +65,7 @@
         "color-body-text": "#f1e8e8",
         "text-container-color": "rgba(0,0,0,0)",
         "color-overlay-opacity": 100,
-        "margin-top": 100,
+        "margin-top": 20,
         "margin-bottom": 0
       }
     },
