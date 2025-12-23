@@ -69,32 +69,6 @@
         "margin-bottom": 0
       }
     },
-    "featured_collection_98txhK": {
-      "type": "featured-collection",
-      "settings": {
-        "title": "Shop our blends",
-        "disable_on_mobile": false,
-        "collection": "disposables-1",
-        "products_to_show": 11,
-        "show_view_all": true,
-        "button_select": "primary",
-        "number_of_column_desktop": 4,
-        "spacing_desktop": "16",
-        "make_products_full_width": true,
-        "number_of_column_mobile": 2.1,
-        "text_alignment": "left",
-        "image_ratio": "adapt",
-        "show_video": false,
-        "show_secondary_image": false,
-        "show_vendor": true,
-        "show_product_rating": true,
-        "enable_quick_add_button": false,
-        "color-body-text": "rgba(0,0,0,0)",
-        "background_color": "rgba(0,0,0,0)",
-        "margin-top": 20,
-        "margin-bottom": 20
-      }
-    },
     "features_banner_rnAYGJ": {
       "type": "features-banner",
       "blocks": {
@@ -195,7 +169,6 @@
   },
   "order": [
     "image_banner_tWAmij",
-    "featured_collection_98txhK",
     "features_banner_rnAYGJ",
     "newsletter_i8q83Y"
   ]
