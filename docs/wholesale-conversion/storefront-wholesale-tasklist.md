@@ -70,7 +70,7 @@
 - [ ] Overlay the tagline “Expertly crafted blends for a refined experience” (or update it if needed).
 - [ ] Add CTA button: “Discover our blends” (link to Blends page).
 - [ ] Add CTA button: “Partner with us (wholesale)” (link to wholesale overview).
-- Current state: Hero uses dark background + Tennessee outline + Dr Js logo; tagline appears in white; CTAs are EXPLORE BLENDS (`/collections/all`) and VIEW COAS (`/pages/certificates-of-analysis-coas`). No wholesale CTA yet.
+- Current state: Hero uses dark background + Tennessee outline + Dr Js logo; tagline appears in white; CTAs are Discover our blends (`/pages/blends`) and Partner with us (wholesale) (`/pages/wholesale`).
 
 **Acceptance Criteria**
 - Hero image is updated to an approved brand visual with descriptive alt text.
