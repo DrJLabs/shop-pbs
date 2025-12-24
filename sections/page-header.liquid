@@ -124,17 +124,6 @@
         class="wt-header__search wt-drawer-search"
         data-loading-text="{{ 'accessibility.searching' | t }}"
       >
-        <div
-          {% comment %}for="search-shop"{% endcomment %}
-          class="wt-header__icon wt-header__search-trigger wt-icon"
-          rel="toggle-search"
-          tabindex="0"
-          role="button"
-          aria-label="{{ 'aria-label.page-header-open-search' | t }}"
-        >
-          {% render 'icons', id: 'search' %}
-        </div>
-
         <form
           class="wt-header__search__body store-search-form"
           action="{{ routes.search_url }}"
@@ -288,21 +277,6 @@
     </h1>
 
     <ul class="wt-header__panel wt-header__panel--no-labels">
-      <li class="wt-header__panel__item wt-header__panel__item--account">
-        <a href="{{ routes.account_url }}" class="wt-header__panel__link wt-icon">
-          {% render 'icons', id: 'user' %}
-          <span class="wt-header__panel__label">Account</span>
-        </a>
-      </li>
-      <li class="wt-header__panel__item wt-header__panel__item--cart">
-        <a href="{{ routes.cart_url }}" class="wt-header__panel__link wt-icon wt-cart__trigger" id="cart-icon-bubble">
-          {% render 'icons', id: 'bag' %}
-          {% if cart.item_count != 0 %}
-            <span class="wt-header__panel__counter">{{ cart.item_count }}</span>
-          {% endif %}
-          <span class="wt-header__panel__label">Cart</span>
-        </a>
-      </li>
     </ul>
     {% if section.settings.show_line_separator %}
       <div class="wt-header__spacer"></div>
