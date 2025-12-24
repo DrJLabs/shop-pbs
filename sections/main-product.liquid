@@ -1390,7 +1390,10 @@
 
 {% liquid
   assign cannabinoid_data = product.metafields.custom['cannabinoids_json'].value
-  assign has_cannabinoids = cannabinoid_data != blank
+  assign has_cannabinoids = false
+  if cannabinoid_data != blank
+    assign has_cannabinoids = true
+  endif
 %}
 
 {% assign has_rating = false %}
