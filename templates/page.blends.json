@@ -28,19 +28,34 @@
         "blend_headspace": {
           "type": "blend",
           "settings": {
-            "product": "headspace-elevate-2g"
+            "product": "headspace-elevate-2g",
+            "custom_title": "",
+            "custom_description": "",
+            "highlights": "Cannabinoids: TBD\nTerpenes: TBD\nIntended effects: TBD",
+            "coa_url": "https://cdn.shopify.com/s/files/1/0637/0328/5895/files/COA_HE-WW-001.pdf?v=1746286563",
+            "coa_label": "View Headspace Elevate – 2g Disposable COA (PDF)"
           }
         },
         "blend_whispering": {
           "type": "blend",
           "settings": {
-            "product": "whispering-roots-2g"
+            "product": "whispering-roots-2g",
+            "custom_title": "",
+            "custom_description": "",
+            "highlights": "Cannabinoids: TBD\nTerpenes: TBD\nIntended effects: TBD",
+            "coa_url": "https://cdn.shopify.com/s/files/1/0637/0328/5895/files/COA_WR-PC-001.pdf?v=1746286563",
+            "coa_label": "View Whispering Roots – 2g Disposable COA (PDF)"
           }
         },
         "blend_jennaboo": {
           "type": "blend",
           "settings": {
-            "product": "jennaboo-2g"
+            "product": "jennaboo-2g",
+            "custom_title": "",
+            "custom_description": "",
+            "highlights": "Cannabinoids: TBD\nTerpenes: TBD\nIntended effects: TBD",
+            "coa_url": "https://cdn.shopify.com/s/files/1/0637/0328/5895/files/COA_JB-SD-001.pdf?v=1746286563",
+            "coa_label": "View JennaBoo – 2g Disposable COA (PDF)"
           }
         }
       },
@@ -54,8 +69,8 @@
         "intro": "<p>Explore our current lineup and review COAs for batch-specific details.</p>",
         "columns_desktop": 2,
         "columns_mobile": "1",
-        "color-body-text": "transparent",
-        "background_color": "transparent",
+        "color-body-text": "rgba(0,0,0,0)",
+        "background_color": "rgba(0,0,0,0)",
         "margin-top": 20,
         "margin-bottom": 60
       }
