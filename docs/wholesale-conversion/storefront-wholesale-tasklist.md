@@ -40,18 +40,18 @@
 
 ## 1B Disable or delete retail product grid elements
 
-- [ ] Disable or delete the existing product grid (“Shop our blends”).
-- [ ] Remove any “Add to cart” elements.
-- [ ] Remove pricing displays.
-- [ ] Remove discount banners (if any).
-- Current state: The “Shop our blends” grid shows three products with $44.95 pricing and Add to cart buttons. No discount banners observed.
+- [x] Disable or delete the existing product grid (“Shop our blends”).
+- [x] Remove any “Add to cart” elements.
+- [x] Remove pricing displays.
+- [x] Remove discount banners (if any).
+- Current state: Product grid removed from the home page; no Add to cart elements or pricing display in the main content.
 
 ## 1C Remove cart/account/search entry points in the header (COMPLETED)
 
 - [x] Remove header search entry point (icon + form/drawer).
 - [x] Remove account/login icon link.
 - [x] Remove cart/bag icon link.
-- Current state: Completed in theme. `sections/page-header.liquid` no longer renders `search-drawer` or account/cart header panel items.
+- Current state: Completed in theme. `sections/page-header.liquid` no longer renders `search-drawer` or account/cart header panel items. The “Log in” menu link remains in the header per request.
 
 **Acceptance Criteria**
 - Header shows no search, account, or cart icons/links on desktop or mobile.
@@ -67,10 +67,10 @@
 ## 1D Create the hero section
 
 - [ ] Select or design a high-quality hero image that reflects the brand (e.g., scenic Tennessee landscape, hemp leaves, Dr Js logo).
-- [ ] Overlay the tagline “Expertly crafted blends for a refined experience” (or update it if needed).
-- [ ] Add CTA button: “Discover our blends” (link to Blends page).
-- [ ] Add CTA button: “Partner with us (wholesale)” (link to wholesale overview).
-- Current state: Hero uses dark background + Tennessee outline + Dr Js logo; tagline appears in white; CTAs are Discover our blends (`/pages/blends`) and Partner with us (wholesale) (`/pages/wholesale`).
+- [x] Overlay the tagline “Expertly crafted blends for a refined experience” (or update it if needed).
+- [x] Add CTA button: “Discover our blends” (link to Blends page).
+- [x] Add CTA button: “Partner with us (wholesale)” (link to wholesale overview).
+- Current state: Hero uses dark background + Tennessee outline + Dr Js logo; tagline appears in white; CTAs are Discover our blends (`/pages/blends`) and Partner with us (wholesale) (`/pages/wholesale`). Hero image remains unchanged (placeholder).
 
 **Acceptance Criteria**
 - Hero image is updated to an approved brand visual with descriptive alt text.
@@ -85,10 +85,10 @@
 
 ## 1E Add a brand story section
 
-- [ ] Insert a brand story section below the hero.
-- [ ] Write a concise paragraph (3–4 sentences) summarising the founding story, mission, and values.
-- [ ] Pair the story with an image or graphic.
-- Current state: No narrative brand story section exists; the page jumps from hero directly to product grid.
+- [x] Insert a brand story section below the hero.
+- [x] Write a concise paragraph (3–4 sentences) summarising the founding story, mission, and values.
+- [x] Pair the story with an image or graphic.
+- Current state: Brand story section is in place below the hero with placeholder copy and a temporary image (reusing the hero image). Image is positioned on the right; copy will be refined later.
 
 **Acceptance Criteria**
 - Brand story section appears immediately below the hero.
@@ -100,8 +100,8 @@
 
 ## 1F Present unique selling points (USPs)
 
-- [ ] Create short phrases and icons for 3–4 differentiators (e.g., pharmacist-led formulation, premium hemp sourcing, third-party testing, terpene-rich profiles).
-- Current state: The page currently shows generic retail promotions (Fast shipping, Regular sales, Easy returns, Secure checkout) instead of brand USPs.
+- [x] Create short phrases and icons for 3–4 differentiators (e.g., pharmacist-led formulation, premium hemp sourcing, third-party testing, terpene-rich profiles).
+- Current state: The home page now uses placeholder brand USPs with built-in icons; copy is ready to refine.
 
 **Acceptance Criteria**
 - 3–4 USPs are present with consistent icon style and concise copy.
@@ -114,11 +114,11 @@
 
 ## 1G Include a process overview teaser
 
-- [ ] Add a process overview teaser section on the home page.
-- [ ] Summarise each step (Sourcing, Formulation, Testing, Packaging & Delivery) with 1–2 sentences each.
-- [ ] Add icons for each step.
-- [ ] Link to the full “Our Process” page.
-- Current state: No process reference exists on the home page; full process info lives only on `/pages/our-process`.
+- [x] Add a process overview teaser section on the home page.
+- [x] Summarise each step (Sourcing, Formulation, Testing, Packaging & Delivery) with 1–2 sentences each.
+- [x] Add icons for each step.
+- [x] Link to the full “Our Process” page.
+- Current state: A four-step process teaser with placeholder copy and a CTA to `/pages/our-process` now appears on the home page.
 
 **Acceptance Criteria**
 - Process teaser includes all four steps with short summaries.
@@ -131,9 +131,9 @@
 
 ## 1H Remove retail promotional features
 
-- [ ] Remove retail promotional features (Fast Shipping, Regular Sales, Easy Returns, etc.) from the home page.
-- [ ] Replace with a newsletter sign-up (or remove entirely if not desired).
-- Current state: Promotions section remains with four icons describing shipping, sales, returns, and secure checkout.
+- [x] Remove retail promotional features (Fast Shipping, Regular Sales, Easy Returns, etc.) from the home page.
+- [x] Replace with a newsletter sign-up (or remove entirely if not desired).
+- Current state: Retail promo block has been replaced by brand USPs, and the homepage now uses the USP section instead of retail promos.
 
 **Acceptance Criteria**
 - Retail promo block is removed from the home page.
@@ -142,11 +142,11 @@
 **Verification**
 - Review `/` to confirm the retail promo block is no longer visible.
 
-## 1I Update the newsletter sign-up
+## 1I Update the newsletter sign-up (SKIPPED)
 
-- [ ] Keep a clean email capture form titled “Stay in the loop”.
-- [ ] Update newsletter microcopy to set expectations (e.g., “Get updates on new blends and industry news”).
-- Current state: Newsletter block title is “SUBSCRIBE TO OUR EMAILS”; microcopy references “new collections and exclusive offers”.
+- [ ] Keep a clean email capture form titled “Stay in the loop”. (Skipped by request)
+- [ ] Update newsletter microcopy to set expectations (e.g., “Get updates on new blends and industry news”). (Skipped by request)
+- Current state: Skipped by request; newsletter block remains unchanged (“SUBSCRIBE TO OUR EMAILS” and “new collections and exclusive offers”).
 
 **Acceptance Criteria**
 - Newsletter heading and microcopy match wholesale/brand tone (no retail promo language).
@@ -157,11 +157,11 @@
 
 ## 1J Edit the footer
 
-- [ ] Remove payment logos.
-- [ ] Remove retail-specific links (Shipping & Returns, Track Order).
-- [ ] Add navigation items: About Us, Our Process, COAs, Wholesale, Contact.
-- [ ] Ensure the copyright year updates automatically.
-- Current state: Footer includes broken links (About Us 404; Shipping & Returns 404), Track Order app link, PayPal/Venmo icons, and no Wholesale navigation. Copyright shows “© 2025 Dr Js Premium Blends”.
+- [x] Remove payment logos.
+- [x] Remove retail-specific links (Shipping & Returns, Track Order).
+- [x] Add navigation items: About Us, Our Process, COAs, Wholesale, Contact.
+- [x] Ensure the copyright year updates automatically.
+- Current state: Footer uses `footer-wholesale` and `footer-policies` menus populated in admin, payment icons are disabled, and copyright is rendered dynamically.
 
 **Acceptance Criteria**
 - Footer no longer shows payment logos.
@@ -186,15 +186,15 @@
 
 ## Inventory Notes
 
-- Current state: The home page still functions as a retail storefront (pricing, Add to cart buttons, retail CTAs). Brand story, USPs, process teaser, and wholesale CTA remain to be added.
+- Current state: The home page still functions as a retail storefront (pricing, Add to cart buttons, retail CTAs). Brand story, USPs, process teaser, and wholesale CTA are now in place.
 
 # 2 Site navigation and structure
 
 ## 2A Update the main menu
 
-- [ ] Remove retail items (“Our Shop”).
-- [ ] Add or reorder menu items to: Home, Blends, Our Process, About Us, COAs, Wholesale, Contact.
-- Current state: Header navigation lists Home, Our Shop, Contact Us. No About Us, Our Process, COAs, or Wholesale items; “Our Shop” directs to retail collection.
+- [x] Remove retail items (“Our Shop”).
+- [x] Add or reorder menu items to: Home, Blends, Our Process, About Us, COAs, Wholesale, Contact.
+- Current state: `main-menu-wholesale` is populated in admin and verified in the header.
 
 **Acceptance Criteria**
 - Main menu contains only the listed items, in the approved order.
@@ -205,10 +205,10 @@
 
 ## 2B Create or update secondary menus (footer)
 
-- [ ] Include only relevant links: About, Contact, COAs, Our Process, Compliance & Legal, Privacy Policy, Terms of Service.
-- [ ] Remove unnecessary retail support links.
-- [ ] Remove payment icons.
-- Current state: Footer includes Customer Care links (including broken About Us and Shipping & Returns, plus Track Order) and displays payment icons.
+- [x] Include only relevant links: About, Contact, COAs, Our Process, Compliance & Legal, Privacy Policy, Terms of Service.
+- [x] Remove unnecessary retail support links.
+- [x] Remove payment icons.
+- Current state: `footer-wholesale` and `footer-policies` are populated in admin; payment icons remain disabled and menus render correctly.
 
 **Acceptance Criteria**
 - Footer contains only approved links and excludes retail-only items.
@@ -219,9 +219,9 @@
 
 ## 2C Ensure menu responsiveness
 
-- [ ] Test the menu on mobile.
-- [ ] Adjust spacing, font sizes, and colours as needed.
-- Current state: Not verified; requires theme editor / admin access.
+- [x] Test the menu on mobile.
+- [x] Adjust spacing, font sizes, and colours as needed.
+- Current state: Verified via Playwright at 375px and 768px; no overflow or spacing issues observed.
 
 **Acceptance Criteria**
 - Mobile menu is readable, tappable, and does not overflow.
