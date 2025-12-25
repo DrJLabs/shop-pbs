@@ -41,13 +41,6 @@
 {{ collection.filters | json }}
 {%- endcapture -%}
 
-<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
-<script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
-
-{% if section.settings.enable_quick_add_button %}
-  <script src="{{ 'variant-dropdown.js' | asset_url }}" defer="defer"></script>
-{% endif %}
-
 <div data-section-id="{{ section.id }}" class="{{ section_variant }}">
   <collection-section
     class="collection{% if section.settings.filter_position == "always" %} collection--with-aside{% endif %}"

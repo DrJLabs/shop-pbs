@@ -103,6 +103,8 @@
   "products": {
     "product": {
       "add_to_cart": "Lisää ostoskoriin",
+      "partner_with_us": "Partner with us",
+      "wholesale_pricing_request": "Wholesale pricing available upon request.",
       "description": "Kuvaus",
       "on_sale": "Alennusmyynti",
       "product_variants": "Tuoteversiot",

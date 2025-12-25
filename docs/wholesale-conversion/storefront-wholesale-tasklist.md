@@ -387,10 +387,10 @@
 
 ## 5C Replace retail CTAs with wholesale-friendly CTAs
 
-- [ ] Replace “Add to cart” with “Contact for wholesale” or “Join our mailing list”.
-- [ ] Remove pricing.
-- [ ] Remove purchasing functionality.
-- Current state: Product pages show price ($44.95), Add to cart, and PayPal buttons. No wholesale contact or mailing-list CTA.
+- [x] Replace “Add to cart” with “Contact for wholesale” or “Join our mailing list”.
+- [x] Remove pricing.
+- [x] Remove purchasing functionality.
+- Current state: Collection cards, predictive search suggestions, featured product blocks, and shoppable tooltips now show a “Partner with us” CTA linking to `/pages/wholesale`. Product pages remain retail, but will be hidden via Shopify admin.
 
 **Acceptance Criteria**
 - No price or purchase buttons appear on blends listings.
@@ -416,7 +416,7 @@
 
 ## Inventory Notes
 
-- Current state: Retail purchase flows remain on collection and product pages. Blends page template exists, but CTA replacement and menu linkage still need admin follow-up.
+- Current state: Retail purchase flows are removed from collection/search surfaces and replaced by wholesale CTAs. Product pages will be hidden in Shopify admin. Blends page template exists, but CTA replacement and menu linkage still need admin follow-up.
 
 # 6 COAs page improvement
 

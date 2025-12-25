@@ -103,6 +103,8 @@
   "products": {
     "product": {
       "add_to_cart": "加入購物車",
+      "partner_with_us": "Partner with us",
+      "wholesale_pricing_request": "Wholesale pricing available upon request.",
       "description": "說明",
       "on_sale": "銷售額",
       "product_variants": "產品子類",

@@ -1085,6 +1085,9 @@ button[disabled], .wt-featured-nav [disabled].secondary-navigation__link {
   margin-bottom: calc(var(--gap, 8px) * 0.5);
   color: var(--color-custom-text);
 }
+.card__cta {
+  margin-top: calc(var(--gap, 8px) * 1.5);
+}
 .card__price__old {
   display: inline-flex;
   margin-right: calc(var(--gap, 8px) * 1);

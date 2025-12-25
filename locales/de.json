@@ -127,6 +127,8 @@
   "products": {
     "product": {
       "add_to_cart": "In den Warenkorb",
+      "partner_with_us": "Partner with us",
+      "wholesale_pricing_request": "Wholesale pricing available upon request.",
       "choose_options": "Optionen wählen",
       "choose_product_options": "Optionen für {{ product_name }} wählen",
       "description": "Beschreibung",

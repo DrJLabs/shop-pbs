@@ -1087,5 +1087,16 @@
         "default": "Access restricted."
       }
     ]
+  },
+  {
+    "name": "Wholesale",
+    "settings": [
+      {
+        "type": "url",
+        "id": "wholesale_page_url",
+        "label": "Wholesale page URL",
+        "default": "/pages/wholesale"
+      }
+    ]
   }
 ]

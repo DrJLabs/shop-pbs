@@ -62,6 +62,8 @@
   data-section-id="{{ section.id }}"
   class="shoppable-image {% if section.settings.full-width-enabled %} shoppable-image__full {% endif %}"
 >
+  {%- assign wholesale_url = settings.wholesale_page_url | default: '/pages/wholesale' -%}
+  {%- assign wholesale_url = wholesale_url | replace: 'shopify://', '/' -%}
   {% render 'headline', title: section.settings.heading | newline_to_br %}
 
   <div class="shoppable-image__text {% if settings.animations %} scroll-trigger animate--slide-in {% endif %} {% if settings.disabled_animations_on_mobile %} disabled-on-mobile {% endif %}">
@@ -79,7 +81,7 @@
           </div>
           <div class="wt-dot__tooltip">
             {%- if block.settings.featured_product != blank -%}
-              <a href="{{ block.settings.featured_product.url }}" class="wt-dot__link" tabindex="0">
+              <a href="{{ wholesale_url }}" class="wt-dot__link" tabindex="0">
                 <picture class="wt-dot__picture">
                   <img
                     srcset="
@@ -101,12 +103,15 @@
                   <div class="wt-dot__brand">{{ block.settings.featured_product.vendor }}</div>
                   <div class="wt-dot__title">{{ block.settings.featured_product.title }}</div>
                   <div class="wt-dot__price">
-                    {% render 'price', product: block.settings.featured_product, show_compare_at_price: true, price_class: '' %}
+                    {% render 'wholesale-cta',
+                      wholesale_class: 'hero__button hero__button--secondary wt-dot__cta',
+                      wholesale_linkless: true
+                    %}
                   </div>
                 </div>
               </a>
             {%- else -%}
-              <a href="#" class="wt-dot__link">
+              <a href="{{ wholesale_url }}" class="wt-dot__link">
                 {% assign my_counter = my_counter | plus: 1 %}
                 <div class="wt-dot__img-placeholder">
                   {{ 'product-apparel-' | append: my_counter | placeholder_svg_tag: 'wt-dot__image' }}
@@ -114,7 +119,12 @@
                 <div class="wt-dot__body">
                   <div class="wt-dot__brand">{{ 'shoppable_image.brand' | t }}</div>
                   <div class="wt-dot__title">{{ 'shoppable_image.title' | t }}</div>
-                  <div class="wt-dot__price">{{ 15.99 | money }}</div>
+                  <div class="wt-dot__price">
+                    {% render 'wholesale-cta',
+                      wholesale_class: 'hero__button hero__button--secondary wt-dot__cta',
+                      wholesale_linkless: true
+                    %}
+                  </div>
                 </div>
               </a>
             {%- endif -%}

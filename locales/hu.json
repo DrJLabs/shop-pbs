@@ -103,6 +103,8 @@
   "products": {
     "product": {
       "add_to_cart": "Hozzáadás a kosárhoz",
+      "partner_with_us": "Partner with us",
+      "wholesale_pricing_request": "Wholesale pricing available upon request.",
       "description": "Leírás",
       "on_sale": "Akciós",
       "product_variants": "Termékváltozatok",

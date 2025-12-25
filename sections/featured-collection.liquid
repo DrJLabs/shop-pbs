@@ -30,12 +30,6 @@
       {% endif %}
   }
 </style>
-{% if section.settings.enable_quick_add_button %}
-  <script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
-  <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
-  <script src="{{ 'variant-dropdown.js' | asset_url }}" defer="defer"></script>
-{% endif %}
-
 <div
   data-section-id="{{ section.id }}"
   class="wt-featured-collection wt-slider {% if section.settings.disable_on_mobile %}wt-featured-collection--disable-on-mobile{% endif %}"

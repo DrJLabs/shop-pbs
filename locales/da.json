@@ -103,6 +103,8 @@
   "products": {
     "product": {
       "add_to_cart": "Læg i indkøbskurv",
+      "partner_with_us": "Partner with us",
+      "wholesale_pricing_request": "Wholesale pricing available upon request.",
       "description": "Beskrivelse",
       "on_sale": "Udsalg",
       "product_variants": "Produktvarianter",

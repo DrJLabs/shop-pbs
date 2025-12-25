@@ -5,6 +5,8 @@
 %}
 
 {%- if predictive_search.performed -%}
+  {%- assign wholesale_url = settings.wholesale_page_url | default: '/pages/wholesale' -%}
+  {%- assign wholesale_url = wholesale_url | replace: 'shopify://', '/' -%}
   <div
     id="predictive-search-results"
     class="search-result {% if total_results == 0 %}search-result--no-results{% endif %}"
@@ -30,7 +32,7 @@
               {% assign product_name = product.title | highlight: predictive_search.terms %}
 
               {% render 'suggest-product-item',
-                url: product.url,
+                url: wholesale_url,
                 name: product_name,
                 featured_media: product.featured_media,
                 product: product,
@@ -38,7 +40,7 @@
               %}
 
               <a
-                href="{{ product.url }}"
+                href="{{ wholesale_url }}"
                 class="predictive-search__item predictive-search__item--link link link--text"
                 tabindex="-1"
                 style="display: none;"
@@ -69,9 +71,10 @@
 
                   <h3 class="predictive-search__item-heading h5">{{ product.title }}</h3>
 
-                  {%- if settings.show_product_price -%}
-                    {% render 'price', product: product, use_variant: true, show_badges: false %}
-                  {%- endif -%}
+                  {% render 'wholesale-cta',
+                    wholesale_class: 'hero__button hero__button--secondary predictive-search__cta',
+                    wholesale_linkless: true
+                  %}
                 </div>
               </a>
             </li>
