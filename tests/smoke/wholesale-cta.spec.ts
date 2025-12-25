@@ -42,6 +42,12 @@ const resolveWholesaleUrl = async () => {
   return normalizeThemeUrl(wholesaleDefaultUrl);
 };
 
+test('wholesale page url setting uses a valid default', () => {
+  expect(wholesaleSetting).toBeTruthy();
+  const allowedDefaults = new Set([undefined, '/collections', '/collections/all']);
+  expect(allowedDefaults.has(wholesaleSetting?.default)).toBe(true);
+});
+
 test.describe('wholesale CTA storefront smoke checks', () => {
   test.skip(!baseUrlSupplied, 'Set BASE_URL or SHOP_URL to run smoke checks against a live theme.');
 
