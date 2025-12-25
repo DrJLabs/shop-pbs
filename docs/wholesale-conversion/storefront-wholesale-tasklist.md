@@ -401,7 +401,7 @@
 
 ## 5D Publish and link the Blends page
 
-- [ ] Publish a Blends page (`/pages/blends` or `/pages/our-blends`).
+- [ ] Publish a Blends page (`/pages/blends`).
 - [ ] Add Blends to the navigation menu.
 - [ ] Confirm each COA link works.
 - [ ] Confirm CTA buttons route to contact/sign-up forms.
