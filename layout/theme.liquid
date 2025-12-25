@@ -29,6 +29,7 @@
 
     {{ 'settings.css' | asset_url | stylesheet_tag }}
     {{ 'critical.css' | asset_url | stylesheet_tag }}
+    {{ 'component-age-gate.css' | asset_url | stylesheet_tag }}
 
     <script src="{{ 'variants.js' | asset_url }}" defer="defer"></script>
 
@@ -39,6 +40,7 @@
     <script src="{{ 'pubsub.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'base.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'age-gate.js' | asset_url }}" defer="defer"></script>
 
     <script src="{{ 'color-swatch.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'localization-form.js' | asset_url }}" defer="defer"></script>
@@ -140,6 +142,7 @@
   {% endif %}
 
   <body class="template-{{ template_name }} nav-drawer-big mobile-nav">
+    {% render 'age-gate' %}
     <a href="#root" class="skip-to-content-link">{{ 'accessibility.skip_to_text' | t }}</a>
     {% if settings.sticky_header %}<div class="sticky-header__threshold"></div>{% endif %}
     {% sections 'header-group' %}
