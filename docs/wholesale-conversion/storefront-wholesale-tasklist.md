@@ -402,10 +402,10 @@
 ## 5D Publish and link the Blends page
 
 - [ ] Publish a Blends page (`/pages/blends`).
-- [ ] Add Blends to the navigation menu.
+- [x] Add Blends to the navigation menu.
 - [ ] Confirm each COA link works.
 - [ ] Confirm CTA buttons route to contact/sign-up forms.
-- Current state: `page.blends` template is ready with three profile blocks. Admin still needs to create the Blends page, assign this template, and link it in menus before verifying COA links and CTAs.
+- Current state: `page.blends` template is ready with three profile blocks. Blends now appears in the `main-menu-wholesale` header menu, but admin still needs to create the Blends page and assign this template before verifying COA links and CTAs.
 
 **Acceptance Criteria**
 - Blends page is live and linked from header and footer.
