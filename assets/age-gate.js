@@ -14,8 +14,13 @@
   const focusableSelector =
     'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
 
+  const getFocusableElements = () =>
+    Array.from(gate.querySelectorAll(focusableSelector)).filter(
+      (el) => !el.hasAttribute('disabled') && el.getAttribute('aria-hidden') !== 'true',
+    );
+
   const focusFirstElement = () => {
-    const focusable = gate.querySelectorAll(focusableSelector);
+    const focusable = getFocusableElements();
     const first = focusable[0];
     if (first) {
       first.focus();
@@ -26,9 +31,7 @@
 
   const trapFocus = (event) => {
     if (event.key !== 'Tab') return;
-    const focusable = Array.from(gate.querySelectorAll(focusableSelector)).filter(
-      (el) => !el.hasAttribute('disabled') && !el.getAttribute('aria-hidden'),
-    );
+    const focusable = getFocusableElements();
     if (focusable.length === 0) {
       event.preventDefault();
       dialog?.focus();
