@@ -22,6 +22,3 @@ Use standard git branches in the current working tree; do not create isolated wo
 
 ## Security & Configuration Tips
 Never commit API keys or store credentials; keep them in `.env` files ignored by Git. Redact customer data in screenshots. Before running `shopify theme push`, verify `config/settings_data.json` omits store-specific secrets or disable syncing via CLI flags.
-
-## Tracking Documents
-Maintain `docs/phase-tracker.md` alongside feature work. Update phase statuses and Phase 5 checklist whenever tasks progress; reference it in PR summaries when scope changes.
