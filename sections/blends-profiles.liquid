@@ -1,0 +1,260 @@
+{{ 'section-blends-profiles.css' | asset_url | stylesheet_tag }}
+
+{% assign background_rgb = section.settings.background_color | color_to_rgb %}
+{% assign text_rgb = section.settings['color-body-text'] | color_to_rgb %}
+
+<style>
+  [data-section-id="{{ section.id }}"] {
+    {% if section.settings.margin-top %}
+      --section-gap-top: {{ section.settings.margin-top }}px;
+    {% endif %}
+
+    {% if section.settings.margin-bottom %}
+      --section-gap-bottom: {{ section.settings.margin-bottom }}px;
+    {% endif %}
+
+    {% if background_rgb != 'rgba(0, 0, 0, 0.0)' %}
+      --color-background: {{ section.settings.background_color }};
+    {% endif %}
+
+    {% if text_rgb != 'rgba(0, 0, 0, 0.0)' %}
+      --color-custom-text: {{ section.settings['color-body-text'] }};
+    {% endif %}
+
+    --blends-columns: {{ section.settings.columns_desktop }};
+    --blends-columns-mobile: {{ section.settings.columns_mobile }};
+  }
+</style>
+
+<section class="blends-profiles" data-section-id="{{ section.id }}">
+  <div class="hero__wrapper blends-profiles__inner">
+    {% if section.settings.heading != blank %}
+      <h2 class="headline__title blends-profiles__heading">{{ section.settings.heading | escape }}</h2>
+    {% endif %}
+
+    {% if section.settings.intro != blank %}
+      <div class="rte blends-profiles__intro">{{ section.settings.intro }}</div>
+    {% endif %}
+
+    <div class="blends-profiles__grid">
+      {% for block in section.blocks %}
+        {% assign product = block.settings.product %}
+        {% assign display_title = block.settings.custom_title %}
+
+        {% if display_title == blank and product != blank %}
+          {% assign display_title = product.title %}
+        {% endif %}
+
+        {% if display_title == blank %}
+          {% assign display_title = 'Blend name' %}
+        {% endif %}
+
+        {% assign description = block.settings.custom_description %}
+        {% if description == blank and product != blank %}
+          {% assign description = product.description | strip_html | truncatewords: 55 %}
+        {% endif %}
+
+        {% assign image = block.settings.image %}
+        {% if image == blank and product != blank %}
+          {% assign image = product.featured_image %}
+        {% endif %}
+
+        {% assign coa_url = block.settings.coa_url %}
+        {% if coa_url == blank and product != blank and product.metafields.custom.coa_url.value != blank %}
+          {% assign coa_url = product.metafields.custom.coa_url.value %}
+        {% endif %}
+
+        {% assign highlight_lines = block.settings.highlights | split: '\n' %}
+        {% assign has_highlights = false %}
+        {% for line in highlight_lines %}
+          {% if line | strip != blank %}
+            {% assign has_highlights = true %}
+          {% endif %}
+        {% endfor %}
+
+        <article class="blends-profiles__card" data-block-id="{{ block.id }}" {{ block.shopify_attributes }}>
+          <div class="blends-profiles__media">
+        {% if image != blank %}
+          {% assign alt_text = image.alt | default: display_title | escape %}
+          {{
+            image
+            | image_url: width: 900
+            | image_tag:
+              widths: '360, 540, 720, 900',
+              sizes: '(min-width: 990px) 45vw, 100vw',
+              alt: alt_text,
+              loading: 'lazy',
+              class: 'blends-profiles__image'
+          }}
+            {% else %}
+              {{ 'collection-apparel-1' | placeholder_svg_tag: 'blends-profiles__image blends-profiles__image--placeholder' }}
+            {% endif %}
+          </div>
+
+          <div class="blends-profiles__content">
+            <h3 class="blends-profiles__title">{{ display_title }}</h3>
+
+            {% if description != blank %}
+              <p class="blends-profiles__description">{{ description }}</p>
+            {% endif %}
+
+            {% if has_highlights %}
+              <ul class="blends-profiles__highlights">
+                {% for line in highlight_lines %}
+                  {% assign highlight = line | strip %}
+                  {% if highlight != blank %}
+                    <li>{{ highlight }}</li>
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            {% endif %}
+
+            {% if coa_url != blank %}
+              {% assign coa_label = block.settings.coa_label %}
+              {% if coa_label == blank %}
+                {% assign coa_label = 'View ' | append: display_title | append: ' COA (PDF)' %}
+              {% endif %}
+              <a class="hero__button hero__button--secondary blends-profiles__coa" href="{{ coa_url }}" target="_blank" rel="noopener">
+                {{ coa_label }}
+              </a>
+            {% endif %}
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Blends profiles",
+  "tag": "section",
+  "class": "spaced-section blends-profiles",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Our blends"
+    },
+    {
+      "type": "richtext",
+      "id": "intro",
+      "label": "Intro",
+      "default": "<p>Explore our current lineup and review COAs for batch-specific details.</p>"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "default": 2,
+      "label": "Columns (desktop)"
+    },
+    {
+      "type": "range",
+      "id": "columns_mobile",
+      "min": 1,
+      "max": 2,
+      "step": 1,
+      "default": 1,
+      "label": "Columns (mobile)"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "color-body-text",
+      "default": "transparent",
+      "label": "Text color"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "default": "transparent",
+      "label": "Background color"
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "margin-top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 40,
+      "unit": "px",
+      "label": "Top spacing"
+    },
+    {
+      "type": "range",
+      "id": "margin-bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 40,
+      "unit": "px",
+      "label": "Bottom spacing"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "blend",
+      "name": "Blend",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image override"
+        },
+        {
+          "type": "text",
+          "id": "custom_title",
+          "label": "Custom title"
+        },
+        {
+          "type": "textarea",
+          "id": "custom_description",
+          "label": "Custom description"
+        },
+        {
+          "type": "textarea",
+          "id": "highlights",
+          "label": "Highlights (one per line)",
+          "default": "Cannabinoids: TBD\nTerpenes: TBD\nIntended effects: TBD"
+        },
+        {
+          "type": "url",
+          "id": "coa_url",
+          "label": "COA URL override"
+        },
+        {
+          "type": "text",
+          "id": "coa_label",
+          "label": "COA link label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Blends profiles",
+      "blocks": [
+        {
+          "type": "blend"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
