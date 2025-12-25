@@ -95,7 +95,7 @@ test('wholesale CTA replaces retail UI in themed templates', async () => {
 
   expect(suggestItem).toContain("wholesale-cta");
   expect(suggestItem).not.toContain("render 'price'");
-  expect(suggestItem).toContain(urlNormalization);
+  expect(suggestItem).not.toContain(urlNormalization);
 
   expect(predictiveSearch).toContain("wholesale-cta");
   expect(predictiveSearch).not.toContain('product.url');
