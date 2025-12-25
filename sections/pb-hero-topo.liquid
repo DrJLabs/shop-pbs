@@ -1,7 +1,7 @@
 {%- assign desktop_image = section.settings.desktop_image -%}
 {%- assign mobile_image = section.settings.mobile_image -%}
-{%- assign alt_text = desktop_image.alt | default: section.settings.heading -%}
-{%- assign mobile_alt_text = mobile_image.alt | default: alt_text -%}
+{%- assign hero_image = desktop_image | default: mobile_image -%}
+{%- assign alt_text = desktop_image.alt | default: mobile_image.alt | default: section.settings.heading -%}
 
 <style>
   section[id="shopify-section-{{ section.id }}"] {
@@ -30,10 +30,6 @@
     height: 100%;
     object-fit: cover;
     object-position: right center;
-  }
-
-  section[id="shopify-section-{{ section.id }}"] .pb-hero-topo__picture--mobile {
-    display: none;
   }
 
   section[id="shopify-section-{{ section.id }}"] .pb-hero-topo__scrim {
@@ -163,14 +159,6 @@
   }
 
   @media (max-width: 749px) {
-    section[id="shopify-section-{{ section.id }}"] .pb-hero-topo--has-mobile .pb-hero-topo__picture--desktop {
-      display: none;
-    }
-
-    section[id="shopify-section-{{ section.id }}"] .pb-hero-topo--has-mobile .pb-hero-topo__picture--mobile {
-      display: block;
-    }
-
     section[id="shopify-section-{{ section.id }}"] .pb-hero-topo__inner {
       min-height: 420px;
       padding: 64px 0;
@@ -187,16 +175,39 @@
   }
 </style>
 
-<section class="pb-hero-topo pb-hero-topo--align-{{ section.settings.content_align }}{% if mobile_image != blank %} pb-hero-topo--has-mobile{% endif %}">
+<section class="pb-hero-topo pb-hero-topo--align-{{ section.settings.content_align }}">
   <div class="pb-hero-topo__media" aria-hidden="true">
-    {% if desktop_image != blank %}
-      <picture class="pb-hero-topo__picture pb-hero-topo__picture--desktop">
-        {{ desktop_image | image_url: width: 2400 | image_tag: class: 'pb-hero-topo__image', sizes: '100vw', widths: '750, 1100, 1500, 1780, 2000, 2400', alt: alt_text }}
-      </picture>
-    {% endif %}
-    {% if mobile_image != blank %}
-      <picture class="pb-hero-topo__picture pb-hero-topo__picture--mobile">
-        {{ mobile_image | image_url: width: 1100 | image_tag: class: 'pb-hero-topo__image', sizes: '100vw', widths: '375, 550, 750, 1100', alt: mobile_alt_text }}
+    {% if hero_image != blank %}
+      <picture class="pb-hero-topo__picture">
+        {% if mobile_image != blank and desktop_image != blank %}
+          <source
+            media="(max-width: 749px)"
+            sizes="100vw"
+            srcset="
+              {{ mobile_image | image_url: width: 375 }} 375w,
+              {{ mobile_image | image_url: width: 550 }} 550w,
+              {{ mobile_image | image_url: width: 750 }} 750w,
+              {{ mobile_image | image_url: width: 1100 }} 1100w
+            "
+          >
+        {% endif %}
+        <img
+          src="{{ hero_image | image_url: width: 1500 }}"
+          srcset="
+            {{ hero_image | image_url: width: 750 }} 750w,
+            {{ hero_image | image_url: width: 1100 }} 1100w,
+            {{ hero_image | image_url: width: 1500 }} 1500w,
+            {{ hero_image | image_url: width: 1780 }} 1780w,
+            {{ hero_image | image_url: width: 2000 }} 2000w,
+            {{ hero_image | image_url: width: 2400 }} 2400w
+          "
+          sizes="100vw"
+          class="pb-hero-topo__image"
+          alt="{{ alt_text | escape }}"
+          loading="lazy"
+          width="{{ hero_image.width }}"
+          height="{{ hero_image.height }}"
+        >
       </picture>
     {% endif %}
   </div>
@@ -212,16 +223,18 @@
       {% if section.settings.subhead != blank %}
         <p class="pb-hero-topo__subhead">{{ section.settings.subhead | escape | newline_to_br }}</p>
       {% endif %}
-      {% if section.settings.primary_label != blank %}
+      {% if section.settings.primary_label != blank or section.settings.secondary_label != blank %}
         <div class="pb-hero-topo__actions">
-          {% if section.settings.primary_link != blank %}
-            <a class="pb-hero-topo__button pb-hero-topo__button--primary" href="{{ section.settings.primary_link }}">
-              {{ section.settings.primary_label | escape }}
-            </a>
-          {% else %}
-            <button class="pb-hero-topo__button pb-hero-topo__button--primary" type="button" disabled aria-disabled="true">
-              {{ section.settings.primary_label | escape }}
-            </button>
+          {% if section.settings.primary_label != blank %}
+            {% if section.settings.primary_link != blank %}
+              <a class="pb-hero-topo__button pb-hero-topo__button--primary" href="{{ section.settings.primary_link }}">
+                {{ section.settings.primary_label | escape }}
+              </a>
+            {% else %}
+              <button class="pb-hero-topo__button pb-hero-topo__button--primary" type="button" disabled aria-disabled="true">
+                {{ section.settings.primary_label | escape }}
+              </button>
+            {% endif %}
           {% endif %}
           {% if section.settings.secondary_label != blank %}
             {% if section.settings.secondary_link != blank %}
@@ -233,18 +246,6 @@
                 {{ section.settings.secondary_label | escape }}
               </button>
             {% endif %}
-          {% endif %}
-        </div>
-      {% elsif section.settings.secondary_label != blank %}
-        <div class="pb-hero-topo__actions">
-          {% if section.settings.secondary_link != blank %}
-            <a class="pb-hero-topo__button pb-hero-topo__button--secondary" href="{{ section.settings.secondary_link }}">
-              {{ section.settings.secondary_label | escape }}
-            </a>
-          {% else %}
-            <button class="pb-hero-topo__button pb-hero-topo__button--secondary" type="button" disabled aria-disabled="true">
-              {{ section.settings.secondary_label | escape }}
-            </button>
           {% endif %}
         </div>
       {% endif %}
