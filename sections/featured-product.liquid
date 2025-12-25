@@ -561,48 +561,10 @@
                   role="status"
                   {{ block.shopify_attributes }}
                 >
-                  {% if product == blank %}
-                    <div class="wt-product__price no-js-hidden scroll-trigger animate--slide-in disabled-on-mobile">
-                      <div class="price price--large">
-                        <div class="price__container">
-                          <div class="price__regular">
-                            <span class="visually-hidden visually-hidden--inline">Regular price</span>
-                            <span class="price-item price-item--regular wt-product__price__final wt-product__price__final">
-                              {{ 1999 | money }}
-                            </span>
-                          </div>
-                        </div>
-                  {% else %}
-                    {%- render 'price',
-                      product: product,
-                      use_variant: true,
-                      show_badges: true,
-                      price_class: 'price--large'
-                    -%}
-                  {% endif %}
+                  <p class="wt-product__price__final wt-product__price__final--wholesale">
+                    Wholesale pricing available upon request.
+                  </p>
                 </div>
-                {%- if product.quantity_price_breaks_configured? -%}
-                  <div class="volume-pricing-note">
-                    <span>{{ 'products.product.volume_pricing.note' | t }}</span>
-                  </div>
-                {%- endif -%}
-                <div class="product__tax caption rte">
-                  {%- if cart.taxes_included and block.settings.show_tax_included -%}
-                    {{ 'products.product.include_taxes' | t }}
-                  {%- endif -%}
-                  {%- if shop.shipping_policy.body != blank -%}
-                    {{ 'products.product.shipping_policy_html' | t: link: shop.shipping_policy.url }}
-                  {%- endif -%}
-                </div>
-                {% if product != blank %}
-                  <div {{ block.shopify_attributes }}>
-                    {%- assign product_form_installment_id = 'product-form-installment-' | append: section.id -%}
-                    {%- form 'product', product, id: product_form_installment_id, class: 'installment caption-large' -%}
-                      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-                      {{ form | payment_terms }}
-                    {%- endform -%}
-                  </div>
-                {% endif %}
               {%- when 'separator' -%}
                 <div data-block-id="{{ block.id }}">
                   <hr

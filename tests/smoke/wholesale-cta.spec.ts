@@ -2,7 +2,15 @@ import { test, expect } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 
+import settingsSchema from '../../config/settings_schema.json';
+
 const baseUrlSupplied = Boolean(process.env.BASE_URL ?? process.env.SHOP_URL);
+
+const wholesaleSetting = settingsSchema
+  .find((setting) => setting.name === 'Wholesale')
+  ?.settings.find((setting) => setting.id === 'wholesale_page_url');
+
+const wholesaleDefaultUrl = wholesaleSetting?.default ?? '/pages/wholesale';
 
 test.skip(!baseUrlSupplied, 'Set BASE_URL or SHOP_URL to run smoke checks against a live theme.');
 
@@ -24,7 +32,7 @@ test('collection cards show wholesale CTA and no pricing', async ({ page }) => {
   await expect(page.locator('.card__price')).toHaveCount(0);
 
   const wholesaleLink = page.locator('a.card').first();
-  await expect(wholesaleLink).toHaveAttribute('href', '/pages/wholesale');
+  await expect(wholesaleLink).toHaveAttribute('href', wholesaleDefaultUrl);
 });
 
 test('wholesale CTA replaces retail UI in themed templates', async () => {

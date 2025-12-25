@@ -21,6 +21,11 @@
 
 {%- assign title_tag = title_tag | default: 'h3' -%}
 {%- assign wholesale_url = settings.wholesale_page_url | default: '/pages/wholesale' -%}
+{%- assign link_url = url | default: wholesale_url -%}
+
+{%- if card_product or product -%}
+  {%- assign link_url = wholesale_url -%}
+{%- endif -%}
 
 {% if media_aspect_ratio %}
   <style>
@@ -36,7 +41,7 @@
   <div class="card__container">
     <div class="card__picture-container">
       <a
-        href="{{ wholesale_url }}"
+        href="{{ link_url }}"
         class="card{% if text_alignment %} card--{{ text_alignment }}{% endif %}"
         tabindex="0"
         aria-label="{{ 'aria-label.card-url' | t }}"
@@ -212,7 +217,7 @@
     </div>
 
     <a
-      href="{{ wholesale_url }}"
+      href="{{ link_url }}"
       tabindex="-1"
       data-omit-tabindex
       class="card{% if text_alignment %} card--{{ text_alignment }}{% endif %}"
@@ -319,7 +324,7 @@
                       {{ variant.image | image_url: width: 1000 }} 1000w
                       {% endif %}
                     "
-                    data-href="{{ wholesale_url }}"
+                    data-href="{{ link_url }}"
                     data-hover="{% if new_hover_image %}{{ new_hover_image | image_url: width: 1000 }}{% elsif img_hover %}{{ img_hover | image_url: width: 1000 }}{% endif %}"
                     style="
                       {% if is_variant_picture %} background-image: url({{ variant.image | image_url: width: 48 }});{% else %}
