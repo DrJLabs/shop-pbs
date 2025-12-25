@@ -13,6 +13,7 @@ test('pb-hero-topo section includes required schema fields', async () => {
   expect(content).toContain('"accent_color"');
   expect(content).toContain('"chip"');
   expect(content).toContain('pb-hero-topo');
+  expect(content).toContain('#shopify-section-{{ section.id }}');
   expect(pictureMatches).toHaveLength(1);
   expect(content).toContain('<source');
   expect(content).toContain('media="(max-width: 749px)"');
