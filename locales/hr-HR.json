@@ -104,6 +104,8 @@
   "products": {
     "product": {
       "add_to_cart": "Dodaj u košaricu",
+      "partner_with_us": "Partner with us",
+      "wholesale_pricing_request": "Wholesale pricing available upon request.",
       "description": "Opis",
       "on_sale": "Rasprodaja",
       "product_variants": "Varijante proizvoda",

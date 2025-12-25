@@ -104,6 +104,8 @@
   "products": {
     "product": {
       "add_to_cart": "Adăugați în coș",
+      "partner_with_us": "Partner with us",
+      "wholesale_pricing_request": "Wholesale pricing available upon request.",
       "description": "Descriere",
       "on_sale": "Vânzare",
       "product_variants": "Variante de produse",

@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { readFile } from 'node:fs/promises';
+import { readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
 
 import settingsSchema from '../../config/settings_schema.json';
@@ -91,6 +91,16 @@ test('wholesale CTA replaces retail UI in themed templates', async () => {
   ] = await Promise.all(files.map((file) => readFile(path.join(root, file), 'utf8')));
 
   const localeData = await readJson(path.join(root, 'locales/en.default.json'), true);
+  const localeDir = path.join(root, 'locales');
+  const localeFiles = (await readdir(localeDir)).filter(
+    (file) => file.endsWith('.json') && !file.endsWith('.schema.json')
+  );
+  const localeDataSets = await Promise.all(
+    localeFiles.map(async (file) => ({
+      file,
+      data: await readJson(path.join(localeDir, file), true),
+    }))
+  );
   const urlNormalization = "replace: 'shopify://', '/'";
 
   expect(suggestItem).toContain("wholesale-cta");
@@ -116,4 +126,8 @@ test('wholesale CTA replaces retail UI in themed templates', async () => {
   expect(cardSnippet).toContain(urlNormalization);
   expect(localeData?.products?.product?.partner_with_us).toBeTruthy();
   expect(localeData?.products?.product?.wholesale_pricing_request).toBeTruthy();
+  for (const localeEntry of localeDataSets) {
+    expect(localeEntry.data?.products?.product?.partner_with_us).toBeTruthy();
+    expect(localeEntry.data?.products?.product?.wholesale_pricing_request).toBeTruthy();
+  }
 });

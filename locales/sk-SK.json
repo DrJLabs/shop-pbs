@@ -105,6 +105,8 @@
   "products": {
     "product": {
       "add_to_cart": "Pridať do košíka",
+      "partner_with_us": "Partner with us",
+      "wholesale_pricing_request": "Wholesale pricing available upon request.",
       "description": "Popis",
       "on_sale": "Zľava",
       "product_variants": "Varianty produktu",

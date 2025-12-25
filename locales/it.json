@@ -127,6 +127,8 @@
   "products": {
     "product": {
       "add_to_cart": "Aggiungi al carrello",
+      "partner_with_us": "Partner with us",
+      "wholesale_pricing_request": "Wholesale pricing available upon request.",
       "choose_options": "Scegli opzioni",
       "choose_product_options": "Scegli opzioni per {{ product_name }}",
       "description": "Descrizione",

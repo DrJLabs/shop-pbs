@@ -103,6 +103,8 @@
   "products": {
     "product": {
       "add_to_cart": "添加到购物车",
+      "partner_with_us": "Partner with us",
+      "wholesale_pricing_request": "Wholesale pricing available upon request.",
       "description": "描述",
       "on_sale": "销售额",
       "product_variants": "产品多属性",
