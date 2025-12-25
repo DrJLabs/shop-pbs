@@ -1,4 +1,5 @@
 {%- assign link_url = url | default: settings.wholesale_page_url | default: '/pages/wholesale' -%}
+{%- assign link_url = link_url | replace: 'shopify://', '/' -%}
 <a href="{{ link_url }}" class="suggest-item">
   {%- if product.featured_media != blank -%}
     <figure class="wt-cart__item__thumb suggest-item__thumb">

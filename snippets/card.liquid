@@ -21,11 +21,13 @@
 
 {%- assign title_tag = title_tag | default: 'h3' -%}
 {%- assign wholesale_url = settings.wholesale_page_url | default: '/pages/wholesale' -%}
+{%- assign wholesale_url = wholesale_url | replace: 'shopify://', '/' -%}
 {%- if card_product or product -%}
   {%- assign link_url = wholesale_url -%}
 {%- else -%}
   {%- assign link_url = url | default: wholesale_url -%}
 {%- endif -%}
+{%- assign link_url = link_url | replace: 'shopify://', '/' -%}
 
 {% if media_aspect_ratio %}
   <style>

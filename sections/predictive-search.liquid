@@ -6,6 +6,7 @@
 
 {%- if predictive_search.performed -%}
   {%- assign wholesale_url = settings.wholesale_page_url | default: '/pages/wholesale' -%}
+  {%- assign wholesale_url = wholesale_url | replace: 'shopify://', '/' -%}
   <div
     id="predictive-search-results"
     class="search-result {% if total_results == 0 %}search-result--no-results{% endif %}"

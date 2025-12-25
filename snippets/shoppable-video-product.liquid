@@ -1,4 +1,5 @@
 {%- assign wholesale_url = settings.wholesale_page_url | default: '/pages/wholesale' -%}
+{%- assign wholesale_url = wholesale_url | replace: 'shopify://', '/' -%}
 <div class="shoppable-product-card{% if customClass != blank %} {{ customClass }}{% endif %}">
   {% comment %}
     <div class="shoppable-video__play-button-container">

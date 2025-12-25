@@ -1,8 +1,7 @@
 {%- assign wholesale_url = wholesale_url | default: settings.wholesale_page_url | default: '/pages/wholesale' -%}
-{%- assign wholesale_label = wholesale_label | default: '' -%}
-{%- if wholesale_label == blank -%}
-  {%- assign wholesale_label = 'products.product.partner_with_us' | t -%}
-{%- endif -%}
+{%- assign wholesale_url = wholesale_url | replace: 'shopify://', '/' -%}
+{%- assign wholesale_label_default = 'products.product.partner_with_us' | t -%}
+{%- assign wholesale_label = wholesale_label | default: wholesale_label_default -%}
 {%- assign wholesale_class = wholesale_class | default: 'hero__button hero__button--secondary' -%}
 {%- if wholesale_linkless -%}
   <span class="{{ wholesale_class }} wholesale-cta" data-wholesale-cta>

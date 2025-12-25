@@ -63,6 +63,7 @@
   class="shoppable-image {% if section.settings.full-width-enabled %} shoppable-image__full {% endif %}"
 >
   {%- assign wholesale_url = settings.wholesale_page_url | default: '/pages/wholesale' -%}
+  {%- assign wholesale_url = wholesale_url | replace: 'shopify://', '/' -%}
   {% render 'headline', title: section.settings.heading | newline_to_br %}
 
   <div class="shoppable-image__text {% if settings.animations %} scroll-trigger animate--slide-in {% endif %} {% if settings.disabled_animations_on_mobile %} disabled-on-mobile {% endif %}">
