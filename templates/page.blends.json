@@ -53,7 +53,7 @@
         "heading": "Our blends",
         "intro": "<p>Explore our current lineup and review COAs for batch-specific details.</p>",
         "columns_desktop": 2,
-        "columns_mobile": 1,
+        "columns_mobile": "1",
         "color-body-text": "transparent",
         "background_color": "transparent",
         "margin-top": 20,
