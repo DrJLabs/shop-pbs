@@ -23,20 +23,20 @@
 - Admin-only items (requires Shopify admin access)
 - Other observations (header/footer behaviors)
 
-- Current state: Publicly accessible pages today include the home page (`/`), Our Shop collection page (`/collections/all`), and individual product pages for Headspace Elevate, JennaBoo, and Whispering Roots (each showing price, flavour variants, and an Add to cart button). There is also an Our Process page (`/pages/our-process`) describing sourcing, formulation, testing, and packaging; a contact page (`/pages/contact`) with a multi-field form; a FAQs page (`/pages/faqs`); a Certificates of Analysis (COAs) page (`/pages/certificates-of-analysis-coas`) linking to PDF COAs; and Shopify policy pages (privacy policy, refund policy, shipping policy, terms of service). There is also a data-sharing opt-out page (`/pages/data-sharing-opt-out`) and a Track Order page implemented via the Track123 app (`/apps/track123`).
-- Current state: The planned About Us page (`/pages/about-us`) and a combined Shipping &amp; Returns page both return a 404 (“OPS! We can’t find what you’re looking for here”) with a “Back to home” button. There is currently no Wholesale page. The Compliance &amp; Legal link loads a page that contains only the standard footer—no legal or compliance content is provided. The Our Shop menu item still points to a retail collection page showing prices.
+- Current state: Publicly accessible pages today include the home page (`/`), the collection page (`/collections/all`), and individual product pages for Headspace Elevate, JennaBoo, and Whispering Roots (product pages still show price/variants/Add to cart unless hidden via admin). There is also an Our Process page (`/pages/our-process`) describing sourcing, formulation, testing, and packaging; a contact page (`/pages/contact`) with a multi-field form; a FAQs page (`/pages/faqs`); a Certificates of Analysis (COAs) page (`/pages/certificates-of-analysis-coas`) linking to PDF COAs; and Shopify policy pages (privacy policy, refund policy, shipping policy, terms of service). There is also a data-sharing opt-out page (`/pages/data-sharing-opt-out`). The Track123 app page (`/apps/track123`) still exists but is no longer linked from the footer menus.
+- Current state: The planned About Us page (`/pages/about-us`) and a combined Shipping &amp; Returns page both return a 404 (“OPS! We can’t find what you’re looking for here”) with a “Back to home” button. There is currently no Wholesale page. The Compliance &amp; Legal link loads a page that contains only the standard footer—no legal or compliance content is provided. Collection/search/featured product surfaces now show wholesale CTAs instead of retail purchase buttons, but product pages remain retail until admin hides them.
 - Current state: Without Shopify admin access we cannot verify hidden draft pages, theme section names/settings (e.g., header section names), or toggle cart/search icons. We note where admin confirmation may be needed.
-- Current state: The header shows the logo, “Home / Our Shop / Contact Us” links plus search, account, and cart icons. Pages include announcement bar repeating “Expertly crafted blends for a • refined experience”. Most pages end with a four-column footer listing Customer Care links (About Us, Contact Us, Shipping &amp; Returns, Compliance &amp; Legal, FAQs, Track Order, Your privacy choices, COAs / Lab Reports, Our Process), policy links (Privacy, Refund, Shipping, Terms of Service), and a newsletter subscription form (“Be the first to know the latest releases, news, collaborations, exclusives and offers!”). Payment icons (PayPal and Venmo) appear. A second subscribe form labelled “SUBSCRIBE TO OUR EMAILS” also appears near the bottom of the home page.
+- Current state: The header shows the logo and the wholesale-focused menu; search/account/cart icons are removed and the “Log in” menu link remains. Pages include an announcement bar repeating “Expertly crafted blends for a • refined experience”. Most pages end with a four-column footer listing wholesale-focused Customer Care links (About Us, Contact Us, Compliance &amp; Legal, FAQs, Your privacy choices, COAs / Lab Reports, Our Process), policy links (Privacy, Refund, Shipping, Terms of Service), and a newsletter subscription form (“Be the first to know the latest releases, news, collaborations, exclusives and offers!”). Payment icons are removed. A second subscribe form labelled “SUBSCRIBE TO OUR EMAILS” also appears near the bottom of the home page.
 
 # 1 Home page redesign
 
 - [ ] Restructure the home page to remove retail functionality and reposition it as a brand hub.
-- Current state: The home page is currently retail-oriented with product pricing, Add to cart buttons, a cart icon, and generic e-commerce promos.
+- Current state: The home page removes product pricing/add-to-cart and cart icon; retail promos are removed. Hero imagery is still placeholder and newsletter copy remains retail.
 
 ## 1A Plan the structure and remove retail elements
 
 - [ ] Identify all current home page sections (hero banner, product grid, promotional features, newsletter form, footer).
-- Current state: Home opens with hero (Tennessee outline + Dr Js logo overlay, tagline, two CTAs). Below: “Shop our blends” product grid (3 products with price and Add to cart). Further down: four promo icons (Fast shipping, Regular sales, Easy returns, Secure checkout). Then newsletter (“SUBSCRIBE TO OUR EMAILS”). Ends with standard four-column footer.
+- Current state: Home opens with hero (Tennessee outline + Dr Js logo overlay, tagline, two CTAs). Below: brand story, USPs, and process teaser sections. Newsletter (“SUBSCRIBE TO OUR EMAILS”) and the standard four-column footer remain.
 
 ## 1B Disable or delete retail product grid elements
 
@@ -186,7 +186,7 @@
 
 ## Inventory Notes
 
-- Current state: The home page still functions as a retail storefront (pricing, Add to cart buttons, retail CTAs). Brand story, USPs, process teaser, and wholesale CTA are now in place.
+- Current state: The home page no longer shows pricing or Add to cart buttons; the product grid is removed. Brand story, USPs, process teaser, and wholesale CTA are in place, but the new `pb-hero-topo` section is not yet inserted into `templates/index.json` and newsletter copy remains retail-oriented.
 
 # 2 Site navigation and structure
 
@@ -232,7 +232,7 @@
 
 ## Inventory Notes
 
-- Current state: Navigation leads to retail pages (Our Shop and Track Order app). Missing menu entries limit discoverability of About, Blends, COAs, and Wholesale.
+- Current state: Navigation uses `main-menu-wholesale` and wholesale/policy footer menus; retail links (Our Shop, Track Order) are removed. Admin still needs to create/publish About Us, Wholesale, and Blends pages to avoid 404s.
 
 # 3 About Us page creation
 
@@ -390,7 +390,7 @@
 - [x] Replace “Add to cart” with “Contact for wholesale” or “Join our mailing list”.
 - [x] Remove pricing.
 - [x] Remove purchasing functionality.
-- Current state: Collection cards, predictive search suggestions, featured product blocks, and shoppable tooltips now show a “Partner with us” CTA linking to `/pages/wholesale`. Product pages remain retail, but will be hidden via Shopify admin.
+- Current state: Collection cards, predictive search suggestions, featured product blocks, and shoppable tooltips now show a “Partner with us” CTA via `snippets/wholesale-cta.liquid`, using translation key `products.product.partner_with_us` and `settings.wholesale_page_url` (fallback `/pages/wholesale`, `shopify://` normalized). Product pages remain retail until hidden via Shopify admin.
 
 **Acceptance Criteria**
 - No price or purchase buttons appear on blends listings.
@@ -416,7 +416,7 @@
 
 ## Inventory Notes
 
-- Current state: Retail purchase flows are removed from collection/search surfaces and replaced by wholesale CTAs. Product pages will be hidden in Shopify admin. Blends page template exists, but CTA replacement and menu linkage still need admin follow-up.
+- Current state: Retail purchase flows are removed from collection/search/featured/shoppable surfaces and replaced by wholesale CTAs; locale keys now exist across all locale files. Product pages remain retail unless hidden in Shopify admin. Blends page template exists; admin still needs to create the page, set `settings.wholesale_page_url`, and verify link routing.
 
 # 6 COAs page improvement
 
@@ -701,7 +701,7 @@
 
 - [ ] Mark products as unavailable for the online store sales channel.
 - [ ] Remove checkout links and retail purchase features from theme.
-- Current state: Products are purchasable; price/Add to cart/PayPal buttons are present. Header search/account/cart entry points have been removed in theme.
+- Current state: Header search/account/cart entry points are removed; collection/search/featured/shoppable surfaces show wholesale CTAs and no pricing. Product pages still show price/Add to cart/PayPal buttons unless hidden or edited in Shopify admin.
 
 **Acceptance Criteria**
 - Products are not purchasable from the storefront (no cart/checkout flows).
@@ -742,7 +742,7 @@
 - [ ] Audit all pages on mobile.
 - [ ] Fix broken links, spacing issues, misaligned elements.
 - [ ] Document minor corrections.
-- Current state: Broken links exist (About Us, Shipping & Returns). Compliance & Legal and About Us lack content. Product descriptions vary. Full style audit pending.
+- Current state: Broken links exist (About Us, Shipping & Returns). Compliance & Legal and About Us lack content. Product descriptions vary. Full style audit pending. A wholesale CTA smoke test exists in `tests/smoke/wholesale-cta.spec.ts` (requires `BASE_URL` or `SHOP_URL` for the live check).
 
 **Acceptance Criteria**
 - No broken links remain; layout is consistent on desktop/mobile.
@@ -752,7 +752,7 @@
 
 ## Inventory Notes
 
-- Current state: Disabling retail requires admin actions (product availability, theme icons/buttons). Broken links must be removed or replaced.
+- Current state: Disabling retail requires admin actions (product availability, product templates). `settings.wholesale_page_url` must be set in theme settings. Broken links must be removed or replaced.
 
 # 12 Final review and next steps
 
@@ -762,7 +762,7 @@
 - [ ] Confirm CTAs route correctly.
 - [ ] Confirm forms submit correctly.
 - [ ] Ensure no references to retail purchasing remain.
-- Current state: Retail elements remain (Our Shop, Add to cart). Contact form lacks dropdown. COA links work. Wholesale and compliance content missing.
+- Current state: Retail UI is removed from collection/search/featured/shoppable surfaces, but product pages still show price/Add to cart unless hidden in admin. Contact form lacks dropdown. COA links still open in the same tab. Wholesale and compliance content are missing, and `settings.wholesale_page_url` still needs to be configured.
 
 **Acceptance Criteria**
 - All navigation/CTA links work without 404s.
@@ -776,7 +776,7 @@
 - [ ] List required inputs for each section (copy, USPs, images).
 - [ ] Standardise product descriptions across blends.
 - [ ] Draft final wording for missing pages.
-- Current state: About Us, brand story, USPs, and wholesale details are missing. Product descriptions vary and need standardisation. Images need selection.
+- Current state: Brand story and USPs exist but need final copy; About Us and wholesale details are still missing. Product descriptions vary and need standardisation. Images need selection.
 
 **Acceptance Criteria**
 - Content inventory is complete and assigned to owners.
@@ -798,11 +798,11 @@
 
 ## Recommended next steps
 
-1. Complete 1D and 1E (hero + brand story) to remove retail focus from the home page.
-2. Update 2A/2B navigation and footer to remove retail links and add Wholesale.
-3. Create the Blends page (5B-5D) and replace retail CTAs (5C).
-4. Draft Compliance & Legal content (7A-7C) and Wholesale page outline (8A).
-5. Run a full desktop/mobile review after the above changes (11D).
+1. Create/publish the Wholesale page, decide the form workflow, and set `settings.wholesale_page_url`.
+2. Create the Blends page in admin, assign the `page.blends` template, and verify COA/CTA links.
+3. Disable retail purchasing on product pages (unpublish products or adjust product templates).
+4. Draft Compliance & Legal content and update the Contact page (dropdown + routing).
+5. Swap in the final hero image/section and update newsletter copy, then run a full desktop/mobile review.
 
 # Appendix
 
@@ -810,13 +810,13 @@
 
 | Page name | URL | Where linked | Notes |
 | --- | --- | --- | --- |
-| Home | `/` | Header “Home” | Hero with tagline, product grid, promos, newsletter, footer |
-| Our Shop / All Products | `/collections/all` | Header “Our Shop”; hero CTA “Explore blends” | Displays 3 products with price and Add to cart buttons |
+| Home | `/` | Header “Home” | Hero with tagline and CTAs, brand story, USPs, process teaser, newsletter, footer; no product grid |
+| Our Shop / All Products | `/collections/all` | Not linked in menus (direct URL) | Collection cards show wholesale CTAs and no pricing; card links route to the wholesale URL |
 | Headspace Elevate product | `/products/headspace-elevate-2g` | Product card on collection page | Shows product image, price $44.95, variant selector, Add to cart and PayPal buttons; description includes HC content |
 | Whispering Roots product | `/products/whispering-rots-2g` | Product card on collection page | Shows price $44.95; description notes cannabinoid percentages |
 | JennaBoo product | `/products/jennaboo-2g` | Product card on collection page | Price $44.95; minimal description |
 | Contact Us | `/pages/contact` | Header “Contact Us”; footer link | Categories listed in text; form fields Name, Phone number, Email*, Comment; button “SEND A FORM”; no dropdown |
-| Track order status | `/apps/track123` | Footer “Track Order” | App page with tracking form (order number + email/phone); retail-oriented |
+| Track order status | `/apps/track123` | Not linked in menus (direct URL) | App page with tracking form (order number + email/phone); retail-oriented |
 | Data-sharing opt-out | `/pages/data-sharing-opt-out` | Footer link | Checkbox and OPT OUT button |
 | About Us | `/pages/about-us` | Footer link | 404 Not Found |
 | Our Process | `/pages/our-process` | Footer link | Live; text-only; no CTA |
