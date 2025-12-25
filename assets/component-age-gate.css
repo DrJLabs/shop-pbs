@@ -1,0 +1,57 @@
+.age-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.age-gate[hidden] {
+  display: none;
+}
+
+.age-gate__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(var(--color-overlay-rgb), 0.85);
+}
+
+.age-gate__dialog {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 520px;
+  background: var(--color-background);
+  color: var(--color-body-text);
+  border-radius: var(--border-radius);
+  padding: 32px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+.age-gate__heading {
+  margin: 0 0 12px;
+}
+
+.age-gate__body {
+  margin: 0 0 24px;
+}
+
+.age-gate__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+@media (min-width: 640px) {
+  .age-gate__actions {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .age-gate__actions .button {
+    min-width: 180px;
+  }
+}

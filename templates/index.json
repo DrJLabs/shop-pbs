@@ -32,13 +32,13 @@
           "type": "button",
           "settings": {
             "button_select": "primary",
-            "button_label": "Eplore Blends",
+            "button_label": "Discover our blends",
             "disable_on_mobile": false,
-            "button_link": "shopify://collections",
+            "button_link": "/pages/blends",
             "second_button_select": "primary",
-            "second_button_label": "View COAs",
+            "second_button_label": "Partner with us (wholesale)",
             "second_disable_on_mobile": false,
-            "second_button_link": "/pages/certificates-of-analysis-coas"
+            "second_button_link": "/pages/wholesale"
           }
         }
       },
@@ -69,43 +69,91 @@
         "margin-bottom": 0
       }
     },
+    "image_with_text_brand_story": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_brand_story": {
+          "type": "heading",
+          "settings": {
+            "heading": "Our Story",
+            "disable_on_mobile": false,
+            "size_heading": 100,
+            "size_heading_mobile": 100
+          }
+        },
+        "text_brand_story": {
+          "type": "text",
+          "settings": {
+            "text": "<p>We started with a simple belief: thoughtful blends should feel intentional, consistent, and trustworthy. What began as a small pursuit of balance grew into a brand built on care, transparency, and craft. Our mission is to create premium experiences that support everyday wellness without compromise. We continue to refine every detail so customers can feel confident in what they choose.</p>",
+            "text_style": "body",
+            "disable_on_mobile": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_brand_story",
+        "text_brand_story"
+      ],
+      "settings": {
+        "title": "",
+        "layout": "text_first",
+        "desktop-percentage-image-width": 50,
+        "full-width-enabled": false,
+        "slide_height": "fixed_height",
+        "desktop_fixed_height": 320,
+        "mobile_fixed_height": 460,
+        "section-color-body-text": "transparent",
+        "section-color-overlay": "transparent",
+        "section-color-overlay-opacity": 100,
+        "color-body-text": "transparent",
+        "color-overlay": "transparent",
+        "color-overlay-opacity": 100,
+        "desktop_image": "shopify://shop_images/deep-green-leaves-under-shadows.jpg",
+        "desktop_text_vertical_position": "center",
+        "desktop_text_horizontal_position": "left",
+        "mobile_image": "shopify://shop_images/dark-green-healthy-plant-leaves.jpg",
+        "mobile_text_horizontal_position": "left",
+        "margin-top": 20,
+        "margin-bottom": 20
+      }
+    },
     "features_banner_rnAYGJ": {
       "type": "features-banner",
       "blocks": {
         "image_knKEhC": {
           "type": "image",
           "settings": {
-            "desktop_image": "shopify://shop_images/Delivery_2.svg",
-            "select_icon": "user",
-            "heading": "Fast Shipping",
-            "text": "<p>Orders ship within 1-2 business days. FREE shipping on orders over $100.</p>"
+            "desktop_image": "",
+            "select_icon": "heart",
+            "heading": "Crafted with care",
+            "text": "<p>Formulated to deliver a consistent, refined experience you can trust.</p>"
           }
         },
         "image_4xqij4": {
           "type": "image",
           "settings": {
-            "desktop_image": "shopify://shop_images/Sale_1.svg",
-            "select_icon": "search",
-            "heading": "Regular Sales",
-            "text": "<p><strong>Take advantage of our regular sales and score amazing deals on top products.</strong></p>"
+            "desktop_image": "",
+            "select_icon": "check",
+            "heading": "Third-party tested",
+            "text": "<p>Each batch is independently verified and documented for transparency.</p>"
           }
         },
         "image_izam6t": {
           "type": "image",
           "settings": {
-            "desktop_image": "shopify://shop_images/money-back_1.svg",
-            "select_icon": "bag",
-            "heading": "Easy Returns",
-            "text": "<p>We guarantee the quality of our products and are here to help with any questions or concerns. Contact us anytime if you are unhappy with your purchase for ANY reason and we'll make sure you're completely happy with your purchase!</p>"
+            "desktop_image": "",
+            "select_icon": "star",
+            "heading": "Premium sourcing",
+            "text": "<p>We prioritize high-quality inputs to keep our blends clean and dependable.</p>"
           }
         },
         "image_MwWBCP": {
           "type": "image",
           "settings": {
-            "desktop_image": "shopify://shop_images/support_1_-_Copy.svg",
-            "select_icon": "star",
-            "heading": "Customer Service",
-            "text": "<p><strong>Our team is here 24/7 to help with any questions or concerns you may have.</strong></p>"
+            "desktop_image": "",
+            "select_icon": "user",
+            "heading": "Balanced profiles",
+            "text": "<p>Designed for everyday routines with thoughtful flavor and balance.</p>"
           }
         }
       },
@@ -116,7 +164,7 @@
         "image_MwWBCP"
       ],
       "settings": {
-        "heading": "",
+        "heading": "Why DrJs Premium Blends",
         "size_heading": 70,
         "size_heading_mobile": 80,
         "icon_layout": "center",
@@ -124,6 +172,94 @@
         "color_body_text": "#f4f6f8",
         "background_color": "#0e1012",
         "icon_layout_mobile": "grid",
+        "margin-top": 60,
+        "margin-bottom": 60
+      }
+    },
+    "multicolumn_process_teaser": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_sourcing": {
+          "type": "column",
+          "settings": {
+            "heading": "Sourcing",
+            "heading_disable_on_mobile": false,
+            "text": "<p>We select premium hemp inputs for consistency and clean profiles.</p>",
+            "text_disable_on_mobile": false,
+            "button_select": "secondary",
+            "button_label": "",
+            "button_disable_on_mobile": false,
+            "button_link": "",
+            "button_link_in_new_window": false,
+            "desktop_image": "",
+            "mobile_image": ""
+          }
+        },
+        "column_formulation": {
+          "type": "column",
+          "settings": {
+            "heading": "Formulation",
+            "heading_disable_on_mobile": false,
+            "text": "<p>Our team balances cannabinoids and terpene profiles to target specific experiences.</p>",
+            "text_disable_on_mobile": false,
+            "button_select": "secondary",
+            "button_label": "",
+            "button_disable_on_mobile": false,
+            "button_link": "",
+            "button_link_in_new_window": false,
+            "desktop_image": "",
+            "mobile_image": ""
+          }
+        },
+        "column_testing": {
+          "type": "column",
+          "settings": {
+            "heading": "Testing",
+            "heading_disable_on_mobile": false,
+            "text": "<p>Every batch is independently tested and documented before release.</p>",
+            "text_disable_on_mobile": false,
+            "button_select": "secondary",
+            "button_label": "",
+            "button_disable_on_mobile": false,
+            "button_link": "",
+            "button_link_in_new_window": false,
+            "desktop_image": "",
+            "mobile_image": ""
+          }
+        },
+        "column_packaging_delivery": {
+          "type": "column",
+          "settings": {
+            "heading": "Packaging & Delivery",
+            "heading_disable_on_mobile": false,
+            "text": "<p>Products are packaged with care and shipped for reliable delivery.</p>",
+            "text_disable_on_mobile": false,
+            "button_select": "secondary",
+            "button_label": "View our process",
+            "button_disable_on_mobile": false,
+            "button_link": "/pages/our-process",
+            "button_link_in_new_window": false,
+            "desktop_image": "",
+            "mobile_image": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_sourcing",
+        "column_formulation",
+        "column_testing",
+        "column_packaging_delivery"
+      ],
+      "settings": {
+        "heading": "Our Process",
+        "swipe_on_mobile": false,
+        "full-width-enabled": false,
+        "image_ratio": "adapt",
+        "column_alignment": "left",
+        "size_heading": 100,
+        "size_heading_mobile": 100,
+        "color-body-text": "transparent",
+        "background_color": "transparent",
         "margin-top": 60,
         "margin-bottom": 60
       }
@@ -169,7 +305,9 @@
   },
   "order": [
     "image_banner_tWAmij",
+    "image_with_text_brand_story",
     "features_banner_rnAYGJ",
+    "multicolumn_process_teaser",
     "newsletter_i8q83Y"
   ]
 }

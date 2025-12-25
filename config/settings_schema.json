@@ -1040,5 +1040,52 @@
         "label": "t:settings_schema.animations.settings.disabled_animation_on_mobile.label"
       }
     ]
+  },
+  {
+    "name": "t:settings_schema.age_verification.name",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "age_gate_enable",
+        "label": "t:settings_schema.age_verification.settings.enable.label",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "age_gate_heading",
+        "label": "t:settings_schema.age_verification.settings.heading.label",
+        "default": "Are you 21 or older?"
+      },
+      {
+        "type": "textarea",
+        "id": "age_gate_body",
+        "label": "t:settings_schema.age_verification.settings.body.label",
+        "default": "You must be 21+ to enter this site."
+      },
+      {
+        "type": "text",
+        "id": "age_gate_confirm_label",
+        "label": "t:settings_schema.age_verification.settings.confirm.label",
+        "default": "Yes, I'm 21+"
+      },
+      {
+        "type": "text",
+        "id": "age_gate_decline_label",
+        "label": "t:settings_schema.age_verification.settings.decline.label",
+        "default": "No, I'm not 21+"
+      },
+      {
+        "type": "text",
+        "id": "age_gate_locked_heading",
+        "label": "t:settings_schema.age_verification.settings.locked_heading.label",
+        "default": "Sorry, you must be 21+ to access this site."
+      },
+      {
+        "type": "textarea",
+        "id": "age_gate_locked_body",
+        "label": "t:settings_schema.age_verification.settings.locked_body.label",
+        "default": "Access restricted."
+      }
+    ]
   }
 ]

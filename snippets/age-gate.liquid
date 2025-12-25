@@ -1,0 +1,42 @@
+{%- assign age_gate_heading = settings.age_gate_heading | default: 'Are you 21 or older?' -%}
+{%- assign age_gate_body = settings.age_gate_body | default: 'You must be 21+ to enter this site.' -%}
+{%- assign age_gate_confirm = settings.age_gate_confirm_label | default: "Yes, I'm 21+" -%}
+{%- assign age_gate_decline = settings.age_gate_decline_label | default: "No, I'm not 21+" -%}
+{%- assign age_gate_locked_heading = settings.age_gate_locked_heading | default: 'Sorry, you must be 21+ to access this site.' -%}
+{%- assign age_gate_locked_body = settings.age_gate_locked_body | default: '' -%}
+
+<div
+  class="age-gate"
+  data-age-gate
+  data-age-gate-enabled="{{ settings.age_gate_enable }}"
+  hidden
+>
+  <div class="age-gate__overlay" aria-hidden="true"></div>
+  <div
+    class="age-gate__dialog"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="AgeGateHeading"
+    aria-describedby="AgeGateBody"
+    tabindex="-1"
+  >
+    <div class="age-gate__content" data-age-gate-content>
+      <h2 class="age-gate__heading" id="AgeGateHeading">{{ age_gate_heading }}</h2>
+      <p class="age-gate__body" id="AgeGateBody">{{ age_gate_body }}</p>
+      <div class="age-gate__actions">
+        <button type="button" class="button button--primary" data-age-gate-confirm>
+          {{ age_gate_confirm }}
+        </button>
+        <button type="button" class="button button--secondary" data-age-gate-decline>
+          {{ age_gate_decline }}
+        </button>
+      </div>
+    </div>
+    <div class="age-gate__locked" data-age-gate-locked hidden>
+      <h2 class="age-gate__heading" id="AgeGateLockedHeading">{{ age_gate_locked_heading }}</h2>
+      {%- if age_gate_locked_body != blank -%}
+        <p class="age-gate__body">{{ age_gate_locked_body }}</p>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
