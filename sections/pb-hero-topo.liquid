@@ -1,0 +1,413 @@
+{%- assign desktop_image = section.settings.desktop_image -%}
+{%- assign mobile_image = section.settings.mobile_image -%}
+{%- assign hero_image = desktop_image | default: mobile_image -%}
+{%- assign alt_text = desktop_image.alt | default: mobile_image.alt | default: section.settings.heading -%}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --pb-scrim: {{ section.settings.scrim_strength | divided_by: 100.0 }};
+    --pb-accent: {{ section.settings.accent_color }};
+    --pb-content-max-width: {{ section.settings.content_max_width }}px;
+  }
+
+  #shopify-section-{{ section.id }} .pb-hero-topo {
+    position: relative;
+    overflow: hidden;
+    color: #ffffff;
+    background-color: #1a1a1a;
+  }
+
+  #shopify-section-{{ section.id }} .pb-hero-topo__media,
+  #shopify-section-{{ section.id }} .pb-hero-topo__picture {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  #shopify-section-{{ section.id }} .pb-hero-topo__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: right center;
+  }
+
+  #shopify-section-{{ section.id }} .pb-hero-topo__scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, var(--pb-scrim)) 0%,
+      rgba(0, 0, 0, 0) 70%
+    );
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  #shopify-section-{{ section.id }} .pb-hero-topo__inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    min-height: 480px;
+    padding: 80px 0;
+  }
+
+  #shopify-section-{{ section.id }} .pb-hero-topo__content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: var(--pb-content-max-width);
+  }
+
+  #shopify-section-{{ section.id }} .pb-hero-topo--align-left .pb-hero-topo__content {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  #shopify-section-{{ section.id }} .pb-hero-topo--align-center .pb-hero-topo__content {
+    align-items: center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #shopify-section-{{ section.id }} .pb-hero-topo__kicker {
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  #shopify-section-{{ section.id }} .pb-hero-topo__headline {
+    font-size: clamp(2rem, 3vw, 3.5rem);
+    line-height: 1.1;
+    margin: 0;
+  }
+
+  #shopify-section-{{ section.id }} .pb-hero-topo__subhead {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin: 0;
+    opacity: 0.9;
+  }
+
+  #shopify-section-{{ section.id }} .pb-hero-topo__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  #shopify-section-{{ section.id }} .pb-hero-topo__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.85rem 1.75rem;
+    border-radius: 999px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    border: 2px solid transparent;
+  }
+
+  #shopify-section-{{ section.id }} .pb-hero-topo__button--primary {
+    background-color: var(--pb-accent);
+    border-color: var(--pb-accent);
+    color: #ffffff;
+  }
+
+  #shopify-section-{{ section.id }} .pb-hero-topo__button--secondary {
+    background-color: transparent;
+    border-color: #ffffff;
+    color: #ffffff;
+  }
+
+  #shopify-section-{{ section.id }} .pb-hero-topo__button[disabled] {
+    cursor: not-allowed;
+    opacity: 0.5;
+    transform: none;
+  }
+
+  #shopify-section-{{ section.id }} .pb-hero-topo__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  #shopify-section-{{ section.id }} .pb-hero-topo__chip {
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    background: rgba(0, 0, 0, 0.35);
+    font-size: 0.85rem;
+  }
+
+  #shopify-section-{{ section.id }} .pb-hero-topo__microline {
+    font-size: 0.85rem;
+    opacity: 0.8;
+    margin: 0;
+  }
+
+  @media (max-width: 749px) {
+    #shopify-section-{{ section.id }} .pb-hero-topo__inner {
+      min-height: 420px;
+      padding: 64px 0;
+    }
+
+    #shopify-section-{{ section.id }} .pb-hero-topo__actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    #shopify-section-{{ section.id }} .pb-hero-topo__button {
+      width: 100%;
+    }
+  }
+</style>
+
+<section class="pb-hero-topo pb-hero-topo--align-{{ section.settings.content_align }}">
+  <div class="pb-hero-topo__media" aria-hidden="true">
+    {% if hero_image != blank %}
+      <picture class="pb-hero-topo__picture">
+        {% if mobile_image != blank and desktop_image != blank %}
+          <source
+            media="(max-width: 749px)"
+            sizes="100vw"
+            srcset="
+              {{ mobile_image | image_url: width: 375 }} 375w,
+              {{ mobile_image | image_url: width: 550 }} 550w,
+              {{ mobile_image | image_url: width: 750 }} 750w,
+              {{ mobile_image | image_url: width: 1100 }} 1100w
+            "
+          >
+        {% endif %}
+        <img
+          src="{{ hero_image | image_url: width: 1500 }}"
+          srcset="
+            {{ hero_image | image_url: width: 750 }} 750w,
+            {{ hero_image | image_url: width: 1100 }} 1100w,
+            {{ hero_image | image_url: width: 1500 }} 1500w,
+            {{ hero_image | image_url: width: 1780 }} 1780w,
+            {{ hero_image | image_url: width: 2000 }} 2000w,
+            {{ hero_image | image_url: width: 2400 }} 2400w
+          "
+          sizes="100vw"
+          class="pb-hero-topo__image"
+          alt="{{ alt_text | escape }}"
+          loading="lazy"
+          width="{{ hero_image.width }}"
+          height="{{ hero_image.height }}"
+        >
+      </picture>
+    {% endif %}
+  </div>
+  <div class="pb-hero-topo__scrim" aria-hidden="true"></div>
+  <div class="pb-hero-topo__inner page-width">
+    <div class="pb-hero-topo__content">
+      {% if section.settings.kicker != blank %}
+        <p class="pb-hero-topo__kicker">{{ section.settings.kicker | escape }}</p>
+      {% endif %}
+      {% if section.settings.heading != blank %}
+        <h1 class="pb-hero-topo__headline">{{ section.settings.heading | escape }}</h1>
+      {% endif %}
+      {% if section.settings.subhead != blank %}
+        <p class="pb-hero-topo__subhead">{{ section.settings.subhead | escape | newline_to_br }}</p>
+      {% endif %}
+      {% if section.settings.primary_label != blank or section.settings.secondary_label != blank %}
+        <div class="pb-hero-topo__actions">
+          {% if section.settings.primary_label != blank %}
+            {% if section.settings.primary_link != blank %}
+              <a class="pb-hero-topo__button pb-hero-topo__button--primary" href="{{ section.settings.primary_link }}">
+                {{ section.settings.primary_label | escape }}
+              </a>
+            {% else %}
+              <button class="pb-hero-topo__button pb-hero-topo__button--primary" type="button" disabled aria-disabled="true">
+                {{ section.settings.primary_label | escape }}
+              </button>
+            {% endif %}
+          {% endif %}
+          {% if section.settings.secondary_label != blank %}
+            {% if section.settings.secondary_link != blank %}
+              <a class="pb-hero-topo__button pb-hero-topo__button--secondary" href="{{ section.settings.secondary_link }}">
+                {{ section.settings.secondary_label | escape }}
+              </a>
+            {% else %}
+              <button class="pb-hero-topo__button pb-hero-topo__button--secondary" type="button" disabled aria-disabled="true">
+                {{ section.settings.secondary_label | escape }}
+              </button>
+            {% endif %}
+          {% endif %}
+        </div>
+      {% endif %}
+      {% if section.blocks.size > 0 %}
+        <ul class="pb-hero-topo__chips">
+          {% for block in section.blocks %}
+            {% if block.type == 'chip' %}
+              <li class="pb-hero-topo__chip" {{ block.shopify_attributes }}>
+                {{ block.settings.label | escape }}
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      {% endif %}
+      {% if section.settings.microline != blank %}
+        <p class="pb-hero-topo__microline">{{ section.settings.microline | escape }}</p>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "PB Hero - Topo",
+  "tag": "section",
+  "class": "section-pb-hero-topo",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "desktop_image",
+      "label": "Desktop image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile image"
+    },
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker",
+      "default": "DrJ's Premium Blends"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Pharmacist-crafted blends. Built on transparency."
+    },
+    {
+      "type": "textarea",
+      "id": "subhead",
+      "label": "Subhead",
+      "default": "Hemp-derived cannabinoid blends with COAs for every batch, rooted in East Tennessee."
+    },
+    {
+      "type": "text",
+      "id": "primary_label",
+      "label": "Primary CTA label",
+      "default": "View COAs"
+    },
+    {
+      "type": "url",
+      "id": "primary_link",
+      "label": "Primary CTA link"
+    },
+    {
+      "type": "text",
+      "id": "secondary_label",
+      "label": "Secondary CTA label",
+      "default": "Our Process"
+    },
+    {
+      "type": "url",
+      "id": "secondary_link",
+      "label": "Secondary CTA link"
+    },
+    {
+      "type": "text",
+      "id": "microline",
+      "label": "Microline",
+      "default": "For adults 21+. Hemp-derived products. Results may vary."
+    },
+    {
+      "type": "range",
+      "id": "scrim_strength",
+      "label": "Scrim strength",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 75
+    },
+    {
+      "type": "range",
+      "id": "content_max_width",
+      "label": "Content max width",
+      "min": 420,
+      "max": 820,
+      "step": 20,
+      "default": 720
+    },
+    {
+      "type": "select",
+      "id": "content_align",
+      "label": "Content alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent color",
+      "default": "#5b894d"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "chip",
+      "name": "Trust chip",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "COAs for every batch"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "PB Hero - Topo",
+      "blocks": [
+        {
+          "type": "chip",
+          "settings": {
+            "label": "COAs for every batch"
+          }
+        },
+        {
+          "type": "chip",
+          "settings": {
+            "label": "Pharmacist-crafted"
+          }
+        },
+        {
+          "type": "chip",
+          "settings": {
+            "label": "Hemp-derived"
+          }
+        },
+        {
+          "type": "chip",
+          "settings": {
+            "label": "21+ only"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
