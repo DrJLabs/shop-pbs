@@ -64,14 +64,7 @@
           {% assign coa_url = product.metafields.custom.coa_url.value %}
         {% endif %}
 
-        {% assign highlight_lines = block.settings.highlights | split: '\n' %}
-        {% assign has_highlights = false %}
-        {% for line in highlight_lines %}
-          {% assign highlight_line = line | strip %}
-          {% if highlight_line != blank %}
-            {% assign has_highlights = true %}
-          {% endif %}
-        {% endfor %}
+        {% assign highlights_content = block.settings.highlights | strip %}
 
         <article class="blends-profiles__card" data-block-id="{{ block.id }}" {{ block.shopify_attributes }}>
           <div class="blends-profiles__media">
@@ -99,7 +92,8 @@
               <p class="blends-profiles__description">{{ description }}</p>
             {% endif %}
 
-            {% if has_highlights %}
+            {% if highlights_content != blank %}
+              {% assign highlight_lines = highlights_content | split: '\n' %}
               <ul class="blends-profiles__highlights">
                 {% for line in highlight_lines %}
                   {% assign highlight = line | strip %}
