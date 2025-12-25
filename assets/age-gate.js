@@ -16,7 +16,11 @@
 
   const getFocusableElements = () =>
     Array.from(gate.querySelectorAll(focusableSelector)).filter(
-      (el) => !el.hasAttribute('disabled') && el.getAttribute('aria-hidden') !== 'true',
+      (el) =>
+        !el.hasAttribute('disabled') &&
+        !el.closest('[aria-hidden="true"]') &&
+        !el.closest('[hidden]') &&
+        el.getClientRects().length > 0,
     );
 
   const focusFirstElement = () => {
@@ -51,6 +55,8 @@
   const openGate = () => {
     gate.hidden = false;
     gate.setAttribute('data-age-gate-state', 'open');
+    dialog?.setAttribute('aria-labelledby', 'AgeGateHeading');
+    dialog?.setAttribute('aria-describedby', 'AgeGateBody');
     document.body.classList.add('overflow-hidden');
     document.addEventListener('keydown', trapFocus);
     focusFirstElement();
@@ -83,6 +89,7 @@
     if (content) content.hidden = true;
     if (locked) locked.hidden = false;
     gate.setAttribute('data-age-gate-state', 'locked');
+    dialog?.setAttribute('aria-labelledby', 'AgeGateLockedHeading');
     focusFirstElement();
   };
 

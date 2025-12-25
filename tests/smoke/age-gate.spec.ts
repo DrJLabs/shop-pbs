@@ -4,7 +4,7 @@ const baseUrlSupplied = Boolean(process.env.BASE_URL ?? process.env.SHOP_URL);
 
 test.skip(!baseUrlSupplied, 'Set BASE_URL or SHOP_URL to run smoke checks against a live theme.');
 
-test('age gate traps focus on non-hidden controls', async ({ page }) => {
+test.beforeEach(async ({ page }) => {
   await page.addInitScript(() => {
     try {
       sessionStorage.clear();
@@ -12,17 +12,20 @@ test('age gate traps focus on non-hidden controls', async ({ page }) => {
       // No-op when storage is unavailable.
     }
   });
+});
 
+test('age gate ignores focusables in aria-hidden containers', async ({ page }) => {
   await page.goto('/');
   await expect(page.locator('[data-age-gate]')).toBeVisible();
 
-  await page.evaluate(() => {
-    const confirmButton = document.querySelector('[data-age-gate-confirm]');
-    const declineButton = document.querySelector('[data-age-gate-decline]');
-    if (!confirmButton || !declineButton) return;
+  const dialog = page.locator('[data-age-gate] [role=\"dialog\"]');
 
-    confirmButton.setAttribute('aria-hidden', 'false');
-    declineButton.setAttribute('aria-hidden', 'true');
+  await page.evaluate(() => {
+    const content = document.querySelector('[data-age-gate-content]');
+    const confirmButton = document.querySelector('[data-age-gate-confirm]');
+    if (!content || !confirmButton) return;
+
+    content.setAttribute('aria-hidden', 'true');
 
     if (confirmButton instanceof HTMLElement) {
       confirmButton.focus();
@@ -30,11 +33,16 @@ test('age gate traps focus on non-hidden controls', async ({ page }) => {
   });
 
   await page.keyboard.press('Tab');
+  await expect(dialog).toBeFocused();
+});
 
-  const confirmFocused = await page.evaluate(() => {
-    const active = document.activeElement;
-    return Boolean(active && active.hasAttribute('data-age-gate-confirm'));
-  });
+test('age gate updates aria-labelledby when locked', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.locator('[data-age-gate]')).toBeVisible();
 
-  expect(confirmFocused).toBe(true);
+  const dialog = page.locator('[data-age-gate] [role=\"dialog\"]');
+
+  await page.locator('[data-age-gate-decline]').click();
+  await expect(dialog).toHaveAttribute('aria-labelledby', 'AgeGateLockedHeading');
+  await expect(dialog).toBeFocused();
 });
