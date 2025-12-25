@@ -39,47 +39,54 @@
     <div class="blends-profiles__grid">
       {% for block in section.blocks %}
         {% assign product = block.settings.product %}
-        {% assign display_title = block.settings.custom_title %}
-
-        {% if display_title == blank and product != blank %}
+        {% if block.settings.custom_title != blank %}
+          {% assign display_title = block.settings.custom_title %}
+        {% elsif product != blank %}
           {% assign display_title = product.title %}
-        {% endif %}
-
-        {% if display_title == blank %}
+        {% else %}
           {% assign display_title = 'Blend name' %}
         {% endif %}
 
-        {% assign description = block.settings.custom_description %}
-        {% if description == blank and product != blank %}
+        {% if block.settings.custom_description != blank %}
+          {% assign description = block.settings.custom_description %}
+        {% elsif product != blank and product.description != blank %}
           {% assign description = product.description | strip_html | truncatewords: 55 %}
+        {% else %}
+          {% assign description = '' %}
         {% endif %}
 
-        {% assign image = block.settings.image %}
-        {% if image == blank and product != blank %}
+        {% if block.settings.image != blank %}
+          {% assign image = block.settings.image %}
+        {% elsif product != blank and product.featured_image != blank %}
           {% assign image = product.featured_image %}
+        {% else %}
+          {% assign image = '' %}
         {% endif %}
 
-        {% assign coa_url = block.settings.coa_url %}
-        {% if coa_url == blank and product != blank and product.metafields.custom.coa_url.value != blank %}
+        {% if block.settings.coa_url != blank %}
+          {% assign coa_url = block.settings.coa_url %}
+        {% elsif product != blank and product.metafields.custom.coa_url.value != blank %}
           {% assign coa_url = product.metafields.custom.coa_url.value %}
+        {% else %}
+          {% assign coa_url = '' %}
         {% endif %}
 
         {% assign highlights_content = block.settings.highlights | strip %}
 
         <article class="blends-profiles__card" data-block-id="{{ block.id }}" {{ block.shopify_attributes }}>
           <div class="blends-profiles__media">
-        {% if image != blank %}
-          {% assign alt_text = image.alt | default: display_title | escape %}
-          {{
-            image
-            | image_url: width: 900
-            | image_tag:
-              widths: '360, 540, 720, 900',
-              sizes: '(min-width: 990px) 45vw, 100vw',
-              alt: alt_text,
-              loading: 'lazy',
-              class: 'blends-profiles__image'
-          }}
+            {% if image != blank %}
+              {% assign alt_text = image.alt | default: display_title | escape %}
+              {{
+                image
+                | image_url: width: 900
+                | image_tag:
+                  widths: '360, 540, 720, 900',
+                  sizes: '(min-width: 990px) 45vw, 100vw',
+                  alt: alt_text,
+                  loading: 'lazy',
+                  class: 'blends-profiles__image'
+              }}
             {% else %}
               {{ 'collection-apparel-1' | placeholder_svg_tag: 'blends-profiles__image blends-profiles__image--placeholder' }}
             {% endif %}
