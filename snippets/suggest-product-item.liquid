@@ -1,5 +1,5 @@
-{%- assign wholesale_url = url | default: settings.wholesale_page_url | default: '/pages/wholesale' -%}
-<a href="{{ wholesale_url }}" class="suggest-item">
+{%- assign link_url = url | default: settings.wholesale_page_url | default: '/pages/wholesale' -%}
+<a href="{{ link_url }}" class="suggest-item">
   {%- if product.featured_media != blank -%}
     <figure class="wt-cart__item__thumb suggest-item__thumb">
       {% assign suggest_aspect_ratio = featured_media.aspect_ratio | default: 1 %}

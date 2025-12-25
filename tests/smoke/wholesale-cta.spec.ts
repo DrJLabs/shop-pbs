@@ -12,27 +12,54 @@ const wholesaleSetting = settingsSchema
 
 const wholesaleDefaultUrl = wholesaleSetting?.default ?? '/pages/wholesale';
 
-test.skip(!baseUrlSupplied, 'Set BASE_URL or SHOP_URL to run smoke checks against a live theme.');
+const readJson = async (filePath: string, stripComments = false) => {
+  const contents = await readFile(filePath, 'utf8');
+  const normalized = stripComments
+    ? contents.replace(/\/\*[\s\S]*?\*\//, '').trim()
+    : contents;
+  return JSON.parse(normalized);
+};
 
-test('collection cards show wholesale CTA and no pricing', async ({ page }) => {
-  await page.goto('/collections/all');
-
-  const ageGateConfirm = page.locator('[data-age-gate-confirm]');
-  if (await ageGateConfirm.count()) {
-    await ageGateConfirm.first().click();
+const resolveWholesaleUrl = async () => {
+  try {
+    const settingsData = await readJson(
+      path.join(process.cwd(), 'config', 'settings_data.json'),
+      true
+    );
+    const liveUrl = settingsData?.current?.wholesale_page_url;
+    if (typeof liveUrl === 'string' && liveUrl.trim().length > 0) {
+      return liveUrl.trim();
+    }
+  } catch (error) {
+    // Fall back to schema default if settings data is unavailable or invalid.
   }
+  return wholesaleDefaultUrl;
+};
 
-  const cards = page.locator('.card');
-  test.skip((await cards.count()) === 0, 'No product cards found to validate.');
+test.describe('wholesale CTA storefront smoke checks', () => {
+  test.skip(!baseUrlSupplied, 'Set BASE_URL or SHOP_URL to run smoke checks against a live theme.');
 
-  await expect(cards.first()).toBeVisible();
+  test('collection cards show wholesale CTA and no pricing', async ({ page }) => {
+    await page.goto('/collections/all');
 
-  const wholesaleCtas = page.locator('[data-wholesale-cta]');
-  await expect(wholesaleCtas.first()).toBeVisible();
-  await expect(page.locator('.card__price')).toHaveCount(0);
+    const ageGateConfirm = page.locator('[data-age-gate-confirm]');
+    if (await ageGateConfirm.count()) {
+      await ageGateConfirm.first().click();
+    }
 
-  const wholesaleLink = page.locator('a.card').first();
-  await expect(wholesaleLink).toHaveAttribute('href', wholesaleDefaultUrl);
+    const cards = page.locator('.card');
+    test.skip((await cards.count()) === 0, 'No product cards found to validate.');
+
+    await expect(cards.first()).toBeVisible();
+
+    const wholesaleCtas = page.locator('[data-wholesale-cta]');
+    await expect(wholesaleCtas.first()).toBeVisible();
+    await expect(page.locator('.card__price')).toHaveCount(0);
+
+    const wholesaleLink = page.locator('a.card').first();
+    const wholesaleUrl = await resolveWholesaleUrl();
+    await expect(wholesaleLink).toHaveAttribute('href', wholesaleUrl);
+  });
 });
 
 test('wholesale CTA replaces retail UI in themed templates', async () => {
@@ -43,10 +70,19 @@ test('wholesale CTA replaces retail UI in themed templates', async () => {
     'sections/featured-product.liquid',
     'sections/shoppable-image.liquid',
     'snippets/shoppable-video-product.liquid',
+    'snippets/wholesale-cta.liquid',
+    'locales/en.default.json',
   ];
 
-  const [suggestItem, predictiveSearch, featuredProduct, shoppableImage, shoppableVideo] =
-    await Promise.all(files.map((file) => readFile(path.join(root, file), 'utf8')));
+  const [
+    suggestItem,
+    predictiveSearch,
+    featuredProduct,
+    shoppableImage,
+    shoppableVideo,
+    wholesaleCta,
+    localeFile,
+  ] = await Promise.all(files.map((file) => readFile(path.join(root, file), 'utf8')));
 
   expect(suggestItem).toContain("wholesale-cta");
   expect(suggestItem).not.toContain("render 'price'");
@@ -56,6 +92,14 @@ test('wholesale CTA replaces retail UI in themed templates', async () => {
   expect(predictiveSearch).not.toContain("render 'price'");
 
   expect(featuredProduct).toContain("wholesale-cta");
+  expect(featuredProduct).toContain('products.product.wholesale_pricing_request');
   expect(shoppableImage).toContain("wholesale-cta");
   expect(shoppableVideo).toContain("wholesale-cta");
+
+  expect(wholesaleCta).toContain('products.product.partner_with_us');
+  expect(wholesaleCta).not.toContain('Partner with us');
+
+  const localeData = JSON.parse(localeFile.replace(/\/\*[\s\S]*?\*\//, '').trim());
+  expect(localeData?.products?.product?.partner_with_us).toBeTruthy();
+  expect(localeData?.products?.product?.wholesale_pricing_request).toBeTruthy();
 });
