@@ -5,6 +5,7 @@
 %}
 
 {%- if predictive_search.performed -%}
+  {%- assign wholesale_url = settings.wholesale_page_url | default: '/pages/wholesale' -%}
   <div
     id="predictive-search-results"
     class="search-result {% if total_results == 0 %}search-result--no-results{% endif %}"
@@ -30,7 +31,7 @@
               {% assign product_name = product.title | highlight: predictive_search.terms %}
 
               {% render 'suggest-product-item',
-                url: '/pages/wholesale',
+                url: wholesale_url,
                 name: product_name,
                 featured_media: product.featured_media,
                 product: product,
@@ -38,7 +39,7 @@
               %}
 
               <a
-                href="/pages/wholesale"
+                href="{{ wholesale_url }}"
                 class="predictive-search__item predictive-search__item--link link link--text"
                 tabindex="-1"
                 style="display: none;"

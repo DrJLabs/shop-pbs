@@ -1,3 +1,4 @@
+{%- assign wholesale_url = settings.wholesale_page_url | default: '/pages/wholesale' -%}
 <div class="shoppable-product-card{% if customClass != blank %} {{ customClass }}{% endif %}">
   {% comment %}
     <div class="shoppable-video__play-button-container">
@@ -7,7 +8,7 @@
     </div>
   {% endcomment %}
   {%- if block.settings.featured_product != blank -%}
-    <a href="/pages/wholesale" class="wt-dot__link" tabindex="0">
+    <a href="{{ wholesale_url }}" class="wt-dot__link" tabindex="0">
       <picture class="wt-dot__picture">
         <img
           srcset="
@@ -39,7 +40,7 @@
       </div>
     </a>
   {%- else -%}
-    <a href="/pages/wholesale" class="wt-dot__link">
+    <a href="{{ wholesale_url }}" class="wt-dot__link">
       {% assign my_counter = my_counter | modulo: 3 | plus: 1 %}
       <div class="wt-dot__img-placeholder">
         {{ 'product-apparel-3' | placeholder_svg_tag: 'wt-dot__image' }}

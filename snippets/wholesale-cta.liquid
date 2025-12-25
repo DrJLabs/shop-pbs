@@ -1,4 +1,4 @@
-{%- assign wholesale_url = wholesale_url | default: '/pages/wholesale' -%}
+{%- assign wholesale_url = wholesale_url | default: settings.wholesale_page_url | default: '/pages/wholesale' -%}
 {%- assign wholesale_label = wholesale_label | default: 'Partner with us' -%}
 {%- assign wholesale_class = wholesale_class | default: 'hero__button hero__button--secondary' -%}
 {%- if wholesale_linkless -%}
