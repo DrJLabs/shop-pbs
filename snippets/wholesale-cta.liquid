@@ -1,0 +1,12 @@
+{%- assign wholesale_url = wholesale_url | default: '/pages/wholesale' -%}
+{%- assign wholesale_label = wholesale_label | default: 'Partner with us' -%}
+{%- assign wholesale_class = wholesale_class | default: 'hero__button hero__button--secondary' -%}
+{%- if wholesale_linkless -%}
+  <span class="{{ wholesale_class }} wholesale-cta" data-wholesale-cta>
+    {{ wholesale_label }}
+  </span>
+{%- else -%}
+  <a class="{{ wholesale_class }} wholesale-cta" href="{{ wholesale_url }}" data-wholesale-cta>
+    {{ wholesale_label }}
+  </a>
+{%- endif -%}

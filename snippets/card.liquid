@@ -20,6 +20,7 @@
 -%}
 
 {%- assign title_tag = title_tag | default: 'h3' -%}
+{%- assign wholesale_url = '/pages/wholesale' -%}
 
 {% if media_aspect_ratio %}
   <style>
@@ -35,7 +36,7 @@
   <div class="card__container">
     <div class="card__picture-container">
       <a
-        href="{{ url | default: '#' }}"
+        href="{{ wholesale_url }}"
         class="card{% if text_alignment %} card--{{ text_alignment }}{% endif %}"
         tabindex="0"
         aria-label="{{ 'aria-label.card-url' | t }}"
@@ -208,16 +209,10 @@
           </div>
         </picture>
       </a>
-
-      {% if enable_quick_add_button %}
-        <div class="card__quick-add-container--desktop">
-          {% render 'quick-add-button', card_product: product, product: card_product %}
-        </div>
-      {% endif %}
     </div>
 
     <a
-      href="{{ url }}"
+      href="{{ wholesale_url }}"
       tabindex="-1"
       data-omit-tabindex
       class="card{% if text_alignment %} card--{{ text_alignment }}{% endif %}"
@@ -233,31 +228,19 @@
       <{{ title_tag }} class="card__title">
         {% if title %}
           {{ title }}
-        {% else %}
-          {% if default_title %}{{ default_title }}{% else %}{{ placeholder_title }}{% endif %}
-        {% endif %}
-      </{{ title_tag }}>
-      {% if price and collection_list != true %}
-        <div class="card__price">
-          {% if price_old -%}
-            <span class="card__price__old">{{ price_old }}</span>
-          {%- endif %}
-          {% if settings.currency_code_enabled %}
-            {{ price | money_with_currency }}
-          {% else %}
-            {{ price | money }}
-          {% endif %}
-        </div>
-      {% elsif product and collection_list != true %}
-        <div class="card__price">
-          {% render 'price', product: product, show_compare_at_price: true, price_class: '' %}
-        </div>
+      {% else %}
+        {% if default_title %}{{ default_title }}{% else %}{{ placeholder_title }}{% endif %}
       {% endif %}
+      </{{ title_tag }}>
 
       {% if rating and reviews %}
         {% render 'rating', reviews: reviews, text_alignment: text_alignment %}
       {% endif %}
     </a>
+
+    {% if collection_list != true %}
+      {% render 'wholesale-cta', wholesale_class: 'hero__button hero__button--secondary card__cta' %}
+    {% endif %}
 
     {% if settings.enable_color_swatch %}
       <div
@@ -336,7 +319,7 @@
                       {{ variant.image | image_url: width: 1000 }} 1000w
                       {% endif %}
                     "
-                    data-href="{{ variant.url }}"
+                    data-href="{{ wholesale_url }}"
                     data-hover="{% if new_hover_image %}{{ new_hover_image | image_url: width: 1000 }}{% elsif img_hover %}{{ img_hover | image_url: width: 1000 }}{% endif %}"
                     style="
                       {% if is_variant_picture %} background-image: url({{ variant.image | image_url: width: 48 }});{% else %}
@@ -357,12 +340,6 @@
           {% endfor %}
         {% endfor %}
         <span class="color-swatcher--counter"></span>
-      </div>
-    {% endif %}
-
-    {% if enable_quick_add_button %}
-      <div class="card__quick-add-container">
-        {% render 'quick-add-button', card_product: product, product: card_product %}
       </div>
     {% endif %}
   </div>

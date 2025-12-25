@@ -1,4 +1,4 @@
-<a href="{{ url }}" class="suggest-item">
+<a href="/pages/wholesale" class="suggest-item">
   {%- if product.featured_media != blank -%}
     <figure class="wt-cart__item__thumb suggest-item__thumb">
       {% assign suggest_aspect_ratio = featured_media.aspect_ratio | default: 1 %}
@@ -18,11 +18,12 @@
       {% endif %}
       <h3 class="wt-cart__item__name">{{ name }}</h3>
 
-      {%- if settings.show_product_price -%}
-        <div class="wt-cart__item__price">
-          {% render 'price', product: product, use_variant: true, show_badges: false %}
-        </div>
-      {% endif %}
+      <div class="wt-cart__item__price">
+        {% render 'wholesale-cta',
+          wholesale_class: 'hero__button hero__button--secondary suggest-item__cta',
+          wholesale_linkless: true
+        %}
+      </div>
 
       {% if rating %}
         {% assign rating_percent = rating.rating | times: 100.0 | divided_by: 5.0 %}
