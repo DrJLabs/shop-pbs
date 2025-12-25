@@ -227,7 +227,7 @@
 
     {% if section.settings['show-copyright'] %}
       <p class="wt-footer__aside__copy">
-        {{ section.settings.text }}
+        &copy; {{ 'now' | date: '%Y' }} {{ section.settings.text }}
       </p>
     {% endif %}
   </div>
