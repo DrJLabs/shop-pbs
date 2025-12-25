@@ -372,11 +372,11 @@
 
 ## 5B Create product profile blocks
 
-- [ ] Create a product profile block for each blend with image.
-- [ ] Add name and a 2–3 sentence description.
-- [ ] Add highlights: cannabinoids/terpenes and intended effects.
-- [ ] Add link to the product’s COA.
-- Current state: Collection page shows images, names, and prices; not detailed descriptions. COA links not present on product pages; COA page lists PDFs separately.
+- [x] Create a product profile block for each blend with image.
+- [x] Add name and a 2–3 sentence description.
+- [x] Add highlights: cannabinoids/terpenes and intended effects.
+- [x] Add link to the product’s COA.
+- Current state: `blends-profiles` section and `page.blends` template are in the theme. Each block uses a product picker to prefill name, image, and description; highlights and COA links can be overridden. COA links default to `product.metafields.custom.coa_url` and open in a new tab.
 
 **Acceptance Criteria**
 - Each blend profile includes image, short description, highlights, and COA link.
@@ -401,11 +401,11 @@
 
 ## 5D Publish and link the Blends page
 
-- [ ] Publish a Blends page (`/pages/blends` or `/pages/our-blends`).
+- [ ] Publish a Blends page (`/pages/blends`).
 - [ ] Add Blends to the navigation menu.
 - [ ] Confirm each COA link works.
 - [ ] Confirm CTA buttons route to contact/sign-up forms.
-- Current state: “Our Shop” is a retail collection template; no separate Blends page; COA links absent on product cards.
+- Current state: `page.blends` template is ready with three profile blocks. Admin still needs to create the Blends page, assign this template, and link it in menus before verifying COA links and CTAs.
 
 **Acceptance Criteria**
 - Blends page is live and linked from header and footer.
@@ -416,7 +416,7 @@
 
 ## Inventory Notes
 
-- Current state: Retail purchase flows remain on collection and product pages. Planned Blends page needs a new template removing pricing/cart and adding wholesale CTAs.
+- Current state: Retail purchase flows remain on collection and product pages. Blends page template exists, but CTA replacement and menu linkage still need admin follow-up.
 
 # 6 COAs page improvement
 
