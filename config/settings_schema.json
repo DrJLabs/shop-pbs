@@ -1094,8 +1094,7 @@
       {
         "type": "url",
         "id": "wholesale_page_url",
-        "label": "Wholesale page URL",
-        "default": "/pages/wholesale"
+        "label": "Wholesale page URL"
       }
     ]
   }
