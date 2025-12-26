@@ -53,6 +53,7 @@
         "heading_brand_story",
         "text_brand_story"
       ],
+      "disabled": true,
       "settings": {
         "title": "",
         "layout": "text_first",
