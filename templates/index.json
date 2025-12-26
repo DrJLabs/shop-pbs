@@ -11,8 +11,6 @@
   "sections": {
     "image_banner_tWAmij": {
       "type": "pb-hero-topo",
-      "blocks": {},
-      "block_order": [],
       "settings": {
         "desktop_image": "shopify://shop_images/deep-green-leaves-under-shadows.jpg",
         "mobile_image": "shopify://shop_images/dark-green-healthy-plant-leaves.jpg",
@@ -60,14 +58,14 @@
         "layout": "text_first",
         "desktop-percentage-image-width": 50,
         "full-width-enabled": false,
-        "slide_height": "fixed_height",
+        "slide_height": "adapt_to_first_image",
         "desktop_fixed_height": 320,
         "mobile_fixed_height": 460,
-        "section-color-body-text": "transparent",
-        "section-color-overlay": "transparent",
+        "section-color-body-text": "rgba(0,0,0,0)",
+        "section-color-overlay": "rgba(0,0,0,0)",
         "section-color-overlay-opacity": 100,
-        "color-body-text": "transparent",
-        "color-overlay": "transparent",
+        "color-body-text": "rgba(0,0,0,0)",
+        "color-overlay": "rgba(0,0,0,0)",
         "color-overlay-opacity": 100,
         "desktop_image": "shopify://shop_images/deep-green-leaves-under-shadows.jpg",
         "desktop_text_vertical_position": "center",
@@ -84,7 +82,6 @@
         "image_knKEhC": {
           "type": "image",
           "settings": {
-            "desktop_image": "",
             "select_icon": "heart",
             "heading": "Crafted with care",
             "text": "<p>Formulated to deliver a consistent, refined experience you can trust.</p>"
@@ -93,7 +90,6 @@
         "image_4xqij4": {
           "type": "image",
           "settings": {
-            "desktop_image": "",
             "select_icon": "check",
             "heading": "Third-party tested",
             "text": "<p>Each batch is independently verified and documented for transparency.</p>"
@@ -102,7 +98,6 @@
         "image_izam6t": {
           "type": "image",
           "settings": {
-            "desktop_image": "",
             "select_icon": "star",
             "heading": "Premium sourcing",
             "text": "<p>We prioritize high-quality inputs to keep our blends clean and dependable.</p>"
@@ -111,7 +106,6 @@
         "image_MwWBCP": {
           "type": "image",
           "settings": {
-            "desktop_image": "",
             "select_icon": "user",
             "heading": "Balanced profiles",
             "text": "<p>Designed for everyday routines with thoughtful flavor and balance.</p>"
@@ -151,9 +145,7 @@
             "button_label": "",
             "button_disable_on_mobile": false,
             "button_link": "",
-            "button_link_in_new_window": false,
-            "desktop_image": "",
-            "mobile_image": ""
+            "button_link_in_new_window": false
           }
         },
         "column_formulation": {
@@ -167,9 +159,7 @@
             "button_label": "",
             "button_disable_on_mobile": false,
             "button_link": "",
-            "button_link_in_new_window": false,
-            "desktop_image": "",
-            "mobile_image": ""
+            "button_link_in_new_window": false
           }
         },
         "column_testing": {
@@ -183,9 +173,7 @@
             "button_label": "",
             "button_disable_on_mobile": false,
             "button_link": "",
-            "button_link_in_new_window": false,
-            "desktop_image": "",
-            "mobile_image": ""
+            "button_link_in_new_window": false
           }
         },
         "column_packaging_delivery": {
@@ -199,9 +187,7 @@
             "button_label": "View our process",
             "button_disable_on_mobile": false,
             "button_link": "/pages/our-process",
-            "button_link_in_new_window": false,
-            "desktop_image": "",
-            "mobile_image": ""
+            "button_link_in_new_window": false
           }
         }
       },
@@ -219,8 +205,8 @@
         "column_alignment": "left",
         "size_heading": 100,
         "size_heading_mobile": 100,
-        "color-body-text": "transparent",
-        "background_color": "transparent",
+        "color-body-text": "rgba(0,0,0,0)",
+        "background_color": "rgba(0,0,0,0)",
         "margin-top": 60,
         "margin-bottom": 60
       }
