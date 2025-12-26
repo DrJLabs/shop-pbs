@@ -55,6 +55,7 @@
     },
     "page_header_logo_banner_tpXcBm": {
       "type": "page-header-logo-banner",
+      "disabled": true,
       "settings": {
         "logo_image": "shopify://shop_images/Untitled-1_1_-removebg-preview.png",
         "image_hosted": "shopify://shop_images/Pasted_image_20250311231506.png",
