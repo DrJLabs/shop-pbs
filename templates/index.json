@@ -124,7 +124,7 @@
         "size_heading": 70,
         "size_heading_mobile": 80,
         "icon_layout": "center",
-        "color_body_icon": "#3f6c3a",
+        "color_body_icon": "#5b894d",
         "color_body_text": "#f4f6f8",
         "background_color": "#0e1012",
         "icon_layout_mobile": "grid",
@@ -243,6 +243,7 @@
         "paragraph_MzEAAr",
         "email_form_RWKtAi"
       ],
+      "disabled": true,
       "settings": {
         "color-body-text": "#ffffff",
         "background_color": "#324c2a",
