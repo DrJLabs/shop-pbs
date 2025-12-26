@@ -70,7 +70,7 @@
 - [x] Overlay the tagline “Expertly crafted blends for a refined experience” (or update it if needed).
 - [x] Add CTA button: “Discover our blends” (link to Blends page).
 - [x] Add CTA button: “Partner with us (wholesale)” (link to wholesale overview).
-- Current state: Hero uses dark background + Tennessee outline + Dr Js logo; tagline appears in white; CTAs are Discover our blends (`/pages/blends`) and Partner with us (wholesale) (`/pages/wholesale`). Hero image remains unchanged (placeholder). New OS 2.0 section `pb-hero-topo` exists with editable copy/CTAs/chips and background image settings but is not yet placed on the homepage (index.json unchanged).
+- Current state: Home hero now uses `pb-hero-topo` with the existing hero images and CTAs (Discover our blends `/pages/blends` and Partner with us `/pages/wholesale`). Hero imagery is still placeholder and needs an approved brand visual.
 
 **Acceptance Criteria**
 - Hero image is updated to an approved brand visual with descriptive alt text.
