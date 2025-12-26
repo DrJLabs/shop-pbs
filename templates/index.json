@@ -11,6 +11,17 @@
   "sections": {
     "image_banner_tWAmij": {
       "type": "pb-hero-topo",
+      "blocks": {
+        "chip_CpY99X": {
+          "type": "chip",
+          "settings": {
+            "label": "COAs for every batch"
+          }
+        }
+      },
+      "block_order": [
+        "chip_CpY99X"
+      ],
       "settings": {
         "desktop_image": "shopify://shop_images/F29BA3BB-32BA-4B92-A93A-4F730E0877D1.png",
         "mobile_image": "shopify://shop_images/F29BA3BB-32BA-4B92-A93A-4F730E0877D1.png",
@@ -73,6 +84,91 @@
         "desktop_text_horizontal_position": "left",
         "mobile_image": "shopify://shop_images/dark-green-healthy-plant-leaves.jpg",
         "mobile_text_horizontal_position": "left",
+        "margin-top": 20,
+        "margin-bottom": 20
+      }
+    },
+    "multicolumn_JzwAQQ": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_CmWQ3D": {
+          "type": "column",
+          "settings": {
+            "heading": "Column",
+            "heading_disable_on_mobile": false,
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "text_disable_on_mobile": false,
+            "button_select": "primary",
+            "button_label": "Button label",
+            "button_disable_on_mobile": false,
+            "button_link": "",
+            "button_link_in_new_window": false
+          }
+        },
+        "column_AmTBqd": {
+          "type": "column",
+          "settings": {
+            "heading": "JennaBoo",
+            "heading_disable_on_mobile": false,
+            "text": "<p>Chill, creative, functional vibes</p>",
+            "text_disable_on_mobile": false,
+            "button_select": "primary",
+            "button_label": "View profile",
+            "button_disable_on_mobile": false,
+            "button_link": "/pages/blends",
+            "button_link_in_new_window": false,
+            "desktop_image": "shopify://shop_images/boxes-website-jennaboo-primary.png"
+          }
+        },
+        "column_GAERXg": {
+          "type": "column",
+          "settings": {
+            "heading": "Headspace Elevate",
+            "heading_disable_on_mobile": false,
+            "text": "<p>Dream-like, heavy, and intense focus</p>",
+            "text_disable_on_mobile": false,
+            "button_select": "primary",
+            "button_label": "View profile",
+            "button_disable_on_mobile": false,
+            "button_link": "/pages/blends",
+            "button_link_in_new_window": false,
+            "desktop_image": "shopify://shop_images/boxes-website-headspace-elevate-primary.png",
+            "mobile_image": "shopify://shop_images/boxes-website-headspace-elevate-primary.png"
+          }
+        },
+        "column_HcUAt9": {
+          "type": "column",
+          "settings": {
+            "heading": "Whispering Roots",
+            "heading_disable_on_mobile": false,
+            "text": "<p>Grounded, soothing, earthy vibes</p>",
+            "text_disable_on_mobile": false,
+            "button_select": "primary",
+            "button_label": "View profile",
+            "button_disable_on_mobile": true,
+            "button_link": "",
+            "button_link_in_new_window": false,
+            "desktop_image": "shopify://shop_images/box-website-whispering-roots-png_png.png"
+          }
+        }
+      },
+      "block_order": [
+        "column_CmWQ3D",
+        "column_AmTBqd",
+        "column_GAERXg",
+        "column_HcUAt9"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "heading": "Our Blends",
+        "swipe_on_mobile": false,
+        "full-width-enabled": false,
+        "image_ratio": "adapt",
+        "column_alignment": "left",
+        "size_heading": 100,
+        "size_heading_mobile": 100,
+        "color-body-text": "transparent",
+        "background_color": "transparent",
         "margin-top": 20,
         "margin-bottom": 20
       }
@@ -255,6 +351,7 @@
   "order": [
     "image_banner_tWAmij",
     "image_with_text_brand_story",
+    "multicolumn_JzwAQQ",
     "features_banner_rnAYGJ",
     "multicolumn_process_teaser",
     "newsletter_i8q83Y"
