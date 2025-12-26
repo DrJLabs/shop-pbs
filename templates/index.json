@@ -10,63 +10,24 @@
 {
   "sections": {
     "image_banner_tWAmij": {
-      "type": "image-banner",
-      "blocks": {
-        "subheading_LRqfVE": {
-          "type": "subheading",
-          "disabled": true,
-          "settings": {
-            "subheading": "Premium hemp blends",
-            "subheading_disable_on_mobile": false
-          }
-        },
-        "text_mwt6AN": {
-          "type": "text",
-          "disabled": true,
-          "settings": {
-            "text": "<p>Lab-tested. Fast shipping. Always 21+.</p>",
-            "disable_on_mobile": false
-          }
-        },
-        "button_AVNHJf": {
-          "type": "button",
-          "settings": {
-            "button_select": "primary",
-            "button_label": "Discover our blends",
-            "disable_on_mobile": false,
-            "button_link": "/pages/blends",
-            "second_button_select": "primary",
-            "second_button_label": "Partner with us (wholesale)",
-            "second_disable_on_mobile": false,
-            "second_button_link": "/pages/wholesale"
-          }
-        }
-      },
-      "block_order": [
-        "subheading_LRqfVE",
-        "text_mwt6AN",
-        "button_AVNHJf"
-      ],
+      "type": "pb-hero-topo",
+      "blocks": {},
+      "block_order": [],
       "settings": {
-        "heading": "Unwind your day with DrJ",
-        "full-width-enabled": true,
-        "slide_height": "adapt_to_first_image",
-        "desktop_fixed_height": 460,
-        "mobile_fixed_height": 460,
         "desktop_image": "shopify://shop_images/deep-green-leaves-under-shadows.jpg",
-        "desktop_text_vertical_position": "bottom",
-        "desktop_text_horizontal_position": "center",
         "mobile_image": "shopify://shop_images/dark-green-healthy-plant-leaves.jpg",
-        "mobile_text_vertical_position": "center",
-        "mobile_text_horizontal_position": "center",
-        "color-heading": "#ffffff",
-        "section-color-overlay": "#0e1012",
-        "section-color-overlay-opacity": 0,
-        "color-body-text": "#f1e8e8",
-        "text-container-color": "rgba(0,0,0,0)",
-        "color-overlay-opacity": 100,
-        "margin-top": 20,
-        "margin-bottom": 0
+        "kicker": "",
+        "heading": "Unwind your day with DrJ",
+        "subhead": "Lab-tested. Fast shipping. Always 21+.",
+        "primary_label": "Discover our blends",
+        "primary_link": "/pages/blends",
+        "secondary_label": "Partner with us (wholesale)",
+        "secondary_link": "/pages/wholesale",
+        "microline": "",
+        "scrim_strength": 75,
+        "content_max_width": 720,
+        "content_align": "left",
+        "accent_color": "#5b894d"
       }
     },
     "image_with_text_brand_story": {
