@@ -26,7 +26,7 @@
 - Current state: Publicly accessible pages today include the home page (`/`), the collection page (`/collections/all`), and individual product pages for Headspace Elevate, JennaBoo, and Whispering Roots (product pages still show price/variants/Add to cart unless hidden via admin). There is also an Our Process page (`/pages/our-process`) describing sourcing, formulation, testing, and packaging; a contact page (`/pages/contact`) with a multi-field form; a FAQs page (`/pages/faqs`); a Certificates of Analysis (COAs) page (`/pages/certificates-of-analysis-coas`) linking to PDF COAs; and Shopify policy pages (privacy policy, refund policy, shipping policy, terms of service). There is also a data-sharing opt-out page (`/pages/data-sharing-opt-out`). The Track123 app page (`/apps/track123`) still exists but is no longer linked from the footer menus.
 - Current state: The planned About Us page (`/pages/about-us`) and a combined Shipping &amp; Returns page both return a 404 (“OPS! We can’t find what you’re looking for here”) with a “Back to home” button. There is currently no Wholesale page. The Compliance &amp; Legal link loads a page that contains only the standard footer—no legal or compliance content is provided. Collection/search/featured product surfaces now show wholesale CTAs instead of retail purchase buttons, but product pages remain retail until admin hides them.
 - Current state: Without Shopify admin access we cannot verify hidden draft pages, theme section names/settings (e.g., header section names), or toggle cart/search icons. We note where admin confirmation may be needed.
-- Current state: The header shows the logo and the wholesale-focused menu; search/account/cart icons are removed and the “Log in” menu link remains. Pages include an announcement bar repeating “Expertly crafted blends for a • refined experience”. Most pages end with a four-column footer listing wholesale-focused Customer Care links (About Us, Contact Us, Compliance &amp; Legal, FAQs, Your privacy choices, COAs / Lab Reports, Our Process), policy links (Privacy, Refund, Shipping, Terms of Service), and a newsletter subscription form (“Be the first to know the latest releases, news, collaborations, exclusives and offers!”). Payment icons are removed. A second subscribe form labelled “SUBSCRIBE TO OUR EMAILS” also appears near the bottom of the home page.
+- Current state: The header shows the logo and the wholesale-focused menu; search/account/cart icons are removed and the “Log in” menu link remains. The homepage logo banner section is disabled so the topo hero is the topmost section. Pages include an announcement bar repeating “Expertly crafted blends for a • refined experience”. Most pages end with a four-column footer listing wholesale-focused Customer Care links (About Us, Contact Us, Compliance &amp; Legal, FAQs, Your privacy choices, COAs / Lab Reports, Our Process), policy links (Privacy, Refund, Shipping, Terms of Service), and a newsletter subscription form (“Be the first to know the latest releases, news, collaborations, exclusives and offers!”). Payment icons are removed. A second subscribe form labelled “SUBSCRIBE TO OUR EMAILS” also appears near the bottom of the home page.
 
 # 1 Home page redesign
 
@@ -36,7 +36,7 @@
 ## 1A Plan the structure and remove retail elements
 
 - [ ] Identify all current home page sections (hero banner, product grid, promotional features, newsletter form, footer).
-- Current state: Home opens with hero (Tennessee outline + Dr Js logo overlay, tagline, two CTAs). Below: brand story, USPs, and process teaser sections. Newsletter (“SUBSCRIBE TO OUR EMAILS”) and the standard four-column footer remain.
+- Current state: Home opens with the topo hero (hero images, tagline, two CTAs). The logo banner is disabled. Below: brand story, USPs, and process teaser sections. Newsletter (“SUBSCRIBE TO OUR EMAILS”) and the standard four-column footer remain.
 
 ## 1B Disable or delete retail product grid elements
 
@@ -70,7 +70,7 @@
 - [x] Overlay the tagline “Expertly crafted blends for a refined experience” (or update it if needed).
 - [x] Add CTA button: “Discover our blends” (link to Blends page).
 - [x] Add CTA button: “Partner with us (wholesale)” (link to wholesale overview).
-- Current state: Home hero now uses `pb-hero-topo` with the existing hero images and CTAs (Discover our blends `/pages/blends` and Partner with us `/pages/wholesale`). Hero imagery is still placeholder and needs an approved brand visual.
+- Current state: Home hero now uses `pb-hero-topo` with the existing hero images and CTAs (Discover our blends `/pages/blends` and Partner with us `/pages/wholesale`). The previous logo banner is disabled so this hero sits at the top of the page. Hero imagery is still placeholder and needs an approved brand visual.
 
 **Acceptance Criteria**
 - Hero image is updated to an approved brand visual with descriptive alt text.
