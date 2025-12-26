@@ -37,7 +37,7 @@
       "type": "page-header",
       "settings": {
         "layout": "option_3",
-        "sticky_header": false,
+        "sticky_header": true,
         "show_line_separator": false,
         "show_shadow": true,
         "logo": "shopify://shop_images/Untitled-1_1_-removebg-preview.png",
@@ -47,7 +47,7 @@
         "teaser_menu": "main-menu-wholesale",
         "mobile_footer_menu": "",
         "transparent_header_color": "rgba(0,0,0,0)",
-        "drawer_title": "Shop by",
+        "drawer_title": "More",
         "typing_search": "Find Your Perfect Blend...",
         "suggestions_title": "",
         "suggestions_menu": "main-menu-wholesale"
