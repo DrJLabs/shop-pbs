@@ -164,6 +164,7 @@
         "image_knKEhC": {
           "type": "image",
           "settings": {
+            "desktop_image": "shopify://shop_images/mortar-pestle_5b894d_transparent.png",
             "select_icon": "heart",
             "heading": "Crafted with care",
             "text": "<p>Formulated to deliver a consistent, refined experience you can trust.</p>"
