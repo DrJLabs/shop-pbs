@@ -42,7 +42,7 @@
         "show_shadow": true,
         "logo": "shopify://shop_images/Untitled-1_1_-removebg-preview.png",
         "large_screen_logo_width": 200,
-        "mobile_screen_logo_width": 90,
+        "mobile_screen_logo_width": 120,
         "menu": "main-menu-wholesale",
         "teaser_menu": "main-menu-wholesale",
         "mobile_footer_menu": "",
