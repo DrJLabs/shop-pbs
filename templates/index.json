@@ -181,6 +181,7 @@
         "image_izam6t": {
           "type": "image",
           "settings": {
+            "desktop_image": "shopify://shop_images/leaf_icon_clean_1024_3f4a9845-59dd-4faf-b0da-787e054f7d7e.png",
             "select_icon": "star",
             "heading": "Premium sourcing",
             "text": "<p>We prioritize high-quality inputs to keep our blends clean and dependable.</p>"
