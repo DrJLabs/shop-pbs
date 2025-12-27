@@ -279,6 +279,7 @@
         "column_testing",
         "column_packaging_delivery"
       ],
+      "disabled": true,
       "settings": {
         "heading": "Our Process",
         "swipe_on_mobile": false,
