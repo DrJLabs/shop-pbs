@@ -132,7 +132,7 @@
             "button_select": "primary",
             "button_label": "View profile",
             "button_disable_on_mobile": true,
-            "button_link": "",
+            "button_link": "shopify://products/whispering-roots-2g",
             "button_link_in_new_window": false,
             "desktop_image": "shopify://shop_images/boxes-website-whispering-roots-primary.png"
           }
