@@ -74,6 +74,7 @@
         "text_brand_story",
         "button_rTr8B3"
       ],
+      "disabled": true,
       "settings": {
         "title": "",
         "layout": "image_first",
@@ -384,8 +385,8 @@
       "settings": {
         "section_width": "regular",
         "desktop_text_horizontal_position": "center",
-        "color-body-text": "transparent",
-        "background_color": "transparent",
+        "color-body-text": "rgba(0,0,0,0)",
+        "background_color": "rgba(0,0,0,0)",
         "margin-top": 20,
         "margin-bottom": 20
       }
