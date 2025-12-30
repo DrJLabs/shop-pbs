@@ -18,7 +18,7 @@ Verify new Liquid code blocks through the MCP servers `shopify-dev-mcp-partial` 
 
 ## Commit & Pull Request Guidelines
 Create feature branches using `feat/<kebab>`, `fix/<kebab>`, or `chore/<kebab>`. Write Conventional Commits (`feat: add cart drawer animation`). PRs must include: concise summary, linked issue or task ID, screenshots or screen recordings for visual changes, confirmation of `shopify theme check`, and rollout notes if pushing to live. Request re-review with `@codex review` once feedback is addressed.
-Use standard git branches in the current working tree; do not create isolated worktrees unless explicitly requested.
+Work from standard git branches in the current working tree only; do not use git worktrees under any circumstances.
 
 ## Security & Configuration Tips
 Never commit API keys or store credentials; keep them in `.env` files ignored by Git. Redact customer data in screenshots. Before running `shopify theme push`, verify `config/settings_data.json` omits store-specific secrets or disable syncing via CLI flags.
