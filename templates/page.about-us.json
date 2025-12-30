@@ -136,20 +136,10 @@
             "size_heading": 100,
             "size_heading_mobile": 100
           }
-        },
-        "button_QgaEhM": {
-          "type": "button",
-          "settings": {
-            "button_select": "primary",
-            "button_label": "View Certificates of Analysis (COAs)",
-            "button_link": "shopify://pages/certificates-of-analysis-coas",
-            "disable_on_mobile": false
-          }
         }
       },
       "block_order": [
-        "heading_WGmC9C",
-        "button_QgaEhM"
+        "heading_WGmC9C"
       ],
       "name": "t:sections.rich-text.presets.name",
       "settings": {
@@ -160,6 +150,45 @@
         "margin-top": 20,
         "margin-bottom": 20
       }
+    },
+    "button_TLDUcQ": {
+      "type": "button",
+      "name": "t:sections.button.presets.name",
+      "settings": {
+        "button_select": "primary",
+        "button_horizontal_position": "center",
+        "button_label": "View Certificates of Analysis (COAs)",
+        "button_link": "shopify://pages/certificates-of-analysis-coas",
+        "margin-top": 20,
+        "margin-bottom": 20,
+        "background_color": "transparent"
+      }
+    },
+    "button_X3DhNY": {
+      "type": "button",
+      "name": "t:sections.button.presets.name",
+      "settings": {
+        "button_select": "primary",
+        "button_horizontal_position": "center",
+        "button_label": "Contact Us",
+        "button_link": "shopify://pages/contact",
+        "margin-top": 20,
+        "margin-bottom": 20,
+        "background_color": "transparent"
+      }
+    },
+    "button_pQFkap": {
+      "type": "button",
+      "name": "t:sections.button.presets.name",
+      "settings": {
+        "button_select": "primary",
+        "button_horizontal_position": "center",
+        "button_label": "",
+        "button_link": "",
+        "margin-top": 20,
+        "margin-bottom": 20,
+        "background_color": "transparent"
+      }
     }
   },
   "order": [
@@ -167,6 +196,9 @@
     "rich_text_LTGH6Q",
     "rich_text_tX4EUt",
     "rich_text_ntjeiy",
-    "rich_text_9d8VcM"
+    "rich_text_9d8VcM",
+    "button_TLDUcQ",
+    "button_X3DhNY",
+    "button_pQFkap"
   ]
 }
