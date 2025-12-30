@@ -71,6 +71,9 @@
           {% assign coa_url = '' %}
         {% endif %}
 
+        {% assign cta_url = block.settings.cta_url %}
+        {% assign cta_label = block.settings.cta_label | strip %}
+
         {% assign highlights_content = block.settings.highlights | strip %}
 
         <article class="blends-profiles__card" data-block-id="{{ block.id }}" {{ block.shopify_attributes }}>
@@ -111,14 +114,26 @@
               </ul>
             {% endif %}
 
-            {% if coa_url != blank %}
-              {% assign coa_label = block.settings.coa_label %}
-              {% if coa_label == blank %}
-                {% assign coa_label = 'View ' | append: display_title | append: ' COA (PDF)' %}
-              {% endif %}
-              <a class="hero__button hero__button--secondary blends-profiles__coa" href="{{ coa_url }}" target="_blank" rel="noopener">
-                {{ coa_label }}
-              </a>
+            {% if cta_url != blank or coa_url != blank %}
+              <div class="blends-profiles__actions">
+                {% if cta_url != blank %}
+                  {% if cta_label == blank %}
+                    {% assign cta_label = 'Learn more' %}
+                  {% endif %}
+                  <a class="hero__button hero__button--primary blends-profiles__cta" href="{{ cta_url }}">
+                    {{ cta_label }}
+                  </a>
+                {% endif %}
+                {% if coa_url != blank %}
+                  {% assign coa_label = block.settings.coa_label %}
+                  {% if coa_label == blank %}
+                    {% assign coa_label = 'View ' | append: display_title | append: ' COA (PDF)' %}
+                  {% endif %}
+                  <a class="hero__button hero__button--secondary blends-profiles__coa" href="{{ coa_url }}" target="_blank" rel="noopener">
+                    {{ coa_label }}
+                  </a>
+                {% endif %}
+              </div>
             {% endif %}
           </div>
         </article>
@@ -241,6 +256,16 @@
           "id": "highlights",
           "label": "Highlights (one per line)",
           "default": "Cannabinoids: TBD\nTerpenes: TBD\nIntended effects: TBD"
+        },
+        {
+          "type": "text",
+          "id": "cta_label",
+          "label": "CTA label"
+        },
+        {
+          "type": "url",
+          "id": "cta_url",
+          "label": "CTA link"
         },
         {
           "type": "url",
