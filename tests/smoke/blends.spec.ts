@@ -17,4 +17,8 @@ test('blends page renders profiles', async ({ page }) => {
   const cards = page.locator('.blends-profiles__card');
   await expect(cards.first()).toBeVisible();
   expect(await cards.count()).toBeGreaterThan(0);
+  const cta = page.locator('.blends-profiles__cta');
+  await expect(cta.first()).toBeVisible();
+  const href = await cta.first().getAttribute('href');
+  expect(href).toBeTruthy();
 });
