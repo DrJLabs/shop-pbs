@@ -29,7 +29,7 @@
         "heading_wx89PH": {
           "type": "heading",
           "settings": {
-            "heading": "About us",
+            "heading": "About DrJs Premium Blends",
             "disable_on_mobile": false,
             "size_heading": 130,
             "size_heading_mobile": 100
@@ -38,7 +38,7 @@
         "text_Wdh7yx": {
           "type": "text",
           "settings": {
-            "text": "",
+            "text": "<p>DrJs Premium Blends is a pharmacist-led brand rooted in East Tennessee, built for adults who value a premium experience and transparency they can verify. We craft hemp-derived cannabinoid blends with a simple philosophy: clear standards, clear documentation, and a calm, grounded approach—no hype, no guesswork.</p>",
             "disable_on_mobile": false
           }
         },
