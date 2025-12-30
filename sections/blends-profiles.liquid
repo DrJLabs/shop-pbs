@@ -118,7 +118,7 @@
               <div class="blends-profiles__actions">
                 {% if cta_url != blank %}
                   <a class="hero__button hero__button--primary blends-profiles__cta" href="{{ cta_url }}">
-                    {{ cta_label | default: 'Learn more' }}
+                    {{ cta_label | default: 'Learn more' | escape }}
                   </a>
                 {% endif %}
                 {% if coa_url != blank %}
@@ -127,7 +127,7 @@
                     {% assign coa_label = 'View ' | append: display_title | append: ' COA (PDF)' %}
                   {% endif %}
                   <a class="hero__button hero__button--secondary blends-profiles__coa" href="{{ coa_url }}" target="_blank" rel="noopener">
-                    {{ coa_label }}
+                    {{ coa_label | escape }}
                   </a>
                 {% endif %}
               </div>
