@@ -101,7 +101,7 @@
             "button_select": "primary",
             "button_label": "View profile",
             "button_disable_on_mobile": false,
-            "button_link": "/pages/blends",
+            "button_link": "/pages/jennaboo",
             "button_link_in_new_window": false,
             "desktop_image": "shopify://shop_images/boxes-website-jennaboo-primary.png"
           }
