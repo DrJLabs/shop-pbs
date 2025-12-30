@@ -41,22 +41,11 @@
             "text": "<p>DrJs Premium Blends is a pharmacist-led brand rooted in East Tennessee, built for adults who value a premium experience and transparency they can verify. We craft hemp-derived cannabinoid blends with a simple philosophy: clear standards, clear documentation, and a calm, grounded approach—no hype, no guesswork.</p>",
             "disable_on_mobile": false
           }
-        },
-        "button_GrUQtK": {
-          "type": "button",
-          "disabled": true,
-          "settings": {
-            "button_select": "primary",
-            "button_label": "Button label",
-            "button_link": "/",
-            "disable_on_mobile": false
-          }
         }
       },
       "block_order": [
         "heading_wx89PH",
-        "text_Wdh7yx",
-        "button_GrUQtK"
+        "text_Wdh7yx"
       ],
       "disabled": true,
       "settings": {
@@ -86,21 +75,11 @@
             "text": "<p>DrJs Premium Blends started with a stubborn question:</p><p>“Why is it so hard to find hemp products I’d feel comfortable standing behind as a pharmacist?”</p><p>Too often, Certificates of Analysis (COAs) were hard to find, confusing, or incomplete—exactly the opposite of what people deserve when choosing something they’re bringing into their routine. At the same time, consumers were being forced into tradeoffs: good taste but questionable transparency, or strong marketing with inconsistent experiences.</p><p><br/></p><p>So we built DrJs Premium Blends around higher standards: keep the experience premium, keep the documentation accessible, and keep the brand grounded in education and responsible use.</p>",
             "disable_on_mobile": false
           }
-        },
-        "button_WxERVM": {
-          "type": "button",
-          "settings": {
-            "button_select": "primary",
-            "button_label": "Button label",
-            "button_link": "/",
-            "disable_on_mobile": false
-          }
         }
       },
       "block_order": [
         "heading_zYUfVy",
-        "text_rR6J9m",
-        "button_WxERVM"
+        "text_rR6J9m"
       ],
       "name": "t:sections.rich-text.presets.name",
       "settings": {
@@ -130,21 +109,47 @@
             "text": "<p><strong>1) Quality standards you can trust</strong></p><p>We care about ingredient sourcing, consistent formulation, and doing the unglamorous work that makes products dependable.</p><p><strong>2) Transparency you can verify</strong></p><p>We want COAs to be easy to access and easy to understand—because trust should be built on clarity, not marketing.</p><p><strong>3) Education over hype</strong></p><p>Our goal is to help people make informed decisions with straightforward language and responsible guidance.</p>",
             "disable_on_mobile": false
           }
+        }
+      },
+      "block_order": [
+        "heading_iKqiiw",
+        "text_G9jTqD"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "section_width": "regular",
+        "desktop_text_horizontal_position": "center",
+        "color-body-text": "transparent",
+        "background_color": "transparent",
+        "margin-top": 20,
+        "margin-bottom": 20
+      }
+    },
+    "rich_text_9d8VcM": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_WGmC9C": {
+          "type": "heading",
+          "settings": {
+            "heading": "Where to Go Next",
+            "disable_on_mobile": false,
+            "size_heading": 100,
+            "size_heading_mobile": 100
+          }
         },
-        "button_AQNPXJ": {
+        "button_QgaEhM": {
           "type": "button",
           "settings": {
             "button_select": "primary",
-            "button_label": "Button label",
-            "button_link": "/",
+            "button_label": "View Certificates of Analysis (COAs)",
+            "button_link": "shopify://pages/certificates-of-analysis-coas",
             "disable_on_mobile": false
           }
         }
       },
       "block_order": [
-        "heading_iKqiiw",
-        "text_G9jTqD",
-        "button_AQNPXJ"
+        "heading_WGmC9C",
+        "button_QgaEhM"
       ],
       "name": "t:sections.rich-text.presets.name",
       "settings": {
@@ -161,6 +166,7 @@
     "main",
     "rich_text_LTGH6Q",
     "rich_text_tX4EUt",
-    "rich_text_ntjeiy"
+    "rich_text_ntjeiy",
+    "rich_text_9d8VcM"
   ]
 }
