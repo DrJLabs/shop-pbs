@@ -111,11 +111,56 @@
         "margin-top": 20,
         "margin-bottom": 20
       }
+    },
+    "rich_text_ntjeiy": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_iKqiiw": {
+          "type": "heading",
+          "settings": {
+            "heading": "What We Focus On",
+            "disable_on_mobile": false,
+            "size_heading": 100,
+            "size_heading_mobile": 100
+          }
+        },
+        "text_G9jTqD": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>1) Quality standards you can trust</strong></p><p>We care about ingredient sourcing, consistent formulation, and doing the unglamorous work that makes products dependable.</p><p><strong>2) Transparency you can verify</strong></p><p>We want COAs to be easy to access and easy to understand—because trust should be built on clarity, not marketing.</p><p><strong>3) Education over hype</strong></p><p>Our goal is to help people make informed decisions with straightforward language and responsible guidance.</p>",
+            "disable_on_mobile": false
+          }
+        },
+        "button_AQNPXJ": {
+          "type": "button",
+          "settings": {
+            "button_select": "primary",
+            "button_label": "Button label",
+            "button_link": "/",
+            "disable_on_mobile": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_iKqiiw",
+        "text_G9jTqD",
+        "button_AQNPXJ"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "section_width": "regular",
+        "desktop_text_horizontal_position": "center",
+        "color-body-text": "transparent",
+        "background_color": "transparent",
+        "margin-top": 20,
+        "margin-bottom": 20
+      }
     }
   },
   "order": [
     "main",
     "rich_text_LTGH6Q",
-    "rich_text_tX4EUt"
+    "rich_text_tX4EUt",
+    "rich_text_ntjeiy"
   ]
 }
