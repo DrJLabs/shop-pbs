@@ -9,11 +9,11 @@
     --font-base-transform: none;
 
     /* --font-breadcrumbs */
-    --font-breadcrumbs: ,;
-    --font-breadcrumbs-style: ;
-    --font-breadcrumbs-weight: ;
+    --font-breadcrumbs: Inter,sans-serif;
+    --font-breadcrumbs-style: normal;
+    --font-breadcrumbs-weight: 400;
     --font-breadcrumbs-size: 13px;
-    --font-breadcrumbs-letter-spacing: px;
+    --font-breadcrumbs-letter-spacing: 0px;
 
     --font-headline: "Playfair Display",serif;
     --font-headline-style: normal;
@@ -40,7 +40,7 @@
     --font-price: "DM Sans",sans-serif;
     --font-price-style: normal;
     --font-price-weight: 400;
-    --font-price-size: px;
+    --font-price-size: 15px;
     --font-price-transform: none;
     --font-price-letter-spacing: 0.5px;
 
@@ -187,6 +187,7 @@
         --font-base-size: 15px;
         --font-button-size: 13px;
         --font-breadcrumbs-size: 13px;
+        --font-price-size: 15px;
 
         --font-headline-size: 20px;
         --font-navigation-size: 14px;
