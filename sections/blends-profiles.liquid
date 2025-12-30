@@ -72,7 +72,6 @@
         {% endif %}
 
         {% assign cta_url = block.settings.cta_url %}
-        {% assign cta_label = block.settings.cta_label | strip %}
 
         {% assign highlights_content = block.settings.highlights | strip %}
 
@@ -118,16 +117,13 @@
               <div class="blends-profiles__actions">
                 {% if cta_url != blank %}
                   <a class="hero__button hero__button--primary blends-profiles__cta" href="{{ cta_url }}">
-                    {{ cta_label | default: 'Learn more' | escape }}
+                    {{ block.settings.cta_label | strip | default: 'Learn more' | escape }}
                   </a>
                 {% endif %}
                 {% if coa_url != blank %}
-                  {% assign coa_label = block.settings.coa_label | strip %}
-                  {% if coa_label == blank %}
-                    {% assign coa_label = 'View ' | append: display_title | append: ' COA (PDF)' %}
-                  {% endif %}
+                  {% assign default_coa_label = 'View ' | append: display_title | append: ' COA (PDF)' %}
                   <a class="hero__button hero__button--secondary blends-profiles__coa" href="{{ coa_url }}" target="_blank" rel="noopener">
-                    {{ coa_label | escape }}
+                    {{ block.settings.coa_label | strip | default: default_coa_label | escape }}
                   </a>
                 {% endif %}
               </div>
