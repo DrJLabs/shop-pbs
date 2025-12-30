@@ -336,6 +336,50 @@
         "margin-top": 60,
         "margin-bottom": 60
       }
+    },
+    "rich_text_xkeRLp": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_Lamzz3": {
+          "type": "heading",
+          "settings": {
+            "heading": "DrJs Premium Blends",
+            "disable_on_mobile": false,
+            "size_heading": 100,
+            "size_heading_mobile": 100
+          }
+        },
+        "text_mDtYe7": {
+          "type": "text",
+          "settings": {
+            "text": "<p>DrJs Premium Blends began in East Tennessee with one simple goal: make hemp-derived cannabinoid products easier to trust. As a pharmacist, Dr. J prioritizes what matters most—<strong>clean inputs, consistent formulation, and third‑party testing you can verify</strong>. Every batch is linked to a COA, so partners and customers can see what’s inside with confidence. Today, we’re focused on <strong>wholesale partnerships</strong> with retailers who value transparency, quality, and a refined experience.</p>",
+            "disable_on_mobile": false
+          }
+        },
+        "button_k8MFYb": {
+          "type": "button",
+          "settings": {
+            "button_select": "primary",
+            "button_label": "Button label",
+            "button_link": "/",
+            "disable_on_mobile": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_Lamzz3",
+        "text_mDtYe7",
+        "button_k8MFYb"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "section_width": "regular",
+        "desktop_text_horizontal_position": "center",
+        "color-body-text": "transparent",
+        "background_color": "transparent",
+        "margin-top": 20,
+        "margin-bottom": 20
+      }
     }
   },
   "order": [
@@ -344,6 +388,7 @@
     "multicolumn_JzwAQQ",
     "features_banner_rnAYGJ",
     "multicolumn_process_teaser",
-    "newsletter_i8q83Y"
+    "newsletter_i8q83Y",
+    "rich_text_xkeRLp"
   ]
 }
