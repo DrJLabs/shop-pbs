@@ -54,20 +54,29 @@
         "text_brand_story": {
           "type": "text",
           "settings": {
-            "text": "<p>We started with a simple belief: thoughtful blends should feel intentional, consistent, and trustworthy. What began as a small pursuit of balance grew into a brand built on care, transparency, and craft. Our mission is to create premium experiences that support everyday wellness without compromise. We continue to refine every detail so customers can feel confident in what they choose.</p>",
+            "text": "<p>We started with a simple belief: thoughtful blends should feel intentional, consistent, and trustworthy. What began as a small pursuit of balance grew into a brand built on care, transparency, and craft. Our mission is to create premium experiences without compromise. We continue to refine every detail so customers can feel confident in what they choose.</p>",
             "text_style": "body",
+            "disable_on_mobile": false
+          }
+        },
+        "button_rTr8B3": {
+          "type": "button",
+          "settings": {
+            "button_select": "primary",
+            "button_label": "Learn more",
+            "button_link": "shopify://pages/about-us",
             "disable_on_mobile": false
           }
         }
       },
       "block_order": [
         "heading_brand_story",
-        "text_brand_story"
+        "text_brand_story",
+        "button_rTr8B3"
       ],
-      "disabled": true,
       "settings": {
         "title": "",
-        "layout": "text_first",
+        "layout": "image_first",
         "desktop-percentage-image-width": 50,
         "full-width-enabled": false,
         "slide_height": "adapt_to_first_image",
