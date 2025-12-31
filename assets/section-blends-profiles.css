@@ -69,6 +69,18 @@
   gap: calc(var(--gap, 8px) * 1.5);
 }
 
+.blends-profiles__action--left {
+  align-self: flex-start;
+}
+
+.blends-profiles__action--center {
+  align-self: center;
+}
+
+.blends-profiles__action--right {
+  align-self: flex-end;
+}
+
 .blends-profiles__coa {
   display: inline-flex;
   align-items: center;
