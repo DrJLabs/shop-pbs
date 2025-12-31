@@ -72,6 +72,8 @@
         {% endif %}
 
         {% assign cta_url = block.settings.cta_url %}
+        {% assign cta_alignment = block.settings.cta_alignment | default: 'center' | strip | downcase %}
+        {% assign coa_alignment = block.settings.coa_alignment | default: 'center' | strip | downcase %}
 
         {% assign highlights_content = block.settings.highlights | strip %}
 
@@ -116,13 +118,13 @@
             {% if cta_url != blank or coa_url != blank %}
               <div class="blends-profiles__actions">
                 {% if cta_url != blank %}
-                  <a class="hero__button hero__button--primary blends-profiles__cta" href="{{ cta_url }}">
+                  <a class="hero__button hero__button--primary blends-profiles__cta blends-profiles__action blends-profiles__action--{{ cta_alignment }}" href="{{ cta_url }}">
                     {{ block.settings.cta_label | strip | default: 'Learn more' | escape }}
                   </a>
                 {% endif %}
                 {% if coa_url != blank %}
                   {% assign default_coa_label = 'View ' | append: display_title | append: ' COA (PDF)' %}
-                  <a class="hero__button hero__button--secondary blends-profiles__coa" href="{{ coa_url }}" target="_blank" rel="noopener">
+                  <a class="hero__button hero__button--secondary blends-profiles__coa blends-profiles__action blends-profiles__action--{{ coa_alignment }}" href="{{ coa_url }}" target="_blank" rel="noopener">
                     {{ block.settings.coa_label | strip | default: default_coa_label | escape }}
                   </a>
                 {% endif %}
@@ -261,6 +263,26 @@
           "label": "CTA link"
         },
         {
+          "type": "select",
+          "id": "cta_alignment",
+          "label": "CTA alignment",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "center"
+        },
+        {
           "type": "url",
           "id": "coa_url",
           "label": "COA URL override"
@@ -269,6 +291,26 @@
           "type": "text",
           "id": "coa_label",
           "label": "COA link label"
+        },
+        {
+          "type": "select",
+          "id": "coa_alignment",
+          "label": "COA alignment",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "center"
         }
       ]
     }
