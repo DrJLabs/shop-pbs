@@ -34,8 +34,10 @@
             "highlights": "Cannabinoids: HHC, THC-P, CBD, CBC, CBN, CBG\nFeel: elevated, intense, immersive\nBest: night sessions or experienced users",
             "cta_label": "Full profile",
             "cta_url": "/pages/headspace-elevate",
+            "cta_alignment": "center",
             "coa_url": "https://cdn.shopify.com/s/files/1/0637/0328/5895/files/coa-headspace-elevate.pdf?v=1767059092",
-            "coa_label": "View Headspace Elevate – COA (PDF)"
+            "coa_label": "View Headspace Elevate – COA (PDF)",
+            "coa_alignment": "center"
           }
         },
         "blend_whispering": {
@@ -47,8 +49,10 @@
             "highlights": "Cannabinoids: HHC, HHC-P, CBD, CBC, CBN, CBG\nFeel: grounding, mellow, soothing\nBest: evening wind-down or anchored focus",
             "cta_label": "Full profile",
             "cta_url": "/pages/whispering-roots",
+            "cta_alignment": "center",
             "coa_url": "https://cdn.shopify.com/s/files/1/0637/0328/5895/files/coa-whispering-roots.pdf?v=1767059086",
-            "coa_label": "View Whispering Roots – 2g Disposable COA (PDF)"
+            "coa_label": "View Whispering Roots – 2g Disposable COA (PDF)",
+            "coa_alignment": "center"
           }
         },
         "blend_jennaboo": {
@@ -60,8 +64,10 @@
             "highlights": "Cannabinoids: HHC, HHC-P, THC-V, CBD, CBC, CBN, CBG\nFeel: uplifting, feel-good, easygoing\nBest: daytime boost or early-evening unwind",
             "cta_label": "Full profile",
             "cta_url": "shopify://pages/jennaboo-clarity-and-relief",
+            "cta_alignment": "center",
             "coa_url": "https://cdn.shopify.com/s/files/1/0637/0328/5895/files/coa-jennaboo.pdf?v=1767059096",
-            "coa_label": "View JennaBoo – 2g Disposable COA (PDF)"
+            "coa_label": "View JennaBoo – 2g Disposable COA (PDF)",
+            "coa_alignment": "center"
           }
         }
       },
@@ -72,7 +78,7 @@
       ],
       "settings": {
         "heading": "Our blends",
-        "intro": "<p>Explore our current lineup and review COAs for batch-specific details.</p>",
+        "intro": "<p>Explore the current DrJs Premium Blends lineup: pharmacist-crafted, batch-verified, and built on premium, reliable quality. Review each profile and open the COA for batch-specific lab details.</p>",
         "columns_desktop": 2,
         "columns_mobile": "1",
         "color-body-text": "rgba(0,0,0,0)",
