@@ -192,10 +192,10 @@
         "image_izam6t": {
           "type": "image",
           "settings": {
-            "desktop_image": "shopify://shop_images/leaf_thick.png",
+            "desktop_image": "shopify://shop_images/shield-check.png",
             "select_icon": "star",
-            "heading": "Premium sourcing",
-            "text": "<p>We prioritize high-quality inputs to keep our blends clean and dependable.</p>"
+            "heading": "Quality + compliance",
+            "text": "<p>Premium inputs, clear labeling, 21+ framing - and cannabinoids + terpenes only (no filler).</p>"
           }
         },
         "image_MwWBCP": {
