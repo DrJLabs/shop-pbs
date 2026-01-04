@@ -78,7 +78,7 @@
       ],
       "settings": {
         "heading": "Our blends",
-        "intro": "<p>Explore the current DrJs Premium Blends lineup: pharmacist-crafted, batch-verified, and built on premium, reliable quality. Review each profile and open the COA for batch-specific lab details.</p>",
+        "intro": "<p>Explore the current DrJs Premium Blends lineup: pharmacist-crafted, batch-verified, and built on premium, reliable quality. Review each profile and open the COA for batch-specific lab details.</p><p>Need help choosing a blend? View the full profiles or contact us for guidance.</p>",
         "columns_desktop": 2,
         "columns_mobile": "1",
         "color-body-text": "rgba(0,0,0,0)",
@@ -86,10 +86,55 @@
         "margin-top": 20,
         "margin-bottom": 60
       }
+    },
+    "rich_text_4JmjHC": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_3NQ8j4": {
+          "type": "heading",
+          "settings": {
+            "heading": "",
+            "disable_on_mobile": false,
+            "size_heading": 100,
+            "size_heading_mobile": 100
+          }
+        },
+        "text_emkgr7": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Share information about your brand with your customers. Describe a product, make annuncements, or welcome customers to your store.</p>",
+            "disable_on_mobile": false
+          }
+        },
+        "button_LrtUJY": {
+          "type": "button",
+          "settings": {
+            "button_select": "primary",
+            "button_label": "Button label",
+            "button_link": "/",
+            "disable_on_mobile": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_3NQ8j4",
+        "text_emkgr7",
+        "button_LrtUJY"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "section_width": "regular",
+        "desktop_text_horizontal_position": "center",
+        "color-body-text": "transparent",
+        "background_color": "transparent",
+        "margin-top": 20,
+        "margin-bottom": 20
+      }
     }
   },
   "order": [
     "main",
-    "blends_profiles"
+    "blends_profiles",
+    "rich_text_4JmjHC"
   ]
 }
