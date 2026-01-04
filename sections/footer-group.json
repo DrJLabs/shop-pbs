@@ -31,8 +31,8 @@
         "newsletter_KtddE8": {
           "type": "newsletter",
           "settings": {
-            "heading_newsletter": "Stay In Loop",
-            "text_newsletter": "<p>Be the first to know the least relases, news, collaborations, exclusives and offers!</p>",
+            "heading_newsletter": "Stay in the loop",
+            "text_newsletter": "<p>Wholesale updates, new blend releases, and transparency resources - no spam.</p>",
             "button_type": "secondary"
           }
         }
