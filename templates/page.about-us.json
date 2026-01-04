@@ -63,7 +63,7 @@
         "heading_zYUfVy": {
           "type": "heading",
           "settings": {
-            "heading": "Our Story",
+            "heading": "About DrJs Premium Blends",
             "disable_on_mobile": false,
             "size_heading": 100,
             "size_heading_mobile": 100
@@ -72,7 +72,7 @@
         "text_rR6J9m": {
           "type": "text",
           "settings": {
-            "text": "<p>DrJs Premium Blends started with a stubborn question:</p><p>“Why is it so hard to find hemp products I’d feel comfortable standing behind as a pharmacist?”</p><p>Too often, Certificates of Analysis (COAs) were hard to find, confusing, or incomplete—exactly the opposite of what people deserve when choosing something they’re bringing into their routine. At the same time, consumers were being forced into tradeoffs: good taste but questionable transparency, or strong marketing with inconsistent experiences.</p><p><br/></p><p>So we built DrJs Premium Blends around higher standards: keep the experience premium, keep the documentation accessible, and keep the brand grounded in education and responsible use.</p>",
+            "text": "<p><strong>Intro</strong><br/>DrJs Premium Blends is a pharmacist-led hemp-derived vape brand rooted in East Tennessee - built to make cannabinoid products easier to trust.<br/><br/><strong>Our story</strong><br/>We started with one goal: remove the guesswork from hemp-derived products. That means premium, reliable quality, clear guidance, and transparency as proof. Every batch links to a COA you can verify.<br/><br/><strong>What we stand for</strong><br/>- Premium, reliable quality from pharmacist-led formulation.<br/>- Transparency as proof with batch-specific COAs.<br/>- Compliance-first standards that respect state and federal regulations.<br/>- Community roots and a neighborly, East Tennessee approach.</p>",
             "disable_on_mobile": false
           }
         }
