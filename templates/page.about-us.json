@@ -176,19 +176,6 @@
         "margin-bottom": 20,
         "background_color": "rgba(0,0,0,0)"
       }
-    },
-    "button_pQFkap": {
-      "type": "button",
-      "name": "t:sections.button.presets.name",
-      "settings": {
-        "button_select": "primary",
-        "button_horizontal_position": "center",
-        "button_label": "",
-        "button_link": "",
-        "margin-top": 20,
-        "margin-bottom": 20,
-        "background_color": "rgba(0,0,0,0)"
-      }
     }
   },
   "order": [
@@ -198,7 +185,6 @@
     "rich_text_ntjeiy",
     "rich_text_9d8VcM",
     "button_TLDUcQ",
-    "button_X3DhNY",
-    "button_pQFkap"
+    "button_X3DhNY"
   ]
 }
