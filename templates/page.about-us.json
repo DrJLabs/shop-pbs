@@ -38,7 +38,7 @@
         "text_Wdh7yx": {
           "type": "text",
           "settings": {
-            "text": "<p>DrJs Premium Blends is a pharmacist-led brand rooted in East Tennessee, built for adults who value a premium experience and transparency they can verify. We craft hemp-derived cannabinoid blends with a simple philosophy: clear standards, clear documentation, and a calm, grounded approach—no hype, no guesswork.</p>",
+            "text": "<p><strong>Intro</strong><br/>DrJs Premium Blends is a pharmacist-led hemp-derived vape brand rooted in East Tennessee - built to make cannabinoid products easier to trust.<br/><br/><strong>Our story</strong><br/>We started with one goal: remove the guesswork from hemp-derived products. That means premium, reliable quality, clear guidance, and transparency as proof. Every batch links to a COA you can verify.<br/><br/><strong>What we stand for</strong><br/>- Premium, reliable quality from pharmacist-led formulation.<br/>- Transparency as proof with batch-specific COAs.<br/>- Compliance-first standards that respect state and federal regulations.<br/>- Community roots and a neighborly, East Tennessee approach.</p>",
             "disable_on_mobile": false
           }
         }
@@ -85,8 +85,8 @@
       "settings": {
         "section_width": "regular",
         "desktop_text_horizontal_position": "center",
-        "color-body-text": "transparent",
-        "background_color": "transparent",
+        "color-body-text": "rgba(0,0,0,0)",
+        "background_color": "rgba(0,0,0,0)",
         "margin-top": 20,
         "margin-bottom": 20
       }
@@ -119,8 +119,8 @@
       "settings": {
         "section_width": "regular",
         "desktop_text_horizontal_position": "center",
-        "color-body-text": "transparent",
-        "background_color": "transparent",
+        "color-body-text": "rgba(0,0,0,0)",
+        "background_color": "rgba(0,0,0,0)",
         "margin-top": 20,
         "margin-bottom": 20
       }
@@ -145,8 +145,8 @@
       "settings": {
         "section_width": "regular",
         "desktop_text_horizontal_position": "center",
-        "color-body-text": "transparent",
-        "background_color": "transparent",
+        "color-body-text": "rgba(0,0,0,0)",
+        "background_color": "rgba(0,0,0,0)",
         "margin-top": 20,
         "margin-bottom": 20
       }
@@ -161,7 +161,7 @@
         "button_link": "shopify://pages/certificates-of-analysis-coas",
         "margin-top": 20,
         "margin-bottom": 20,
-        "background_color": "transparent"
+        "background_color": "rgba(0,0,0,0)"
       }
     },
     "button_X3DhNY": {
@@ -174,7 +174,7 @@
         "button_link": "shopify://pages/contact",
         "margin-top": 20,
         "margin-bottom": 20,
-        "background_color": "transparent"
+        "background_color": "rgba(0,0,0,0)"
       }
     },
     "button_pQFkap": {
@@ -187,7 +187,7 @@
         "button_link": "",
         "margin-top": 20,
         "margin-bottom": 20,
-        "background_color": "transparent"
+        "background_color": "rgba(0,0,0,0)"
       }
     }
   },
