@@ -136,10 +136,20 @@
             "size_heading": 100,
             "size_heading_mobile": 100
           }
+        },
+        "button_8ahgEw": {
+          "type": "button",
+          "settings": {
+            "button_select": "primary",
+            "button_label": "Partner with us",
+            "button_link": "shopify://pages/wholesale-portal",
+            "disable_on_mobile": false
+          }
         }
       },
       "block_order": [
-        "heading_WGmC9C"
+        "heading_WGmC9C",
+        "button_8ahgEw"
       ],
       "name": "t:sections.rich-text.presets.name",
       "settings": {
