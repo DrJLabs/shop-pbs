@@ -32,7 +32,7 @@
           "type": "newsletter",
           "settings": {
             "heading_newsletter": "Stay in the loop",
-            "text_newsletter": "<p>Wholesale updates, new blend releases, and transparency resources - no spam.</p>",
+            "text_newsletter": "<p>Wholesale updates, new blend releases, and transparency resources - no spam. </p>",
             "button_type": "secondary"
           }
         }
