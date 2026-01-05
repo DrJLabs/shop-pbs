@@ -11,6 +11,20 @@
   "sections": {
     "image_banner_xnPK9p": {
       "type": "image-banner",
+      "blocks": {
+        "heading_ffDgRG": {
+          "type": "heading",
+          "settings": {
+            "heading": "Whispering Roots",
+            "disable_on_mobile": false,
+            "size_heading": 100,
+            "size_heading_mobile": 100
+          }
+        }
+      },
+      "block_order": [
+        "heading_ffDgRG"
+      ],
       "name": "t:sections.image-banner.presets.name",
       "settings": {
         "heading": "",
