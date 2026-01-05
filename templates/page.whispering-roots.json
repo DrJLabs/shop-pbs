@@ -51,15 +51,6 @@
     "rich_text_yVgkxM": {
       "type": "rich-text",
       "blocks": {
-        "heading_rNWzNU": {
-          "type": "heading",
-          "settings": {
-            "heading": "Talk about your brand",
-            "disable_on_mobile": false,
-            "size_heading": 100,
-            "size_heading_mobile": 100
-          }
-        },
         "text_4rziwD": {
           "type": "text",
           "settings": {
@@ -78,7 +69,6 @@
         }
       },
       "block_order": [
-        "heading_rNWzNU",
         "text_4rziwD",
         "button_YMKNef"
       ],
