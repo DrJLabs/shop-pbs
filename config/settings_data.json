@@ -118,7 +118,7 @@
           "announcement-bar-0": {
             "type": "announcement",
             "settings": {
-              "text": "Announce something here",
+              "text": "Pharmacist-crafted, COA-verified blends | Wholesale partners welcome | 21+",
               "link": ""
             }
           }
@@ -159,21 +159,21 @@
           "page-footer-1": {
             "type": "text",
             "settings": {
-              "heading_text": "Heading",
-              "text": "<p>Text</p>"
+              "heading_text": "DrJs Premium Blends",
+              "text": "<p>DrJs Premium Blends is a pharmacist-crafted hemp-derived vape brand rooted in East Tennessee - focused on premium, reliable quality and transparency as proof. Every batch is third-party tested with a COA you can verify anytime. Wholesale partners welcome. For adults 21+.</p>"
             }
           },
           "page-footer-2": {
             "type": "menu",
             "settings": {
-              "heading_links": "Links",
+              "heading_links": "Customer Care",
               "links": "footer"
             }
           },
           "menu_gQMn6C": {
             "type": "menu",
             "settings": {
-              "heading_links": "Links",
+              "heading_links": "Policies",
               "links": "footer"
             }
           }
@@ -191,7 +191,7 @@
           "enable_follow_on_shop": true,
           "show-payments-icons": true,
           "show-copyright": true,
-          "text": "© 2024 Wonder Theme Demo. <br> Powered by Shopify.",
+          "text": "For adults 21+. Keep out of reach of children and pets.",
           "big-logo-width": 100,
           "margin-top": 20,
           "margin-bottom": 20

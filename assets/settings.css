@@ -102,8 +102,8 @@
     --color-text: #f4f6f8;
     --color-body-text: var(--color-text);
     --color-body-text-light: #6b6b6b;
-    --color-links: #212121;
-    --color-links-active: #000000;
+    --color-links: #5b894d;
+    --color-links-active: #5b894d;
     --color-border: #e6e6e6;
 
     --color-overlay: #000000;

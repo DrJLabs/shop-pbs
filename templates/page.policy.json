@@ -1,1 +1,21 @@
-{"sections":{"main":{"type":"main-page","disabled":true,"settings":{"compact-size-enabled":true,"size_heading":200,"size_heading_mobile":100,"color-body-text":"#383736","color-bg-overlay":"#ebe4de","color-overlay-opacity":100,"margin-top":60,"margin-bottom":40}}},"order":["main"]}
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": false,
+      "settings": {
+        "compact-size-enabled": true,
+        "size_heading": 200,
+        "size_heading_mobile": 100,
+        "color-body-text": "#383736",
+        "color-bg-overlay": "#ebe4de",
+        "color-overlay-opacity": 100,
+        "margin-top": 60,
+        "margin-bottom": 40
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

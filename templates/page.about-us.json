@@ -97,7 +97,7 @@
         "heading_iKqiiw": {
           "type": "heading",
           "settings": {
-            "heading": "What We Focus On",
+            "heading": "What We Stand For",
             "disable_on_mobile": false,
             "size_heading": 100,
             "size_heading_mobile": 100
@@ -106,7 +106,7 @@
         "text_G9jTqD": {
           "type": "text",
           "settings": {
-            "text": "<p><strong>1) Quality standards you can trust</strong></p><p>We care about ingredient sourcing, consistent formulation, and doing the unglamorous work that makes products dependable.</p><p><strong>2) Transparency you can verify</strong></p><p>We want COAs to be easy to access and easy to understand—because trust should be built on clarity, not marketing.</p><p><strong>3) Education over hype</strong></p><p>Our goal is to help people make informed decisions with straightforward language and responsible guidance.</p>",
+            "text": "<p><strong>Premium, reliable quality</strong></p><p>Pharmacist-led formulation for consistent, dependable blends.</p><p><strong>Transparency as proof</strong></p><p>Batch-specific COAs you can verify anytime.</p><p><strong>Compliance-first standards</strong></p><p>Clear labeling and 21+ framing that respect state and federal regulations.</p><p><strong>Community roots</strong></p><p>Local accountability and a neighborly East Tennessee approach.</p>",
             "disable_on_mobile": false
           }
         }
@@ -184,8 +184,22 @@
         "button_link": "shopify://pages/contact",
         "margin-top": 20,
         "margin-bottom": 20,
-        "background_color": "rgba(0,0,0,0)"
+        "background_color": "transparent"
       }
+    },
+    "button_pQFkap": {
+      "type": "button",
+      "name": "t:sections.button.presets.name",
+      "settings": {
+        "button_select": "primary",
+        "button_horizontal_position": "center",
+        "button_label": "Partner with us (wholesale)",
+        "button_link": "/pages/wholesale",
+        "margin-top": 20,
+        "margin-bottom": 20,
+        "background_color": "transparent"
+      }
+    }
     }
   },
   "order": [
