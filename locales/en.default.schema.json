@@ -585,6 +585,7 @@
       }
     },
     "age_verification": {
+      "name": "Age verification",
       "settings": {
         "remember_days": {
           "label": "Remember confirmation (days)"
