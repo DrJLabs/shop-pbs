@@ -93,7 +93,7 @@
           );
         }
       } else {
-        console.warn('[age-gate] Unable to persist confirmation', error);
+        console.warn('[age-gate] Unable to persist confirmation in sessionStorage', error);
       }
     }
   };
@@ -101,9 +101,15 @@
   const isConfirmed = () => {
     try {
       if (useLocalStorage) {
-        const stored = Number.parseInt(localStorage.getItem(rememberKey), 10);
-        if (!Number.isFinite(stored)) return false;
-        return Date.now() - stored < rememberDays * oneDayMs;
+        try {
+          const stored = Number.parseInt(localStorage.getItem(rememberKey), 10);
+          if (Number.isFinite(stored)) {
+            return Date.now() - stored < rememberDays * oneDayMs;
+          }
+        } catch (error) {
+          // Ignore and fall back to session storage.
+        }
+        return sessionStorage.getItem(sessionKey) === 'true';
       }
       return sessionStorage.getItem(sessionKey) === 'true';
     } catch (error) {

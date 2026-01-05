@@ -587,6 +587,27 @@
     "age_verification": {
       "name": "Age verification",
       "settings": {
+        "enable": {
+          "label": "Enable age verification"
+        },
+        "heading": {
+          "label": "Heading"
+        },
+        "body": {
+          "label": "Body"
+        },
+        "confirm": {
+          "label": "Confirm button label"
+        },
+        "decline": {
+          "label": "Decline button label"
+        },
+        "locked_heading": {
+          "label": "Locked heading"
+        },
+        "locked_body": {
+          "label": "Locked body"
+        },
         "remember_days": {
           "label": "Remember confirmation (days)"
         }
@@ -4233,32 +4254,6 @@
       },
       "presets": {
         "name": "Lookbook"
-      }
-    },
-    "age_verification": {
-      "name": "Age verification",
-      "settings": {
-        "enable": {
-          "label": "Enable age verification"
-        },
-        "heading": {
-          "label": "Heading"
-        },
-        "body": {
-          "label": "Body"
-        },
-        "confirm": {
-          "label": "Confirm button label"
-        },
-        "decline": {
-          "label": "Decline button label"
-        },
-        "locked_heading": {
-          "label": "Locked heading"
-        },
-        "locked_body": {
-          "label": "Locked body"
-        }
       }
     },
     "featured_navigation": {
