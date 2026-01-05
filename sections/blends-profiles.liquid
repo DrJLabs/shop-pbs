@@ -100,7 +100,7 @@
             <h3 class="blends-profiles__title">{{ display_title }}</h3>
 
             {% if description != blank %}
-              <p class="blends-profiles__description">{{ description }}</p>
+              <p class="blends-profiles__description">{{ description | newline_to_br }}</p>
             {% endif %}
 
             {% if highlights_content != blank %}
