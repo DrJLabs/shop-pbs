@@ -22,3 +22,63 @@ Work from standard git branches in the current working tree only; do not use git
 
 ## Security & Configuration Tips
 Never commit API keys or store credentials; keep them in `.env` files ignored by Git. Redact customer data in screenshots. Before running `shopify theme push`, verify `config/settings_data.json` omits store-specific secrets or disable syncing via CLI flags.
+
+## Admin API Access (Client Credentials)
+Use short-lived Admin API tokens acquired via client credentials; do not print or log secrets or tokens.
+
+Required `.env` variables:
+- `SHOPIFY_SHOP` (store subdomain only, e.g. `my-store` for `https://my-store.myshopify.com`)
+- `SHOPIFY_CLIENT_ID`
+- `SHOPIFY_CLIENT_SECRET`
+- Optional: `SHOPIFY_ADMIN_API_VERSION` (default `2026-01`)
+
+Acquire token (valid ~24h):
+```bash
+set -euo pipefail
+set -a; source .env; set +a
+
+: "${SHOPIFY_SHOP:?Missing SHOPIFY_SHOP}"
+: "${SHOPIFY_CLIENT_ID:?Missing SHOPIFY_CLIENT_ID}"
+: "${SHOPIFY_CLIENT_SECRET:?Missing SHOPIFY_CLIENT_SECRET}"
+
+TOKEN_JSON="$(
+  curl -sS -X POST "https://${SHOPIFY_SHOP}.myshopify.com/admin/oauth/access_token" \
+    -H "Content-Type: application/x-www-form-urlencoded" \
+    -d "grant_type=client_credentials" \
+    -d "client_id=${SHOPIFY_CLIENT_ID}" \
+    -d "client_secret=${SHOPIFY_CLIENT_SECRET}"
+)"
+
+# Extract token without echoing it.
+if command -v jq >/dev/null 2>&1; then
+  export SHOPIFY_ADMIN_ACCESS_TOKEN="$(echo "$TOKEN_JSON" | jq -r '.access_token')"
+  export SHOPIFY_ADMIN_ACCESS_TOKEN_EXPIRES_IN="$(echo "$TOKEN_JSON" | jq -r '.expires_in')"
+else
+  export SHOPIFY_ADMIN_ACCESS_TOKEN="$(python3 - <<'PY'
+import json, sys
+print(json.loads(sys.stdin.read())["access_token"])
+PY
+<<<"$TOKEN_JSON")"
+  export SHOPIFY_ADMIN_ACCESS_TOKEN_EXPIRES_IN="$(python3 - <<'PY'
+import json, sys
+print(json.loads(sys.stdin.read())["expires_in"])
+PY
+<<<"$TOKEN_JSON")"
+fi
+
+test -n "${SHOPIFY_ADMIN_ACCESS_TOKEN}" && test "${SHOPIFY_ADMIN_ACCESS_TOKEN}" != "null"
+```
+
+Test token (read-only):
+```bash
+set -euo pipefail
+
+: "${SHOPIFY_SHOP:?Missing SHOPIFY_SHOP}"
+: "${SHOPIFY_ADMIN_ACCESS_TOKEN:?Missing SHOPIFY_ADMIN_ACCESS_TOKEN}"
+SHOPIFY_ADMIN_API_VERSION="${SHOPIFY_ADMIN_API_VERSION:-2026-01}"
+
+curl -sS "https://${SHOPIFY_SHOP}.myshopify.com/admin/api/${SHOPIFY_ADMIN_API_VERSION}/graphql.json" \
+  -H "Content-Type: application/json" \
+  -H "X-Shopify-Access-Token: ${SHOPIFY_ADMIN_ACCESS_TOKEN}" \
+  --data '{"query":"{ shop { name } }"}'
+```
