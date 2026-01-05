@@ -1091,7 +1091,7 @@
         "id": "age_gate_remember_days",
         "label": "t:settings_schema.age_verification.settings.remember_days.label",
         "min": 0,
-        "max": 365,
+        "max": 90,
         "step": 1,
         "unit": "days",
         "default": 30
