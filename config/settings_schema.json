@@ -1089,7 +1089,7 @@
       {
         "type": "range",
         "id": "age_gate_remember_days",
-        "label": "Remember confirmation (days)",
+        "label": "t:settings_schema.age_verification.settings.remember_days.label",
         "min": 0,
         "max": 365,
         "step": 1,

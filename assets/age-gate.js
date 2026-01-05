@@ -13,6 +13,7 @@
   const rememberDays = Number.parseInt(gate.dataset.ageGateRememberDays || '0', 10);
   const rememberKey = 'age_gate_confirmed_at';
   const oneDayMs = 24 * 60 * 60 * 1000;
+  const useLocalStorage = Number.isFinite(rememberDays) && rememberDays > 0;
 
   const focusableSelector =
     'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
@@ -74,7 +75,7 @@
 
   const markConfirmed = () => {
     try {
-      if (Number.isFinite(rememberDays) && rememberDays > 0) {
+      if (useLocalStorage) {
         localStorage.setItem(rememberKey, String(Date.now()));
       } else {
         sessionStorage.setItem('age_gate_confirmed', 'true');
@@ -86,8 +87,8 @@
 
   const isConfirmed = () => {
     try {
-      if (Number.isFinite(rememberDays) && rememberDays > 0) {
-        const stored = Number(localStorage.getItem(rememberKey));
+      if (useLocalStorage) {
+        const stored = Number.parseInt(localStorage.getItem(rememberKey), 10);
         if (!Number.isFinite(stored)) return false;
         return Date.now() - stored < rememberDays * oneDayMs;
       }
