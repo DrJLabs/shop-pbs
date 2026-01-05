@@ -9,44 +9,6 @@
  */
 {
   "sections": {
-    "image_banner_xnPK9p": {
-      "type": "image-banner",
-      "blocks": {
-        "heading_ffDgRG": {
-          "type": "heading",
-          "settings": {
-            "heading": "Whispering Roots",
-            "disable_on_mobile": false,
-            "size_heading": 100,
-            "size_heading_mobile": 100
-          }
-        }
-      },
-      "block_order": [
-        "heading_ffDgRG"
-      ],
-      "name": "t:sections.image-banner.presets.name",
-      "settings": {
-        "heading": "",
-        "full-width-enabled": false,
-        "slide_height": "fixed_height",
-        "desktop_fixed_height": 320,
-        "mobile_fixed_height": 460,
-        "desktop_image": "shopify://shop_images/boxes-website-whispering-roots-primary.png",
-        "desktop_text_vertical_position": "center",
-        "desktop_text_horizontal_position": "center",
-        "mobile_text_vertical_position": "center",
-        "mobile_text_horizontal_position": "center",
-        "color-heading": "rgba(0,0,0,0)",
-        "section-color-overlay": "rgba(0,0,0,0)",
-        "section-color-overlay-opacity": 100,
-        "color-body-text": "rgba(0,0,0,0)",
-        "text-container-color": "rgba(0,0,0,0)",
-        "color-overlay-opacity": 100,
-        "margin-top": 20,
-        "margin-bottom": 20
-      }
-    },
     "main": {
       "type": "main-page",
       "disabled": true,
@@ -129,7 +91,6 @@
     }
   },
   "order": [
-    "image_banner_xnPK9p",
     "main",
     "image_with_text_cNGd8G"
   ]
