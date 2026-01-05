@@ -270,7 +270,9 @@
           "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
           "settings": {
             "review_data": "sample_data",
-            "max_width": 1200
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
           }
         }
       },
@@ -302,6 +304,30 @@
       "settings": {
         "custom_liquid": "{% if product.metafields.drj.coa_url != blank %}\n  <p><a href=\"{{ product.metafields.drj.coa_url }}\" class=\"button\" target=\"_blank\" rel=\"noopener\">View COA</a></p>\n  <p><strong>Batch ID:</strong> {{ product.metafields.drj.batch_id }}</p>\n  <p><strong>Tested:</strong> {{ product.metafields.drj.tested_at | date: \"%b %d, %Y\" }}</p>\n{% else %}\n  <p>COA available on request.</p>\n{% endif %}\n<ul>\n  <li>3rd-party lab tested</li>\n  <li>Transparent COAs</li>\n</ul>\n<p>\n  <a href=\"/pages/compliance\">Compliance & Legal</a>\n</p>"
       }
+    },
+    "rich_text_PXDz3D": {
+      "type": "rich-text",
+      "blocks": {
+        "text_W44WY3": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.description }}",
+            "disable_on_mobile": false
+          }
+        }
+      },
+      "block_order": [
+        "text_W44WY3"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "section_width": "regular",
+        "desktop_text_horizontal_position": "center",
+        "color-body-text": "rgba(0,0,0,0)",
+        "background_color": "rgba(0,0,0,0)",
+        "margin-top": 20,
+        "margin-bottom": 20
+      }
     }
   },
   "order": [
@@ -312,6 +338,7 @@
     "newsletter_pEcrBa",
     "175926373980c9351a",
     "17592637407c920988",
-    "custom_liquid_KWizf8"
+    "custom_liquid_KWizf8",
+    "rich_text_PXDz3D"
   ]
 }
