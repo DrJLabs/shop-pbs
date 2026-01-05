@@ -1,6 +1,7 @@
 tests/.auth/
 .worktrees/
 .serena/
+.env
 docs/
 file-organizer.plan.json
 file-organizer.report.md

@@ -171,7 +171,7 @@
         "button_link": "shopify://pages/certificates-of-analysis-coas",
         "margin-top": 20,
         "margin-bottom": 20,
-        "background_color": "rgba(0,0,0,0)"
+        "background_color": "transparent"
       }
     },
     "button_X3DhNY": {
@@ -200,7 +200,6 @@
         "background_color": "transparent"
       }
     }
-    }
   },
   "order": [
     "main",
@@ -209,6 +208,7 @@
     "rich_text_ntjeiy",
     "rich_text_9d8VcM",
     "button_TLDUcQ",
-    "button_X3DhNY"
+    "button_X3DhNY",
+    "button_pQFkap"
   ]
 }

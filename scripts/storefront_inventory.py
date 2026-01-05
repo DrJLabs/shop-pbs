@@ -45,7 +45,8 @@ def graphql_request(endpoint: str, token: str, query: str, variables: Dict[str, 
         "Content-Type": "application/json",
         "X-Shopify-Access-Token": token,
     }
-    for attempt, backoff in enumerate([0.0] + BACKOFFS):
+    last_exc: Optional[Exception] = None
+    for attempt, backoff in enumerate([0.0, *BACKOFFS]):
         if attempt:
             time.sleep(backoff)
         try:
@@ -58,10 +59,12 @@ def graphql_request(endpoint: str, token: str, query: str, variables: Dict[str, 
                 raise RuntimeError("Missing data in GraphQL response")
             return data["data"]
         except (error.URLError, error.HTTPError, json.JSONDecodeError, RuntimeError) as exc:
-            if attempt >= len(BACKOFFS):
-                raise
             last_exc = exc
-    raise last_exc  # pragma: no cover
+            if attempt >= len(BACKOFFS):
+                break
+    if last_exc:
+        raise last_exc
+    raise RuntimeError("GraphQL request failed without exception context")
 
 
 def paginate_connection(
@@ -91,7 +94,7 @@ def paginate_connection(
 def write_json(path: Path, payload: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8") as handle:
-        json.dump(payload, handle, ensure_ascii=True, indent=2)
+        json.dump(payload, handle, ensure_ascii=False, indent=2)
         handle.write("\n")
 
 
@@ -481,7 +484,7 @@ def run_admin_inventory() -> Dict[str, Any]:
                 "metafieldDefinitions",
                 variables={"ownerType": owner_type},
             )
-        except Exception as exc:
+        except (error.URLError, error.HTTPError, RuntimeError) as exc:
             definitions = [{"ownerType": owner_type, "error": str(exc)}]
         for definition in definitions:
             if "ownerType" not in definition:

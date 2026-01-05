@@ -54,14 +54,13 @@ if command -v jq >/dev/null 2>&1; then
   export SHOPIFY_ADMIN_ACCESS_TOKEN="$(echo "$TOKEN_JSON" | jq -r '.access_token')"
   export SHOPIFY_ADMIN_ACCESS_TOKEN_EXPIRES_IN="$(echo "$TOKEN_JSON" | jq -r '.expires_in')"
 else
-  export SHOPIFY_ADMIN_ACCESS_TOKEN="$(python3 - <<'PY'
+  eval "$(python3 - <<'PY'
 import json, sys
-print(json.loads(sys.stdin.read())["access_token"])
-PY
-<<<"$TOKEN_JSON")"
-  export SHOPIFY_ADMIN_ACCESS_TOKEN_EXPIRES_IN="$(python3 - <<'PY'
-import json, sys
-print(json.loads(sys.stdin.read())["expires_in"])
+data = json.loads(sys.stdin.read())
+access_token = data.get("access_token")
+expires_in = data.get("expires_in")
+print(f'export SHOPIFY_ADMIN_ACCESS_TOKEN="{access_token}"')
+print(f'export SHOPIFY_ADMIN_ACCESS_TOKEN_EXPIRES_IN="{expires_in}"')
 PY
 <<<"$TOKEN_JSON")"
 fi
