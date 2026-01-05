@@ -216,11 +216,11 @@
       {% if section.settings.subhead != blank %}
         <p class="pb-hero-topo__subhead">{{ section.settings.subhead | escape | newline_to_br }}</p>
       {% endif %}
-      {% assign primary_link = section.settings.primary_link | strip %}
+      {% assign primary_link = section.settings.primary_link %}
       {% if section.settings.primary_use_wholesale_default %}
-        {% assign primary_link = settings.wholesale_page_url | default: primary_link | default: '/pages/wholesale' %}
+        {% assign primary_link = settings.wholesale_page_url | default: primary_link | default: '/pages/wholesale-portal' %}
       {% endif %}
-      {% assign primary_link = primary_link | replace: 'shopify://', '/' %}
+      {% assign primary_link = primary_link | strip | replace: 'shopify://', '/' %}
       {% assign secondary_link = section.settings.secondary_link | strip | replace: 'shopify://', '/' %}
       {% if section.settings.primary_label != blank or section.settings.secondary_label != blank %}
         <div class="pb-hero-topo__actions">

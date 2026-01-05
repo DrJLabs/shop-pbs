@@ -1,6 +1,6 @@
 {
   "current": {
-    "favicon": "shopify:\/\/shop_images\/Untitled-1_1_-removebg-preview.png",
+    "favicon": "shopify://shop_images/Untitled-1_1_-removebg-preview.png",
     "layout-width": 1600,
     "radius": 0,
     "button-radius": 0,
@@ -151,7 +151,7 @@
             "type": "text",
             "settings": {
               "heading_text": "DrJs Premium Blends",
-              "text": "<p>DrJs Premium Blends is a pharmacist-crafted hemp-derived vape brand rooted in East Tennessee - focused on premium, reliable quality and transparency as proof. Every batch is third-party tested with a COA you can verify anytime. Wholesale partners welcome. For adults 21+.<\/p>"
+              "text": "<p>DrJs Premium Blends is a pharmacist-crafted hemp-derived vape brand rooted in East Tennessee - focused on premium, reliable quality and transparency as proof. Every batch is third-party tested with a COA you can verify anytime. Wholesale partners welcome. For adults 21+.</p>"
             }
           },
           "page-footer-2": {
@@ -196,11 +196,12 @@
     "content_for_index": [],
     "blocks": {
       "14060646107696862457": {
-        "type": "shopify:\/\/apps\/judge-me-reviews\/blocks\/judgeme_core\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
         "disabled": false,
         "settings": {}
       }
-    }
+    },
+    "wholesale_page_url": "shopify://pages/wholesale-portal"
   },
   "presets": {
     "Beauty": {
@@ -275,7 +276,7 @@
       "custom-badge-1-input": "New",
       "animations": true,
       "disabled_animations_on_mobile": true,
-      "logo": "shopify:\/\/shop_images\/Path_849.svg",
+      "logo": "shopify://shop_images/Path_849.svg",
       "large_screen_logo_width": 120,
       "mobile_screen_logo_width": 90,
       "layout": "option_3",
