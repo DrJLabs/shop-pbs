@@ -1093,7 +1093,7 @@
         "min": 0,
         "max": 90,
         "step": 1,
-        "unit": "days",
+        "unit": "day",
         "default": 30
       }
     ]
