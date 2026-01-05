@@ -38,7 +38,7 @@
       ],
       "settings": {
         "color-body-text": "#000000",
-        "background_color": "rgba(0,0,0,0)",
+        "background_color": "transparent",
         "margin-top": 12,
         "margin-bottom": 100
       }
