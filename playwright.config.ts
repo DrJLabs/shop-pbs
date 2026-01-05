@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { defineConfig, devices } from '@playwright/test';
 import { optionalEnv, resolveShopContext } from './tests/support/shop-config';
 

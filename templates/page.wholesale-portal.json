@@ -37,7 +37,7 @@
         "intro": {
           "type": "paragraph",
           "settings": {
-            "paragraph": "Tell us about your storefront, licensing, and estimated monthly volume. We will follow up within two business days.",
+            "paragraph": "<p>Tell us about your storefront, licensing, and estimated monthly volume. We will follow up within two business days.</p>",
             "text_disable_on_mobile": false
           }
         },
