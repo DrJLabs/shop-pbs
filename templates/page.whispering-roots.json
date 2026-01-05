@@ -9,24 +9,11 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "main-page",
-      "settings": {
-        "compact-size-enabled": true,
-        "size_heading": 200,
-        "size_heading_mobile": 100,
-        "color-body-text": "rgba(0,0,0,0)",
-        "color-bg-overlay": "rgba(0,0,0,0)",
-        "color-overlay-opacity": 100,
-        "margin-top": 60,
-        "margin-bottom": 40
-      }
-    },
     "image_banner_xnPK9p": {
       "type": "image-banner",
       "name": "t:sections.image-banner.presets.name",
       "settings": {
-        "heading": "Image banner",
+        "heading": "",
         "full-width-enabled": false,
         "slide_height": "fixed_height",
         "desktop_fixed_height": 320,
@@ -44,6 +31,19 @@
         "color-overlay-opacity": 100,
         "margin-top": 20,
         "margin-bottom": 20
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "compact-size-enabled": true,
+        "size_heading": 200,
+        "size_heading_mobile": 100,
+        "color-body-text": "rgba(0,0,0,0)",
+        "color-bg-overlay": "rgba(0,0,0,0)",
+        "color-overlay-opacity": 100,
+        "margin-top": 60,
+        "margin-bottom": 40
       }
     }
   },
