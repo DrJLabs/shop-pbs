@@ -24,50 +24,6 @@
     },
     "image_banner_xnPK9p": {
       "type": "image-banner",
-      "blocks": {
-        "subheading_WXpYP7": {
-          "type": "subheading",
-          "settings": {
-            "subheading": "Tell you story",
-            "subheading_disable_on_mobile": false
-          }
-        },
-        "heading_KePgQR": {
-          "type": "heading",
-          "settings": {
-            "heading": "Image banner",
-            "disable_on_mobile": false,
-            "size_heading": 100,
-            "size_heading_mobile": 100
-          }
-        },
-        "text_P8BQ7e": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Give customers details about the banner image(s) or content on the template.</p>",
-            "disable_on_mobile": false
-          }
-        },
-        "button_8JJLJP": {
-          "type": "button",
-          "settings": {
-            "button_select": "primary",
-            "button_label": "Button label",
-            "disable_on_mobile": false,
-            "button_link": "/",
-            "second_button_select": "primary",
-            "second_button_label": "Button label",
-            "second_disable_on_mobile": false,
-            "second_button_link": ""
-          }
-        }
-      },
-      "block_order": [
-        "subheading_WXpYP7",
-        "heading_KePgQR",
-        "text_P8BQ7e",
-        "button_8JJLJP"
-      ],
       "name": "t:sections.image-banner.presets.name",
       "settings": {
         "heading": "Image banner",
@@ -92,7 +48,7 @@
     }
   },
   "order": [
-    "main",
-    "image_banner_xnPK9p"
+    "image_banner_xnPK9p",
+    "main"
   ]
 }
