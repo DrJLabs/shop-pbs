@@ -47,10 +47,55 @@
         "margin-top": 20,
         "margin-bottom": 20
       }
+    },
+    "rich_text_yVgkxM": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_rNWzNU": {
+          "type": "heading",
+          "settings": {
+            "heading": "Talk about your brand",
+            "disable_on_mobile": false,
+            "size_heading": 100,
+            "size_heading_mobile": 100
+          }
+        },
+        "text_4rziwD": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Share information about your brand with your customers. Describe a product, make annuncements, or welcome customers to your store.</p>",
+            "disable_on_mobile": false
+          }
+        },
+        "button_YMKNef": {
+          "type": "button",
+          "settings": {
+            "button_select": "primary",
+            "button_label": "Button label",
+            "button_link": "/",
+            "disable_on_mobile": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_rNWzNU",
+        "text_4rziwD",
+        "button_YMKNef"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "section_width": "regular",
+        "desktop_text_horizontal_position": "center",
+        "color-body-text": "transparent",
+        "background_color": "transparent",
+        "margin-top": 20,
+        "margin-bottom": 20
+      }
     }
   },
   "order": [
     "main",
-    "image_with_text_cNGd8G"
+    "image_with_text_cNGd8G",
+    "rich_text_yVgkxM"
   ]
 }
