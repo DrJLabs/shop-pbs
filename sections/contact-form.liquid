@@ -107,14 +107,15 @@
                 for="ContactFormEmail-{{ section.id }}"
               >
                   <input
-                    type="text"
+                    type="email"
                     name="contact[email]"
                     id="ContactFormEmail-{{ section.id }}"
                     class="form__field__input"
                     placeholder=" "
                     value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+                    required
                   >
-                  <span class="form__field__label"> Email * </span>
+                <span class="form__field__label"> Email * </span>
               </label>
 
               <label
@@ -127,7 +128,7 @@
                   id="ContactFormComment-{{ section.id }}"
                   placeholder=" "
                   rows="6"
-                >{% if form.body %}{{ form.body }}{% endif %}</textarea>
+                >{{ form.body }}</textarea>
                 <span class="form__field__label"> Comment </span>
               </label>
               {% comment %}<a href="#" class="test-1">{% endcomment %}
