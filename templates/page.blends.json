@@ -79,7 +79,7 @@
       ],
       "settings": {
         "heading": "Our Blends",
-        "intro": "<p>Explore the current DrJs Premium Blends lineup: pharmacist-crafted, batch-verified, and built on premium, reliable quality. Review each profile and open the COA for batch-specific lab details.&lt;br&gt;<br/></p><p>For adults 21+. Keep out of reach of children and pets.</p><p> </p><p><em>*These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease. For adults 21+.</em></p>",
+        "intro": "<p>Explore the current DrJs Premium Blends lineup: pharmacist-crafted, batch-verified, and built on premium, reliable quality. Review each profile and open the COA for batch-specific lab details.&lt;br&gt;&lt;br&gt;<br/></p><p>For adults 21+. Keep out of reach of children and pets.</p><p> </p><p><em>*These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease. For adults 21+.</em></p>",
         "columns_desktop": 2,
         "columns_mobile": "1",
         "color-body-text": "rgba(0,0,0,0)",
