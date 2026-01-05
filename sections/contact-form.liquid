@@ -96,7 +96,7 @@
                     id="ContactFormPhone-{{ section.id }}"
                     class="form__field__input"
                     placeholder=" "
-                    value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
+                    value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}"
                   >
                   <span class="form__field__label"> Phone number </span>
                 </label>
@@ -106,15 +106,15 @@
                 class="form__field form__field--email"
                 for="ContactFormEmail-{{ section.id }}"
               >
-                <input
-                  type="text"
-                  name="contact[email]"
-                  id="ContactFormEmail-{{ section.id }}"
-                  class="form__field__input"
-                  placeholder=" "
-                  value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
-                >
-                <span class="form__field__label"> Email * </span>
+                  <input
+                    type="text"
+                    name="contact[email]"
+                    id="ContactFormEmail-{{ section.id }}"
+                    class="form__field__input"
+                    placeholder=" "
+                    value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+                  >
+                  <span class="form__field__label"> Email * </span>
               </label>
 
               <label
@@ -123,12 +123,11 @@
               >
                 <textarea
                   class="form__field__textarea"
-                  name="contact[comment]"
+                  name="contact[body]"
                   id="ContactFormComment-{{ section.id }}"
                   placeholder=" "
                   rows="6"
-                  value="{% if form[comment] %}{{ form[comment] }}{% elsif customer %}{{ customer.comment }}{% endif %}"
-                >{{- form.body -}}</textarea>
+                >{% if form.body %}{{ form.body }}{% endif %}</textarea>
                 <span class="form__field__label"> Comment </span>
               </label>
               {% comment %}<a href="#" class="test-1">{% endcomment %}
