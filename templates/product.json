@@ -22,10 +22,10 @@
     "trust_stack": {
       "type": "trust-stack",
       "settings": {
-        "benefits_text": "Lab-tested · Transparent COAs · Fast shipping · Easy returns",
-        "show_policy_links": true,
-        "show_shipping_policy": true,
-        "show_returns_policy": true
+        "benefits_text": "Lab-tested | Transparent COAs",
+        "show_policy_links": false,
+        "show_shipping_policy": false,
+        "show_returns_policy": false
       }
     },
     "main": {
@@ -131,26 +131,6 @@
             "margin-bottom": 0
           }
         },
-        "collapsible_tab_Q7UFgL": {
-          "type": "collapsible_tab",
-          "disabled": true,
-          "settings": {
-            "heading": "Shipping and Delivery",
-            "content": "<p>Experience the convenience of swift order fulfillment with our top-notch Shipping services.</p>",
-            "page": "",
-            "icon": "none"
-          }
-        },
-        "separator_gDwzxi": {
-          "type": "separator",
-          "disabled": true,
-          "settings": {
-            "show-separator-line": true,
-            "color-background": "#dedede",
-            "margin-top": 0,
-            "margin-bottom": 0
-          }
-        },
         "share_buttons_Ct9CXx": {
           "type": "share_buttons",
           "disabled": true,
@@ -175,8 +155,6 @@
         "separator_HcYGiH",
         "description",
         "a05fcf3e-8e1a-4f1f-8d97-2055eb17138d",
-        "collapsible_tab_Q7UFgL",
-        "separator_gDwzxi",
         "share_buttons_Ct9CXx"
       ],
       "settings": {
@@ -322,7 +300,7 @@
       "type": "custom-liquid",
       "name": "t:sections.custom-liquid.presets.name",
       "settings": {
-        "custom_liquid": "{% if product.metafields.drj.coa_url != blank %}\n  <p><a href=\"{{ product.metafields.drj.coa_url }}\" class=\"button\" target=\"_blank\" rel=\"noopener\">View COA</a></p>\n  <p><strong>Batch ID:</strong> {{ product.metafields.drj.batch_id }}</p>\n  <p><strong>Tested:</strong> {{ product.metafields.drj.tested_at | date: \"%b %d, %Y\" }}</p>\n{% else %}\n  <p>COA available on request.</p>\n{% endif %}\n<ul>\n  <li>3rd-party lab tested</li>\n  <li>Transparent COAs</li>\n  <li>Fast shipping</li>\n  <li>Easy returns</li>\n</ul>\n<p>\n  <a href=\"/pages/shipping-returns\">Shipping & Returns</a> |\n  <a href=\"/pages/compliance-legal\">Compliance & Legal</a>\n</p>"
+        "custom_liquid": "{% if product.metafields.drj.coa_url != blank %}\n  <p><a href=\"{{ product.metafields.drj.coa_url }}\" class=\"button\" target=\"_blank\" rel=\"noopener\">View COA</a></p>\n  <p><strong>Batch ID:</strong> {{ product.metafields.drj.batch_id }}</p>\n  <p><strong>Tested:</strong> {{ product.metafields.drj.tested_at | date: \"%b %d, %Y\" }}</p>\n{% else %}\n  <p>COA available on request.</p>\n{% endif %}\n<ul>\n  <li>3rd-party lab tested</li>\n  <li>Transparent COAs</li>\n</ul>\n<p>\n  <a href=\"/pages/compliance\">Compliance & Legal</a>\n</p>"
       }
     }
   },

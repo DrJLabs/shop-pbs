@@ -15,7 +15,7 @@
         "chip_CpY99X": {
           "type": "chip",
           "settings": {
-            "label": "Third‑party tested • Crafted with care • Adults 21+"
+            "label": "Pharmacist-crafted | COA-verified | 21+"
           }
         }
       },
@@ -28,10 +28,10 @@
         "kicker": "",
         "heading": "Unwind your day with DrJ",
         "subhead": "Pharmacist-crafted hemp-derived vape blends with premium, reliable quality and batch-specific COAs. Wholesale partners welcome. For adults 21+.",
-        "primary_label": "Become a retail partner",
-        "primary_link": "shopify://pages/wholesale-portal",
+        "primary_label": "Become a wholesale partner",
+        "primary_link": "/pages/wholesale",
         "secondary_label": "Explore the blends",
-        "secondary_link": "shopify://pages/blends",
+        "secondary_link": "/pages/blends",
         "microline": "",
         "scrim_strength": 75,
         "content_max_width": 720,
@@ -106,7 +106,7 @@
           "settings": {
             "heading": "JennaBoo",
             "heading_disable_on_mobile": false,
-            "text": "<p>Chill, creative, functional vibes</p><p>Blueberry Muffins • Jack Herer</p>",
+            "text": "<p>Uplifting, easygoing profile</p><p>Cannabinoids: HHC, HHC-P, THC-V, CBD, CBC, CBN, CBG</p>",
             "text_disable_on_mobile": false,
             "button_select": "primary",
             "button_label": "View profile",
@@ -121,7 +121,7 @@
           "settings": {
             "heading": "Headspace Elevate",
             "heading_disable_on_mobile": false,
-            "text": "<p>Dream-like, elevated, and intense</p><p>Watermelon • Grandaddy Purp</p>",
+            "text": "<p>Elevated, head-forward profile</p><p>Cannabinoids: HHC, THC-P, CBD, CBC, CBN, CBG</p>",
             "text_disable_on_mobile": false,
             "button_select": "primary",
             "button_label": "View profile",
@@ -137,7 +137,7 @@
           "settings": {
             "heading": "Whispering Roots",
             "heading_disable_on_mobile": false,
-            "text": "<p>Grounded, soothing, earthy vibes</p><p>Piña Colada • Sour Diesel</p>",
+            "text": "<p>Grounded, body-forward profile</p><p>Cannabinoids: HHC, HHC-P, CBD, CBC, CBN, CBG</p>",
             "text_disable_on_mobile": false,
             "button_select": "primary",
             "button_label": "View profile",
@@ -233,9 +233,9 @@
         "column_sourcing": {
           "type": "column",
           "settings": {
-            "heading": "Sourcing",
+            "heading": "Distillate sourcing",
             "heading_disable_on_mobile": false,
-            "text": "<p>We select premium hemp inputs for consistency and clean profiles.</p>",
+            "text": "<p>We start with vetted hemp-derived distillates that meet our quality and compliance standards.</p>",
             "text_disable_on_mobile": false,
             "button_select": "secondary",
             "button_label": "",
@@ -249,7 +249,7 @@
           "settings": {
             "heading": "Formulation",
             "heading_disable_on_mobile": false,
-            "text": "<p>Our team balances cannabinoids and terpene profiles to target specific experiences.</p>",
+            "text": "<p>Cannabinoids + terpenes only (no filler) blended for balanced, consistent profiles.</p>",
             "text_disable_on_mobile": false,
             "button_select": "secondary",
             "button_label": "",
@@ -275,9 +275,9 @@
         "column_packaging_delivery": {
           "type": "column",
           "settings": {
-            "heading": "Packaging & Delivery",
+            "heading": "Packaging & delivery",
             "heading_disable_on_mobile": false,
-            "text": "<p>Products are packaged with care and shipped for reliable delivery.</p>",
+            "text": "<p>Clear labeling, batch IDs, and compliance-ready packaging support traceability and shelf-ready presentation.</p>",
             "text_disable_on_mobile": false,
             "button_select": "secondary",
             "button_label": "View our process",
@@ -314,7 +314,7 @@
         "heading_jANmtK": {
           "type": "heading",
           "settings": {
-            "heading": "Subscribe to our emails",
+            "heading": "Stay in the loop",
             "heading_disable_on_mobile": false,
             "size_heading": 100,
             "size_heading_mobile": 100
@@ -323,7 +323,7 @@
         "paragraph_MzEAAr": {
           "type": "paragraph",
           "settings": {
-            "paragraph": "<p>Be the first to know about new collections and exclusive offers!</p>",
+            "paragraph": "<p>Wholesale updates, new blend releases, and transparency resources - no spam.</p>",
             "text_disable_on_mobile": false
           }
         },

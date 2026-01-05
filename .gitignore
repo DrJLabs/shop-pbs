@@ -1,3 +1,11 @@
 tests/.auth/
 .worktrees/
 .serena/
+.env
+docs/
+file-organizer.plan.json
+file-organizer.report.md
+file-organizer.scan.txt
+playwright-report/
+reports/
+test-results/
