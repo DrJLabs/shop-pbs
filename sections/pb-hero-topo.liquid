@@ -216,11 +216,17 @@
       {% if section.settings.subhead != blank %}
         <p class="pb-hero-topo__subhead">{{ section.settings.subhead | escape | newline_to_br }}</p>
       {% endif %}
+      {% assign primary_link = section.settings.primary_link | strip %}
+      {% if section.settings.primary_use_wholesale_default %}
+        {% assign primary_link = settings.wholesale_page_url | default: primary_link | default: '/pages/wholesale' %}
+      {% endif %}
+      {% assign primary_link = primary_link | replace: 'shopify://', '/' %}
+      {% assign secondary_link = section.settings.secondary_link | strip | replace: 'shopify://', '/' %}
       {% if section.settings.primary_label != blank or section.settings.secondary_label != blank %}
         <div class="pb-hero-topo__actions">
           {% if section.settings.primary_label != blank %}
-            {% if section.settings.primary_link != blank %}
-              <a class="pb-hero-topo__button pb-hero-topo__button--primary" href="{{ section.settings.primary_link }}">
+            {% if primary_link != blank %}
+              <a class="pb-hero-topo__button pb-hero-topo__button--primary" href="{{ primary_link }}">
                 {{ section.settings.primary_label | escape }}
               </a>
             {% else %}
@@ -230,8 +236,8 @@
             {% endif %}
           {% endif %}
           {% if section.settings.secondary_label != blank %}
-            {% if section.settings.secondary_link != blank %}
-              <a class="pb-hero-topo__button pb-hero-topo__button--secondary" href="{{ section.settings.secondary_link }}">
+            {% if secondary_link != blank %}
+              <a class="pb-hero-topo__button pb-hero-topo__button--secondary" href="{{ secondary_link }}">
                 {{ section.settings.secondary_label | escape }}
               </a>
             {% else %}
@@ -304,6 +310,12 @@
       "type": "url",
       "id": "primary_link",
       "label": "Primary CTA link"
+    },
+    {
+      "type": "checkbox",
+      "id": "primary_use_wholesale_default",
+      "label": "Use wholesale page URL (theme setting)",
+      "default": false
     },
     {
       "type": "text",
