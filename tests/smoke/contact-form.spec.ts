@@ -20,13 +20,17 @@ test('contact form fields use expected bindings', async ({ page }) => {
   const emailField = form.locator('input[name="contact[email]"]');
   const bodyField = form.locator('textarea[name="contact[body]"]');
 
-  await expect(nameField).toBeVisible();
-  await expect(phoneField).toBeVisible();
-  await expect(emailField).toBeVisible();
-  await expect(bodyField).toBeVisible();
+  await Promise.all([
+    expect(nameField).toBeVisible(),
+    expect(phoneField).toBeVisible(),
+    expect(emailField).toBeVisible(),
+    expect(bodyField).toBeVisible(),
+  ]);
 
-  await expect(bodyField).toHaveAttribute('name', 'contact[body]');
-  await expect(bodyField).not.toHaveAttribute('value');
-  await expect(emailField).toHaveAttribute('type', 'email');
-  await expect(emailField).toBeRequired();
+  await Promise.all([
+    expect(bodyField).toHaveAttribute('name', 'contact[body]'),
+    expect(bodyField).not.toHaveAttribute('value'),
+    expect(emailField).toHaveAttribute('type', 'email'),
+    expect(emailField).toBeRequired(),
+  ]);
 });
