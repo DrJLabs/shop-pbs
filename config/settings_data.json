@@ -97,6 +97,7 @@
     "custom-badge-3-input": "New",
     "animations": true,
     "disabled_animations_on_mobile": true,
+    "wholesale_page_url": "shopify://pages/wholesale-portal",
     "large_screen_logo_width": 180,
     "mobile_screen_logo_width": 110,
     "layout": "option_3",
