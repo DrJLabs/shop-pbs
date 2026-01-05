@@ -15,6 +15,14 @@
   grid-template-columns: repeat(var(--blends-columns-mobile, 1), minmax(0, 1fr));
 }
 
+.blends-profiles__intro p {
+  margin: 0 0 calc(var(--gap, 8px) * 1.5);
+}
+
+.blends-profiles__intro p:last-child {
+  margin-bottom: 0;
+}
+
 .blends-profiles__card {
   display: grid;
   gap: calc(var(--gap, 8px) * 2);
