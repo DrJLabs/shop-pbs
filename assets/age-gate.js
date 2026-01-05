@@ -10,6 +10,11 @@
   const confirmButton = gate.querySelector('[data-age-gate-confirm]');
   const declineButton = gate.querySelector('[data-age-gate-decline]');
   const dialog = gate.querySelector('[role="dialog"]');
+  const rememberDays = Number.parseInt(gate.dataset.ageGateRememberDays || '0', 10);
+  const rememberKey = 'age_gate_confirmed_at';
+  const sessionKey = 'age_gate_confirmed';
+  const oneDayMs = 24 * 60 * 60 * 1000;
+  const useLocalStorage = Number.isFinite(rememberDays) && rememberDays > 0;
 
   const focusableSelector =
     'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
@@ -71,15 +76,42 @@
 
   const markConfirmed = () => {
     try {
-      sessionStorage.setItem('age_gate_confirmed', 'true');
+      if (useLocalStorage) {
+        localStorage.setItem(rememberKey, String(Date.now()));
+      } else {
+        sessionStorage.setItem(sessionKey, 'true');
+      }
     } catch (error) {
-      console.warn('[age-gate] Unable to access sessionStorage', error);
+      if (useLocalStorage) {
+        try {
+          sessionStorage.setItem(sessionKey, 'true');
+          return;
+        } catch (fallbackError) {
+          console.warn(
+            '[age-gate] Unable to persist confirmation in local or session storage',
+            fallbackError,
+          );
+        }
+      } else {
+        console.warn('[age-gate] Unable to persist confirmation in sessionStorage', error);
+      }
     }
   };
 
   const isConfirmed = () => {
     try {
-      return sessionStorage.getItem('age_gate_confirmed') === 'true';
+      if (useLocalStorage) {
+        try {
+          const stored = Number.parseInt(localStorage.getItem(rememberKey), 10);
+          if (Number.isFinite(stored)) {
+            return Date.now() - stored < rememberDays * oneDayMs;
+          }
+        } catch (error) {
+          // Ignore and fall back to session storage.
+        }
+        return sessionStorage.getItem(sessionKey) === 'true';
+      }
+      return sessionStorage.getItem(sessionKey) === 'true';
     } catch (error) {
       return false;
     }

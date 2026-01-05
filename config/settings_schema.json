@@ -1085,6 +1085,16 @@
         "id": "age_gate_locked_body",
         "label": "t:settings_schema.age_verification.settings.locked_body.label",
         "default": "Access restricted."
+      },
+      {
+        "type": "range",
+        "id": "age_gate_remember_days",
+        "label": "t:settings_schema.age_verification.settings.remember_days.label",
+        "min": 0,
+        "max": 90,
+        "step": 1,
+        "unit": "days",
+        "default": 30
       }
     ]
   },
