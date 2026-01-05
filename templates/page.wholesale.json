@@ -24,6 +24,7 @@
     },
     "featured_collection_7JqzVa": {
       "type": "featured-collection",
+      "disabled": true,
       "name": "t:sections.featured-collection.presets.name",
       "settings": {
         "title": "Featured collection",
@@ -43,8 +44,8 @@
         "show_vendor": true,
         "show_product_rating": true,
         "enable_quick_add_button": false,
-        "color-body-text": "transparent",
-        "background_color": "transparent",
+        "color-body-text": "rgba(0,0,0,0)",
+        "background_color": "rgba(0,0,0,0)",
         "margin-top": 20,
         "margin-bottom": 20
       }
