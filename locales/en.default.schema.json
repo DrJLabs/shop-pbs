@@ -673,6 +673,13 @@
       "image-container-color": "Image container color",
       "block-spacing": "Block spacing"
     },
+    "blend_page": {
+      "name": "Blend page",
+      "settings": {
+        "image": "Image",
+        "text": "Text"
+      }
+    },
     "featured-navigation": {
       "name": "Featured navigation",
       "settings": {}

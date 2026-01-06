@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "blend-page",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

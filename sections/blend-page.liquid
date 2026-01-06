@@ -1,0 +1,55 @@
+<div class="blend-page">
+  <div class="wt-section__wrapper blend-page__inner">
+    <h1 class="blend-page__title">
+      {{ page.title | escape }}
+    </h1>
+    {% if section.settings.image %}
+      <div class="blend-page__image">
+        {{ section.settings.image | image_url: width: 2000 | image_tag: loading: 'lazy' }}
+      </div>
+    {% endif %}
+    {% if section.settings.text != blank %}
+      <div class="blend-page__text rte">
+        {{ section.settings.text }}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% stylesheet %}
+  .blend-page__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .blend-page__image img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .blend-page__text p + p {
+    margin-top: 1em;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:sections.blend_page.name",
+  "tag": "section",
+  "class": "spaced-section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:sections.blend_page.settings.image"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "t:sections.blend_page.settings.text"
+    }
+  ]
+}
+{% endschema %}
