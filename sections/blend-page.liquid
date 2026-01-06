@@ -3,11 +3,11 @@
     {%- liquid
       assign heading = section.settings.heading | strip
       if heading == ''
-        assign heading = page.title | strip
+        assign heading = page.title
       endif
     -%}
     <h1 class="blend-page__title">
-      {{ heading | escape }}
+      {{ heading | strip | escape }}
     </h1>
     {% if section.settings.image %}
       <div class="blend-page__image">
