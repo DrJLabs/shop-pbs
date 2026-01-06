@@ -16,8 +16,12 @@ There is no automated test suite; rely on `shopify theme check` plus targeted ma
 ## MCP Validation & Docs
 Verify new Liquid code blocks through the MCP servers `shopify-dev-mcp-partial` and `shopify-dev-mcp-full` (use the full server for multi-file validations). These endpoints also deliver up-to-date Shopify documentation; pull the relevant snippets before implementing complex features.
 
+## Content Sources
+- Use `docs/storefront-copy/brand-guidance/` (voice, compliance, and copywriting playbooks) before drafting or revising storefront copy.
+- When updating storefront copy or adding new pages, update `docs/storefront-copy/22-COPY-ALL-REFINED.md` and include the page URL.
+
 ## Commit & Pull Request Guidelines
-Create feature branches using `feat/<kebab>`, `fix/<kebab>`, or `chore/<kebab>`. Write Conventional Commits (`feat: add cart drawer animation`). PRs must include: concise summary, linked issue or task ID, screenshots or screen recordings for visual changes, confirmation of `shopify theme check`, and rollout notes if pushing to live. After updating an existing PR (not initial creation), request re-review with `@codex review` and `/gemini review` as separate comments.
+Create feature branches using `feat/<kebab>`, `fix/<kebab>`, or `chore/<kebab>`. Write Conventional Commits (`feat: add cart drawer animation`). PRs must include: concise summary, linked issue or task ID, screenshots or screen recordings for visual changes, confirmation of `shopify theme check`, and rollout notes if pushing to live. After updating an existing PR (not initial creation), always post `@codex review` and `/gemini review` as separate comments without prompting.
 Work from standard git branches in the current working tree only; do not use git worktrees under any circumstances.
 
 ## Security & Configuration Tips
