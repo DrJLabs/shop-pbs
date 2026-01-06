@@ -677,6 +677,7 @@
       "name": "Blend page",
       "settings": {
         "image": "Image",
+        "image_alt": "Image alt text",
         "text": "Text"
       }
     },

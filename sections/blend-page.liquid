@@ -5,7 +5,15 @@
     </h1>
     {% if section.settings.image %}
       <div class="blend-page__image">
-        {{ section.settings.image | image_url: width: 2000 | image_tag: loading: 'lazy' }}
+        {{
+          section.settings.image
+          | image_url: width: 2000
+          | image_tag:
+            loading: 'lazy',
+            alt: section.settings.image_alt | default: page.title,
+            widths: '375, 550, 750, 1100, 1500, 1780, 2000',
+            sizes: '100vw'
+        }}
       </div>
     {% endif %}
     {% if section.settings.text != blank %}
@@ -20,7 +28,7 @@
   .blend-page__inner {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: calc(var(--gap, 8px) * 3);
   }
 
   .blend-page__image img {
@@ -44,6 +52,11 @@
       "type": "image_picker",
       "id": "image",
       "label": "t:sections.blend_page.settings.image"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "t:sections.blend_page.settings.image_alt"
     },
     {
       "type": "richtext",
