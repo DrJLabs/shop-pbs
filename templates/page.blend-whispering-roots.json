@@ -11,8 +11,15 @@
   "sections": {
     "main": {
       "type": "blend-page",
-      "settings": {}
+      "settings": {
+        "heading": "",
+        "image": "shopify://shop_images/boxes-website-whispering-roots-primary.png",
+        "image_alt": "",
+        "text": "<p>A grounding blend designed to support deep body ease and a steady, settled vibe*</p>\n<p>Hemp-derived cannabinoid disposable vape, 2g.</p>\n<p><strong>Experience snapshot</strong><br>- Feel: grounding / mellow / soothing<br>- Balance: body-forward with a calm, quiet headspace<br>- Best moment: evening wind-down or anytime you want to feel more anchored</p>\n<p><strong>Flavor</strong><br>Whispering Roots is available in two strain-inspired flavorways — choose the profile that fits your vibe:</p>\n<p>- Sour Diesel: bold, fuel-forward aroma with sharp citrus and a clean, gassy finish.<br>  Tasting notes: diesel / lemon zest / herbal bite<br>- Piña Colada: smooth tropical sweetness with creamy pineapple-coconut character.<br>  Tasting notes: pineapple / coconut / soft tropical finish</p>\n<p><strong>What’s inside</strong><br>Cannabinoid profile: HHC / HHC-P / THC-P / CBD / CBC / CBN / CBG</p>\n<p><strong>Transparency</strong><br>View the batch-specific COA: [insert COA link]<br>Or scan the QR on your device to pull the lab results for your exact batch.</p>\n<p><strong>How to use</strong><br>Start with 1–2 light pulls, then wait about 15 minutes to gauge your experience before taking more.<br>For adults 21+. Keep out of reach of children and pets.</p>\n<p><strong>Device basics</strong><br>- Draw-activated: Inhale to activate—no button required.<br>- Preheat option: Use the button for a brief preheat if vapor feels light.<br>- Rechargeable: USB-C rechargeable.<br>- Better pulls: Slow, steady draws often feel more consistent than quick, hard pulls.</p>\n<p><strong>What to expect</strong><br>Inhaled cannabinoids are typically felt quickly; start low, go slow, and give yourself time between pulls to understand how you feel.<br>Individual results may vary.</p>\n<p>---<br>*These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease. For adults 21+.</p>"
+      }
     }
   },
-  "order": ["main"]
+  "order": [
+    "main"
+  ]
 }
