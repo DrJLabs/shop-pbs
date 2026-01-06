@@ -1,8 +1,13 @@
 <div class="blend-page">
   <div class="wt-section__wrapper blend-page__inner">
-    {% assign heading = section.settings.heading | strip | default: page.title %}
+    {%- liquid
+      assign heading = section.settings.heading | strip
+      if heading == ''
+        assign heading = page.title | strip
+      endif
+    -%}
     <h1 class="blend-page__title">
-      {{ heading | strip | escape }}
+      {{ heading | escape }}
     </h1>
     {% if section.settings.image %}
       <div class="blend-page__image">
