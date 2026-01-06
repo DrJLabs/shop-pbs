@@ -1,6 +1,6 @@
 <div class="blend-page">
   <div class="wt-section__wrapper blend-page__inner">
-    {% assign heading = section.settings.heading | strip | default: page.title %}
+    {% assign heading = section.settings.heading | strip | default: page.title | strip %}
     <h1 class="blend-page__title">
       {{ heading | escape }}
     </h1>
