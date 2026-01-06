@@ -35,6 +35,8 @@ Required `.env` variables:
 - `SHOPIFY_CLIENT_ID`
 - `SHOPIFY_CLIENT_SECRET`
 - Optional: `SHOPIFY_ADMIN_API_VERSION` (default `2026-01`)
+- Optional: `SHOPIFY_ADMIN_ACCESS_TOKEN` (short-lived; refresh if invalid)
+- Optional: `SHOPIFY_THEME_ID` (store in `.env` after first lookup)
 
 Acquire token (valid ~24h):
 ```bash
@@ -85,3 +87,9 @@ curl -sS "https://${SHOPIFY_SHOP}.myshopify.com/admin/api/${SHOPIFY_ADMIN_API_VE
   -H "X-Shopify-Access-Token: ${SHOPIFY_ADMIN_ACCESS_TOKEN}" \
   --data '{"query":"{ shop { name } }"}'
 ```
+
+### Admin API workflow (no prompts)
+- Read `SHOPIFY_SHOP`, `SHOPIFY_ADMIN_API_VERSION`, and `SHOPIFY_THEME_ID` from `.env`.
+- If `SHOPIFY_ADMIN_ACCESS_TOKEN` is missing or invalid, refresh it via the client-credentials flow and write the new token and expiry back to `.env`.
+- If `SHOPIFY_THEME_ID` is missing, fetch the main theme ID via Admin API and write it to `.env`.
+- Never commit `.env`.
