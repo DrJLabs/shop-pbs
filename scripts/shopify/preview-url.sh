@@ -5,17 +5,29 @@ env_file=".env"
 theme_id=""
 path="/"
 
+require_value() {
+  local flag="$1"
+  local value="${2-}"
+  if [[ -z "$value" || "$value" =~ ^- ]]; then
+    echo "Error: $flag requires a value." >&2
+    exit 1
+  fi
+}
+
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --env)
+      require_value "$1" "${2-}"
       env_file="$2"
       shift 2
       ;;
     --theme-id)
+      require_value "$1" "${2-}"
       theme_id="$2"
       shift 2
       ;;
     --path)
+      require_value "$1" "${2-}"
       path="$2"
       shift 2
       ;;
@@ -47,16 +59,12 @@ fi
 
 if [[ -z "$theme_id" ]]; then
   theme_id="${SHOPIFY_DEV_THEME_ID:-}"
+  if [[ -z "$theme_id" ]]; then
+    echo "Missing theme id. Provide --theme-id or set SHOPIFY_DEV_THEME_ID in $env_file" >&2
+    exit 1
+  fi
 fi
 
-if [[ -z "$theme_id" ]]; then
-  echo "Missing theme id. Provide --theme-id or set SHOPIFY_DEV_THEME_ID in $env_file" >&2
-  exit 1
-fi
-
-if [[ -z "$path" ]]; then
-  path="/"
-fi
 if [[ "$path" != /* ]]; then
   path="/$path"
 fi
