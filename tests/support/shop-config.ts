@@ -37,10 +37,9 @@ export function resolveShopContext(): ShopContext {
   try {
     const url = new URL(baseCandidate);
     const shopOrigin = url.origin;
+    const urlThemeId = url.searchParams.get('preview_theme_id') ?? undefined;
     const themeId =
-      optionalEnv('THEME_ID', ['SHOPIFY_DEV_THEME_ID']) ??
-      url.searchParams.get('preview_theme_id') ??
-      undefined;
+      urlThemeId ?? optionalEnv('THEME_ID', ['SHOPIFY_DEV_THEME_ID']) ?? undefined;
 
     const baseUrl = (() => {
       if (themeId) {

@@ -5,12 +5,16 @@ env_file=".env"
 theme_id=""
 path="/"
 
+die() {
+  echo "$1" >&2
+  exit 1
+}
+
 require_value() {
   local flag="$1"
   local value="${2-}"
   if [[ -z "$value" || "$value" =~ ^- ]]; then
-    echo "Error: $flag requires a value." >&2
-    exit 1
+    die "Error: $flag requires a value."
   fi
 }
 
@@ -43,8 +47,7 @@ while [[ $# -gt 0 ]]; do
  done
 
 if [[ ! -f "$env_file" ]]; then
-  echo "Env file not found: $env_file" >&2
-  exit 1
+  die "Env file not found: $env_file"
 fi
 
 set -a
@@ -53,15 +56,13 @@ source "$env_file"
 set +a
 
 if [[ -z "${SHOPIFY_SHOP:-}" ]]; then
-  echo "Missing SHOPIFY_SHOP in $env_file" >&2
-  exit 1
+  die "Missing SHOPIFY_SHOP in $env_file"
 fi
 
 if [[ -z "$theme_id" ]]; then
   theme_id="${SHOPIFY_DEV_THEME_ID:-}"
   if [[ -z "$theme_id" ]]; then
-    echo "Missing theme id. Provide --theme-id or set SHOPIFY_DEV_THEME_ID in $env_file" >&2
-    exit 1
+    die "Missing theme id. Provide --theme-id or set SHOPIFY_DEV_THEME_ID in $env_file"
   fi
 fi
 
