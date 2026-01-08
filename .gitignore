@@ -2,12 +2,15 @@ tests/.auth/
 .worktrees/
 .serena/
 .env
+.env.dev
+env.dev
 docs/
 file-organizer.plan.json
 file-organizer.report.md
 file-organizer.scan.txt
 playwright-report/
 reports/
+outputs/
 test-results/
 .codex/
 scripts/store_sync/
