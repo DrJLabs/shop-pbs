@@ -12,9 +12,9 @@
     "main": {
       "type": "main-page",
       "settings": {
-        "compact-size-enabled": true,
-        "size_heading": 160,
-        "size_heading_mobile": 110,
+        "compact-size-enabled": false,
+        "size_heading": 200,
+        "size_heading_mobile": 200,
         "color-body-text": "rgba(0,0,0,0)",
         "color-bg-overlay": "rgba(0,0,0,0)",
         "color-overlay-opacity": 100,
