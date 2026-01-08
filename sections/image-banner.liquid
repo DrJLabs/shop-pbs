@@ -47,7 +47,7 @@
 
       --heading-align: {{ section.settings.heading_alignment | default: 'center' }};
       --font-headline-scale-desk: {{ section.settings.size_heading | default: 100 | divided_by: 100.0 }};
-      --font-headline-scale: {{ section.settings.size_heading_mobile | default: 80 | divided_by: 100.0 }};
+      --font-headline-scale: {{ section.settings.size_heading_mobile | default: 100 | divided_by: 100.0 }};
 
       {% if section.settings.slide_height == 'fixed_height' %}
           --section-height: {{ section.settings.mobile_fixed_height }}px;
@@ -67,7 +67,7 @@
 
       --font-headline-scale-desk: {{ block.settings.size_heading | default: 100 | divided_by: 100.0 }};
 
-      --font-headline-scale: {{ block.settings.size_heading_mobile | default: 80 | divided_by: 100.0 }};
+      --font-headline-scale: {{ block.settings.size_heading_mobile | default: 100 | divided_by: 100.0 }};
 
 
   }
