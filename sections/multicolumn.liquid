@@ -27,6 +27,8 @@
       --color-custom-text: {{ section.settings.color-body-text }};
     {% endif %}
 
+    --heading-align: {{ section.settings.heading_alignment | default: 'center' }};
+
   }
 
   [data-section-id="{{ section.id }}"] .headline__title,
@@ -135,9 +137,9 @@
     </div>
 
     {% if section.settings['full-width-enabled'] %}
-      {% assign slidesPerView = 1 %}
+      {% assign slides_per_view = 1 %}
     {% else %}
-      {% assign slidesPerView = 1.04 %}
+      {% assign slides_per_view = 1.04 %}
     {% endif %}
 
     <script data-swiper-configuration type="text/json">
@@ -148,7 +150,7 @@
         "speed": 150,
         "grabCursor": false,
         "paginationType": "bullets",
-        "slidesPerView": {{ slidesPerView }},
+        "slidesPerView": {{ slides_per_view }},
         "slidesPerGroup": 1,
         "spaceBetween": 16,
         "navigation": {
@@ -177,6 +179,26 @@
       "id": "heading",
       "default": "Multicolumn",
       "label": "t:sections.settings.settings.heading.label"
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "label": "t:sections.featured-collection.settings.text_alignment.label",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.featured-collection.settings.text_alignment.left.label"
+        },
+        {
+          "value": "center",
+          "label": "t:sections.featured-collection.settings.text_alignment.center.label"
+        },
+        {
+          "value": "right",
+          "label": "t:sections.featured-collection.settings.text_alignment.right.label"
+        }
+      ],
+      "default": "center"
     },
     {
       "type": "checkbox",

@@ -15,6 +15,10 @@
     --font-headline-size-biger: {{ section.settings.size_heading | divided_by: 100.0 }};
   {% endif %}
 
+  --heading-align: {{ section.settings.heading_alignment | default: 'center' }};
+  --font-headline-scale-desk: {{ section.settings.size_heading | default: 100 | divided_by: 100.0 }};
+  --font-headline-scale: {{ section.settings.size_heading_mobile | default: 100 | divided_by: 100.0 }};
+
   {% if section.settings.margin-top %}
     --section-gap-top: {{ section.settings.margin-top }}px;
   {% endif %}
@@ -40,8 +44,8 @@
   {% endif %}
 
   [data-section-id="{{ section.id }}"] .wt-multicol {
-    --font-headline-scale-desk: {{ section.settings.size_heading | divided_by: 100.0 }};
-    --font-headline-scale: {{ section.settings.size_heading_mobile | divided_by: 100.0 }};
+    --font-headline-scale-desk: {{ section.settings.size_heading | default: 100 | divided_by: 100.0 }};
+    --font-headline-scale: {{ section.settings.size_heading_mobile | default: 100 | divided_by: 100.0 }};
   }
 </style>
 
@@ -85,9 +89,7 @@
           {%- for article in section.settings.blog.articles limit: section.settings.post_limit -%}
             <li
               data-swiper-slide
-              data-block-id="{{ block.id }}"
               class="wt-multicol__item wt-blog__item wt-blog__item--{{ section.settings.column_alignment }}"
-              {{ block.shopify_attributes }}
             >
               <div
                 class=" {% if settings.animations %} scroll-trigger animate--slide-in {% endif %}{% if settings.disabled_animations_on_mobile %} disabled-on-mobile {% endif %}"
@@ -122,23 +124,21 @@
         <div class="swiper-pagination wt-slider__pagination"></div>
 
         {% if section.settings['full-width-enabled'] %}
-          {% assign slidesPerView = 1 %}
+          {% assign slides_per_view = 1 %}
         {% else %}
-          {% assign slidesPerView = 1.04 %}
+          {% assign slides_per_view = 1.04 %}
         {% endif %}
 
         <script data-swiper-configuration type="text/json">
           {
             "enableOnMedia": "(max-width: 899px)",
-            "slidesPerView": "auto",
             "spaceBetween": 16,
             "freeMode": false,
             "speed": 150,
             "grabCursor": false,
             "paginationType": "bullets",
-            "slidesPerView": {{ slidesPerView }},
+            "slidesPerView": {{ slides_per_view }},
             "slidesPerGroup": 1,
-            "spaceBetween": 16,
             "navigation": {
               "nextEl": ".wt-slider__nav-next--featured",
               "prevEl": ".wt-slider__nav-prev--featured"
@@ -168,6 +168,7 @@
           </a>
         </div>
       {%- endif -%}
+    </div>
   {%- endif -%}
 </div>
 
@@ -182,6 +183,26 @@
       "id": "heading",
       "default": "Blog posts",
       "label": "t:sections.blog-posts.settings.title.label"
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "label": "t:sections.featured-collection.settings.text_alignment.label",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.featured-collection.settings.text_alignment.left.label"
+        },
+        {
+          "value": "center",
+          "label": "t:sections.featured-collection.settings.text_alignment.center.label"
+        },
+        {
+          "value": "right",
+          "label": "t:sections.featured-collection.settings.text_alignment.right.label"
+        }
+      ],
+      "default": "center"
     },
     {
       "type": "checkbox",

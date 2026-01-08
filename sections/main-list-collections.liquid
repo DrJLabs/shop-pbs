@@ -10,9 +10,11 @@
       --section-gap-bottom: {{ section.settings.margin-bottom }}px;
       {% endif %}
 
-      --font-headline-scale-desk: {{ section.settings.size_heading | divided_by: 100.0 }};
+      --font-headline-scale-desk: {{ section.settings.size_heading | default: 140 | divided_by: 100.0 }};
 
-      --font-headline-scale: {{ section.settings.size_heading_mobile | divided_by: 100.0 }};
+      --font-headline-scale: {{ section.settings.size_heading_mobile | default: 100 | divided_by: 100.0 }};
+
+      --heading-align: {{ section.settings.heading_alignment | default: 'center' }};
 
   }
 
@@ -36,9 +38,9 @@
       assign collections = collections | reverse
     endif
 
-    assign moduloResult = 28 | modulo: section.settings.columns_desktop
+    assign modulo_result = 28 | modulo: section.settings.columns_desktop
     assign paginate_by = 30
-    if moduloResult == 0
+    if modulo_result == 0
       assign paginate_by = 28
     endif
   -%}
@@ -104,6 +106,26 @@
       "id": "heading",
       "label": "t:sections.settings.settings.heading.label",
       "default": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "label": "t:sections.featured-collection.settings.text_alignment.label",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.featured-collection.settings.text_alignment.left.label"
+        },
+        {
+          "value": "center",
+          "label": "t:sections.featured-collection.settings.text_alignment.center.label"
+        },
+        {
+          "value": "right",
+          "label": "t:sections.featured-collection.settings.text_alignment.right.label"
+        }
+      ],
+      "default": "center"
     },
     {
       "type": "range",

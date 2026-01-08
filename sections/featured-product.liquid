@@ -3,6 +3,9 @@
 
 <style>
     [data-section-id="{{ section.id }}"] {
+      --heading-align: {{ section.settings.heading_alignment | default: 'center' }};
+      --font-headline-scale-desk: {{ section.settings.size_heading | default: 80 | divided_by: 100.0 }};
+      --font-headline-scale: {{ section.settings.size_heading_mobile | default: 80 | divided_by: 100.0 }};
 
       {% if section.settings.margin-top %}
           --section-gap-top: {{ section.settings.margin-top }}px;
@@ -167,14 +170,14 @@
             </ul>
           {% else %}
             <div class="card__badges card__badges--product">
-              {% assign custom-badge-1-input = settings['custom-badge-1-input'] | downcase %}
-              {% assign custom-badge-2-input = settings['custom-badge-2-input'] | downcase %}
-              {% assign custom-badge-3-input = settings['custom-badge-3-input'] | downcase %}
-              {% assign custom-badge-4-input = settings['custom-badge-4-input'] | downcase %}
+              {% assign custom_badge_1_input = settings['custom-badge-1-input'] | downcase %}
+              {% assign custom_badge_2_input = settings['custom-badge-2-input'] | downcase %}
+              {% assign custom_badge_3_input = settings['custom-badge-3-input'] | downcase %}
+              {% assign custom_badge_4_input = settings['custom-badge-4-input'] | downcase %}
 
               {% for tag in product.tags %}
                 {% assign downcase_tag = tag | downcase %}
-                {% if downcase_tag == custom-badge-1-input %}
+                {% if downcase_tag == custom_badge_1_input %}
                   <div class="card__badges--item" data-custom-badge="{{ settings.custom-badge-1-input }}">
                     {% if settings['badges-uppercase'] == 'uppercase' %}
                       {{ settings['custom-badge-1-input'] | upcase }}
@@ -183,7 +186,7 @@
                     {% endif %}
                   </div>
                 {% endif %}
-                {% if downcase_tag == custom-badge-2-input %}
+                {% if downcase_tag == custom_badge_2_input %}
                   <div class="card__badges--item" data-custom-badge="{{ settings.custom-badge-2-input }}">
                     {% if settings['badges-uppercase'] == 'uppercase' %}
                       {{ settings['custom-badge-2-input'] | upcase }}
@@ -192,7 +195,7 @@
                     {% endif %}
                   </div>
                 {% endif %}
-                {% if downcase_tag == custom-badge-3-input %}
+                {% if downcase_tag == custom_badge_3_input %}
                   <div class="card__badges--item" data-custom-badge="{{ settings.custom-badge-3-input }}">
                     {% if settings['badges-uppercase'] == 'uppercase' %}
                       {{ settings['custom-badge-3-input'] | upcase }}
@@ -201,7 +204,7 @@
                     {% endif %}
                   </div>
                 {% endif %}
-                {% if downcase_tag == custom-badge-4-input %}
+                {% if downcase_tag == custom_badge_4_input %}
                   <div class="card__badges--item" data-custom-badge="{{ settings.custom-badge-4-input }}">
                     {% if settings['badges-uppercase'] == 'uppercase' %}
                       {{ settings['custom-badge-4-input'] | upcase }}
@@ -222,7 +225,7 @@
                 <li
                   data-swiper-slide
                   data-media-id="{{ featured_media.id }}"
-                  data-model="{% if media.media_type == 'model' %}true{% endif %}"
+                  data-model="{% if featured_media.media_type == 'model' %}true{% endif %}"
                   tabindex="0"
                 >
                   {%- if featured_media.media_type == 'image' -%}
@@ -297,22 +300,18 @@
                     {%- endif -%}
 
                     {% if media.media_type == 'video' %}
-                      <video
-                        class="wt-video__movie wt-video__item"
-                        playsinline
-                        {% if section.settings.enable_video_looping %}
-                          loop="loop"
-                        {% endif %}
-                        autoplay="autoplay"
-                        muted="muted"
-                        poster="{{ media.preview_image.src | image_url: width: 900 }}"
-                        style="width: 100%; aspect-ratio: {{ media.aspect_ratio }}"
-                        controls
-                      >
-                        {% for vid in media.sources %}
-                          <source src="{{ vid.url }}" type="{{ vid.mime_type }}">
-                        {% endfor %}
-                      </video>
+                      <div style="width: 100%; aspect-ratio: {{ media.aspect_ratio }}">
+                        {{
+                          media
+                          | video_tag:
+                            autoplay: true,
+                            loop: section.settings.enable_video_looping,
+                            muted: true,
+                            controls: true,
+                            image_size: '900x',
+                            class: 'wt-video__movie wt-video__item'
+                        }}
+                      </div>
                     {% endif %}
 
                     {% if media.media_type == 'external_video' %}
@@ -907,7 +906,7 @@
                                   class="wt-product__option__dropdown {% if settings.animations %} scroll-trigger animate--slide-in {% endif %} {% if settings.disabled_animations_on_mobile %} disabled-on-mobile {% endif %}"
                                 >
                                   <span>
-                                    {% if option.selected_value == value %}
+                                    {% if option.selected_value != blank %}
                                       {{ option.selected_value }}
                                     {% endif %}
                                   </span>
@@ -1346,6 +1345,8 @@
   </section>
 </div>
 
+{% assign seo_media = product.selected_or_first_available_variant.featured_media | default: product.featured_media %}
+
 <script type="application/ld+json">
   {
     "@context": "http://schema.org/",
@@ -1405,6 +1406,46 @@
       "id": "heading",
       "label": "t:sections.settings.settings.heading.label",
       "default": "Featured product"
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.featured-collection.settings.text_alignment.left.label"
+        },
+        {
+          "value": "center",
+          "label": "t:sections.featured-collection.settings.text_alignment.center.label"
+        },
+        {
+          "value": "right",
+          "label": "t:sections.featured-collection.settings.text_alignment.right.label"
+        }
+      ],
+      "default": "center",
+      "label": "t:sections.featured-collection.settings.text_alignment.label"
+    },
+    {
+      "type": "range",
+      "id": "size_heading",
+      "min": 20,
+      "max": 500,
+      "step": 10,
+      "default": 80,
+      "label": "t:sections.settings.settings.size-heading.label",
+      "unit": "%"
+    },
+    {
+      "type": "range",
+      "id": "size_heading_mobile",
+      "min": 50,
+      "max": 300,
+      "step": 10,
+      "default": 80,
+      "label": "t:sections.settings.settings.size-heading-mobile.label",
+      "unit": "%"
     },
     {
       "type": "product",
