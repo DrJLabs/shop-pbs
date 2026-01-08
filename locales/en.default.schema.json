@@ -1080,6 +1080,9 @@
         "text": {
           "label": "Additional copyright text"
         },
+        "disclaimer_text": {
+          "label": "Footer disclaimer"
+        },
         "color_scheme": {
           "options__1": {
             "label": "Accent 1"
