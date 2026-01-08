@@ -13,6 +13,10 @@
         --color-icon: {{ section.settings.color_body_icon }};
       {% endif %}
 
+      --heading-align: {{ section.settings.heading_alignment | default: 'center' }};
+      --font-headline-scale-desk: {{ section.settings.size_heading | default: 100 | divided_by: 100.0 }};
+      --font-headline-scale: {{ section.settings.size_heading_mobile | default: 100 | divided_by: 100.0 }};
+
       {% if section.settings.margin-top %}
       --section-gap-top: {{ section.settings.margin-top }}px;
       {% endif %}
@@ -182,6 +186,26 @@
       "id": "heading",
       "label": "t:sections.settings.settings.heading.label",
       "default": "Features banner"
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.featured-collection.settings.text_alignment.left.label"
+        },
+        {
+          "value": "center",
+          "label": "t:sections.featured-collection.settings.text_alignment.center.label"
+        },
+        {
+          "value": "right",
+          "label": "t:sections.featured-collection.settings.text_alignment.right.label"
+        }
+      ],
+      "default": "center",
+      "label": "t:sections.featured-collection.settings.text_alignment.label"
     },
     {
       "type": "range",
