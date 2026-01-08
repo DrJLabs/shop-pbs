@@ -14,8 +14,8 @@
       {% endif %}
 
       --heading-align: {{ section.settings.heading_alignment | default: 'center' }};
-      --font-headline-scale-desk: {{ section.settings.size_heading | divided_by: 100.0 }};
-      --font-headline-scale: {{ section.settings.size_heading_mobile | divided_by: 100.0 }};
+      --font-headline-scale-desk: {{ section.settings.size_heading | default: 100 | divided_by: 100.0 }};
+      --font-headline-scale: {{ section.settings.size_heading_mobile | default: 100 | divided_by: 100.0 }};
 
       {% if section.settings.margin-top %}
       --section-gap-top: {{ section.settings.margin-top }}px;
@@ -41,8 +41,6 @@
     --font-headline-scale: {{ section.settings.size_heading_mobile | divided_by: 100.0 }};
   }
 </style>
-
-{% assign width_line = '' %}
 
 {{ 'swiper.css' | asset_url | stylesheet_tag }}
 
@@ -98,7 +96,7 @@
     {% if section.settings.icon_layout_mobile == 'slider' %}
       <slideshow-section
         data-section-id="{{ section.id }}"
-        class=" {{ width_line }} wt-slider wt-slider--hero slide-in "
+        class="wt-slider wt-slider--hero slide-in"
       >
         <script data-swiper-configuration type="text/json">
           {
@@ -207,7 +205,7 @@
         }
       ],
       "default": "center",
-      "label": "t:sections.featured-collection.settings.text_alignment.default.label"
+      "label": "t:sections.featured-collection.settings.text_alignment.label"
     },
     {
       "type": "range",

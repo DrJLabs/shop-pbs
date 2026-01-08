@@ -1,12 +1,22 @@
 <style>
   [data-section-id="{{ section.id }}"] {
     --heading-align: {{ section.settings.heading_alignment | default: 'center' }};
-    --font-headline-scale-desk: {{ section.settings.size_heading | divided_by: 100.0 }};
-    --font-headline-scale: {{ section.settings.size_heading_mobile | divided_by: 100.0 }};
+    --font-headline-scale-desk: {{ section.settings.size_heading | default: 100 | divided_by: 100.0 }};
+    --font-headline-scale: {{ section.settings.size_heading_mobile | default: 100 | divided_by: 100.0 }};
   }
 
   [data-section-id="{{ section.id }}"] .blend-page__title {
     text-align: var(--heading-align);
+    font-size: calc(var(--font-headline-size) * var(--font-headline-scale, 1));
+  }
+
+  @media screen and (min-width: 750px) {
+    [data-section-id="{{ section.id }}"] .blend-page__title {
+      font-size: min(
+        calc(var(--font-headline-size) * var(--font-headline-scale-desk, 1)),
+        calc(var(--font-headline-size) + 2.5vw)
+      );
+    }
   }
 </style>
 
