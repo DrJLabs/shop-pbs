@@ -53,6 +53,70 @@ test('section heading defaults use safe fallbacks', () => {
   expect(featuredProduct).toMatch(
     /--font-headline-scale:\s*{{\s*section\.settings\.size_heading_mobile\s*\|\s*default:\s*80\s*\|\s*divided_by:\s*100\.0\s*}};/
   );
+
+  const featuredCollection = readThemeFile('sections/featured-collection.liquid');
+  expect(featuredCollection).toMatch(
+    /--font-headline-scale-desk:\s*{{\s*section\.settings\.size_heading\s*\|\s*default:\s*100\s*\|\s*divided_by:\s*100\.0\s*}};/
+  );
+  expect(featuredCollection).toMatch(
+    /--font-headline-scale:\s*{{\s*section\.settings\.size_heading_mobile\s*\|\s*default:\s*100\s*\|\s*divided_by:\s*100\.0\s*}};/
+  );
+
+  const blogPosts = readThemeFile('sections/blog-posts.liquid');
+  expect(blogPosts).toMatch(
+    /--font-headline-scale-desk:\s*{{\s*section\.settings\.size_heading\s*\|\s*default:\s*100\s*\|\s*divided_by:\s*100\.0\s*}};/
+  );
+  expect(blogPosts).toMatch(
+    /--font-headline-scale:\s*{{\s*section\.settings\.size_heading_mobile\s*\|\s*default:\s*100\s*\|\s*divided_by:\s*100\.0\s*}};/
+  );
+
+  const mainCollectionBanner = readThemeFile('sections/main-collection-banner.liquid');
+  expect(mainCollectionBanner).toMatch(
+    /--font-headline-scale-desk:\s*{{\s*section\.settings\.size_heading\s*\|\s*default:\s*100\s*\|\s*divided_by:\s*100\.0\s*}};/
+  );
+  expect(mainCollectionBanner).toMatch(
+    /--font-headline-scale:\s*{{\s*section\.settings\.size_heading_mobile\s*\|\s*default:\s*100\s*\|\s*divided_by:\s*100\.0\s*}};/
+  );
+
+  const pbHeroTopo = readThemeFile('sections/pb-hero-topo.liquid');
+  expect(pbHeroTopo).toMatch(
+    /--font-headline-scale-desk:\s*{{\s*section\.settings\.size_heading\s*\|\s*default:\s*100\s*\|\s*divided_by:\s*100\.0\s*}};/
+  );
+  expect(pbHeroTopo).toMatch(
+    /--font-headline-scale:\s*{{\s*section\.settings\.size_heading_mobile\s*\|\s*default:\s*100\s*\|\s*divided_by:\s*100\.0\s*}};/
+  );
+
+  const separator = readThemeFile('sections/separator.liquid');
+  expect(separator).toMatch(
+    /--font-headline-scale-desk:\s*{{\s*section\.settings\.size_heading\s*\|\s*default:\s*100\s*\|\s*divided_by:\s*100\.0\s*}};/
+  );
+  expect(separator).toMatch(
+    /--font-headline-scale:\s*{{\s*section\.settings\.size_heading_mobile\s*\|\s*default:\s*100\s*\|\s*divided_by:\s*100\.0\s*}};/
+  );
+
+  const shoppableImage = readThemeFile('sections/shoppable-image.liquid');
+  expect(shoppableImage).toMatch(
+    /--font-headline-scale-desk:\s*{{\s*section\.settings\.size_heading\s*\|\s*default:\s*100\s*\|\s*divided_by:\s*100\.0\s*}};/
+  );
+  expect(shoppableImage).toMatch(
+    /--font-headline-scale:\s*{{\s*section\.settings\.size_heading_mobile\s*\|\s*default:\s*100\s*\|\s*divided_by:\s*100\.0\s*}};/
+  );
+
+  const slideshow = readThemeFile('sections/slideshow.liquid');
+  expect(slideshow).toMatch(
+    /--font-headline-scale-desk:\s*{{\s*section\.settings\.size_heading\s*\|\s*default:\s*100\s*\|\s*divided_by:\s*100\.0\s*}};/
+  );
+  expect(slideshow).toMatch(
+    /--font-headline-scale:\s*{{\s*section\.settings\.size_heading_mobile\s*\|\s*default:\s*100\s*\|\s*divided_by:\s*100\.0\s*}};/
+  );
+
+  const testimonials = readThemeFile('sections/testimonials.liquid');
+  expect(testimonials).toMatch(
+    /--font-headline-scale-desk:\s*{{\s*section\.settings\.size_heading\s*\|\s*default:\s*100\s*\|\s*divided_by:\s*100\.0\s*}};/
+  );
+  expect(testimonials).toMatch(
+    /--font-headline-scale:\s*{{\s*section\.settings\.size_heading_mobile\s*\|\s*default:\s*100\s*\|\s*divided_by:\s*100\.0\s*}};/
+  );
 });
 
 test('features banner avoids duplicate headline scale overrides', () => {
