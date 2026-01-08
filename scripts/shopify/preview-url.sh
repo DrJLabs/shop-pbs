@@ -50,10 +50,39 @@ if [[ ! -f "$env_file" ]]; then
   die "Env file not found: $env_file"
 fi
 
-set -a
-# shellcheck disable=SC1090
-source "$env_file"
-set +a
+load_env_file() {
+  local line key value trimmed
+  while IFS= read -r line || [[ -n "$line" ]]; do
+    line="${line%$'\r'}"
+    trimmed="${line#"${line%%[![:space:]]*}"}"
+    if [[ -z "$trimmed" || "$trimmed" == \#* ]]; then
+      continue
+    fi
+    if [[ "$trimmed" == export\ * ]]; then
+      trimmed="${trimmed#export }"
+    fi
+    if [[ "$trimmed" =~ ^([A-Za-z_][A-Za-z0-9_]*)=(.*)$ ]]; then
+      key="${BASH_REMATCH[1]}"
+      value="${BASH_REMATCH[2]}"
+      value="${value# }"
+      if [[ "$value" == \"*\" && "$value" == *\" ]]; then
+        value="${value#\"}"
+        value="${value%\"}"
+      elif [[ "$value" == \'*\' && "$value" == *\' ]]; then
+        value="${value#\'}"
+        value="${value%\'}"
+      fi
+      case "$key" in
+        SHOPIFY_SHOP|SHOPIFY_DEV_THEME_ID)
+          printf -v "$key" '%s' "$value"
+          export "$key"
+          ;;
+      esac
+    fi
+  done < "$env_file"
+}
+
+load_env_file
 
 if [[ -z "${SHOPIFY_SHOP:-}" ]]; then
   die "Missing SHOPIFY_SHOP in $env_file"

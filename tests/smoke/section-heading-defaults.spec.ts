@@ -144,10 +144,10 @@ test('section heading defaults use safe fallbacks', () => {
 
   const collectionFeature = readThemeFile('sections/collection-feature.liquid');
   expect(collectionFeature).toMatch(
-    /--font-headline-scale-desk:\s*{{\s*section\.settings\.size_heading\s*\|\s*default:\s*100\s*\|\s*divided_by:\s*100\.0\s*}};/
+    /--font-headline-scale-desk:\s*{{\s*section\.settings\.size_heading\s*\|\s*default:\s*250\s*\|\s*divided_by:\s*100\.0\s*}};/
   );
   expect(collectionFeature).toMatch(
-    /--font-headline-scale:\s*{{\s*section\.settings\.size_heading_mobile\s*\|\s*default:\s*100\s*\|\s*divided_by:\s*100\.0\s*}};/
+    /--font-headline-scale:\s*{{\s*section\.settings\.size_heading_mobile\s*\|\s*default:\s*200\s*\|\s*divided_by:\s*100\.0\s*}};/
   );
 
   const collectionList = readThemeFile('sections/collection-list.liquid');
