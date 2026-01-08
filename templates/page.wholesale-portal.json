@@ -30,8 +30,8 @@
           "settings": {
             "heading": "Wholesale intake form",
             "heading_disable_on_mobile": false,
-            "size_heading": 200,
-            "size_heading_mobile": 200
+            "size_heading": 170,
+            "size_heading_mobile": 110
           }
         },
         "intro": {
