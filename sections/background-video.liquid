@@ -32,6 +32,10 @@
           --border-radius: 0;
       {% endif %}
 
+      --heading-align: {{ section.settings.heading_alignment | default: 'center' }};
+      --font-headline-scale-desk: {{ section.settings.size_heading | divided_by: 100.0 }};
+      --font-headline-scale: {{ section.settings.size_heading_mobile | divided_by: 100.0 }};
+
       {% if section.settings.original_ratio == 'fixed_height' or section.settings.video_url and section.settings.video_hosted == nil %}
           --section-height: {{ section.settings.mobile_fixed_height }}px;
           --section-height-desk: {{ section.settings.desktop_fixed_height }}px;
@@ -65,16 +69,6 @@
 {% else %}
   {% assign width_line = 'hero__wrapper' %}
 {% endif %}
-
-{% assign button_label = blank %}
-{% assign button_link = null %}
-
-{% for block in section.blocks %}
-  {% if block.type == 'button' %}
-    {% assign button_label = block.settings.button_label | default: '' %}
-    {% assign button_link = block.settings.button_link %}
-  {% endif %}
-{% endfor %}
 
 <script src="{{ 'low-power-video.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'video-controls.js' | asset_url }}" defer="defer"></script>
@@ -126,6 +120,46 @@
       "id": "heading",
       "label": "t:sections.settings.settings.heading.label",
       "default": "Background video"
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "label": "t:sections.featured-collection.settings.text_alignment.label",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.featured-collection.settings.text_alignment.left.label"
+        },
+        {
+          "value": "center",
+          "label": "t:sections.featured-collection.settings.text_alignment.center.label"
+        },
+        {
+          "value": "right",
+          "label": "t:sections.featured-collection.settings.text_alignment.right.label"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "size_heading",
+      "min": 50,
+      "max": 500,
+      "step": 10,
+      "default": 100,
+      "label": "t:sections.settings.settings.size-heading.label",
+      "unit": "%"
+    },
+    {
+      "type": "range",
+      "id": "size_heading_mobile",
+      "min": 80,
+      "max": 300,
+      "step": 10,
+      "default": 100,
+      "label": "t:sections.settings.settings.size-heading-mobile.label",
+      "unit": "%"
     },
     {
       "type": "checkbox",

@@ -8,6 +8,9 @@
     --pb-scrim: {{ section.settings.scrim_strength | divided_by: 100.0 }};
     --pb-accent: {{ section.settings.accent_color }};
     --pb-content-max-width: {{ section.settings.content_max_width }}px;
+    --heading-align: {{ section.settings.heading_alignment | default: 'center' }};
+    --font-headline-scale-desk: {{ section.settings.size_heading | divided_by: 100.0 }};
+    --font-headline-scale: {{ section.settings.size_heading_mobile | divided_by: 100.0 }};
   }
 
   #shopify-section-{{ section.id }} .pb-hero-topo {
@@ -80,9 +83,19 @@
   }
 
   #shopify-section-{{ section.id }} .pb-hero-topo__headline {
-    font-size: clamp(2rem, 3vw, 3.5rem);
+    font-size: calc(var(--font-headline-size) * var(--font-headline-scale, 1));
     line-height: 1.1;
     margin: 0;
+    text-align: var(--heading-align);
+  }
+
+  @media (min-width: 1200px) {
+    #shopify-section-{{ section.id }} .pb-hero-topo__headline {
+      font-size: min(
+        calc(var(--font-headline-size) * var(--font-headline-scale-desk, 1)),
+        calc(var(--font-headline-size) + 2.5vw)
+      );
+    }
   }
 
   #shopify-section-{{ section.id }} .pb-hero-topo__subhead {
@@ -293,6 +306,46 @@
       "id": "heading",
       "label": "Heading",
       "default": "Pharmacist-crafted blends. Built on transparency."
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "label": "t:sections.featured-collection.settings.text_alignment.label",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.featured-collection.settings.text_alignment.left.label"
+        },
+        {
+          "value": "center",
+          "label": "t:sections.featured-collection.settings.text_alignment.center.label"
+        },
+        {
+          "value": "right",
+          "label": "t:sections.featured-collection.settings.text_alignment.right.label"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "size_heading",
+      "min": 50,
+      "max": 500,
+      "step": 10,
+      "default": 100,
+      "label": "t:sections.settings.settings.size-heading.label",
+      "unit": "%"
+    },
+    {
+      "type": "range",
+      "id": "size_heading_mobile",
+      "min": 80,
+      "max": 300,
+      "step": 10,
+      "default": 100,
+      "label": "t:sections.settings.settings.size-heading-mobile.label",
+      "unit": "%"
     },
     {
       "type": "textarea",
