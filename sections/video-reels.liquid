@@ -27,8 +27,8 @@
   {% endif %}
 
   --heading-align: {{ section.settings.heading_alignment | default: 'center' }};
-  --font-headline-scale-desk: {{ section.settings.size_heading | divided_by: 100.0 }};
-  --font-headline-scale: {{ section.settings.size_heading_mobile | divided_by: 100.0 }};
+  --font-headline-scale-desk: {{ section.settings.size_heading | default: 100 | divided_by: 100.0 }};
+  --font-headline-scale: {{ section.settings.size_heading_mobile | default: 100 | divided_by: 100.0 }};
 
   }
 
