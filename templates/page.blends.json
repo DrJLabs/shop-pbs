@@ -30,7 +30,7 @@
           "type": "blend",
           "settings": {
             "product": "headspace-elevate-2g",
-            "custom_title": "Headspace Elevate",
+            "custom_title": "Headspace Elevate - 2G Disposable",
             "custom_description": "Elevated, head-forward profile in Granddaddy Purp or Watermelon flavorways. Best for evening sessions or experienced users.",
             "highlights": "Best moment: evening sessions or deeper use\nCannabinoids: HHC, THC-P, CBD, CBC, CBN, CBG",
             "cta_label": "Full profile",
@@ -45,14 +45,14 @@
           "type": "blend",
           "settings": {
             "product": "whispering-roots-2g",
-            "custom_title": "Whispering Roots",
+            "custom_title": "Whispering Roots - 2G Disposable",
             "custom_description": "Grounded, body-forward profile in Sour Diesel or Pina Colada flavorways. Best for evening wind-down or when you want a settled body feel.",
             "highlights": "Best moment: evening wind-down or when you want to feel more anchored\nCannabinoids: HHC, HHC-P, CBD, CBC, CBN, CBG",
             "cta_label": "Full profile",
             "cta_url": "/pages/whispering-roots",
             "cta_alignment": "center",
             "coa_url": "https://cdn.shopify.com/s/files/1/0637/0328/5895/files/coa-whispering-roots.pdf?v=1767059086",
-            "coa_label": "View Whispering Roots - 2G Disposable COA",
+            "coa_label": "View Whispering Roots - 2G Disposable COA (PDF)",
             "coa_alignment": "center"
           }
         },
@@ -60,14 +60,14 @@
           "type": "blend",
           "settings": {
             "product": "jennaboo-2g",
-            "custom_title": "JennaBoo",
+            "custom_title": "JennaBoo - 2G Disposable",
             "custom_description": "Uplifting, easygoing profile in Jack Herer or Blueberry Muffin flavorways. Best for daytime lift or early-evening unwind.",
             "highlights": "Best moment: daytime boost or early-evening unwind\nCannabinoids: HHC, HHC-P, THC-V, CBD, CBC, CBN, CBG",
             "cta_label": "Full profile",
             "cta_url": "shopify://pages/jennaboo",
             "cta_alignment": "center",
             "coa_url": "https://cdn.shopify.com/s/files/1/0637/0328/5895/files/coa-jennaboo.pdf?v=1767059096",
-            "coa_label": "View JennaBoo - 2G Disposable COA",
+            "coa_label": "View JennaBoo - 2G Disposable COA (PDF)",
             "coa_alignment": "center"
           }
         }

@@ -11,15 +11,8 @@
   "sections": {
     "main": {
       "type": "blend-page",
-      "settings": {
-        "heading": "",
-        "image": "shopify://shop_images/boxes-website-headspace-elevate-primary.png",
-        "image_alt": "Front of DrJs Premium Blends Headspace Elevate 2g disposable vape box (HHC + THC-P)",
-        "text": "<p>A high-potency blend designed to support a strong, elevated headspace—best suited for night use or experienced users*</p><p> Hemp-derived cannabinoid disposable vape, 2g.</p><p> <strong>Experience snapshot</strong><br/>- Feel: elevated / intense / immersive<br/>- Balance: strongly head-forward with a secondary body backdrop<br/>- Best moment: nighttime sessions or when you’re ready for a deeper ride</p><p> <strong>Flavor</strong><br/>Headspace Elevate is available in two strain-inspired flavorways — choose the profile that fits your vibe:</p><ul><li>Granddaddy Purp: rich grape-forward sweetness with a smooth, darker fruit finish.<br/>  Tasting notes: grape / berry / soft earth<br/>- Watermelon: clean, juicy watermelon sweetness with a crisp, refreshing finish.<br/>  Tasting notes: watermelon / light candy / cool finish</li></ul><p> </p><p><strong>What’s inside</strong><br/>Cannabinoid profile: HHC / THC-P / THC-P / CBD / CBC / CBN / CBG<br/><strong>How to use</strong><br/>Start with 1-2 light pulls, then wait about 15 minutes to gauge your experience before taking more.<br/>For adults 21+. Keep out of reach of children and pets.</p><p> <strong>Device basics</strong><br/>- Draw-activated: Inhale to activate—no button required.<br/>- Preheat option: Use the button for a brief preheat if vapor feels light.<br/>- Rechargeable: USB-C rechargeable.<br/>- Better pulls: Slow, steady draws often feel more consistent than quick, hard pulls.</p><p><strong>What to expect</strong><br/>Inhaled cannabinoids are typically felt quickly, and higher-potency blends can feel stronger with less. Start low, go slow, and give yourself time between pulls to understand how you feel.<br/>Individual results may vary.</p><p> </p><p>---<br/>*These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease. For adults 21+.</p>"
-      }
+      "settings": {}
     }
   },
-  "order": [
-    "main"
-  ]
+  "order": ["main"]
 }
