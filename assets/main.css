@@ -254,6 +254,15 @@
   font-size: 1.2rem;
   opacity: 0.65;
 }
+.wt-footer__disclaimer {
+  margin: 8px 0 0;
+  text-align: center;
+  font-size: 1.1rem;
+  opacity: 0.7;
+}
+.wt-footer__disclaimer p {
+  margin: 0;
+}
 .wt-footer__aside-list {
   display: flex;
   flex-wrap: wrap;
