@@ -64,7 +64,8 @@ load_env_file() {
     if [[ "$trimmed" =~ ^([A-Za-z_][A-Za-z0-9_]*)=(.*)$ ]]; then
       key="${BASH_REMATCH[1]}"
       value="${BASH_REMATCH[2]}"
-      value="${value# }"
+      value="${value#"${value%%[![:space:]]*}"}"
+      value="${value%"${value##*[![:space:]]}"}"
       if [[ "$value" == \"*\" && "$value" == *\" ]]; then
         value="${value#\"}"
         value="${value%\"}"
