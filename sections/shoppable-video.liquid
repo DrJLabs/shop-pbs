@@ -52,16 +52,6 @@
 
   }
 
-  {%- for block in section.blocks -%}
-  [data-block-id="{{ block.id }}"]
-  {
-
-      --font-headline-scale-desk: {{ block.settings.size_heading | divided_by: 100.0 }};
-
-      --font-headline-scale: {{ block.settings.size_heading_mobile | divided_by: 100.0 }};
-
-  }
-  {%- endfor -%}
 </style>
 
 {% if section.settings['full-width-enabled'] %}
