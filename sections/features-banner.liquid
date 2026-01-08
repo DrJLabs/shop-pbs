@@ -34,12 +34,6 @@
     {% endif %}
   }
 
-  [data-section-id="{{ section.id }}"] .wt-keys__title
-  {
-    --font-headline-scale-desk: {{ section.settings.size_heading | divided_by: 100.0 }};
-
-    --font-headline-scale: {{ section.settings.size_heading_mobile | divided_by: 100.0 }};
-  }
 </style>
 
 {{ 'swiper.css' | asset_url | stylesheet_tag }}
