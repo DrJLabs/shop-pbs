@@ -884,6 +884,9 @@
           },
           "left": {
             "label": "Izquierda"
+          },
+          "right": {
+            "label": "Derecha"
           }
         },
         "image_ratio": {

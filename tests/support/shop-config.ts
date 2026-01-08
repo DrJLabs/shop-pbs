@@ -1,6 +1,13 @@
 const LOCAL_PREVIEW_FALLBACK = 'http://127.0.0.1:9292';
 
-export type EnvKey = 'SHOP_URL' | 'BASE_URL' | 'SHOP_PASSWORD' | 'STOREFRONT_PASSWORD' | 'THEME_ID';
+export type EnvKey =
+  | 'SHOP_URL'
+  | 'BASE_URL'
+  | 'SHOP_PASSWORD'
+  | 'STOREFRONT_PASSWORD'
+  | 'THEME_ID'
+  | 'SHOPIFY_SHOP'
+  | 'SHOPIFY_DEV_THEME_ID';
 
 export type ShopContext = {
   baseUrl: string;
@@ -30,8 +37,9 @@ export function resolveShopContext(): ShopContext {
   try {
     const url = new URL(baseCandidate);
     const shopOrigin = url.origin;
+    const urlThemeId = url.searchParams.get('preview_theme_id') ?? undefined;
     const themeId =
-      optionalEnv('THEME_ID') ?? url.searchParams.get('preview_theme_id') ?? undefined;
+      urlThemeId ?? optionalEnv('THEME_ID', ['SHOPIFY_DEV_THEME_ID']) ?? undefined;
 
     const baseUrl = (() => {
       if (themeId) {

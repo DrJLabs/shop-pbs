@@ -10,3 +10,4 @@ playwright-report/
 reports/
 test-results/
 .codex/
+scripts/store_sync/
