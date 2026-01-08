@@ -28,8 +28,8 @@
     {% endif %}
 
     --heading-align: {{ section.settings.heading_alignment | default: 'center' }};
-    --font-headline-scale-desk: {{ section.settings.size_heading | divided_by: 100.0 }};
-    --font-headline-scale: {{ section.settings.size_heading_mobile | divided_by: 100.0 }};
+    --font-headline-scale-desk: {{ section.settings.size_heading | default: 100 | divided_by: 100.0 }};
+    --font-headline-scale: {{ section.settings.size_heading_mobile | default: 100 | divided_by: 100.0 }};
 
   }
 
@@ -44,13 +44,13 @@
       {% if text_rgb != 'rgba(0, 0, 0, 0.0)' %}
         --color-custom-text: {{ section.settings.color-body-text }};
       {% endif %}
-    }
+  }
 
   [data-section-id="{{ section.id }}"] .collection-feature__container {
-    --font-headline-scale-desk: {{ section.settings.size_heading | divided_by: 100.0 }};
+    --font-headline-scale-desk: {{ section.settings.size_heading | default: 100 | divided_by: 100.0 }};
     --font-base-line-height: {{ section.settings.line_height }};
 
-    --font-headline-scale: {{ section.settings.size_heading_mobile | divided_by: 100.0 }};
+    --font-headline-scale: {{ section.settings.size_heading_mobile | default: 100 | divided_by: 100.0 }};
     --font-base-line-height-mobile: {{ section.settings.line_height_mobile }};
 
   }

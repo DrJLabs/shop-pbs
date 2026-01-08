@@ -117,6 +117,54 @@ test('section heading defaults use safe fallbacks', () => {
   expect(testimonials).toMatch(
     /--font-headline-scale:\s*{{\s*section\.settings\.size_heading_mobile\s*\|\s*default:\s*100\s*\|\s*divided_by:\s*100\.0\s*}};/
   );
+
+  const blendsProfiles = readThemeFile('sections/blends-profiles.liquid');
+  expect(blendsProfiles).toMatch(
+    /--font-headline-scale-desk:\s*{{\s*section\.settings\.size_heading\s*\|\s*default:\s*100\s*\|\s*divided_by:\s*100\.0\s*}};/
+  );
+  expect(blendsProfiles).toMatch(
+    /--font-headline-scale:\s*{{\s*section\.settings\.size_heading_mobile\s*\|\s*default:\s*100\s*\|\s*divided_by:\s*100\.0\s*}};/
+  );
+
+  const brands = readThemeFile('sections/brands.liquid');
+  expect(brands).toMatch(
+    /--font-headline-scale-desk:\s*{{\s*section\.settings\.size_heading\s*\|\s*default:\s*100\s*\|\s*divided_by:\s*100\.0\s*}};/
+  );
+  expect(brands).toMatch(
+    /--font-headline-scale:\s*{{\s*section\.settings\.size_heading_mobile\s*\|\s*default:\s*100\s*\|\s*divided_by:\s*100\.0\s*}};/
+  );
+
+  const collage = readThemeFile('sections/collage.liquid');
+  expect(collage).toMatch(
+    /--font-headline-scale-desk:\s*{{\s*section\.settings\.size_heading\s*\|\s*default:\s*100\s*\|\s*divided_by:\s*100\.0\s*}};/
+  );
+  expect(collage).toMatch(
+    /--font-headline-scale:\s*{{\s*section\.settings\.size_heading_mobile\s*\|\s*default:\s*100\s*\|\s*divided_by:\s*100\.0\s*}};/
+  );
+
+  const collectionFeature = readThemeFile('sections/collection-feature.liquid');
+  expect(collectionFeature).toMatch(
+    /--font-headline-scale-desk:\s*{{\s*section\.settings\.size_heading\s*\|\s*default:\s*100\s*\|\s*divided_by:\s*100\.0\s*}};/
+  );
+  expect(collectionFeature).toMatch(
+    /--font-headline-scale:\s*{{\s*section\.settings\.size_heading_mobile\s*\|\s*default:\s*100\s*\|\s*divided_by:\s*100\.0\s*}};/
+  );
+
+  const collectionList = readThemeFile('sections/collection-list.liquid');
+  expect(collectionList).toMatch(
+    /--font-headline-scale-desk:\s*{{\s*section\.settings\.size_heading\s*\|\s*default:\s*100\s*\|\s*divided_by:\s*100\.0\s*}};/
+  );
+  expect(collectionList).toMatch(
+    /--font-headline-scale:\s*{{\s*section\.settings\.size_heading_mobile\s*\|\s*default:\s*100\s*\|\s*divided_by:\s*100\.0\s*}};/
+  );
+
+  const imageBanner = readThemeFile('sections/image-banner.liquid');
+  expect(imageBanner).toMatch(
+    /--font-headline-scale-desk:\s*{{\s*section\.settings\.size_heading\s*\|\s*default:\s*100\s*\|\s*divided_by:\s*100\.0\s*}};/
+  );
+  expect(imageBanner).toMatch(
+    /--font-headline-scale:\s*{{\s*section\.settings\.size_heading_mobile\s*\|\s*default:\s*100\s*\|\s*divided_by:\s*100\.0\s*}};/
+  );
 });
 
 test('features banner avoids duplicate headline scale overrides', () => {
