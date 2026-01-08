@@ -173,3 +173,10 @@ test('features banner avoids duplicate headline scale overrides', () => {
 
   expect(styleContent).not.toMatch(/\.wt-keys__title[\s\S]*--font-headline-scale/);
 });
+
+test('blog posts avoid redundant wt-multicol headline overrides', () => {
+  const blogPosts = readThemeFile('sections/blog-posts.liquid');
+  expect(blogPosts).not.toMatch(
+    /\[data-section-id="{{ section\.id }}"\]\s*\.wt-multicol[\s\S]*--font-headline-scale/
+  );
+});
