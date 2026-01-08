@@ -4,8 +4,8 @@
 <style>
     [data-section-id="{{ section.id }}"] {
       --heading-align: {{ section.settings.heading_alignment | default: 'center' }};
-      --font-headline-scale-desk: {{ section.settings.size_heading | divided_by: 100.0 }};
-      --font-headline-scale: {{ section.settings.size_heading_mobile | divided_by: 100.0 }};
+      --font-headline-scale-desk: {{ section.settings.size_heading | default: 80 | divided_by: 100.0 }};
+      --font-headline-scale: {{ section.settings.size_heading_mobile | default: 80 | divided_by: 100.0 }};
 
       {% if section.settings.margin-top %}
           --section-gap-top: {{ section.settings.margin-top }}px;

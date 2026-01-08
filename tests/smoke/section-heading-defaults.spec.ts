@@ -31,6 +31,28 @@ test('section heading defaults use safe fallbacks', () => {
   expect(videoReels).toMatch(
     /--font-headline-scale:\s*{{\s*section\.settings\.size_heading_mobile\s*\|\s*default:\s*100\s*\|\s*divided_by:\s*100\.0\s*}};/
   );
+
+  const backgroundVideo = readThemeFile('sections/background-video.liquid');
+  expect(backgroundVideo).toMatch(
+    /--font-headline-scale-desk:\s*{{\s*section\.settings\.size_heading\s*\|\s*default:\s*100\s*\|\s*divided_by:\s*100\.0\s*}};/
+  );
+  expect(backgroundVideo).toMatch(
+    /--font-headline-scale:\s*{{\s*section\.settings\.size_heading_mobile\s*\|\s*default:\s*100\s*\|\s*divided_by:\s*100\.0\s*}};/
+  );
+  expect(backgroundVideo).toMatch(
+    /--font-headline-scale-desk:\s*{{\s*block\.settings\.size_heading\s*\|\s*default:\s*100\s*\|\s*divided_by:\s*100\.0\s*}};/
+  );
+  expect(backgroundVideo).toMatch(
+    /--font-headline-scale:\s*{{\s*block\.settings\.size_heading_mobile\s*\|\s*default:\s*100\s*\|\s*divided_by:\s*100\.0\s*}};/
+  );
+
+  const featuredProduct = readThemeFile('sections/featured-product.liquid');
+  expect(featuredProduct).toMatch(
+    /--font-headline-scale-desk:\s*{{\s*section\.settings\.size_heading\s*\|\s*default:\s*80\s*\|\s*divided_by:\s*100\.0\s*}};/
+  );
+  expect(featuredProduct).toMatch(
+    /--font-headline-scale:\s*{{\s*section\.settings\.size_heading_mobile\s*\|\s*default:\s*80\s*\|\s*divided_by:\s*100\.0\s*}};/
+  );
 });
 
 test('features banner avoids duplicate headline scale overrides', () => {
