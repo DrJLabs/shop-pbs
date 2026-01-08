@@ -926,9 +926,6 @@
           },
           "left": {
             "label": "Left"
-          },
-          "right": {
-            "label": "Right"
           }
         },
         "image_ratio": {

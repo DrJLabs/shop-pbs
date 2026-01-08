@@ -45,6 +45,8 @@
       {% if section.settings.margin-bottom %}
           --section-gap-bottom: {{ section.settings.margin-bottom }}px;
       {% endif %}
+
+      --heading-align: {{ section.settings.heading_alignment | default: 'center' }};
   }
 </style>
 
@@ -79,6 +81,26 @@
       "id": "heading",
       "label": "t:sections.settings.settings.heading.label",
       "default": "Ooops!"
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "label": "t:sections.featured-collection.settings.text_alignment.label",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.featured-collection.settings.text_alignment.left.label"
+        },
+        {
+          "value": "center",
+          "label": "t:sections.featured-collection.settings.text_alignment.center.label"
+        },
+        {
+          "value": "right",
+          "label": "t:sections.featured-collection.settings.text_alignment.right.label"
+        }
+      ],
+      "default": "center"
     },
     {
       "type": "range",

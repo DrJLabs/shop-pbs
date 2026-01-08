@@ -884,9 +884,6 @@
           },
           "left": {
             "label": "Links"
-          },
-          "right": {
-            "label": "Rechts"
           }
         },
         "image_ratio": {
