@@ -40,8 +40,9 @@
       --desktop-percentage-image-width: {{ section.settings.desktop-percentage-image-width }}%;
       --desktop-percentage-image-width-number: {{ section.settings.desktop-percentage-image-width | divided_by: 100.0 }};
 
-      --font-headline-scale-desk: {{ section.settings.size_heading | divided_by: 100.0 }};
-      --font-headline-scale: {{ section.settings.size_heading_mobile | divided_by: 100.0 }};
+      --heading-align: {{ section.settings.heading_alignment | default: 'center' }};
+      --font-headline-scale-desk: {{ section.settings.size_heading | default: 100 | divided_by: 100.0 }};
+      --font-headline-scale: {{ section.settings.size_heading_mobile | default: 100 | divided_by: 100.0 }};
 
   }
 </style>
@@ -98,6 +99,26 @@
       "id": "show_collection_description",
       "default": false,
       "label": "t:sections.main-collection-banner.settings.show_collection_description.label"
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "label": "t:sections.featured-collection.settings.text_alignment.label",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.featured-collection.settings.text_alignment.left.label"
+        },
+        {
+          "value": "center",
+          "label": "t:sections.featured-collection.settings.text_alignment.center.label"
+        },
+        {
+          "value": "right",
+          "label": "t:sections.featured-collection.settings.text_alignment.right.label"
+        }
+      ],
+      "default": "center"
     },
     {
       "type": "header",
