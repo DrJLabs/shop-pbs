@@ -64,13 +64,11 @@ test('home blends section keeps the large headline defaults', () => {
   const indexTemplate = parseJsonWithComments(
     readThemeFile('templates/index.json')
   ) as ShopifyTemplate;
-  const multicolumnSection =
-    indexTemplate.sections?.multicolumn_JzwAQQ ??
-    (Object.values(indexTemplate.sections ?? {}).find(
-      (section) =>
-        section.type === 'multicolumn' &&
-        section.settings?.heading === 'Our Signature Blends'
-    ) as ShopifySection | undefined);
+  const multicolumnSection = Object.values(indexTemplate.sections ?? {}).find(
+    (section) =>
+      section.type === 'multicolumn' &&
+      section.settings?.heading === 'Our Signature Blends'
+  ) as ShopifySection | undefined;
 
   expect(multicolumnSection).toBeDefined();
   expect(multicolumnSection?.settings?.heading).toBe('Our Signature Blends');
