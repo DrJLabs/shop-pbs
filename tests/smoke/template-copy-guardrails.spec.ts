@@ -1,6 +1,20 @@
 import { test, expect } from '@playwright/test';
 import { parseJsonWithComments, readThemeFile } from './test-utils';
 
+interface ShopifySection {
+  type?: string;
+  settings?: Record<string, unknown>;
+}
+
+interface ShopifyTemplate {
+  sections?: Record<string, ShopifySection>;
+  order?: string[];
+}
+
+interface ShopifySettingsData {
+  current?: { templates?: Record<string, ShopifyTemplate> };
+}
+
 test('parses JSON with multiple block comments', () => {
   const sample = '/*first*/\n{"key": "value"}\n/*second*/';
   expect(parseJsonWithComments(sample)).toEqual({ key: 'value' });
@@ -9,11 +23,8 @@ test('parses JSON with multiple block comments', () => {
 test('blend page text blocks avoid inline FDA disclaimers', () => {
   const settingsData = parseJsonWithComments(
     readThemeFile('config/settings_data.json')
-  );
-  const templates =
-    (settingsData as {
-      current?: { templates?: Record<string, unknown> };
-    }).current?.templates ?? {};
+  ) as ShopifySettingsData;
+  const templates = settingsData.current?.templates ?? {};
   const disclaimerNeedle =
     'These statements have not been evaluated by the Food and Drug Administration';
   const coaLinkRegex = /View the batch-specific COA:\s*https:\/\/[^\s<]+/;
@@ -22,18 +33,13 @@ test('blend page text blocks avoid inline FDA disclaimers', () => {
   const blendTexts: string[] = [];
 
   Object.values(templates).forEach((template) => {
-    const sections = (template as { sections?: Record<string, unknown> })
-      .sections;
+    const sections = template.sections;
     if (!sections) {
       return;
     }
     Object.values(sections).forEach((section) => {
-      const entry = section as {
-        type?: string;
-        settings?: Record<string, unknown>;
-      };
-      if (entry.type === 'blend-page') {
-        const text = entry.settings?.text;
+      if (section.type === 'blend-page') {
+        const text = section.settings?.text;
         if (typeof text === 'string') {
           blendTexts.push(text);
         }
@@ -57,16 +63,14 @@ test('blend page text blocks avoid inline FDA disclaimers', () => {
 test('home blends section keeps the large headline defaults', () => {
   const indexTemplate = parseJsonWithComments(
     readThemeFile('templates/index.json')
-  );
+  ) as ShopifyTemplate;
   const multicolumnSection =
-    (indexTemplate.sections?.multicolumn_JzwAQQ as
-      | { settings?: Record<string, unknown> }
-      | undefined) ??
+    indexTemplate.sections?.multicolumn_JzwAQQ ??
     (Object.values(indexTemplate.sections ?? {}).find(
-      (section: { type?: string; settings?: Record<string, unknown> }) =>
+      (section) =>
         section.type === 'multicolumn' &&
         section.settings?.heading === 'Our Signature Blends'
-    ) as { settings?: Record<string, unknown> } | undefined);
+    ) as ShopifySection | undefined);
 
   expect(multicolumnSection).toBeDefined();
   expect(multicolumnSection?.settings?.heading).toBe('Our Signature Blends');

@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 
-const projectRoot = path.resolve(__dirname, '..', '..');
+const projectRoot = process.cwd();
 
 export const readThemeFile = (relativePath: string) => {
   const fullPath = path.join(projectRoot, relativePath);
