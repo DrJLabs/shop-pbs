@@ -30,7 +30,7 @@ test('contact form fields use expected bindings', async ({ page }) => {
   await Promise.all([
     expect(bodyField).not.toHaveAttribute('value'),
     expect(emailField).toHaveAttribute('type', 'email'),
-    expect(emailField).toHaveAttribute('required', ''),
+    expect(emailField).toBeRequired(),
     expect(emailField).toHaveAttribute('autocomplete', 'email'),
   ]);
 });
