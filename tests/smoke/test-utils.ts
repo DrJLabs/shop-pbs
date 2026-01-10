@@ -14,6 +14,8 @@ export const readThemeFile = (relativePath: string) => {
 };
 
 export const parseJsonWithComments = (content: string) => {
+  // Strips block comments (/* ... */). Note: doesn't handle comment-like
+  // syntax within JSON string values, but this is acceptable for theme files.
   const stripped = content.replace(/\/\*[\s\S]*?\*\//g, '').trim();
   return JSON.parse(stripped);
 };
