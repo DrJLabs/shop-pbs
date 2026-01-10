@@ -25,6 +25,7 @@ test('blend page text blocks avoid inline FDA disclaimers', () => {
   const disclaimerNeedle =
     'These statements have not been evaluated by the Food and Drug Administration';
   const coaLinkRegex = /View the batch-specific COA:\s*https:\/\/[^\s<]+/;
+  const duplicateCannabinoidRegex = /THC-P\s*\/\s*THC-P/;
   const blendTexts: string[] = [];
 
   const visit = (node: unknown) => {
@@ -58,6 +59,7 @@ test('blend page text blocks avoid inline FDA disclaimers', () => {
     expect(text).not.toContain(disclaimerNeedle);
     expect(text).not.toContain('[insert COA link]');
     expect(text).toMatch(coaLinkRegex);
+    expect(text).not.toMatch(duplicateCannabinoidRegex);
     expect(trimmed.startsWith('<div>')).toBe(false);
     expect(trimmed.endsWith('</div>')).toBe(false);
   });
