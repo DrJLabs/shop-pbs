@@ -79,10 +79,8 @@ test('home blends section keeps the large headline defaults', () => {
 test('wholesale portal keeps large heading sizes with transparent colors', () => {
   const wholesaleTemplate = parseJsonWithComments(
     readThemeFile('templates/page.wholesale-portal.json')
-  );
-  const mainSection = wholesaleTemplate.sections?.main as
-    | ShopifySection
-    | undefined;
+  ) as ShopifyTemplate;
+  const mainSection = wholesaleTemplate.sections?.main as ShopifySection | undefined;
 
   expect(mainSection?.type).toBe('main-page');
   expect(mainSection?.settings?.['compact-size-enabled']).toBe(false);
@@ -91,8 +89,7 @@ test('wholesale portal keeps large heading sizes with transparent colors', () =>
   expect(mainSection?.settings?.['color-body-text']).toBe('transparent');
   expect(mainSection?.settings?.['color-bg-overlay']).toBe('transparent');
 
-  const formSection = wholesaleTemplate.sections?.form as
-    | Pick<ShopifySection, 'settings'>
-    | undefined;
+  const formSection =
+    wholesaleTemplate.sections?.form as Pick<ShopifySection, 'settings'> | undefined;
   expect(formSection?.settings?.background_color).toBe('transparent');
 });
