@@ -12,9 +12,16 @@ test('main 404 and multicolumn sections retain heading alignment setting', () =>
 });
 
 test('templates keep heading alignment defaults', () => {
-  const indexTemplate = readThemeFile('templates/index.json');
-  const blendsTemplate = readThemeFile('templates/page.blends.json');
+  const indexTemplate = parseJsonWithComments(readThemeFile('templates/index.json'));
+  const blendsTemplate = parseJsonWithComments(
+    readThemeFile('templates/page.blends.json')
+  );
 
-  expect(indexTemplate).toMatch(/"heading_alignment"\s*:/);
-  expect(blendsTemplate).toMatch(/"heading_alignment"\s*:/);
+  const hasHeadingAlignment = (template) =>
+    Object.values(template.sections).some(
+      (section) => section.settings?.heading_alignment !== undefined
+    );
+
+  expect(hasHeadingAlignment(indexTemplate)).toBe(true);
+  expect(hasHeadingAlignment(blendsTemplate)).toBe(true);
 });
