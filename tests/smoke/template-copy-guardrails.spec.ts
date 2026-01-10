@@ -1,23 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { readFileSync } from 'node:fs';
-import path from 'node:path';
-
-const projectRoot = path.resolve(__dirname, '..', '..');
-
-const readThemeFile = (relativePath: string) => {
-  const fullPath = path.join(projectRoot, relativePath);
-  try {
-    return readFileSync(fullPath, 'utf8');
-  } catch (error) {
-    const message = error instanceof Error ? error.message : String(error);
-    throw new Error(`Failed to read theme file at ${relativePath}: ${message}`);
-  }
-};
-
-const parseJsonWithComments = (content: string) => {
-  const stripped = content.replace(/\/\*[\s\S]*?\*\//g, '').trim();
-  return JSON.parse(stripped);
-};
+import { parseJsonWithComments, readThemeFile } from './test-utils';
 
 test('parses JSON with multiple block comments', () => {
   const sample = '/*first*/\n{"key": "value"}\n/*second*/';
@@ -35,7 +17,8 @@ test('blend page text blocks avoid inline FDA disclaimers', () => {
   const disclaimerNeedle =
     'These statements have not been evaluated by the Food and Drug Administration';
   const coaLinkRegex = /View the batch-specific COA:\s*https:\/\/[^\s<]+/;
-  const duplicateCannabinoidRegex = /THC-P\s*\/\s*THC-P/;
+  const duplicateCannabinoidRegex =
+    /(\b[A-Z]{2,}(?:-[A-Z]{1,})?\b)\s*\/\s*\1\b(?!-)/i;
   const blendTexts: string[] = [];
 
   Object.values(templates).forEach((template) => {
@@ -75,9 +58,15 @@ test('home blends section keeps the large headline defaults', () => {
   const indexTemplate = parseJsonWithComments(
     readThemeFile('templates/index.json')
   );
-  const multicolumnSection = indexTemplate.sections?.multicolumn_JzwAQQ as
-    | { settings?: Record<string, unknown> }
-    | undefined;
+  const multicolumnSection =
+    (indexTemplate.sections?.multicolumn_JzwAQQ as
+      | { settings?: Record<string, unknown> }
+      | undefined) ??
+    (Object.values(indexTemplate.sections ?? {}).find(
+      (section: { type?: string; settings?: Record<string, unknown> }) =>
+        section.type === 'multicolumn' &&
+        section.settings?.heading === 'Our Signature Blends'
+    ) as { settings?: Record<string, unknown> } | undefined);
 
   expect(multicolumnSection).toBeDefined();
   expect(multicolumnSection?.settings?.heading).toBe('Our Signature Blends');
