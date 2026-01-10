@@ -5,7 +5,13 @@ import path from 'node:path';
 const projectRoot = path.resolve(__dirname, '..', '..');
 
 const readThemeFile = (relativePath: string) => {
-  return readFileSync(path.join(projectRoot, relativePath), 'utf8');
+  const fullPath = path.join(projectRoot, relativePath);
+  try {
+    return readFileSync(fullPath, 'utf8');
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    throw new Error(`Failed to read theme file at ${relativePath}: ${message}`);
+  }
 };
 
 test('main 404 and multicolumn sections retain heading alignment setting', () => {
