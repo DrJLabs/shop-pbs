@@ -1,7 +1,22 @@
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
+import { parse } from 'jsonc-parser';
 
 const projectRoot = process.cwd();
+
+export interface ShopifySection {
+  type?: string;
+  settings?: Record<string, unknown>;
+}
+
+export interface ShopifyTemplate {
+  sections?: Record<string, ShopifySection>;
+  order?: string[];
+}
+
+export interface ShopifySettingsData {
+  current?: { templates?: Record<string, ShopifyTemplate> };
+}
 
 export const readThemeFile = (relativePath: string) => {
   const fullPath = path.join(projectRoot, relativePath);
@@ -14,8 +29,5 @@ export const readThemeFile = (relativePath: string) => {
 };
 
 export const parseJsonWithComments = (content: string) => {
-  // Strips block comments (/* ... */). Note: doesn't handle comment-like
-  // syntax within JSON string values, but this is acceptable for theme files.
-  const stripped = content.replace(/\/\*[\s\S]*?\*\//g, '').trim();
-  return JSON.parse(stripped);
+  return parse(content);
 };

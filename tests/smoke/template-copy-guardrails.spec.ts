@@ -1,19 +1,10 @@
 import { test, expect } from '@playwright/test';
 import { parseJsonWithComments, readThemeFile } from './test-utils';
-
-interface ShopifySection {
-  type?: string;
-  settings?: Record<string, unknown>;
-}
-
-interface ShopifyTemplate {
-  sections?: Record<string, ShopifySection>;
-  order?: string[];
-}
-
-interface ShopifySettingsData {
-  current?: { templates?: Record<string, ShopifyTemplate> };
-}
+import type {
+  ShopifySection,
+  ShopifySettingsData,
+  ShopifyTemplate,
+} from './test-utils';
 
 test('parses JSON with multiple block comments', () => {
   const sample = '/*first*/\n{"key": "value"}\n/*second*/';

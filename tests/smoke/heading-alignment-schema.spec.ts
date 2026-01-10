@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { parseJsonWithComments, readThemeFile } from './test-utils';
+import type { ShopifyTemplate } from './test-utils';
 
 test('main 404 and multicolumn sections retain heading alignment setting', () => {
   const main404 = readThemeFile('sections/main-404.liquid');
@@ -14,14 +15,12 @@ test('main 404 and multicolumn sections retain heading alignment setting', () =>
 test('templates keep heading alignment defaults', () => {
   const indexTemplate = parseJsonWithComments(
     readThemeFile('templates/index.json')
-  ) as { sections?: Record<string, { settings?: Record<string, unknown> }> };
+  ) as ShopifyTemplate;
   const blendsTemplate = parseJsonWithComments(
     readThemeFile('templates/page.blends.json')
-  ) as { sections?: Record<string, { settings?: Record<string, unknown> }> };
+  ) as ShopifyTemplate;
 
-  const hasHeadingAlignment = (template: {
-    sections?: Record<string, { settings?: Record<string, unknown> }>;
-  }) =>
+  const hasHeadingAlignment = (template: ShopifyTemplate) =>
     Object.values(template.sections ?? {}).some(
       (section) => section.settings?.heading_alignment !== undefined
     );
