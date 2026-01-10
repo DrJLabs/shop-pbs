@@ -27,6 +27,11 @@ test('blend page text blocks avoid inline FDA disclaimers', () => {
   const blendTexts: string[] = [];
 
   const visit = (node: unknown) => {
+    if (Array.isArray(node)) {
+      node.forEach(visit);
+      return;
+    }
+
     if (!node || typeof node !== 'object') {
       return;
     }
