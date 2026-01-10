@@ -83,7 +83,7 @@ test('wholesale portal keeps large heading sizes with transparent colors', () =>
     readThemeFile('templates/page.wholesale-portal.json')
   );
   const mainSection = wholesaleTemplate.sections?.main as
-    | { type?: string; settings?: Record<string, unknown> }
+    | ShopifySection
     | undefined;
 
   expect(mainSection?.type).toBe('main-page');
