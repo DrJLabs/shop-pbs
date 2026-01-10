@@ -8,18 +8,20 @@ const readThemeFile = (relativePath: string) => {
   return readFileSync(path.join(projectRoot, relativePath), 'utf8');
 };
 
-const parseJsonTemplate = (content: string) => {
-  const stripped = content.replace(/\/\*[\s\S]*?\*\//, '').trim();
+const parseJsonWithComments = (content: string) => {
+  const stripped = content.replace(/\/\*[\s\S]*?\*\//g, '').trim();
   return JSON.parse(stripped);
 };
 
-const parseJsonConfig = (content: string) => {
-  const stripped = content.replace(/\/\*[\s\S]*?\*\//, '').trim();
-  return JSON.parse(stripped);
-};
+test('parses JSON with multiple block comments', () => {
+  const sample = '/*first*/\n{"key": "value"}\n/*second*/';
+  expect(parseJsonWithComments(sample)).toEqual({ key: 'value' });
+});
 
 test('blend page text blocks avoid inline FDA disclaimers', () => {
-  const settingsData = parseJsonConfig(readThemeFile('config/settings_data.json'));
+  const settingsData = parseJsonWithComments(
+    readThemeFile('config/settings_data.json')
+  );
   const disclaimerNeedle =
     'These statements have not been evaluated by the Food and Drug Administration';
   const blendTexts: string[] = [];
@@ -50,7 +52,9 @@ test('blend page text blocks avoid inline FDA disclaimers', () => {
 });
 
 test('home blends section keeps the large headline defaults', () => {
-  const indexTemplate = parseJsonTemplate(readThemeFile('templates/index.json'));
+  const indexTemplate = parseJsonWithComments(
+    readThemeFile('templates/index.json')
+  );
   const multicolumnSection = Object.values(
     indexTemplate.sections ?? {}
   ).find((section: { type?: string }) => section.type === 'multicolumn') as
@@ -64,7 +68,7 @@ test('home blends section keeps the large headline defaults', () => {
 });
 
 test('wholesale portal keeps large heading sizes with transparent colors', () => {
-  const wholesaleTemplate = parseJsonTemplate(
+  const wholesaleTemplate = parseJsonWithComments(
     readThemeFile('templates/page.wholesale-portal.json')
   );
   const mainSection = wholesaleTemplate.sections?.main as
