@@ -27,14 +27,24 @@
       if heading == ''
         assign heading = page.title
       endif
+
+      assign body_text = section.settings.text
+      if body_text == blank and page.content != blank
+        assign body_text = page.content
+      endif
+
+      assign image_source = section.settings.image
+      if image_source == blank and page.metafields.blend.image != blank
+        assign image_source = page.metafields.blend.image
+      endif
     -%}
     <h1 class="blend-page__title">
       {{ heading | strip | escape }}
     </h1>
-    {% if section.settings.image %}
+    {% if image_source %}
       <div class="blend-page__image">
         {{
-          section.settings.image
+          image_source
           | image_url: width: 2000
           | image_tag:
             loading: 'lazy',
@@ -44,9 +54,9 @@
         }}
       </div>
     {% endif %}
-    {% if section.settings.text != blank %}
+    {% if body_text != blank %}
       <div class="blend-page__text rte">
-        {{ section.settings.text }}
+        {{ body_text }}
       </div>
     {% endif %}
   </div>

@@ -4,7 +4,6 @@ tests/.auth/
 .env
 .env.dev
 env.dev
-docs/
 file-organizer.plan.json
 file-organizer.report.md
 file-organizer.scan.txt
