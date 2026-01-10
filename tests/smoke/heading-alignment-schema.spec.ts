@@ -25,7 +25,6 @@ test('templates keep heading alignment defaults', () => {
     Object.values(template.sections ?? {}).some(
       (section) => section.settings?.heading_alignment !== undefined
     );
-    );
 
   expect(hasHeadingAlignment(indexTemplate)).toBe(true);
   expect(hasHeadingAlignment(blendsTemplate)).toBe(true);
