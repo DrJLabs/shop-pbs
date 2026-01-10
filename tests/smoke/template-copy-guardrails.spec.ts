@@ -53,9 +53,13 @@ test('blend page text blocks avoid inline FDA disclaimers', () => {
 
   expect(blendTexts.length).toBeGreaterThan(0);
   blendTexts.forEach((text) => {
+    const trimmed = text.trim();
+
     expect(text).not.toContain(disclaimerNeedle);
     expect(text).not.toContain('[insert COA link]');
     expect(text).toMatch(coaLinkRegex);
+    expect(trimmed.startsWith('<div>')).toBe(false);
+    expect(trimmed.endsWith('</div>')).toBe(false);
   });
 });
 
@@ -65,9 +69,11 @@ test('home blends section keeps the large headline defaults', () => {
   );
   const multicolumnSection = Object.values(
     indexTemplate.sections ?? {}
-  ).find((section: { type?: string }) => section.type === 'multicolumn') as
-    | { settings?: Record<string, unknown> }
-    | undefined;
+  ).find(
+    (section: { type?: string; settings?: Record<string, unknown> }) =>
+      section.type === 'multicolumn' &&
+      section.settings?.heading === 'Our Signature Blends'
+  ) as { settings?: Record<string, unknown> } | undefined;
 
   expect(multicolumnSection).toBeDefined();
   expect(multicolumnSection?.settings?.heading).toBe('Our Signature Blends');

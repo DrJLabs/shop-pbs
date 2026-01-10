@@ -22,6 +22,6 @@ test('templates keep heading alignment defaults', () => {
   const indexTemplate = readThemeFile('templates/index.json');
   const blendsTemplate = readThemeFile('templates/page.blends.json');
 
-  expect(indexTemplate).toContain('"heading_alignment"');
-  expect(blendsTemplate).toContain('"heading_alignment"');
+  expect(indexTemplate).toMatch(/"heading_alignment"\s*:/);
+  expect(blendsTemplate).toMatch(/"heading_alignment"\s*:/);
 });
