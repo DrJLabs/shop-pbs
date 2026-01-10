@@ -94,7 +94,7 @@ test('wholesale portal keeps large heading sizes with transparent colors', () =>
   expect(mainSection?.settings?.['color-bg-overlay']).toBe('transparent');
 
   const formSection = wholesaleTemplate.sections?.form as
-    | { settings?: Record<string, unknown> }
+    | Pick<ShopifySection, 'settings'>
     | undefined;
   expect(formSection?.settings?.background_color).toBe('transparent');
 });
