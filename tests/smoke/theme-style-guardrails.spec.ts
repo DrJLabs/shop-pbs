@@ -24,11 +24,11 @@ test('collection feature keeps large heading defaults', () => {
 
   const desktopMatches =
     section.match(
-      /--font-headline-scale-desk: \{\{ section.settings.size_heading \| default: 250 \| divided_by: 100\.0 \}\};/g,
+      /--font-headline-scale-desk:\s*\{\{\s*section\.settings\.size_heading\s*\|\s*default:\s*250\s*\|\s*divided_by:\s*100\.0\s*\}\};/g,
     ) ?? [];
   const mobileMatches =
     section.match(
-      /--font-headline-scale: \{\{ section.settings.size_heading_mobile \| default: 200 \| divided_by: 100\.0 \}\};/g,
+      /--font-headline-scale:\s*\{\{\s*section\.settings\.size_heading_mobile\s*\|\s*default:\s*200\s*\|\s*divided_by:\s*100\.0\s*\}\};/g,
     ) ?? [];
 
   expect(desktopMatches.length).toBe(2);

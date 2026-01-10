@@ -24,6 +24,7 @@ test('blend page text blocks avoid inline FDA disclaimers', () => {
   );
   const disclaimerNeedle =
     'These statements have not been evaluated by the Food and Drug Administration';
+  const coaLinkRegex = /View the batch-specific COA:\s*https:\/\/[^\s<]+/;
   const blendTexts: string[] = [];
 
   const visit = (node: unknown) => {
@@ -53,6 +54,8 @@ test('blend page text blocks avoid inline FDA disclaimers', () => {
   expect(blendTexts.length).toBeGreaterThan(0);
   blendTexts.forEach((text) => {
     expect(text).not.toContain(disclaimerNeedle);
+    expect(text).not.toContain('[insert COA link]');
+    expect(text).toMatch(coaLinkRegex);
   });
 });
 
