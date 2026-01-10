@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { readThemeFile } from './test-utils';
+import { parseJsonWithComments, readThemeFile } from './test-utils';
 
 test('main 404 and multicolumn sections retain heading alignment setting', () => {
   const main404 = readThemeFile('sections/main-404.liquid');
@@ -12,14 +12,19 @@ test('main 404 and multicolumn sections retain heading alignment setting', () =>
 });
 
 test('templates keep heading alignment defaults', () => {
-  const indexTemplate = parseJsonWithComments(readThemeFile('templates/index.json'));
+  const indexTemplate = parseJsonWithComments(
+    readThemeFile('templates/index.json')
+  ) as { sections?: Record<string, { settings?: Record<string, unknown> }> };
   const blendsTemplate = parseJsonWithComments(
     readThemeFile('templates/page.blends.json')
-  );
+  ) as { sections?: Record<string, { settings?: Record<string, unknown> }> };
 
-  const hasHeadingAlignment = (template) =>
-    Object.values(template.sections).some(
+  const hasHeadingAlignment = (template: {
+    sections?: Record<string, { settings?: Record<string, unknown> }>;
+  }) =>
+    Object.values(template.sections ?? {}).some(
       (section) => section.settings?.heading_alignment !== undefined
+    );
     );
 
   expect(hasHeadingAlignment(indexTemplate)).toBe(true);
