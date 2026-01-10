@@ -87,11 +87,11 @@
         "slide_height": "adapt_to_first_image",
         "desktop_fixed_height": 320,
         "mobile_fixed_height": 460,
-        "section-color-body-text": "rgba(0,0,0,0)",
-        "section-color-overlay": "rgba(0,0,0,0)",
+        "section-color-body-text": "transparent",
+        "section-color-overlay": "transparent",
         "section-color-overlay-opacity": 100,
-        "color-body-text": "rgba(0,0,0,0)",
-        "color-overlay": "rgba(0,0,0,0)",
+        "color-body-text": "transparent",
+        "color-overlay": "transparent",
         "color-overlay-opacity": 100,
         "desktop_image": "shopify://shop_images/deep-green-leaves-under-shadows.jpg",
         "desktop_text_vertical_position": "center",
@@ -167,8 +167,8 @@
         "column_alignment": "left",
         "size_heading": 150,
         "size_heading_mobile": 150,
-        "color-body-text": "rgba(0,0,0,0)",
-        "background_color": "rgba(0,0,0,0)",
+        "color-body-text": "transparent",
+        "background_color": "transparent",
         "margin-top": 20,
         "margin-bottom": 20
       }
@@ -309,8 +309,8 @@
         "column_alignment": "left",
         "size_heading": 100,
         "size_heading_mobile": 100,
-        "color-body-text": "rgba(0,0,0,0)",
-        "background_color": "rgba(0,0,0,0)",
+        "color-body-text": "transparent",
+        "background_color": "transparent",
         "margin-top": 60,
         "margin-bottom": 60
       }
@@ -392,8 +392,8 @@
       "settings": {
         "section_width": "regular",
         "desktop_text_horizontal_position": "center",
-        "color-body-text": "rgba(0,0,0,0)",
-        "background_color": "rgba(0,0,0,0)",
+        "color-body-text": "transparent",
+        "background_color": "transparent",
         "margin-top": 20,
         "margin-bottom": 20
       }

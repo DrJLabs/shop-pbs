@@ -10,6 +10,7 @@ file-organizer.report.md
 file-organizer.scan.txt
 playwright-report/
 reports/
+artifacts/
 outputs/
 test-results/
 .codex/
