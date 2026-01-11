@@ -11,8 +11,17 @@
   "sections": {
     "main": {
       "type": "blend-page",
-      "settings": {}
+      "settings": {
+        "heading": "",
+        "heading_alignment": "center",
+        "size_heading": 200,
+        "size_heading_mobile": 200,
+        "image_alt": "",
+        "text": ""
+      }
     }
   },
-  "order": ["main"]
+  "order": [
+    "main"
+  ]
 }
