@@ -174,6 +174,18 @@ test('features banner avoids duplicate headline scale overrides', () => {
   expect(styleContent).not.toMatch(/\.wt-keys__title[\s\S]*--font-headline-scale/);
 });
 
+test('pb hero topo exposes a left content offset setting', () => {
+  const pbHeroTopo = readThemeFile('sections/pb-hero-topo.liquid');
+
+  expect(pbHeroTopo).toMatch(
+    /--pb-content-left-offset:\s*{{\s*section\.settings\.content_left_offset\s*\|\s*default:\s*24\s*}}\s*px;/
+  );
+  expect(pbHeroTopo).toMatch(
+    /\.pb-hero-topo--align-left\s+\.pb-hero-topo__content\s*{\s*[\s\S]*?margin-left:\s*var\(--pb-content-left-offset\);/
+  );
+  expect(pbHeroTopo).toMatch(/"id":\s*"content_left_offset"/);
+});
+
 test('blog posts avoid redundant wt-multicol headline overrides', () => {
   const blogPosts = readThemeFile('sections/blog-posts.liquid');
   expect(blogPosts).not.toMatch(
