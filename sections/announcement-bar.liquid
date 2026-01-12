@@ -39,7 +39,6 @@
     %}
 
     {% if section.settings.marquee == true %}<div class="wt-announcement__marquee">{% endif %}
-    {% assign original = true %}
     {% for i in (1..multiply) %}
       {%- for block in section.blocks -%}
         {%- case block.type -%}
@@ -66,7 +65,6 @@
             </div>
         {%- endcase -%}
       {%- endfor -%}
-      {% assign original = false %}
     {% endfor %}
     {% if section.settings.marquee == true %}</div>{% endif %}
 

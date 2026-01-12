@@ -213,30 +213,21 @@
 
                 {% if media.media_type == 'video' %}
                   <div
-                    {% if media.media_type == 'video' or media.media_type == 'external_video' %}
-                      class="wt-product__thumbnail-video"
-                      tabindex="-1"
-                    {% endif %}
+                    class="wt-product__thumbnail-video"
+                    tabindex="-1"
+                    style="width: 100%; aspect-ratio: {{ media.aspect_ratio }}"
                   >
-                    <video
-                      class="wt-video__movie wt-video__item"
-                      playsinline
-                      {% if section.settings.enable_video_looping %}
-                        loop="loop"
-                      {% endif %}
-                      autoplay="autoplay"
-                      muted="muted"
-                      alt="{{ media.alt | default: product.title | escape }}"
-                      data-media-id="{{ media.id }}"
-                      poster="{{ media.preview_image.src | image_url: width: 900 }}"
-                      style="width: 100%; aspect-ratio: {{ media.aspect_ratio }}"
-                      controls
-                      tabindex="0"
-                    >
-                      {% for vid in media.sources %}
-                        <source src="{{ vid.url }}" type="{{ vid.mime_type }}">
-                      {% endfor %}
-                    </video>
+                    {{
+                      media
+                      | video_tag:
+                        autoplay: true,
+                        loop: section.settings.enable_video_looping,
+                        muted: true,
+                        controls: true,
+                        playsinline: true,
+                        image_size: '900x',
+                        class: 'wt-video__movie wt-video__item'
+                    }}
                   </div>
                 {% endif %}
 

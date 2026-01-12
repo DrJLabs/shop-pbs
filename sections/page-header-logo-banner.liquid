@@ -35,10 +35,6 @@
 
   {% assign width_line = 'wt-section__wrapper' %}
 
-  {%- liquid
-    assign video_id = section.settings.video.id | default: section.settings.video_url.id
-  -%}
-
   <script src="{{ 'low-power-video.js' | asset_url }}" defer="defer"></script>
 
   <page-header-logo-banner
@@ -66,7 +62,6 @@
             {% comment %} style="--logo-width-mobile: {{ settings.mobile_screen_logo_width }}px; --logo-width-desk: {{ settings.large_screen_logo_width }}px" {% endcomment %}
           >
             {%- assign large_image_size = 250 -%}
-            {%- assign large_image_size_double = large_image_size | times: 2 -%}
 
             {%- assign logo_image_size = section.settings.logo_image.width -%}
             {%- assign logo_image_size_double = logo_image_size | times: 2 -%}

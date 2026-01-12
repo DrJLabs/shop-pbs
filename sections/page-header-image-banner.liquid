@@ -1,6 +1,6 @@
 {% if template == 'index' %}
   {% assign background_rgb = section.settings['color-overlay'] | color_to_rgb %}
-  {% assign text-container_rgb = section.settings['text-container-color'] | color_to_rgb %}
+  {% assign text_container_rgb = section.settings['text-container-color'] | color_to_rgb %}
   {% assign text_rgb = section.settings['color-body-text'] | color_to_rgb %}
 
   <style>
@@ -13,7 +13,7 @@
         --color-overlay-opacity: 0;
     {% endif %}
 
-    {% if text-container_rgb != 'rgba(0, 0, 0, 0.0)' %}
+    {% if text_container_rgb != 'rgba(0, 0, 0, 0.0)' %}
         --text-container-color: {{ section.settings.text-container-color | color_to_rgb | remove: 'rgb(' | remove: ')' }};
         --text-container-opacity: {{ section.settings.color-overlay-opacity | divided_by: 100.0 }};
     {% else %}
