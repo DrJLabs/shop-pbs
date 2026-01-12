@@ -78,14 +78,6 @@ test('section heading defaults use safe fallbacks', () => {
     /--font-headline-scale:\s*{{\s*section\.settings\.size_heading_mobile\s*\|\s*default:\s*100\s*\|\s*divided_by:\s*100\.0\s*}};/
   );
 
-  const pbHeroTopo = readThemeFile('sections/pb-hero-topo.liquid');
-  expect(pbHeroTopo).toMatch(
-    /--font-headline-scale-desk:\s*{{\s*section\.settings\.size_heading\s*\|\s*default:\s*100\s*\|\s*divided_by:\s*100\.0\s*}};/
-  );
-  expect(pbHeroTopo).toMatch(
-    /--font-headline-scale:\s*{{\s*section\.settings\.size_heading_mobile\s*\|\s*default:\s*100\s*\|\s*divided_by:\s*100\.0\s*}};/
-  );
-
   const separator = readThemeFile('sections/separator.liquid');
   expect(separator).toMatch(
     /--font-headline-scale-desk:\s*{{\s*section\.settings\.size_heading\s*\|\s*default:\s*100\s*\|\s*divided_by:\s*100\.0\s*}};/
@@ -172,18 +164,6 @@ test('features banner avoids duplicate headline scale overrides', () => {
   const styleContent = featuresBanner.split('</style>')[0];
 
   expect(styleContent).not.toMatch(/\.wt-keys__title[\s\S]*--font-headline-scale/);
-});
-
-test('pb hero topo exposes a left content offset setting', () => {
-  const pbHeroTopo = readThemeFile('sections/pb-hero-topo.liquid');
-
-  expect(pbHeroTopo).toMatch(
-    /--pb-content-left-offset:\s*{{\s*section\.settings\.content_left_offset\s*\|\s*default:\s*24\s*}}\s*px;/
-  );
-  expect(pbHeroTopo).toMatch(
-    /\.pb-hero-topo--align-left\s+\.pb-hero-topo__content\s*{\s*[\s\S]*?margin-left:\s*var\(--pb-content-left-offset\);/
-  );
-  expect(pbHeroTopo).toMatch(/"id":\s*"content_left_offset"/);
 });
 
 test('blog posts avoid redundant wt-multicol headline overrides', () => {
