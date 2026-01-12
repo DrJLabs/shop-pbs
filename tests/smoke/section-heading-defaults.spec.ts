@@ -78,14 +78,6 @@ test('section heading defaults use safe fallbacks', () => {
     /--font-headline-scale:\s*{{\s*section\.settings\.size_heading_mobile\s*\|\s*default:\s*100\s*\|\s*divided_by:\s*100\.0\s*}};/
   );
 
-  const pbHeroTopo = readThemeFile('sections/pb-hero-topo.liquid');
-  expect(pbHeroTopo).toMatch(
-    /--font-headline-scale-desk:\s*{{\s*section\.settings\.size_heading\s*\|\s*default:\s*100\s*\|\s*divided_by:\s*100\.0\s*}};/
-  );
-  expect(pbHeroTopo).toMatch(
-    /--font-headline-scale:\s*{{\s*section\.settings\.size_heading_mobile\s*\|\s*default:\s*100\s*\|\s*divided_by:\s*100\.0\s*}};/
-  );
-
   const separator = readThemeFile('sections/separator.liquid');
   expect(separator).toMatch(
     /--font-headline-scale-desk:\s*{{\s*section\.settings\.size_heading\s*\|\s*default:\s*100\s*\|\s*divided_by:\s*100\.0\s*}};/

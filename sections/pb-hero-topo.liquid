@@ -8,6 +8,7 @@
     --pb-scrim: {{ section.settings.scrim_strength | divided_by: 100.0 }};
     --pb-accent: {{ section.settings.accent_color }};
     --pb-content-max-width: {{ section.settings.content_max_width }}px;
+    --pb-content-left-offset: {{ section.settings.content_left_offset | default: 24 }}px;
     --heading-align: {{ section.settings.heading_alignment | default: 'center' }};
     --font-headline-scale-desk: {{ section.settings.size_heading | default: 100 | divided_by: 100.0 }};
     --font-headline-scale: {{ section.settings.size_heading_mobile | default: 100 | divided_by: 100.0 }};
@@ -66,6 +67,7 @@
   #shopify-section-{{ section.id }} .pb-hero-topo--align-left .pb-hero-topo__content {
     align-items: flex-start;
     text-align: left;
+    margin-inline-start: var(--pb-content-left-offset);
   }
 
   #shopify-section-{{ section.id }} .pb-hero-topo--align-center .pb-hero-topo__content {
@@ -404,6 +406,16 @@
       "max": 820,
       "step": 20,
       "default": 720
+    },
+    {
+      "type": "range",
+      "id": "content_left_offset",
+      "label": "Content left offset",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 24,
+      "unit": "px"
     },
     {
       "type": "select",
