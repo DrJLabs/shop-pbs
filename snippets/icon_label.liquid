@@ -2,7 +2,8 @@
 {%- assign icon_item_image = blank -%}
 {%- for icon_item in icons_config -%}
   {%- assign icon_item_parts = icon_item | split: ':' -%}
-  {%- assign icon_item_name = icon_item_parts.first | downcase | strip -%}
+  {%- assign icon_item_label = icon_item_parts.first | strip -%}
+  {%- assign icon_item_name = icon_item_label | downcase -%}
   {%- if item_downcase == icon_item_name -%}
     {%- assign icon_item_value = icon_item_parts.last | strip -%}
 
@@ -19,6 +20,6 @@
     width="80"
     height="80"
     loading="lazy"
-    alt="Icon Item"
+    alt="{{ icon_item_label | escape }}"
   >
 {%- endif -%}
