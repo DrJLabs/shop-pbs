@@ -37,10 +37,6 @@
 
 {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
 
-{%- capture filters_json -%}
-{{ collection.filters | json }}
-{%- endcapture -%}
-
 <div data-section-id="{{ section.id }}" class="{{ section_variant }}">
   <collection-section
     class="collection{% if section.settings.filter_position == "always" %} collection--with-aside{% endif %}"

@@ -4,11 +4,11 @@
 {% assign text_rgb = section.settings['color-body-text'] | color_to_rgb %}
 
 {% if section.settings.image_ratio == 'adapt' %}
-  {% assign image-ratio = 'auto' %}
+  {% assign image_ratio = 'auto' %}
 {% elsif section.settings.image_ratio == 'square' %}
-  {% assign image-ratio = '1/1' %}
+  {% assign image_ratio = '1/1' %}
 {% else %}
-  {% assign image-ratio = '0.8' %}
+  {% assign image_ratio = '0.8' %}
 {% endif %}
 
 <style>
@@ -34,7 +34,7 @@
         --color-custom-text: {{ section.settings.color-body-text }};
       {% endif %}
 
-      --aspect-ratio: {{ image-ratio }};
+      --aspect-ratio: {{ image_ratio }};
   }
 
   [data-section-id="{{ section.id }}"] .headline__title
@@ -119,9 +119,9 @@
     </ul>
 
     {% if section.settings['full-width-enabled'] %}
-      {% assign slidesPerView = 1 %}
+      {% assign slides_per_view = 1 %}
     {% else %}
-      {% assign slidesPerView = 1.04 %}
+      {% assign slides_per_view = 1.04 %}
     {% endif %}
 
     {% if section.settings.swipe_on_mobile %}
@@ -142,7 +142,7 @@
         "speed": 150,
         "grabCursor": false,
         "paginationType": "bullets",
-        "slidesPerView": {{ slidesPerView }},
+        "slidesPerView": {{ slides_per_view }},
         "slidesPerGroup": 1,
         "spaceBetween": 16,
         "navigation": {

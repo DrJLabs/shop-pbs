@@ -159,10 +159,10 @@
             <a href="#">[]</a>
           {% endif %}
           <div class="card__badges">
-            {% assign custom-badge-1-input = settings['custom-badge-1-input'] | downcase %}
-            {% assign custom-badge-2-input = settings['custom-badge-2-input'] | downcase %}
-            {% assign custom-badge-3-input = settings['custom-badge-3-input'] | downcase %}
-            {% assign custom-badge-4-input = settings['custom-badge-4-input'] | downcase %}
+            {% assign custom_badge_1_input = settings['custom-badge-1-input'] | downcase %}
+            {% assign custom_badge_2_input = settings['custom-badge-2-input'] | downcase %}
+            {% assign custom_badge_3_input = settings['custom-badge-3-input'] | downcase %}
+            {% assign custom_badge_4_input = settings['custom-badge-4-input'] | downcase %}
 
             {% if product.available == false %}
               <div class="card__badges--item" data-custom-badge="sold-out">
@@ -176,7 +176,7 @@
 
             {% for tag in product.tags %}
               {% assign downcase_tag = tag | downcase %}
-              {% if downcase_tag == custom-badge-1-input %}
+              {% if downcase_tag == custom_badge_1_input %}
                 <div class="card__badges--item" data-custom-badge="{{ settings.custom-badge-1-input }}">
                   {% if settings['badges-uppercase'] == 'uppercase' %}
                     {{ settings['custom-badge-1-input'] | upcase }}
@@ -185,7 +185,7 @@
                   {% endif %}
                 </div>
               {% endif %}
-              {% if downcase_tag == custom-badge-2-input %}
+              {% if downcase_tag == custom_badge_2_input %}
                 <div class="card__badges--item" data-custom-badge="{{ settings.custom-badge-2-input }}">
                   {% if settings['badges-uppercase'] == 'uppercase' %}
                     {{ settings['custom-badge-2-input'] | upcase }}
@@ -194,7 +194,7 @@
                   {% endif %}
                 </div>
               {% endif %}
-              {% if downcase_tag == custom-badge-3-input %}
+              {% if downcase_tag == custom_badge_3_input %}
                 <div class="card__badges--item" data-custom-badge="{{ settings.custom-badge-3-input }}">
                   {% if settings['badges-uppercase'] == 'uppercase' %}
                     {{ settings['custom-badge-3-input'] | upcase }}
@@ -203,7 +203,7 @@
                   {% endif %}
                 </div>
               {% endif %}
-              {% if downcase_tag == custom-badge-4-input %}
+              {% if downcase_tag == custom_badge_4_input %}
                 <div class="card__badges--item" data-custom-badge="{{ settings.custom-badge-4-input }}">
                   {% if settings['badges-uppercase'] == 'uppercase' %}
                     {{ settings['custom-badge-4-input'] | upcase }}

@@ -4,10 +4,6 @@
   data-index="{{ index }}"
   data-toggle-tabindex=".form-checkbox__input"
 >
-  {% assign input_tabindex = -1 %}
-  {% if filter_position == 'always' %}
-    {% assign input_tabindex = 0 %}
-  {% endif %}
   <div
     class="filter__header wt-collapse__trigger"
     role="button"
