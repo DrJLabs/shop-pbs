@@ -1203,6 +1203,10 @@
           "label": "Suggestions title",
           "info": "Suggestions show when the search is opened."
         },
+        "drawer_title_color": {
+          "label": "Drawer header text color",
+          "info": "Applies to the menu drawer title and close icon."
+        },
         "drawer_title": {
           "label": "Title",
           "info": "This feature functions correctly with the 'Logo center, drawer menu' layout setting."

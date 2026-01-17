@@ -3419,6 +3419,9 @@ mega-menu-section {
   padding: calc(var(--gap, 8px) * 2) calc(var(--gap, 8px) * 4);
   display: none;
 }
+.wt-drawer__close {
+  color: var(--color-drawer-title, var(--color-menu-text));
+}
 .wt-drawer__title__text {
   font-family: var(--font-headline);
   font-style: var(--font-headline-style);
@@ -3428,6 +3431,7 @@ mega-menu-section {
   letter-spacing: var(--font-headline-letter-spacing, normal);
   line-height: var(--font-headline-line-height, normal);
   font-size: calc(var(--font-base-size) * 1.15);
+  color: var(--color-drawer-title, var(--color-menu-text));
 }
 @media (min-width: 1200px) {
   .wt-drawer__title__text {
