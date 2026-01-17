@@ -212,7 +212,7 @@
 /* works around colspan phantom border issues */
 .customer thead::after,
 .customer tfoot::before {
-  content: " ";
+  content: ' ';
   height: 0.1rem;
   width: 100%;
   display: block;
@@ -312,7 +312,7 @@
 }
 
 .customer .pagination li [aria-current]::after {
-  content: "";
+  content: '';
   display: block;
   width: 2rem;
   height: 0.01rem;
@@ -341,7 +341,7 @@
   width: fit-content;
 }
 
-.login a[href="#recover"] {
+.login a[href='#recover'] {
   margin-left: 0;
   margin-right: 0;
 }
@@ -391,7 +391,7 @@
   margin-bottom: 0;
 }
 
-.activate button[name=decline],
+.activate button[name='decline'],
 .addresses li > button,
 .addresses form button[type] {
   background-color: rgba(var(--color-background), var(--alpha-button-background));
@@ -399,7 +399,7 @@
 }
 
 @media only screen and (min-width: 750px) {
-  .activate button[name=decline] {
+  .activate button[name='decline'] {
     margin-top: inherit;
     margin-left: 1rem;
   }
@@ -493,8 +493,8 @@
 }
 
 @media screen and (min-width: 750px) {
-  .order thead th:nth-last-child(-n+3),
-  .order td:nth-last-child(-n+3) {
+  .order thead th:nth-last-child(-n + 3),
+  .order td:nth-last-child(-n + 3) {
     text-align: right;
   }
 }
@@ -662,8 +662,8 @@
   margin-right: 1rem;
 }
 
-label[for=AddressCountryNew],
-label[for=AddressProvinceNew] {
+label[for='AddressCountryNew'],
+label[for='AddressProvinceNew'] {
   display: block;
   font-size: 1.4rem;
   margin-bottom: 0.6rem;
@@ -689,11 +689,11 @@ li[data-address] {
   margin-top: 5rem;
 }
 
-.addresses [aria-expanded=false] ~ div[id] {
+.addresses [aria-expanded='false'] ~ div[id] {
   display: none;
 }
 
-.addresses [aria-expanded=true] ~ div[id] {
+.addresses [aria-expanded='true'] ~ div[id] {
   display: block;
 }
 
@@ -716,7 +716,7 @@ li[data-address] > h2 {
   margin-bottom: 0;
 }
 
-.addresses input[type=checkbox] {
+.addresses input[type='checkbox'] {
   margin-top: 2rem;
   margin-left: 0;
 }
@@ -1006,7 +1006,7 @@ li[data-address] > h2 {
 }
 .wt-customer thead::after,
 .wt-customer tfoot::before {
-  content: " ";
+  content: ' ';
   height: 0.1rem;
   width: 100%;
   display: block;
@@ -1089,7 +1089,7 @@ li[data-address] > h2 {
   transform: rotate(-90deg);
 }
 .wt-customer__pagination li [aria-current]::after {
-  content: "";
+  content: '';
   display: block;
   width: 2rem;
   height: 0.01rem;
@@ -1119,10 +1119,10 @@ li[data-address] > h2 {
     max-width: var(--site-max-width-big);
   }
 }
-.wt-customer__addresses [aria-expanded=false] ~ div[id] {
+.wt-customer__addresses [aria-expanded='false'] ~ div[id] {
   display: none;
 }
-.wt-customer__addresses [aria-expanded=true] ~ div[id] {
+.wt-customer__addresses [aria-expanded='true'] ~ div[id] {
   display: block;
 }
 .wt-customer__addresses li > button {
@@ -1146,8 +1146,8 @@ li[data-address] > h2 {
 .wt-customer__addresses form button:first-of-type {
   margin-right: 1rem;
 }
-.wt-customer__addresses label[for=AddressCountryNew],
-.wt-customer__addresses label[for=AddressProvinceNew] {
+.wt-customer__addresses label[for='AddressCountryNew'],
+.wt-customer__addresses label[for='AddressProvinceNew'] {
   display: block;
   font-size: 1.4rem;
   margin-bottom: 0.6rem;
@@ -1180,7 +1180,7 @@ li[data-address] > h2 {
 .wt-customer__addresses ul p {
   margin-bottom: 0;
 }
-.wt-customer__addresses input[type=checkbox] {
+.wt-customer__addresses input[type='checkbox'] {
   margin-left: 0;
 }
 @media (min-width: 900px) {
@@ -1231,7 +1231,8 @@ li[data-address] > h2 {
 .wt-customer__create-account {
   margin-top: calc(var(--gap, 8px) * 3);
 }
-.wt-customer__recover, .wt-customer__recover + div {
+.wt-customer__recover,
+.wt-customer__recover + div {
   display: none;
 }
 .wt-customer__recover:target {
@@ -1240,7 +1241,8 @@ li[data-address] > h2 {
 .wt-customer__recover:target + div {
   display: block;
 }
-.wt-customer__recover:target ~ #login, .wt-customer__recover:target ~ #login + div {
+.wt-customer__recover:target ~ #login,
+.wt-customer__recover:target ~ #login + div {
   display: none;
 }
 .wt-customer__cancel {

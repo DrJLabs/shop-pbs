@@ -4,32 +4,31 @@ class CartDrawerSection extends HTMLElement {
     super();
 
     this.cartType = this.dataset.cartType;
-    this.drawerClass = "wt-cart__drawer";
+    this.drawerClass = 'wt-cart__drawer';
     this.drawer = this.querySelector(`.${this.drawerClass}`);
     this.classDrawerActive = `${this.drawerClass}--open`;
-    this.pageOverlayClass = "page-overlay-cart";
+    this.pageOverlayClass = 'page-overlay-cart';
     this.activeOverlayBodyClass = `${this.pageOverlayClass}-on`;
     this.body = document.body;
     this.triggerQuery = [
       `.wt-cart__trigger`,
       `.wt-cart__back-link`,
       `.${this.pageOverlayClass}`,
-    ].join(", ");
+    ].join(', ');
     this.triggers = () => document.querySelectorAll(this.triggerQuery);
     this.isOpen = false;
-    this.isCartPage = window.location.pathname.includes("cart");
-    this.closeButton = () => this.querySelector(".wt-cart__drawer__close");
-    this.mainTrigger = document.querySelector(".wt-cart__trigger");
-    this.toggleEelements = () =>
-      this.querySelectorAll(this.dataset.toggleTabindex);
+    this.isCartPage = window.location.pathname.includes('cart');
+    this.closeButton = () => this.querySelector('.wt-cart__drawer__close');
+    this.mainTrigger = document.querySelector('.wt-cart__trigger');
+    this.toggleEelements = () => this.querySelectorAll(this.dataset.toggleTabindex);
   }
 
   connectedCallback() {
-    if (this.cartType === "page" || this.isCartPage) return;
+    if (this.cartType === 'page' || this.isCartPage) return;
     this.init();
     this.cartUpdateUnsubscriber = subscribe(PUB_SUB_EVENTS.cartUpdate, () => {
       if (this.isOpen) {
-        setTabindex(this.toggleEelements(), "0");
+        setTabindex(this.toggleEelements(), '0');
         this.closeButton().focus();
       }
     });
@@ -42,11 +41,10 @@ class CartDrawerSection extends HTMLElement {
   }
 
   getFocusableElements() {
-    const focusableElementsSelector =
-      "button, [href], input, select, [tabindex]";
+    const focusableElementsSelector = 'button, [href], input, select, [tabindex]';
     const focusableElements = () =>
       Array.from(this.querySelectorAll(focusableElementsSelector)).filter(
-        (el) => !el.hasAttribute("disabled") && el.tabIndex >= 0,
+        (el) => !el.hasAttribute('disabled') && el.tabIndex >= 0,
       );
 
     return {
@@ -57,22 +55,22 @@ class CartDrawerSection extends HTMLElement {
   }
 
   temporaryHideFocusVisible() {
-    document.body.classList.add("no-focus-visible");
+    document.body.classList.add('no-focus-visible');
   }
 
   onToggle() {
-    if (this.hasAttribute("open")) {
-      this.removeAttribute("open");
+    if (this.hasAttribute('open')) {
+      this.removeAttribute('open');
       this.isOpen = false;
       this.mainTrigger.focus();
       this.temporaryHideFocusVisible();
-      setTabindex(this.toggleEelements(), "-1");
+      setTabindex(this.toggleEelements(), '-1');
     } else {
-      this.setAttribute("open", "");
+      this.setAttribute('open', '');
       this.isOpen = true;
       this.closeButton().focus();
       this.temporaryHideFocusVisible();
-      setTabindex(this.toggleEelements(), "0");
+      setTabindex(this.toggleEelements(), '0');
     }
   }
 
@@ -83,12 +81,11 @@ class CartDrawerSection extends HTMLElement {
   }
 
   init() {
-    this.addEventListener("keydown", (e) => {
-      const isTabPressed =
-        e.key === "Tab" || e.keyCode === 9 || e.code === "Tab";
+    this.addEventListener('keydown', (e) => {
+      const isTabPressed = e.key === 'Tab' || e.keyCode === 9 || e.code === 'Tab';
       const { first, last } = this.getFocusableElements();
 
-      if (e.key === "Escape" || e.keyCode === 27 || e.code === "Escape") {
+      if (e.key === 'Escape' || e.keyCode === 27 || e.code === 'Escape') {
         if (this.isOpen) {
           this.toggleDrawerClasses();
         }
@@ -106,14 +103,14 @@ class CartDrawerSection extends HTMLElement {
     });
 
     this.triggers().forEach((trigger) => {
-      trigger.addEventListener("click", (e) => {
+      trigger.addEventListener('click', (e) => {
         e.preventDefault();
         this.toggleDrawerClasses();
       });
     });
 
-    this.addEventListener("click", (e) => {
-      if (e.target.classList.contains("wt-cart__drawer__close")) {
+    this.addEventListener('click', (e) => {
+      if (e.target.classList.contains('wt-cart__drawer__close')) {
         e.preventDefault();
         this.toggleDrawerClasses();
       }
@@ -139,20 +136,18 @@ class CartDrawerSection extends HTMLElement {
     });
   }
 
-  getSectionInnerHTML(html, selector = ".shopify-section") {
-    return new DOMParser()
-      .parseFromString(html, "text/html")
-      .querySelector(selector).innerHTML;
+  getSectionInnerHTML(html, selector = '.shopify-section') {
+    return new DOMParser().parseFromString(html, 'text/html').querySelector(selector).innerHTML;
   }
 
   getSectionsToRender() {
     return [
       {
-        id: "cart-drawer",
-        selector: "#CartDrawer",
+        id: 'cart-drawer',
+        selector: '#CartDrawer',
       },
       {
-        id: "cart-icon-bubble",
+        id: 'cart-icon-bubble',
       },
     ];
   }
@@ -162,23 +157,23 @@ class CartDrawerSection extends HTMLElement {
   }
 }
 
-customElements.define("cart-drawer", CartDrawerSection);
+customElements.define('cart-drawer', CartDrawerSection);
 
 class CartDrawerItems extends CartItems {
   getSectionsToRender() {
     return [
       {
-        id: "CartDrawer",
-        section: "cart-drawer",
-        selector: ".drawer__inner",
+        id: 'CartDrawer',
+        section: 'cart-drawer',
+        selector: '.drawer__inner',
       },
       {
-        id: "cart-icon-bubble",
-        section: "cart-icon-bubble",
-        selector: ".shopify-section",
+        id: 'cart-icon-bubble',
+        section: 'cart-icon-bubble',
+        selector: '.shopify-section',
       },
     ];
   }
 }
 
-customElements.define("cart-drawer-items", CartDrawerItems);
+customElements.define('cart-drawer-items', CartDrawerItems);

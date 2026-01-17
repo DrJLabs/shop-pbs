@@ -1,11 +1,11 @@
-if (!customElements.get("video-reels")) {
+if (!customElements.get('video-reels')) {
   customElements.define(
-    "video-reels",
+    'video-reels',
     class VideoReels extends HTMLElement {
       constructor() {
         super();
-        this.activeClass = "active";
-        this.swiper = this.querySelector(".wt-slider__container");
+        this.activeClass = 'active';
+        this.swiper = this.querySelector('.wt-slider__container');
       }
 
       connectedCallback() {
@@ -13,9 +13,9 @@ if (!customElements.get("video-reels")) {
       }
 
       updateAllVideosSound(swiper) {
-        const soundOn = swiper.el.dataset.sound === "on";
+        const soundOn = swiper.el.dataset.sound === 'on';
         swiper.slides.forEach((slide) => {
-          let video = slide.querySelector("video");
+          let video = slide.querySelector('video');
           if (video) {
             video.muted = !soundOn;
           }
@@ -25,46 +25,41 @@ if (!customElements.get("video-reels")) {
       observeSection() {
         const observerOptions = {
           root: null,
-          rootMargin: "0px",
+          rootMargin: '0px',
           threshold: 0.1,
         };
 
-        const sectionObserver = new IntersectionObserver(
-          (entries, observer) => {
-            entries.forEach((entry) => {
-              const video = document.querySelector(
-                ".swiper-slide-active video",
-              );
+        const sectionObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            const video = document.querySelector('.swiper-slide-active video');
 
-              if (video) {
-                if (entry.isIntersecting) {
-                  video.play();
-                } else {
-                  video.pause();
-                }
+            if (video) {
+              if (entry.isIntersecting) {
+                video.play();
+              } else {
+                video.pause();
               }
-            });
-          },
-          observerOptions,
-        );
+            }
+          });
+        }, observerOptions);
 
         sectionObserver.observe(this);
       }
 
       handleSoundToggle(swiper) {
         swiper.slides.forEach((slide, index) => {
-          const button = slide.querySelector(".wt-video__sound-toggle");
-          const video = slide.querySelector("video");
+          const button = slide.querySelector('.wt-video__sound-toggle');
+          const video = slide.querySelector('video');
           const that = this;
 
-          button.addEventListener("click", function () {
-            if(!video) return
+          button.addEventListener('click', function () {
+            if (!video) return;
             if (video.muted) {
               video.muted = false;
-              swiper.el.dataset.sound = "on";
+              swiper.el.dataset.sound = 'on';
             } else {
               video.muted = true;
-              swiper.el.dataset.sound = "off";
+              swiper.el.dataset.sound = 'off';
             }
             that.updateAllVideosSound(swiper);
           });
@@ -72,7 +67,7 @@ if (!customElements.get("video-reels")) {
       }
 
       pasueAllVideos() {
-        const videos = this.querySelectorAll("video");
+        const videos = this.querySelectorAll('video');
         videos.forEach((video) => {
           video.pause();
         });
@@ -80,11 +75,10 @@ if (!customElements.get("video-reels")) {
 
       playVideoInActiveSlide(swiper) {
         const sound = swiper.el.dataset.sound;
-        const activeSlideVideo =
-          this.findActiveSlide(swiper).querySelector("video");
+        const activeSlideVideo = this.findActiveSlide(swiper).querySelector('video');
         if (activeSlideVideo) {
           activeSlideVideo.play();
-          activeSlideVideo.muted = sound === "on" ? false : true;
+          activeSlideVideo.muted = sound === 'on' ? false : true;
         }
       }
 
@@ -112,14 +106,14 @@ if (!customElements.get("video-reels")) {
 
       addVideoEventHandlers(swiper) {
         const that = this;
-        swiper.on("slideChange", (swp) => that.handleSlideChange(swp));
+        swiper.on('slideChange', (swp) => that.handleSlideChange(swp));
       }
 
       checkSwiperInitialization() {
         const swiperContainer = this.swiper;
         const mySwiperInstance = swiperContainer.swiper;
 
-        if (swiperContainer.classList.contains("swiper-initialized")) {
+        if (swiperContainer.classList.contains('swiper-initialized')) {
           this.addVideoEventHandlers(mySwiperInstance);
           this.handleSlideChange(mySwiperInstance);
           this.handleSoundToggle(mySwiperInstance);
@@ -129,11 +123,7 @@ if (!customElements.get("video-reels")) {
       }
 
       init() {
-        this.checkInterval = setInterval(
-          this.checkSwiperInitialization.bind(this),
-          500,
-        );
-
+        this.checkInterval = setInterval(this.checkSwiperInitialization.bind(this), 500);
       }
     },
   );

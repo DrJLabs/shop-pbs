@@ -168,13 +168,15 @@ fieldset.product-form__input .form__label {
   text-decoration: line-through;
 }
 .product-form__input input[type='radio']:focus-visible + label {
-  box-shadow: 0 0 0 0.3rem rgb(var(--color-background)),
+  box-shadow:
+    0 0 0 0.3rem rgb(var(--color-background)),
     0 0 0 0.5rem rgba(var(--color-foreground), 0.55);
 }
 
 /* Fallback */
 .product-form__input input[type='radio']:focus + label {
-  box-shadow: 0 0 0 0.3rem rgb(var(--color-background)),
+  box-shadow:
+    0 0 0 0.3rem rgb(var(--color-background)),
     0 0 0 0.5rem rgba(var(--color-foreground), 0.55);
 }
 
@@ -202,7 +204,7 @@ fieldset.product-form__input .form__label {
 
 .shopify-payment-button__button {
   font-size: 1.5rem;
-  letter-spacing: .1rem;
+  letter-spacing: 0.1rem;
 }
 
 /* Product info */
@@ -393,7 +395,9 @@ a.product__text {
   left: 1.5rem;
   top: 1.5rem;
   z-index: 1;
-  transition: color var(--duration-short) ease, opacity var(--duration-short) ease;
+  transition:
+    color var(--duration-short) ease,
+    opacity var(--duration-short) ease;
 }
 
 .product__media-video .product__media-icon {

@@ -1,13 +1,13 @@
-if (!customElements.get("quick-add")) {
+if (!customElements.get('quick-add')) {
   customElements.define(
-    "quick-add",
+    'quick-add',
     class QuickAdd extends HTMLElement {
       getFocusableElements(parent) {
         const focusableElementsSelector =
           "button:not(.wt-product__sticky-buy__button), [href], input:not(.disabled):not([type='hidden']), select, .close-btn";
         const focusableElements = () =>
           Array.from(parent.querySelectorAll(focusableElementsSelector)).filter(
-            (el) => !el.hasAttribute("disabled") && el.tabIndex >= 0,
+            (el) => !el.hasAttribute('disabled') && el.tabIndex >= 0,
           );
 
         return {
@@ -18,23 +18,19 @@ if (!customElements.get("quick-add")) {
       }
 
       connectedCallback() {
-        this.add_button = this.querySelector("button");
+        this.add_button = this.querySelector('button');
         this.isDrawerOpen = false;
         this.isMobile = window.innerWidth < 768;
+        if (this.add_button) this.product_url = this.add_button.getAttribute('data-product-url');
         if (this.add_button)
-          this.product_url = this.add_button.getAttribute("data-product-url");
-        if (this.add_button)
-          this.add_button.addEventListener("click", (e) => {
+          this.add_button.addEventListener('click', (e) => {
             const button = e.currentTarget;
-            const cardLink = button
-              .closest(".card__picture-container")
-              ?.querySelector("a.card");
+            const cardLink = button.closest('.card__picture-container')?.querySelector('a.card');
             this.currentTrigger = cardLink;
             this.fetchProduct(this.product_url);
           });
 
-        this.handleInteractionOutside =
-          this.handleInteractionOutside.bind(this);
+        this.handleInteractionOutside = this.handleInteractionOutside.bind(this);
 
         this.getFocusableElements = this.getFocusableElements.bind(this);
 
@@ -46,63 +42,47 @@ if (!customElements.get("quick-add")) {
         this.galleryObserver = this.galleryObserver.bind(this);
         this.observerCallback = this.observerCallback.bind(this);
         this.disconnectObserver = this.disconnectObserver.bind(this);
-        this.removeButtonEventListener =
-          this.removeButtonEventListener.bind(this);
+        this.removeButtonEventListener = this.removeButtonEventListener.bind(this);
       }
 
       fetchProduct(product_url) {
         this.lastFeaturedImage = null;
         this.firstMedia = null;
         this.hasFirstMediaImg = null;
-        this.quick_add = document.querySelector(".wt__quick-buy");
-        this.quick_add_container = document.querySelector(
-          ".wt__quick-buy__container",
-        );
-        this.quick_add_wrapper = document.querySelector(
-          ".wt__quick-buy--wrapper",
-        );
-        this.quick_add_product = this.quick_add.querySelector(
-          ".wt__quick-buy--product",
-        );
-        this.close_button = this.quick_add.querySelector(".close-btn");
-        this.loader = this.quick_add.querySelector(".wt__quick-buy-loader");
-        this.page_overlay = document.querySelector(
-          ".wt__quick-buy--page-overlay",
-        );
+        this.quick_add = document.querySelector('.wt__quick-buy');
+        this.quick_add_container = document.querySelector('.wt__quick-buy__container');
+        this.quick_add_wrapper = document.querySelector('.wt__quick-buy--wrapper');
+        this.quick_add_product = this.quick_add.querySelector('.wt__quick-buy--product');
+        this.close_button = this.quick_add.querySelector('.close-btn');
+        this.loader = this.quick_add.querySelector('.wt__quick-buy-loader');
+        this.page_overlay = document.querySelector('.wt__quick-buy--page-overlay');
         this.body = document.body;
 
         const controller = new AbortController();
         const signal = controller.signal;
 
-        const allWtProducts =
-          this.quick_add_wrapper.querySelectorAll(".wt-product");
+        const allWtProducts = this.quick_add_wrapper.querySelectorAll('.wt-product');
         allWtProducts?.forEach((product) => product.remove());
-        this.quick_add.classList.remove("hidden");
-        this.body.classList.add("quick-buy-page-overlay");
-        this.page_overlay.classList.add("wt__quick-buy--page-overlay--open");
+        this.quick_add.classList.remove('hidden');
+        this.body.classList.add('quick-buy-page-overlay');
+        this.page_overlay.classList.add('wt__quick-buy--page-overlay--open');
 
-        this.interactiveEelements = () =>
-          this.quick_add_container.querySelectorAll();
+        this.interactiveEelements = () => this.quick_add_container.querySelectorAll();
 
-        this.quick_add_container.classList.add(
-          "wt__quick-buy__container--open",
-        );
+        this.quick_add_container.classList.add('wt__quick-buy__container--open');
 
-        this.close_button.addEventListener("click", () => {
+        this.close_button.addEventListener('click', () => {
           controller.abort();
           this.closeCart();
-          this.close_button.setAttribute("tabindex", "-1");
+          this.close_button.setAttribute('tabindex', '-1');
           this.currentTrigger?.focus();
         });
 
-        this.quick_add_container.addEventListener("keydown", (e) => {
-          const isTabPressed =
-            e.key === "Tab" || e.keyCode === 9 || e.code === "Tab";
-          const { first, last } = this.getFocusableElements(
-            this.quick_add_container,
-          );
+        this.quick_add_container.addEventListener('keydown', (e) => {
+          const isTabPressed = e.key === 'Tab' || e.keyCode === 9 || e.code === 'Tab';
+          const { first, last } = this.getFocusableElements(this.quick_add_container);
 
-          if (e.key === "Escape" || e.keyCode === 27 || e.code === "Escape") {
+          if (e.key === 'Escape' || e.keyCode === 27 || e.code === 'Escape') {
             this.close_button.click();
           }
 
@@ -120,128 +100,116 @@ if (!customElements.get("quick-add")) {
         fetch(product_url, { signal })
           .then((res) => res.text())
           .then((res) => {
-            this.loader.classList.add("hidden");
-            const htmlDocument = new DOMParser().parseFromString(
-              res,
-              "text/html",
-            );
-            this.productMain = htmlDocument.querySelector(".wt-product__main");
-            this.productCard = htmlDocument.querySelector(".wt-product");
-            this.productInfo = htmlDocument.querySelector(".wt-product__info");
+            this.loader.classList.add('hidden');
+            const htmlDocument = new DOMParser().parseFromString(res, 'text/html');
+            this.productMain = htmlDocument.querySelector('.wt-product__main');
+            this.productCard = htmlDocument.querySelector('.wt-product');
+            this.productInfo = htmlDocument.querySelector('.wt-product__info');
 
             const animatedElements = this.productMain.querySelectorAll(
-              ".scroll-trigger.animate--slide-in",
+              '.scroll-trigger.animate--slide-in',
             );
             animatedElements?.forEach((element) =>
-              element.classList.remove("scroll-trigger", "animate--slide-in"),
+              element.classList.remove('scroll-trigger', 'animate--slide-in'),
             );
 
             this.removeElements(
               this.productCard,
-              "collapsible-section",
-              "[not-quick-add]",
-              ".product__inventory",
-              ".share-icons__container",
-              "#gallery-loader",
-              "pickup-availability",
-              ".wt-product__sku",
+              'collapsible-section',
+              '[not-quick-add]',
+              '.product__inventory',
+              '.share-icons__container',
+              '#gallery-loader',
+              'pickup-availability',
+              '.wt-product__sku',
             );
 
-            const newVariantId =
-              this.productCard.querySelector("variant-options");
+            const newVariantId = this.productCard.querySelector('variant-options');
             if (newVariantId) {
-              newVariantId.dataset.updateUrl = "false";
+              newVariantId.dataset.updateUrl = 'false';
               this.updateAttribute(
                 newVariantId,
-                "data-original-section",
-                newVariantId.getAttribute("data-section"),
+                'data-original-section',
+                newVariantId.getAttribute('data-section'),
               );
               this.updateAttribute(
                 newVariantId,
-                "data-section",
-                `quick-${newVariantId.getAttribute("data-section")}`,
+                'data-section',
+                `quick-${newVariantId.getAttribute('data-section')}`,
               );
             }
 
-            const productGallery =
-              this.productCard.querySelector("gallery-section");
+            const productGallery = this.productCard.querySelector('gallery-section');
 
-            productGallery.style.display = "none";
+            productGallery.style.display = 'none';
 
-            this.images = productGallery.querySelectorAll("img");
+            this.images = productGallery.querySelectorAll('img');
             this.updateAttribute(
               productGallery,
-              "id",
-              `MediaGallery-${newVariantId?.getAttribute("data-section")}`,
+              'id',
+              `MediaGallery-${newVariantId?.getAttribute('data-section')}`,
             );
-            const firstImageFromGallery = productGallery.querySelector("li");
+            const firstImageFromGallery = productGallery.querySelector('li');
             if (firstImageFromGallery) {
               this.firstMedia = firstImageFromGallery;
 
-              this.playBtn = this.firstMedia.querySelector(".model-btn");
-              if (this.playBtn) this.playBtn.setAttribute("tabindex", "0");
+              this.playBtn = this.firstMedia.querySelector('.model-btn');
+              if (this.playBtn) this.playBtn.setAttribute('tabindex', '0');
 
-              this.video = this.firstMedia.querySelector("video");
-              if (this.video) this.video.setAttribute("tabindex", "0");
+              this.video = this.firstMedia.querySelector('video');
+              if (this.video) this.video.setAttribute('tabindex', '0');
 
-              this.hasFirstMediaImg = Boolean(
-                firstImageFromGallery.querySelector("img"),
-              );
+              this.hasFirstMediaImg = Boolean(firstImageFromGallery.querySelector('img'));
             }
 
-            firstImageFromGallery
-              ?.querySelector("img")
-              ?.removeAttribute("srcset");
-            const imageContainer = document.createElement("div");
-            imageContainer.setAttribute("class", "product-image");
+            firstImageFromGallery?.querySelector('img')?.removeAttribute('srcset');
+            const imageContainer = document.createElement('div');
+            imageContainer.setAttribute('class', 'product-image');
 
-            const productDetails = document.createElement("div");
-            productDetails.setAttribute("class", "wt-product__details");
+            const productDetails = document.createElement('div');
+            productDetails.setAttribute('class', 'wt-product__details');
 
-            const productAbout = document.createElement("div");
-            productAbout.setAttribute("class", "product-info");
-            const title = this.productInfo.querySelector(".wt-product__name");
+            const productAbout = document.createElement('div');
+            productAbout.setAttribute('class', 'product-info');
+            const title = this.productInfo.querySelector('.wt-product__name');
 
             if (title) {
-              const aElement = document.createElement("a");
+              const aElement = document.createElement('a');
               aElement.textContent = title.textContent;
               aElement.href = this.product_url;
-              title.innerHTML = "";
+              title.innerHTML = '';
               title.appendChild(aElement);
-              title.setAttribute("tabindex", "0");
+              title.setAttribute('tabindex', '0');
             }
 
             const productElementsToCopy = this.productInfo.querySelectorAll(
-              ".wt-product__brand, .wt-product__name, .wt-rating, .wt-product__price, .product__tax",
+              '.wt-product__brand, .wt-product__name, .wt-rating, .wt-product__price, .product__tax',
             );
 
-            productElementsToCopy.forEach((product) =>
-              productAbout.appendChild(product),
-            );
+            productElementsToCopy.forEach((product) => productAbout.appendChild(product));
 
-            imageContainer.innerHTML = firstImageFromGallery?.innerHTML || "";
+            imageContainer.innerHTML = firstImageFromGallery?.innerHTML || '';
             productDetails.appendChild(imageContainer);
             productDetails.appendChild(productAbout);
             this.productInfo.prepend(productDetails);
 
             this.galleryObserver();
 
-            const mainProductPrice =
-              this.productCard.querySelector(".wt-product__price");
+            const mainProductPrice = this.productCard.querySelector('.wt-product__price');
             this.updateAttribute(
               mainProductPrice,
-              "id",
-              `price-${newVariantId?.getAttribute("data-section")}`,
+              'id',
+              `price-${newVariantId?.getAttribute('data-section')}`,
             );
 
-            const allFieldSets = this.productCard.querySelectorAll("fieldset");
+            const allFieldSets = this.productCard.querySelectorAll('fieldset');
             this.updateFieldSets(allFieldSets);
 
             const addBtn = this.productCard.querySelector('button[name="add"]');
             this.updateAttribute(
               addBtn,
-              "id",
-              `ProductSubmitButton-${newVariantId?.getAttribute("data-section")}`,
+              'id',
+              `ProductSubmitButton-${newVariantId?.getAttribute('data-section')}`,
             );
 
             const form = this.productCard.querySelector(
@@ -249,14 +217,13 @@ if (!customElements.get("quick-add")) {
             );
             this.updateAttribute(
               form,
-              "id",
-              `product-form-${newVariantId?.getAttribute("data-section")}`,
+              'id',
+              `product-form-${newVariantId?.getAttribute('data-section')}`,
             );
 
-            const viewAllDetailsContainer =
-              this.quick_add_wrapper.querySelector(
-                ".wt__quick-buy__view-all-container",
-              );
+            const viewAllDetailsContainer = this.quick_add_wrapper.querySelector(
+              '.wt__quick-buy__view-all-container',
+            );
             this.quick_add_wrapper.removeChild(viewAllDetailsContainer);
             this.quick_add_wrapper.innerHTML += this.productCard.outerHTML;
             this.quick_add_wrapper.append(viewAllDetailsContainer);
@@ -264,41 +231,41 @@ if (!customElements.get("quick-add")) {
             const giftCardInput = this.quick_add_wrapper.querySelector(
               '[name="properties[__shopify_send_gift_card_to_recipient]"]',
             );
-            if (giftCardInput) giftCardInput.removeAttribute("disabled");
+            if (giftCardInput) giftCardInput.removeAttribute('disabled');
 
             this.addViewAllDetailsButton();
 
             this.isDrawerOpen = true;
 
-            this.close_button.setAttribute("tabindex", "0");
+            this.close_button.setAttribute('tabindex', '0');
             this.close_button.focus();
 
-            document.addEventListener("click", this.handleInteractionOutside);
+            document.addEventListener('click', this.handleInteractionOutside);
           })
           .catch((error) => {
-            if (error.name === "AbortError") {
-              console.error("Fetch aborted");
+            if (error.name === 'AbortError') {
+              console.error('Fetch aborted');
             } else {
-              console.error("Fetch error:", error);
+              console.error('Fetch error:', error);
             }
           });
       }
 
       addViewAllDetailsButton() {
         const viewAllDetailsContainer = this.quick_add_wrapper.querySelector(
-          ".wt__quick-buy__view-all-container",
+          '.wt__quick-buy__view-all-container',
         );
-        const link = viewAllDetailsContainer.querySelector("a");
+        const link = viewAllDetailsContainer.querySelector('a');
         link.href = this.product_url;
-        link.setAttribute("tabindex", "0");
-        viewAllDetailsContainer.classList.remove("hidden");
+        link.setAttribute('tabindex', '0');
+        viewAllDetailsContainer.classList.remove('hidden');
       }
 
       hideViewAllDetailsButton() {
         const viewAllDetailsContainer = this.quick_add_wrapper.querySelector(
-          ".wt__quick-buy__view-all-container",
+          '.wt__quick-buy__view-all-container',
         );
-        viewAllDetailsContainer.classList.add("hidden");
+        viewAllDetailsContainer.classList.add('hidden');
       }
 
       galleryObserver() {
@@ -314,66 +281,41 @@ if (!customElements.get("quick-add")) {
 
       observerCallback(mutations) {
         for (const mutation of mutations) {
-          if (mutation.target.localName === "variant-options") {
-            this.quick_add = document.querySelector(".wt__quick-buy");
-            const variantOptions =
-              this.quick_add.querySelector("variant-options");
-            const imageContainer =
-              this.quick_add.querySelector(".product-image");
-            const image = imageContainer.querySelector("img");
-            const formInput = this.quick_add.querySelector(
-              'form input[name="id"]',
-            );
-            if (variantOptions.getAttribute("data-variant-id")) {
-              formInput.value = variantOptions.getAttribute("data-variant-id");
-              formInput.setAttribute(
-                "value",
-                variantOptions.getAttribute("data-variant-id"),
-              );
+          if (mutation.target.localName === 'variant-options') {
+            this.quick_add = document.querySelector('.wt__quick-buy');
+            const variantOptions = this.quick_add.querySelector('variant-options');
+            const imageContainer = this.quick_add.querySelector('.product-image');
+            const image = imageContainer.querySelector('img');
+            const formInput = this.quick_add.querySelector('form input[name="id"]');
+            if (variantOptions.getAttribute('data-variant-id')) {
+              formInput.value = variantOptions.getAttribute('data-variant-id');
+              formInput.setAttribute('value', variantOptions.getAttribute('data-variant-id'));
             }
             if (
-              variantOptions.getAttribute("data-featured-image") &&
-              this.lastFeaturedImage !==
-                variantOptions.getAttribute("data-featured-image")
+              variantOptions.getAttribute('data-featured-image') &&
+              this.lastFeaturedImage !== variantOptions.getAttribute('data-featured-image')
             ) {
-              image?.setAttribute(
-                "src",
-                variantOptions.getAttribute("data-featured-image"),
-              );
-              image?.removeAttribute("srcset");
+              image?.setAttribute('src', variantOptions.getAttribute('data-featured-image'));
+              image?.removeAttribute('srcset');
 
-              this.lastFeaturedImage = variantOptions.getAttribute(
-                "data-featured-image",
-              );
+              this.lastFeaturedImage = variantOptions.getAttribute('data-featured-image');
               if (
-                imageContainer.children[0]?.nodeName !== "IMG" &&
-                imageContainer.children[0]?.nodeName !== "A"
+                imageContainer.children[0]?.nodeName !== 'IMG' &&
+                imageContainer.children[0]?.nodeName !== 'A'
               ) {
-                const newImage = document.createElement("img");
-                newImage.setAttribute(
-                  "class",
-                  "wt-product__img  wt-product__img--zoom-cursor",
-                );
-                newImage.setAttribute(
-                  "src",
-                  variantOptions.getAttribute("data-featured-image"),
-                );
-                newImage.removeAttribute("srcset");
-                imageContainer.innerHTML = "";
+                const newImage = document.createElement('img');
+                newImage.setAttribute('class', 'wt-product__img  wt-product__img--zoom-cursor');
+                newImage.setAttribute('src', variantOptions.getAttribute('data-featured-image'));
+                newImage.removeAttribute('srcset');
+                imageContainer.innerHTML = '';
                 imageContainer.appendChild(newImage);
               } else {
-                image.setAttribute(
-                  "src",
-                  variantOptions.getAttribute("data-featured-image"),
-                );
-                image.removeAttribute("srcset");
+                image.setAttribute('src', variantOptions.getAttribute('data-featured-image'));
+                image.removeAttribute('srcset');
               }
-              this.lastFeaturedImage = variantOptions.getAttribute(
-                "data-featured-image",
-              );
+              this.lastFeaturedImage = variantOptions.getAttribute('data-featured-image');
             } else {
-              const hasFirstMediaModel =
-                this.firstMedia?.querySelector("model-element");
+              const hasFirstMediaModel = this.firstMedia?.querySelector('model-element');
               if (!this.hasFirstMediaImg || hasFirstMediaModel)
                 imageContainer.innerHTML = this.firstMedia?.innerHTML;
             }
@@ -384,12 +326,8 @@ if (!customElements.get("quick-add")) {
 
       handleInteractionOutside(event) {
         if (this.isDrawerOpen) {
-          const clickInsideDrawer = this.quick_add_wrapper.contains(
-            event.target,
-          );
-          const clickCloseBtn = document
-            .querySelector(".icon.icon-close")
-            .contains(event.target);
+          const clickInsideDrawer = this.quick_add_wrapper.contains(event.target);
+          const clickCloseBtn = document.querySelector('.icon.icon-close').contains(event.target);
           if (!clickInsideDrawer || clickCloseBtn) {
             this.closeCart();
           }
@@ -397,18 +335,16 @@ if (!customElements.get("quick-add")) {
       }
 
       closeCart() {
-        const loader = this.quick_add.querySelector(".wt__quick-buy-loader");
-        loader.classList.remove("hidden");
-        const product = this.quick_add.querySelector(".wt-product");
+        const loader = this.quick_add.querySelector('.wt__quick-buy-loader');
+        loader.classList.remove('hidden');
+        const product = this.quick_add.querySelector('.wt-product');
         if (product) product.remove();
-        this.body.classList.remove("quick-buy-page-overlay");
-        this.page_overlay.classList.remove("wt__quick-buy--page-overlay--open");
-        this.quick_add_container.classList.remove(
-          "wt__quick-buy__container--open",
-        );
+        this.body.classList.remove('quick-buy-page-overlay');
+        this.page_overlay.classList.remove('wt__quick-buy--page-overlay--open');
+        this.quick_add_container.classList.remove('wt__quick-buy__container--open');
         this.isDrawerOpen = false;
         this.hideViewAllDetailsButton();
-        document.removeEventListener("click", this.handleInteractionOutside);
+        document.removeEventListener('click', this.handleInteractionOutside);
         this.disconnectObserver();
         this.removeButtonEventListener();
       }
@@ -429,27 +365,15 @@ if (!customElements.get("quick-add")) {
       updateFieldSets(fieldSets) {
         fieldSets.forEach((fieldset) => {
           const inputRadios = fieldset.querySelectorAll('input[type="radio"]');
-          const labels = fieldset.querySelectorAll("label");
+          const labels = fieldset.querySelectorAll('label');
 
           inputRadios.forEach((radio) => {
-            this.updateAttribute(
-              radio,
-              "id",
-              `quick-${radio.getAttribute("id")}`,
-            );
-            this.updateAttribute(
-              radio,
-              "form",
-              `product-form-${radio.getAttribute("id")}`,
-            );
+            this.updateAttribute(radio, 'id', `quick-${radio.getAttribute('id')}`);
+            this.updateAttribute(radio, 'form', `product-form-${radio.getAttribute('id')}`);
           });
 
           labels.forEach((label) => {
-            this.updateAttribute(
-              label,
-              "for",
-              `quick-${label.getAttribute("for")}`,
-            );
+            this.updateAttribute(label, 'for', `quick-${label.getAttribute('for')}`);
           });
         });
       }
@@ -460,9 +384,7 @@ if (!customElements.get("quick-add")) {
 
       removeButtonEventListener() {
         if (this.add_button)
-          this.add_button.removeEventListener("click", () =>
-            this.fetchProduct(this.product_url),
-          );
+          this.add_button.removeEventListener('click', () => this.fetchProduct(this.product_url));
       }
 
       disconnectedCallback() {

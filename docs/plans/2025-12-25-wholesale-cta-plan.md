@@ -15,6 +15,7 @@
 ### Task 1: Replace product card prices and quick-add with wholesale CTA
 
 **Files:**
+
 - Create: `snippets/wholesale-cta.liquid`
 - Modify: `snippets/card.liquid`
 - Modify: `assets/main.css`
@@ -56,9 +57,11 @@ test('collection cards show wholesale CTA and no pricing', async ({ page }) => {
 **Step 2: Run test to verify it fails**
 
 Run:
+
 ```
 BASE_URL=http://127.0.0.1:9292 npm run test:smoke -- tests/smoke/wholesale-cta.spec.ts
 ```
+
 Expected: FAIL (CTA missing and prices present).
 
 **Step 3: Implement minimal code to make the test pass**
@@ -69,7 +72,7 @@ Create `snippets/wholesale-cta.liquid`:
 {%- assign wholesale_url = wholesale_url | default: '/pages/wholesale' -%}
 {%- assign wholesale_label = wholesale_label | default: 'Partner with us' -%}
 {%- assign wholesale_class = wholesale_class | default: 'hero__button hero__button--secondary' -%}
-<a class="{{ wholesale_class }} wholesale-cta" href="{{ wholesale_url }}" data-wholesale-cta>
+<a class='{{ wholesale_class }} wholesale-cta' href='{{ wholesale_url }}' data-wholesale-cta>
   {{ wholesale_label }}
 </a>
 ```
@@ -96,7 +99,7 @@ Remove these blocks entirely:
 
 ```liquid
 {% if enable_quick_add_button %}
-  <div class="card__quick-add-container--desktop">
+  <div class='card__quick-add-container--desktop'>
     {% render 'quick-add-button', card_product: product, product: card_product %}
   </div>
 {% endif %}
@@ -106,7 +109,7 @@ and
 
 ```liquid
 {% if enable_quick_add_button %}
-  <div class="card__quick-add-container">
+  <div class='card__quick-add-container'>
     {% render 'quick-add-button', card_product: product, product: card_product %}
   </div>
 {% endif %}
@@ -123,8 +126,8 @@ Add CTA spacing in `assets/main.css`:
 Remove quick-add scripts in `sections/main-collection-product-grid.liquid` and `sections/featured-collection.liquid`:
 
 ```liquid
-<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
-<script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
+<script src='{{ 'product-form.js' | asset_url }}' defer='defer'></script>
+<script src='{{ 'quick-add.js' | asset_url }}' defer='defer'></script>
 ```
 
 and the conditional variant dropdown script block.
@@ -132,9 +135,11 @@ and the conditional variant dropdown script block.
 **Step 4: Run test to verify it passes**
 
 Run:
+
 ```
 BASE_URL=http://127.0.0.1:9292 npm run test:smoke -- tests/smoke/wholesale-cta.spec.ts
 ```
+
 Expected: PASS.
 
 **Step 5: Commit**
@@ -149,6 +154,7 @@ git commit -m "fix: replace card pricing with wholesale cta"
 ### Task 2: Replace price/quick-add in predictive search, featured product, and shoppable tooltips
 
 **Files:**
+
 - Modify: `snippets/suggest-product-item.liquid`
 - Modify: `sections/predictive-search.liquid`
 - Modify: `sections/featured-product.liquid`
@@ -161,21 +167,24 @@ git commit -m "fix: replace card pricing with wholesale cta"
 Add conditional assertions to `tests/smoke/wholesale-cta.spec.ts`:
 
 ```ts
-  const shoppablePrices = page.locator('.wt-dot__price');
-  await expect(shoppablePrices).toHaveCount(0);
+const shoppablePrices = page.locator('.wt-dot__price');
+await expect(shoppablePrices).toHaveCount(0);
 ```
 
 **Step 2: Run test to verify it fails**
 
 Run:
+
 ```
 BASE_URL=http://127.0.0.1:9292 npm run test:smoke -- tests/smoke/wholesale-cta.spec.ts
 ```
+
 Expected: FAIL if shoppable prices are present on any active page.
 
 **Step 3: Implement minimal code to make the test pass**
 
 `snippets/suggest-product-item.liquid`:
+
 - Replace price block with CTA and retarget link to `/pages/wholesale`.
 
 ```liquid
@@ -185,9 +194,11 @@ Expected: FAIL if shoppable prices are present on any active page.
 ```
 
 `sections/predictive-search.liquid`:
+
 - Retarget the hidden link to `/pages/wholesale` and remove price rendering in the hidden block.
 
 `sections/featured-product.liquid`:
+
 - Replace the `{%- when 'buy_buttons' -%}` block with the CTA snippet.
 
 ```liquid
@@ -198,6 +209,7 @@ Expected: FAIL if shoppable prices are present on any active page.
 ```
 
 `sections/shoppable-image.liquid` and `snippets/shoppable-video-product.liquid`:
+
 - Replace `.wt-dot__price` contents with the CTA snippet and retarget product links to `/pages/wholesale`.
 - Remove/disable quick-add buttons in shoppable video:
 
@@ -210,9 +222,11 @@ Expected: FAIL if shoppable prices are present on any active page.
 **Step 4: Run test to verify it passes**
 
 Run:
+
 ```
 BASE_URL=http://127.0.0.1:9292 npm run test:smoke -- tests/smoke/wholesale-cta.spec.ts
 ```
+
 Expected: PASS.
 
 **Step 5: Commit**
@@ -227,15 +241,18 @@ git commit -m "fix: replace retail ctas with wholesale"
 ### Task 3: Quality gates + documentation update
 
 **Files:**
+
 - Modify: `docs/wholesale-conversion/storefront-wholesale-tasklist.md`
 - Test: Theme Check
 
 **Step 1: Run Theme Check (pre-doc update)**
 
 Run:
+
 ```
 npm run theme:check
 ```
+
 Expected: 0 errors.
 
 **Step 2: Update tasklist (mark 5C complete)**
@@ -245,9 +262,11 @@ In `docs/wholesale-conversion/storefront-wholesale-tasklist.md`, mark 5C items c
 **Step 3: Re-run Theme Check**
 
 Run:
+
 ```
 npm run theme:check
 ```
+
 Expected: 0 errors.
 
 **Step 4: Commit**
@@ -268,5 +287,6 @@ git commit -m "docs: mark wholesale cta updates complete"
 - Featured product section (if present): CTA instead of buy buttons.
 
 ## Notes
+
 - Product pages are hidden via admin (out of scope for theme).
 - Optional follow-up: remove OG price meta tags in `snippets/meta-tags.liquid` if needed.

@@ -1,32 +1,23 @@
 (function () {
-  const sentinel = document.querySelector(".sticky-header__threshold");
-  const hasHeaderStickyClass = document.querySelector(
-    "#header.wt-header--sticky",
-  );
-  if (hasHeaderStickyClass) document.body.classList.add("page-header-sticky");
-  const header = document.querySelector(".page-header-sticky .page-header");
-  const enabledClass = "sticky-enabled";
-  const showClass = "sticky-show";
-  const desktopMenuTrigger = document.querySelector(
-    ".wt-header__sticky-menu-trigger",
-  );
-  const desktopMenuTriggerActiveCalss =
-    "wt-header__sticky-menu-trigger--active";
-  const desktopMenuBar = document.querySelector(".wt-drawer--nav");
-  const desktopMenuBarShowClass = "wt-drawer--nav-show";
-  const desktopHeaderWithMenuBarClass = "page-header--sticky-show-menubar-lg";
+  const sentinel = document.querySelector('.sticky-header__threshold');
+  const hasHeaderStickyClass = document.querySelector('#header.wt-header--sticky');
+  if (hasHeaderStickyClass) document.body.classList.add('page-header-sticky');
+  const header = document.querySelector('.page-header-sticky .page-header');
+  const enabledClass = 'sticky-enabled';
+  const showClass = 'sticky-show';
+  const desktopMenuTrigger = document.querySelector('.wt-header__sticky-menu-trigger');
+  const desktopMenuTriggerActiveCalss = 'wt-header__sticky-menu-trigger--active';
+  const desktopMenuBar = document.querySelector('.wt-drawer--nav');
+  const desktopMenuBarShowClass = 'wt-drawer--nav-show';
+  const desktopHeaderWithMenuBarClass = 'page-header--sticky-show-menubar-lg';
 
   let prevScrollpos = window.pageYOffset;
 
-  const isDesktop = window.matchMedia("(min-width: 1200px)").matches;
-  const isMenuBarOpen = () =>
-    header.classList.contains(desktopHeaderWithMenuBarClass);
-  const isHeaderWithDesktopNav =
-    !document.body.classList.contains("mobile-nav");
-  const allLLevelsLinks = desktopMenuBar.querySelectorAll("a[data-menu-level]");
-  const onlyLevel1Links = desktopMenuBar.querySelectorAll(
-    "a[data-menu-level='1']",
-  );
+  const isDesktop = window.matchMedia('(min-width: 1200px)').matches;
+  const isMenuBarOpen = () => header.classList.contains(desktopHeaderWithMenuBarClass);
+  const isHeaderWithDesktopNav = !document.body.classList.contains('mobile-nav');
+  const allLLevelsLinks = desktopMenuBar.querySelectorAll('a[data-menu-level]');
+  const onlyLevel1Links = desktopMenuBar.querySelectorAll("a[data-menu-level='1']");
 
   const stickyHeader = {
     show: () => {
@@ -59,16 +50,16 @@
       if (isHeaderWithDesktopNav && isDesktop) {
         stickyHeader.log();
         if (!isMenuBarOpen() && stickyHeader.enabled) {
-          setTabindex(allLLevelsLinks, "-1");
+          setTabindex(allLLevelsLinks, '-1');
         }
         if (isMenuBarOpen() && stickyHeader.enabled) {
-          setTabindex(allLLevelsLinks, "0");
+          setTabindex(allLLevelsLinks, '0');
         }
         if (!stickyHeader.enabled) {
-          setTabindex(onlyLevel1Links, "0");
-          if (desktopMenuTrigger) setTabindex([desktopMenuTrigger], "-1");
+          setTabindex(onlyLevel1Links, '0');
+          if (desktopMenuTrigger) setTabindex([desktopMenuTrigger], '-1');
         } else {
-          if (desktopMenuTrigger) setTabindex([desktopMenuTrigger], "0");
+          if (desktopMenuTrigger) setTabindex([desktopMenuTrigger], '0');
         }
       }
     },
@@ -87,7 +78,7 @@
     prevScrollpos = currentScrollPos;
   };
 
-  desktopMenuTrigger?.addEventListener("click", (e) => {
+  desktopMenuTrigger?.addEventListener('click', (e) => {
     e.preventDefault();
     desktopMenuBar.classList.toggle(desktopMenuBarShowClass);
     desktopMenuTrigger.classList.toggle(desktopMenuTriggerActiveCalss);
@@ -105,9 +96,7 @@
     });
   };
 
-  const watchStickyHeaderSentinel = new IntersectionObserver(
-    handleStickySentinel,
-  );
+  const watchStickyHeaderSentinel = new IntersectionObserver(handleStickySentinel);
 
   watchStickyHeaderSentinel.observe(sentinel);
 })();

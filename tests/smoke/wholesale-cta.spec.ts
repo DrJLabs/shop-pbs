@@ -14,9 +14,7 @@ const wholesaleDefaultUrl = wholesaleSetting?.default ?? '/pages/wholesale';
 
 const readJson = async (filePath: string, stripComments = false) => {
   const contents = await readFile(filePath, 'utf8');
-  const normalized = stripComments
-    ? contents.replace(/\/\*[\s\S]*?\*\//, '').trim()
-    : contents;
+  const normalized = stripComments ? contents.replace(/\/\*[\s\S]*?\*\//, '').trim() : contents;
   return JSON.parse(normalized);
 };
 
@@ -26,7 +24,7 @@ const resolveWholesaleUrl = async () => {
   try {
     const settingsData = await readJson(
       path.join(process.cwd(), 'config', 'settings_data.json'),
-      true
+      true,
     );
     const liveUrl = settingsData?.current?.wholesale_page_url;
     if (typeof liveUrl === 'string' && liveUrl.trim().length > 0) {
@@ -36,7 +34,7 @@ const resolveWholesaleUrl = async () => {
     // Fall back to schema default if settings data is unavailable or invalid.
     console.warn(
       'Could not resolve wholesale URL from settings_data.json, falling back to default.',
-      error
+      error,
     );
   }
   return normalizeThemeUrl(wholesaleDefaultUrl);
@@ -99,30 +97,30 @@ test('wholesale CTA replaces retail UI in themed templates', async () => {
   const localeData = await readJson(path.join(root, 'locales/en.default.json'), true);
   const localeDir = path.join(root, 'locales');
   const localeFiles = (await readdir(localeDir)).filter(
-    (file) => file.endsWith('.json') && !file.endsWith('.schema.json')
+    (file) => file.endsWith('.json') && !file.endsWith('.schema.json'),
   );
   const localeDataSets = await Promise.all(
     localeFiles.map(async (file) => ({
       file,
       data: await readJson(path.join(localeDir, file), true),
-    }))
+    })),
   );
   const urlNormalization = "replace: 'shopify://', '/'";
 
-  expect(suggestItem).toContain("wholesale-cta");
+  expect(suggestItem).toContain('wholesale-cta');
   expect(suggestItem).not.toContain("render 'price'");
   expect(suggestItem).not.toContain(urlNormalization);
 
-  expect(predictiveSearch).toContain("wholesale-cta");
+  expect(predictiveSearch).toContain('wholesale-cta');
   expect(predictiveSearch).not.toContain('product.url');
   expect(predictiveSearch).not.toContain("render 'price'");
   expect(predictiveSearch).toContain(urlNormalization);
 
-  expect(featuredProduct).toContain("wholesale-cta");
+  expect(featuredProduct).toContain('wholesale-cta');
   expect(featuredProduct).toContain('products.product.wholesale_pricing_request');
-  expect(shoppableImage).toContain("wholesale-cta");
+  expect(shoppableImage).toContain('wholesale-cta');
   expect(shoppableImage).toContain(urlNormalization);
-  expect(shoppableVideo).toContain("wholesale-cta");
+  expect(shoppableVideo).toContain('wholesale-cta');
   expect(shoppableVideo).toContain(urlNormalization);
 
   expect(wholesaleCta).toContain('products.product.partner_with_us');

@@ -1,16 +1,14 @@
-if (!customElements.get("remove-all")) {
+if (!customElements.get('remove-all')) {
   customElements.define(
-    "remove-all",
+    'remove-all',
     class RemoveAll extends HTMLElement {
       constructor() {
         super();
       }
 
       connectedCallback() {
-        this.clearButton = this.querySelector(
-          ".wt-header__search__clear-button",
-        );
-        this.searchInput = document.querySelector("#Search-In-Template");
+        this.clearButton = this.querySelector('.wt-header__search__clear-button');
+        this.searchInput = document.querySelector('#Search-In-Template');
         this.isVisibleClearButton = false;
 
         this.changeVisibilityOfButton();
@@ -19,39 +17,36 @@ if (!customElements.get("remove-all")) {
 
       changeVisibilityOfButton() {
         if (this.searchInput.value.length > 0 && !this.isVisibleClearButton) {
-          this.clearButton.style.display = "flex";
+          this.clearButton.style.display = 'flex';
           this.isVisibleClearButton = true;
-        } else if (
-          this.searchInput.value.length === 0 &&
-          this.isVisibleClearButton
-        ) {
-          this.clearButton.style.display = "none";
+        } else if (this.searchInput.value.length === 0 && this.isVisibleClearButton) {
+          this.clearButton.style.display = 'none';
           this.isVisibleClearButton = false;
         }
       }
 
       clearInputValue() {
-        this.searchInput.value = "";
-        this.clearButton.style.display = "none";
+        this.searchInput.value = '';
+        this.clearButton.style.display = 'none';
         this.isVisibleClearButton = false;
       }
 
       addEventListeners() {
-        this.searchInput.addEventListener("input", () => {
+        this.searchInput.addEventListener('input', () => {
           this.changeVisibilityOfButton();
         });
 
-        this.clearButton.addEventListener("click", () => {
+        this.clearButton.addEventListener('click', () => {
           this.clearInputValue();
         });
       }
 
       removeEventListeners() {
-        this.searchInput.removeEventListener("input", () => {
+        this.searchInput.removeEventListener('input', () => {
           this.changeVisibilityOfButton();
         });
 
-        this.clearButton.removeEventListener("click", () => {
+        this.clearButton.removeEventListener('click', () => {
           this.clearInputValue();
         });
       }

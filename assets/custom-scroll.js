@@ -1,4 +1,4 @@
-import Swiper from "./swiper-bundle.esm.browser.min.js";
+import Swiper from './swiper-bundle.esm.browser.min.js';
 
 class CustomScroll extends HTMLElement {
   constructor() {
@@ -9,12 +9,12 @@ class CustomScroll extends HTMLElement {
 
   init() {
     const swiper = new Swiper(this, {
-      direction: "vertical",
-      slidesPerView: "auto",
+      direction: 'vertical',
+      slidesPerView: 'auto',
       freeMode: true,
       grabCursor: true,
       scrollbar: {
-        el: this.querySelector(".swiper-scrollbar"),
+        el: this.querySelector('.swiper-scrollbar'),
         draggable: true,
       },
       mousewheel: true,
@@ -22,4 +22,4 @@ class CustomScroll extends HTMLElement {
   }
 }
 
-customElements.define("custom-scroll", CustomScroll);
+customElements.define('custom-scroll', CustomScroll);

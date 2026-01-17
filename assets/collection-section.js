@@ -2,28 +2,21 @@ class CollectionSection extends HTMLElement {
   constructor() {
     super();
 
-    this.pageOverlayClass = "page-overlay";
+    this.pageOverlayClass = 'page-overlay';
     this.activeOverlayBodyClass = `${this.pageOverlayClass}-on`;
-    this.drawer = () => document.querySelector(".wt-filter");
-    this.classDrawerActive = "wt-filter--drawer-open";
-    this.getCloseButton = () => document.querySelector(".wt-filter__close");
-    this.getTrigger = () =>
-      document.querySelector(".collection__filter-trigger");
-    this.isOpen = () =>
-      document.body.classList.contains(this.activeOverlayBodyClass);
-    this.sectionsTriggers = () =>
-      this.drawer().querySelectorAll(".wt-collapse__trigger");
-    this.isDrawer = this.dataset.filterPosition === "drawer";
+    this.drawer = () => document.querySelector('.wt-filter');
+    this.classDrawerActive = 'wt-filter--drawer-open';
+    this.getCloseButton = () => document.querySelector('.wt-filter__close');
+    this.getTrigger = () => document.querySelector('.collection__filter-trigger');
+    this.isOpen = () => document.body.classList.contains(this.activeOverlayBodyClass);
+    this.sectionsTriggers = () => this.drawer().querySelectorAll('.wt-collapse__trigger');
+    this.isDrawer = this.dataset.filterPosition === 'drawer';
 
-    this.triggerClasses = [
-      "wt-filter__close",
-      this.pageOverlayClass,
-      "collection__filter-trigger",
-    ];
+    this.triggerClasses = ['wt-filter__close', this.pageOverlayClass, 'collection__filter-trigger'];
     this.toggleDrawerElements = () =>
       this.drawer().querySelectorAll(this.drawer().dataset.toggleTabindex);
 
-    this.overlay = document.createElement("div");
+    this.overlay = document.createElement('div');
 
     this.breakpoint = 1200;
     this.currentDrawerMode = this.isDrawerMode();
@@ -35,18 +28,17 @@ class CollectionSection extends HTMLElement {
     this.createOverlay();
     this.updateTabindexes(this.isOpen());
 
-    document.body.addEventListener("click", (e) => {
+    document.body.addEventListener('click', (e) => {
       if (this.triggerClasses.some((cls) => e.target.classList.contains(cls))) {
         this.toggleDrawer(e);
       }
     });
 
-    this.addEventListener("keydown", (e) => {
-      const isTabPressed =
-        e.key === "Tab" || e.keyCode === 9 || e.code === "Tab";
+    this.addEventListener('keydown', (e) => {
+      const isTabPressed = e.key === 'Tab' || e.keyCode === 9 || e.code === 'Tab';
       const { first, last } = this.getFocusableElements();
 
-      if (e.key === "Escape" || e.keyCode === 27 || e.code === "Escape") {
+      if (e.key === 'Escape' || e.keyCode === 27 || e.code === 'Escape') {
         if (this.isOpen()) {
           this.toggleDrawer(e);
         }
@@ -63,7 +55,7 @@ class CollectionSection extends HTMLElement {
       }
     });
 
-    window.addEventListener("resize", this.handleResize.bind(this));
+    window.addEventListener('resize', this.handleResize.bind(this));
     this.handleResize();
   }
 
@@ -93,19 +85,14 @@ class CollectionSection extends HTMLElement {
   }
 
   temporaryHideFocusVisible() {
-    document.body.classList.add("no-focus-visible");
+    document.body.classList.add('no-focus-visible');
   }
 
   getFocusableElements() {
     const focusableElementsSelector =
       "button, [href], input:not([type='hidden']), select, [tabindex]";
-    const elements = Array.from(
-      this.drawer().querySelectorAll(focusableElementsSelector),
-    ).filter(
-      (el) =>
-        !el.hasAttribute("disabled") &&
-        el.tabIndex >= 0 &&
-        el.offsetParent !== null,
+    const elements = Array.from(this.drawer().querySelectorAll(focusableElementsSelector)).filter(
+      (el) => !el.hasAttribute('disabled') && el.tabIndex >= 0 && el.offsetParent !== null,
     );
 
     return {
@@ -120,20 +107,20 @@ class CollectionSection extends HTMLElement {
       if (isOpen) {
         this.getCloseButton()?.focus();
         this.temporaryHideFocusVisible();
-        setTabindex(this.sectionsTriggers(), "0");
-        setTabindex(this.toggleDrawerElements(), "0");
+        setTabindex(this.sectionsTriggers(), '0');
+        setTabindex(this.toggleDrawerElements(), '0');
       } else {
         this.getTrigger()?.focus();
         this.temporaryHideFocusVisible();
-        setTabindex(this.sectionsTriggers(), "-1");
-        setTabindex(this.toggleDrawerElements(), "-1");
+        setTabindex(this.sectionsTriggers(), '-1');
+        setTabindex(this.toggleDrawerElements(), '-1');
 
         this.closeAllCollapsibleSections();
       }
     } else {
       // Always visible mode
-      setTabindex(this.sectionsTriggers(), "0");
-      setTabindex(this.toggleDrawerElements(), "0");
+      setTabindex(this.sectionsTriggers(), '0');
+      setTabindex(this.toggleDrawerElements(), '0');
     }
   }
 
@@ -147,16 +134,16 @@ class CollectionSection extends HTMLElement {
     if (this.isOpen()) {
       // close drawer
       const offsetTop = -parseInt(document.body.style.top, 10);
-      document.body.style.position = "";
-      document.body.style.top = "";
-      document.body.style.left = "";
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
       window.scrollTo(0, offsetTop);
 
       this.closeAllCollapsibleSections();
     } else {
       // open drawer
       document.body.style.top = `${-document.documentElement.scrollTop}px`;
-      document.body.style.left = "0px";
+      document.body.style.left = '0px';
     }
 
     this.drawer()?.classList.toggle(this.classDrawerActive);
@@ -168,13 +155,12 @@ class CollectionSection extends HTMLElement {
   closeAllCollapsibleSections() {
     const openSections = this.drawer().querySelectorAll('[data-open="true"]');
     openSections.forEach((section) => {
-      const trigger = section.querySelector(".wt-collapse__trigger");
+      const trigger = section.querySelector('.wt-collapse__trigger');
       if (trigger) {
-        trigger.classList.remove("wt-collapse__trigger--active");
-        section.dataset.open = "false";
-        const focusableElementsWithTabindex =
-          section.querySelectorAll('[tabindex="0"]');
-        setTabindex(focusableElementsWithTabindex, "-1");
+        trigger.classList.remove('wt-collapse__trigger--active');
+        section.dataset.open = 'false';
+        const focusableElementsWithTabindex = section.querySelectorAll('[tabindex="0"]');
+        setTabindex(focusableElementsWithTabindex, '-1');
       }
     });
   }
@@ -187,4 +173,4 @@ class CollectionSection extends HTMLElement {
   }
 }
 
-customElements.define("collection-section", CollectionSection);
+customElements.define('collection-section', CollectionSection);

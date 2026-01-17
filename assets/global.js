@@ -17,7 +17,7 @@ function getStyleProperty(element, property) {
  *
  */
 
-if (typeof window.Shopify === "undefined") {
+if (typeof window.Shopify === 'undefined') {
   window.Shopify = {};
 }
 
@@ -45,18 +45,18 @@ Shopify.addListener = function (target, eventName, callback) {
 
 Shopify.postLink = function (path, options) {
   options = options || {};
-  const method = options.method || "post";
+  const method = options.method || 'post';
   const params = options.parameters || {};
 
-  const form = document.createElement("form");
-  form.setAttribute("method", method);
-  form.setAttribute("action", path);
+  const form = document.createElement('form');
+  form.setAttribute('method', method);
+  form.setAttribute('action', path);
 
   for (const key in params) {
-    const hiddenField = document.createElement("input");
-    hiddenField.setAttribute("type", "hidden");
-    hiddenField.setAttribute("name", key);
-    hiddenField.setAttribute("value", params[key]);
+    const hiddenField = document.createElement('input');
+    hiddenField.setAttribute('type', 'hidden');
+    hiddenField.setAttribute('name', key);
+    hiddenField.setAttribute('value', params[key]);
     form.appendChild(hiddenField);
   }
 
@@ -65,22 +65,12 @@ Shopify.postLink = function (path, options) {
   document.body.removeChild(form);
 };
 
-Shopify.CountryProvinceSelector = function (
-  country_domid,
-  province_domid,
-  options,
-) {
+Shopify.CountryProvinceSelector = function (country_domid, province_domid, options) {
   this.countryEl = document.getElementById(country_domid);
   this.provinceEl = document.getElementById(province_domid);
-  this.provinceContainer = document.getElementById(
-    options.hideElement || province_domid,
-  );
+  this.provinceContainer = document.getElementById(options.hideElement || province_domid);
 
-  Shopify.addListener(
-    this.countryEl,
-    "change",
-    Shopify.bind(this.countryHandler, this),
-  );
+  Shopify.addListener(this.countryEl, 'change', Shopify.bind(this.countryHandler, this));
 
   this.initCountry();
   this.initProvince();
@@ -88,13 +78,13 @@ Shopify.CountryProvinceSelector = function (
 
 Shopify.CountryProvinceSelector.prototype = {
   initCountry() {
-    const value = this.countryEl.getAttribute("data-default");
+    const value = this.countryEl.getAttribute('data-default');
     Shopify.setSelectorByValue(this.countryEl, value);
     this.countryHandler();
   },
 
   initProvince() {
-    const value = this.provinceEl.getAttribute("data-default");
+    const value = this.provinceEl.getAttribute('data-default');
     if (value && this.provinceEl.options.length > 0) {
       Shopify.setSelectorByValue(this.provinceEl, value);
     }
@@ -102,21 +92,21 @@ Shopify.CountryProvinceSelector.prototype = {
 
   countryHandler(e) {
     var opt = this.countryEl.options[this.countryEl.selectedIndex];
-    const raw = opt.getAttribute("data-provinces");
+    const raw = opt.getAttribute('data-provinces');
     const provinces = JSON.parse(raw);
 
     this.clearOptions(this.provinceEl);
     if (provinces && provinces.length == 0) {
-      this.provinceContainer.style.display = "none";
+      this.provinceContainer.style.display = 'none';
     } else {
       for (let i = 0; i < provinces.length; i++) {
-        var opt = document.createElement("option");
+        var opt = document.createElement('option');
         opt.value = provinces[i][0];
         opt.innerHTML = provinces[i][1];
         this.provinceEl.appendChild(opt);
       }
 
-      this.provinceContainer.style.display = "";
+      this.provinceContainer.style.display = '';
     }
   },
 
@@ -128,7 +118,7 @@ Shopify.CountryProvinceSelector.prototype = {
 
   setOptions(selector, values) {
     for (let i = 0, count = values.length; i < values.length; i++) {
-      const opt = document.createElement("option");
+      const opt = document.createElement('option');
       opt.value = values[i];
       opt.innerHTML = values[i];
       selector.appendChild(opt);
@@ -139,19 +129,19 @@ Shopify.CountryProvinceSelector.prototype = {
 class QuantityCounter extends HTMLElement {
   constructor() {
     super();
-    this.changeEvent = new Event("change", { bubbles: true });
+    this.changeEvent = new Event('change', { bubbles: true });
   }
 
   connectedCallback() {
-    this.counterEl = this.querySelector(".js-counter-quantity");
-    this.increaseBtn = this.querySelector(".js-counter-increase");
-    this.decreaseBtn = this.querySelector(".js-counter-decrease");
+    this.counterEl = this.querySelector('.js-counter-quantity');
+    this.increaseBtn = this.querySelector('.js-counter-increase');
+    this.decreaseBtn = this.querySelector('.js-counter-decrease');
 
     this.min = parseInt(this.counterEl.min) || 1;
     this.max = parseInt(this.counterEl.max) || 999;
 
-    this.increaseBtn.addEventListener("click", this.onIncrease.bind(this));
-    this.decreaseBtn.addEventListener("click", this.onDecrease.bind(this));
+    this.increaseBtn.addEventListener('click', this.onIncrease.bind(this));
+    this.decreaseBtn.addEventListener('click', this.onDecrease.bind(this));
   }
 
   onIncrease() {
@@ -177,7 +167,7 @@ class QuantityCounter extends HTMLElement {
 }
 
 // Define the custom element
-window.customElements.define("quantity-counter", QuantityCounter);
+window.customElements.define('quantity-counter', QuantityCounter);
 
 // without under functions main-password doesn't work
 
@@ -191,14 +181,14 @@ function getFocusableElements(container) {
 
 function toggleTabindex(elements) {
   elements.forEach((el) => {
-    const tabindex = el.getAttribute("tabindex");
-    el.setAttribute("tabindex", tabindex === "0" ? "-1" : "0");
+    const tabindex = el.getAttribute('tabindex');
+    el.setAttribute('tabindex', tabindex === '0' ? '-1' : '0');
   });
 }
 
 function setTabindex(elements, tabindex) {
   elements.forEach((el) => {
-    el.setAttribute("tabindex", tabindex);
+    el.setAttribute('tabindex', tabindex);
   });
 }
 
@@ -208,25 +198,22 @@ function addEventListeners(element, events, handler) {
 }
 
 document.querySelectorAll('[id^="Details-"] summary').forEach((summary) => {
-  summary.setAttribute("role", "button");
-  summary.setAttribute(
-    "aria-expanded",
-    summary.parentNode.hasAttribute("open"),
-  );
+  summary.setAttribute('role', 'button');
+  summary.setAttribute('aria-expanded', summary.parentNode.hasAttribute('open'));
 
-  if (summary.nextElementSibling.getAttribute("id")) {
-    summary.setAttribute("aria-controls", summary.nextElementSibling.id);
+  if (summary.nextElementSibling.getAttribute('id')) {
+    summary.setAttribute('aria-controls', summary.nextElementSibling.id);
   }
 
-  summary.addEventListener("click", (event) => {
+  summary.addEventListener('click', (event) => {
     event.currentTarget.setAttribute(
-      "aria-expanded",
-      !event.currentTarget.closest("details").hasAttribute("open"),
+      'aria-expanded',
+      !event.currentTarget.closest('details').hasAttribute('open'),
     );
   });
 
-  if (summary.closest("header-drawer, menu-drawer")) return;
-  summary.parentElement.addEventListener("keyup", onKeyUpEscape);
+  if (summary.closest('header-drawer, menu-drawer')) return;
+  summary.parentElement.addEventListener('keyup', onKeyUpEscape);
 });
 
 const trapFocusHandlers = {};
@@ -239,22 +226,17 @@ function trapFocus(container, elementToFocus = container) {
   removeTrapFocus();
 
   trapFocusHandlers.focusin = (event) => {
-    if (
-      event.target !== container &&
-      event.target !== last &&
-      event.target !== first
-    )
-      return;
+    if (event.target !== container && event.target !== last && event.target !== first) return;
 
-    document.addEventListener("keydown", trapFocusHandlers.keydown);
+    document.addEventListener('keydown', trapFocusHandlers.keydown);
   };
 
   trapFocusHandlers.focusout = function () {
-    document.removeEventListener("keydown", trapFocusHandlers.keydown);
+    document.removeEventListener('keydown', trapFocusHandlers.keydown);
   };
 
   trapFocusHandlers.keydown = function (event) {
-    if (event.code.toUpperCase() !== "TAB") return; // If not TAB key
+    if (event.code.toUpperCase() !== 'TAB') return; // If not TAB key
     // On the last focusable element and tab forward, focus the first element.
     if (event.target === last && !event.shiftKey) {
       event.preventDefault();
@@ -262,23 +244,20 @@ function trapFocus(container, elementToFocus = container) {
     }
 
     //  On the first focusable element and tab backward, focus the last element.
-    if (
-      (event.target === container || event.target === first) &&
-      event.shiftKey
-    ) {
+    if ((event.target === container || event.target === first) && event.shiftKey) {
       event.preventDefault();
       last.focus();
     }
   };
 
-  document.addEventListener("focusout", trapFocusHandlers.focusout);
-  document.addEventListener("focusin", trapFocusHandlers.focusin);
+  document.addEventListener('focusout', trapFocusHandlers.focusout);
+  document.addEventListener('focusin', trapFocusHandlers.focusin);
 
   elementToFocus.focus();
 
   if (
-    elementToFocus.tagName === "INPUT" &&
-    ["search", "text", "email", "url"].includes(elementToFocus.type) &&
+    elementToFocus.tagName === 'INPUT' &&
+    ['search', 'text', 'email', 'url'].includes(elementToFocus.type) &&
     elementToFocus.value
   ) {
     elementToFocus.setSelectionRange(0, elementToFocus.value.length);
@@ -286,22 +265,22 @@ function trapFocus(container, elementToFocus = container) {
 }
 
 function removeTrapFocus(elementToFocus = null) {
-  document.removeEventListener("focusin", trapFocusHandlers.focusin);
-  document.removeEventListener("focusout", trapFocusHandlers.focusout);
-  document.removeEventListener("keydown", trapFocusHandlers.keydown);
+  document.removeEventListener('focusin', trapFocusHandlers.focusin);
+  document.removeEventListener('focusout', trapFocusHandlers.focusout);
+  document.removeEventListener('keydown', trapFocusHandlers.keydown);
 
   if (elementToFocus) elementToFocus.focus();
 }
 
 function onKeyUpEscape(event) {
-  if (event.code.toUpperCase() !== "ESCAPE") return;
+  if (event.code.toUpperCase() !== 'ESCAPE') return;
 
-  const openDetailsElement = event.target.closest("details[open]");
+  const openDetailsElement = event.target.closest('details[open]');
   if (!openDetailsElement) return;
 
-  const summaryElement = openDetailsElement.querySelector("summary");
-  openDetailsElement.removeAttribute("open");
-  summaryElement.setAttribute("aria-expanded", false);
+  const summaryElement = openDetailsElement.querySelector('summary');
+  openDetailsElement.removeAttribute('open');
+  summaryElement.setAttribute('aria-expanded', false);
   summaryElement.focus();
 }
 
@@ -318,16 +297,16 @@ class ProductRecommendations extends HTMLElement {
       fetch(this.dataset.url)
         .then((response) => response.text())
         .then((text) => {
-          const html = document.createElement("div");
+          const html = document.createElement('div');
           html.innerHTML = text;
-          const recommendations = html.querySelector("product-recommendations");
+          const recommendations = html.querySelector('product-recommendations');
 
           if (recommendations && recommendations.innerHTML.trim().length) {
             this.innerHTML = recommendations.innerHTML;
           }
 
-          if (html.querySelector(".grid__item")) {
-            this.classList.add("product-recommendations--loaded");
+          if (html.querySelector('.grid__item')) {
+            this.classList.add('product-recommendations--loaded');
           }
         })
         .catch((e) => {
@@ -336,9 +315,9 @@ class ProductRecommendations extends HTMLElement {
     };
 
     new IntersectionObserver(handleIntersection.bind(this), {
-      rootMargin: "0px 0px 400px 0px",
+      rootMargin: '0px 0px 400px 0px',
     }).observe(this);
   }
 }
 
-customElements.define("product-recommendations", ProductRecommendations);
+customElements.define('product-recommendations', ProductRecommendations);

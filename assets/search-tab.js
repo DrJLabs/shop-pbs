@@ -1,31 +1,27 @@
-if (!customElements.get("search-tab")) {
+if (!customElements.get('search-tab')) {
   customElements.define(
-    "search-tab",
+    'search-tab',
     class SearchTab extends HTMLElement {
       constructor() {
         super();
       }
 
       connectedCallback() {
-        this.tabButtons = this.querySelectorAll(".search-results-tab__item");
+        this.tabButtons = this.querySelectorAll('.search-results-tab__item');
         this.tabContainers = document.querySelectorAll(
-          ".main-search-tab__container .collection__grid",
+          '.main-search-tab__container .collection__grid',
         );
 
-        this.paginationWrapper = document.querySelector(
-          ".wt-pagination-wrapper",
-        );
-        this.toolbarWrapper = document.querySelector(
-          ".collection__sticky-header",
-        );
+        this.paginationWrapper = document.querySelector('.wt-pagination-wrapper');
+        this.toolbarWrapper = document.querySelector('.collection__sticky-header');
 
-        this.asideFilters = document.querySelector(".collection__aside");
+        this.asideFilters = document.querySelector('.collection__aside');
         this.resultProducts = Array(
-          ...document.querySelectorAll("#product-grid .collection__grid__item"),
+          ...document.querySelectorAll('#product-grid .collection__grid__item'),
         );
-        this.currentContainer = "products";
+        this.currentContainer = 'products';
         this.sectionId = this.dataset.sectionId;
-        console.log(this.sectionId)
+        console.log(this.sectionId);
         this.terms = this.dataset.terms;
         this.eventCounter = 0;
         this.timeout;
@@ -42,11 +38,11 @@ if (!customElements.get("search-tab")) {
         this.hideAsideFilters();
       }
 
-      hideAsideFilters(buttonId = "products") {
+      hideAsideFilters(buttonId = 'products') {
         if (!this.asideFilters) return;
 
-        const shouldHidden = buttonId !== "products";
-        this.asideFilters.classList.toggle("hidden", shouldHidden);
+        const shouldHidden = buttonId !== 'products';
+        this.asideFilters.classList.toggle('hidden', shouldHidden);
       }
 
       fetchData() {
@@ -69,8 +65,8 @@ if (!customElements.get("search-tab")) {
       setActiveButton(event) {
         const buttonId = event.target.id;
         if (buttonId === this.currentContainer) return;
-        this.tabButtons.forEach((btn) => btn.classList.remove("active"));
-        event.target.classList.add("active");
+        this.tabButtons.forEach((btn) => btn.classList.remove('active'));
+        event.target.classList.add('active');
       }
 
       changeCategoryTab(event) {
@@ -78,17 +74,17 @@ if (!customElements.get("search-tab")) {
         if (buttonId === this.currentContainer) return;
 
         const tabElements = {
-          products: "#product-grid",
-          articles: "#product-grid-articles",
-          pages: "#product-grid-pages",
+          products: '#product-grid',
+          articles: '#product-grid-articles',
+          pages: '#product-grid-pages',
         };
 
         for (const [key, value] of Object.entries(tabElements)) {
           const productGrid = document.querySelector(value);
           if (buttonId === key) {
-            productGrid.classList.add("active");
+            productGrid.classList.add('active');
           } else {
-            productGrid.classList.remove("active");
+            productGrid.classList.remove('active');
           }
         }
         this.currentContainer = buttonId;
@@ -97,12 +93,12 @@ if (!customElements.get("search-tab")) {
       }
 
       toggleFiltersAndPagination(buttonId) {
-        if (buttonId === "products") {
-          this.toolbarWrapper.classList.remove("transition");
-          this.paginationWrapper.classList.remove("transition");
+        if (buttonId === 'products') {
+          this.toolbarWrapper.classList.remove('transition');
+          this.paginationWrapper.classList.remove('transition');
         } else {
-          this.toolbarWrapper?.classList.add("transition");
-          this.paginationWrapper?.classList.add("transition");
+          this.toolbarWrapper?.classList.add('transition');
+          this.paginationWrapper?.classList.add('transition');
         }
       }
 
@@ -114,27 +110,19 @@ if (!customElements.get("search-tab")) {
           .then((response) => response.text())
           .then((html) => {
             const resultsMarkup = new DOMParser()
-              .parseFromString(html, "text/html")
-              .querySelector(".collection__grid--search-category");
-            const articlesGrid = document.querySelector(
-              "#product-grid-articles",
-            );
-            const articles = resultsMarkup.querySelectorAll(
-              ".collection__grid__item",
-            );
-            const searchResult = resultsMarkup.querySelector(
-              ".search-results__no-results",
-            );
-            const loader = articlesGrid.querySelector(
-              ".collection__grid__loader__container",
-            );
-            if (loader) loader.classList.add("hidden");
-            articlesGrid.innerHTML = "";
+              .parseFromString(html, 'text/html')
+              .querySelector('.collection__grid--search-category');
+            const articlesGrid = document.querySelector('#product-grid-articles');
+            const articles = resultsMarkup.querySelectorAll('.collection__grid__item');
+            const searchResult = resultsMarkup.querySelector('.search-results__no-results');
+            const loader = articlesGrid.querySelector('.collection__grid__loader__container');
+            if (loader) loader.classList.add('hidden');
+            articlesGrid.innerHTML = '';
             if (searchResult) articlesGrid.appendChild(searchResult);
             articles.forEach((result) => articlesGrid.appendChild(result));
           })
           .catch((error) => {
-            console.error("Error fetching paginated results:", error);
+            console.error('Error fetching paginated results:', error);
           });
       }
 
@@ -146,48 +134,42 @@ if (!customElements.get("search-tab")) {
           .then((response) => response.text())
           .then((html) => {
             const resultsMarkup = new DOMParser()
-              .parseFromString(html, "text/html")
-              .querySelector(".collection__grid--search-category");
-            const pagesGrid = document.querySelector("#product-grid-pages");
-            const pages = resultsMarkup.querySelectorAll(
-              ".collection__grid__item",
-            );
-            const searchResult = resultsMarkup.querySelector(
-              ".search-results__no-results",
-            );
-            const loader = pagesGrid.querySelector(
-              ".collection__grid__loader__container",
-            );
-            if (loader) loader.classList.add("hidden");
-            pagesGrid.innerHTML = "";
+              .parseFromString(html, 'text/html')
+              .querySelector('.collection__grid--search-category');
+            const pagesGrid = document.querySelector('#product-grid-pages');
+            const pages = resultsMarkup.querySelectorAll('.collection__grid__item');
+            const searchResult = resultsMarkup.querySelector('.search-results__no-results');
+            const loader = pagesGrid.querySelector('.collection__grid__loader__container');
+            if (loader) loader.classList.add('hidden');
+            pagesGrid.innerHTML = '';
             if (searchResult) pagesGrid.appendChild(searchResult);
             pages.forEach((result) => pagesGrid.appendChild(result));
           })
           .catch((error) => {
-            console.error("Error fetching paginated results:", error);
+            console.error('Error fetching paginated results:', error);
           });
       }
 
       addEventListeners() {
         this.tabButtons.forEach((button) => {
-          button.addEventListener("click", (event) => {
+          button.addEventListener('click', (event) => {
             this.setActiveButton(event);
             this.changeCategoryTab(event);
           });
         });
 
-        document.addEventListener("facets:change", this.onEventTriggered);
+        document.addEventListener('facets:change', this.onEventTriggered);
       }
 
       removeEventListeners() {
         this.tabButtons.forEach((button) => {
-          button.removeEventListener("click", (event) => {
+          button.removeEventListener('click', (event) => {
             this.setActiveButton(event);
             this.changeCategoryTab(event);
           });
         });
 
-        document.removeEventListener("facets:change", this.onEventTriggered);
+        document.removeEventListener('facets:change', this.onEventTriggered);
       }
 
       disconnectedCallback() {

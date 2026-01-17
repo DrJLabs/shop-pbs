@@ -1,6 +1,7 @@
 # Storefront Inventory + Completion Checklist (Working Doc)
 
 ## Table of Contents |
+
 - 0 Executive snapshot
 - 1 Home page redesign
 - 2 Site navigation and structure
@@ -54,12 +55,14 @@
 - Current state: Completed in theme. `sections/page-header.liquid` no longer renders `search-drawer` or account/cart header panel items. The “Log in” menu link remains in the header per request.
 
 **Acceptance Criteria**
+
 - Header shows no search, account, or cart icons/links on desktop or mobile.
 - No `search-drawer` or `.wt-header__search__body` nodes in the header DOM.
 - Keyboard tabbing across the header does not land on search/account/cart controls.
 - Navigation/logo/menu toggle still work.
 
 **Verification**
+
 - Run `shopify theme dev --store <store-domain> --theme <theme_id>` and visit `http://127.0.0.1:9292`.
 - Confirm selectors are absent: `.wt-header__panel__item--account`, `.wt-header__panel__item--cart`, `.wt-header__search-trigger`, `.wt-header__search__body`, `search-drawer`.
 - Manual tab-through on desktop and mobile emulator.
@@ -73,6 +76,7 @@
 - Current state: Home hero now uses `pb-hero-topo` with the existing hero images and CTAs (Discover our blends `/pages/blends` and Partner with us `/pages/wholesale`). The previous logo banner is disabled so this hero sits at the top of the page. Hero imagery is still placeholder and needs an approved brand visual.
 
 **Acceptance Criteria**
+
 - Hero image is updated to an approved brand visual with descriptive alt text.
 - Tagline text matches approved copy and remains legible on desktop and mobile.
 - CTA 1 links to the Blends page (`/pages/blends` or final chosen URL).
@@ -80,6 +84,7 @@
 - No hero CTA links to retail collections or cart flows.
 
 **Verification**
+
 - Load `/` on desktop and mobile widths; verify CTA labels and targets.
 - Confirm alt text exists for the hero image.
 
@@ -91,11 +96,13 @@
 - Current state: Brand story section is in place below the hero with placeholder copy and a temporary image (reusing the hero image). Image is positioned on the right; copy will be refined later.
 
 **Acceptance Criteria**
+
 - Brand story section appears immediately below the hero.
 - Copy includes origin, mission, and brand values in 3–4 sentences.
 - Supporting image/graphic has alt text and does not overpower the copy.
 
 **Verification**
+
 - Check `/` on desktop and mobile for layout spacing and readability.
 
 ## 1F Present unique selling points (USPs)
@@ -104,11 +111,13 @@
 - Current state: The home page now uses placeholder brand USPs with built-in icons; copy is ready to refine.
 
 **Acceptance Criteria**
+
 - 3–4 USPs are present with consistent icon style and concise copy.
 - USP copy is brand-specific (not retail-ops focused).
 - Icons have alt text or are decorative with `aria-hidden`.
 
 **Verification**
+
 - Visually inspect `/` on desktop/mobile.
 - Spot-check icon accessibility attributes.
 
@@ -121,11 +130,13 @@
 - Current state: A four-step process teaser with placeholder copy and a CTA to `/pages/our-process` now appears on the home page.
 
 **Acceptance Criteria**
+
 - Process teaser includes all four steps with short summaries.
 - Each step has a consistent icon treatment.
 - A clear CTA links to `/pages/our-process`.
 
 **Verification**
+
 - Click CTA to confirm it routes to the process page.
 - Check layout on mobile (no overflow or stacking issues).
 
@@ -136,10 +147,12 @@
 - Current state: Retail promo block has been replaced by brand USPs, and the homepage now uses the USP section instead of retail promos.
 
 **Acceptance Criteria**
+
 - Retail promo block is removed from the home page.
 - Replacement section (newsletter or brand-oriented block) matches brand tone.
 
 **Verification**
+
 - Review `/` to confirm the retail promo block is no longer visible.
 
 ## 1I Update the newsletter sign-up (SKIPPED)
@@ -149,10 +162,12 @@
 - Current state: Skipped by request; newsletter block remains unchanged (“SUBSCRIBE TO OUR EMAILS” and “new collections and exclusive offers”).
 
 **Acceptance Criteria**
+
 - Newsletter heading and microcopy match wholesale/brand tone (no retail promo language).
 - Form still submits successfully.
 
 **Verification**
+
 - Submit a test email and confirm success message.
 
 ## 1J Edit the footer
@@ -164,11 +179,13 @@
 - Current state: Footer uses `footer-wholesale` and `footer-policies` menus populated in admin, payment icons are disabled, and copyright is rendered dynamically.
 
 **Acceptance Criteria**
+
 - Footer no longer shows payment logos.
 - Footer links exclude retail-only pages and include About Us, Our Process, COAs, Wholesale, Contact.
 - Copyright year is dynamic (or updated to current year).
 
 **Verification**
+
 - Verify footer links open valid pages (no 404s).
 
 ## 1K Implement age verification (21+)
@@ -178,10 +195,12 @@
 - Current state: No age-verification pop-up or modal exists.
 
 **Acceptance Criteria**
+
 - Age gate appears on first visit and blocks interaction until confirmed.
 - Once confirmed, the gate does not reappear on subsequent pages in the same session.
 
 **Verification**
+
 - Test in a fresh private window and on a second page load.
 
 ## Inventory Notes
@@ -197,10 +216,12 @@
 - Current state: `main-menu-wholesale` is populated in admin and verified in the header.
 
 **Acceptance Criteria**
+
 - Main menu contains only the listed items, in the approved order.
 - Menu links route to live pages (no 404s).
 
 **Verification**
+
 - Click each menu item on desktop and mobile.
 
 ## 2B Create or update secondary menus (footer)
@@ -211,10 +232,12 @@
 - Current state: `footer-wholesale` and `footer-policies` are populated in admin; payment icons remain disabled and menus render correctly.
 
 **Acceptance Criteria**
+
 - Footer contains only approved links and excludes retail-only items.
 - Payment icons are removed.
 
 **Verification**
+
 - Verify footer link targets and absence of payment icons.
 
 ## 2C Ensure menu responsiveness
@@ -224,10 +247,12 @@
 - Current state: Verified via Playwright at 375px and 768px; no overflow or spacing issues observed.
 
 **Acceptance Criteria**
+
 - Mobile menu is readable, tappable, and does not overflow.
 - Menu items are consistent with desktop navigation.
 
 **Verification**
+
 - Test on common breakpoints (375px, 768px).
 
 ## Inventory Notes
@@ -245,10 +270,12 @@
 - Current state: No About Us page exists; `/pages/about-us` returns 404.
 
 **Acceptance Criteria**
+
 - Copy includes origin story, mission/values, and founder/team introduction.
 - Tone is brand-aligned and compliant (no unverified claims).
 
 **Verification**
+
 - Review copy with stakeholders before publishing.
 
 ## 3B Design the page using Shopify sections
@@ -260,10 +287,12 @@
 - Current state: Page is missing.
 
 **Acceptance Criteria**
+
 - Page contains the three sections with consistent styling and spacing.
 - Page uses existing theme typography and color system.
 
 **Verification**
+
 - Visual check on desktop and mobile.
 
 ## 3C Publish and link the About page
@@ -273,10 +302,12 @@
 - Current state: No published page; header/footer links point to a non-existent page.
 
 **Acceptance Criteria**
+
 - `/pages/about-us` (or final slug) loads without errors.
 - Navigation and footer link to the live page.
 
 **Verification**
+
 - Click About Us from header and footer.
 
 ## Inventory Notes
@@ -291,9 +322,11 @@
 - Current state: `/pages/our-process` contains the four headings and paragraphs already (text-only).
 
 **Acceptance Criteria**
+
 - Existing copy is preserved and structured into discrete sections.
 
 **Verification**
+
 - Confirm all four sections appear in order.
 
 ## 4B Edit the copy for clarity and conciseness
@@ -303,9 +336,11 @@
 - Current state: Copy exists but has not been edited.
 
 **Acceptance Criteria**
+
 - Copy is concise, brand-aligned, and avoids medical claims.
 
 **Verification**
+
 - Review copy with compliance/brand owner.
 
 ## 4C Add visuals for each step
@@ -315,9 +350,11 @@
 - Current state: Text only; no icons/images.
 
 **Acceptance Criteria**
+
 - Each step has a visual with alt text or decorative attributes.
 
 **Verification**
+
 - Inspect images in desktop and mobile views.
 
 ## 4D Improve layout and add a CTA
@@ -327,10 +364,12 @@
 - Current state: Single-column text; no CTA at bottom.
 
 **Acceptance Criteria**
+
 - Layout is multi-section and visually scannable.
 - CTA routes to the approved page and uses approved label.
 
 **Verification**
+
 - Click CTA and confirm route.
 
 ## 4E Test and publish
@@ -340,9 +379,11 @@
 - Current state: Page is live but lacks design elements, imagery, and CTAs.
 
 **Acceptance Criteria**
+
 - No layout issues on mobile; spacing and typography consistent.
 
 **Verification**
+
 - Desktop + mobile review.
 
 ## Inventory Notes
@@ -365,9 +406,11 @@
 - Current state: Whispering Roots product page description includes percentages (e.g., 71% HC, 4% HC-P, 5% CBD, CBG, CBN, 3% CBC, 7% terpenes).
 
 **Acceptance Criteria**
+
 - Each blend has a consistent, approved description and data points (cannabinoids, terpenes, effects).
 
 **Verification**
+
 - Cross-check against COA PDFs for accuracy.
 
 ## 5B Create product profile blocks
@@ -379,10 +422,12 @@
 - Current state: `blends-profiles` section and `page.blends` template are in the theme. Each block uses a product picker to prefill name, image, and description; highlights and COA links can be overridden. COA links default to `product.metafields.custom.coa_url` and open in a new tab.
 
 **Acceptance Criteria**
+
 - Each blend profile includes image, short description, highlights, and COA link.
 - COA link labels are descriptive and open the correct PDF.
 
 **Verification**
+
 - Click each COA link; verify PDF and naming.
 
 ## 5C Replace retail CTAs with wholesale-friendly CTAs
@@ -393,10 +438,12 @@
 - Current state: Collection cards, predictive search suggestions, featured product blocks, and shoppable tooltips now show a “Partner with us” CTA via `snippets/wholesale-cta.liquid`, using translation key `products.product.partner_with_us` and `settings.wholesale_page_url` (fallback `/pages/wholesale`, `shopify://` normalized). Product pages remain retail until hidden via Shopify admin.
 
 **Acceptance Criteria**
+
 - No price or purchase buttons appear on blends listings.
 - CTA routes to contact/wholesale form.
 
 **Verification**
+
 - Inspect product and blends pages for price/cart elements.
 
 ## 5D Publish and link the Blends page
@@ -408,10 +455,12 @@
 - Current state: `page.blends` template is ready with three profile blocks. Blends now appears in the `main-menu-wholesale` header menu, but admin still needs to create the Blends page and assign this template before verifying COA links and CTAs.
 
 **Acceptance Criteria**
+
 - Blends page is live and linked from header and footer.
 - All CTA and COA links work.
 
 **Verification**
+
 - Navigate via menu and test all links.
 
 ## Inventory Notes
@@ -428,9 +477,11 @@
 - Current state: Current intro explains where to find batch COAs but does not emphasize why they matter.
 
 **Acceptance Criteria**
+
 - Intro includes a brief COA definition and compliance rationale.
 
 **Verification**
+
 - Review copy for clarity and compliance.
 
 ## 6B Organise COA links
@@ -440,9 +491,11 @@
 - Current state: Page lists three bullet links (Whispering Roots, Headspace Elevate, JennaBoo); grouping not necessary currently.
 
 **Acceptance Criteria**
+
 - COA links are descriptive and easy to scan.
 
 **Verification**
+
 - Click each link; confirm correct PDF.
 
 ## 6C Accessibility and link behaviour
@@ -452,9 +505,11 @@
 - Current state: No thumbnails; links open PDFs in the same tab.
 
 **Acceptance Criteria**
+
 - COA links open in a new tab and remain accessible.
 
 **Verification**
+
 - Click each COA link and confirm new tab behavior.
 
 ## 6D Publish and update navigation
@@ -464,9 +519,11 @@
 - Current state: COAs page is live; linked from home CTA and footer; not linked from the header.
 
 **Acceptance Criteria**
+
 - COAs appears in header navigation and footer label matches header.
 
 **Verification**
+
 - Check header and footer menus.
 
 ## Inventory Notes
@@ -482,9 +539,11 @@
 - Current state: `/pages/compliance` contains no content (standard footer only).
 
 **Acceptance Criteria**
+
 - Compliance requirements are documented and approved before publishing.
 
 **Verification**
+
 - Review with legal/compliance stakeholder.
 
 ## 7B Draft the page content
@@ -497,9 +556,11 @@
 - Current state: Missing.
 
 **Acceptance Criteria**
+
 - Page includes required warnings, age restrictions, and non-retail statement.
 
 **Verification**
+
 - Review copy with compliance stakeholder.
 
 ## 7C Build and publish
@@ -509,9 +570,11 @@
 - Current state: Placeholder exists but is empty.
 
 **Acceptance Criteria**
+
 - Compliance page is live and linked from footer/navigation.
 
 **Verification**
+
 - Verify link routes to live page.
 
 ## Inventory Notes
@@ -528,9 +591,11 @@
 - Current state: No wholesale page exists; no wholesale partnership info provided.
 
 **Acceptance Criteria**
+
 - Outline covers benefits, requirements, and FAQ topics.
 
 **Verification**
+
 - Review outline with stakeholders.
 
 ## 8B Design the page and CTA
@@ -540,9 +605,11 @@
 - Current state: Not implemented.
 
 **Acceptance Criteria**
+
 - Page sections are clearly separated with a prominent CTA.
 
 **Verification**
+
 - Confirm CTA routes to form.
 
 ## 8C Decide the application method
@@ -554,10 +621,12 @@
 - Current state: No wholesale form exists.
 
 **Acceptance Criteria**
+
 - Wholesale form captures required info and routes to the wholesale inbox.
 - Wholesale page appears in navigation.
 
 **Verification**
+
 - Submit a test entry and confirm delivery.
 
 ## Inventory Notes
@@ -573,9 +642,11 @@
 - Current state: Contact page lists categories in plain text and uses form fields Name, Phone number, Email (required), Comment. No dropdown; button reads “SEND A FORM”.
 
 **Acceptance Criteria**
+
 - Contact form fields match the simplified list and include enquiry type dropdown.
 
 **Verification**
+
 - Submit test form for each enquiry type.
 
 ## 9B Confirm routing
@@ -585,9 +656,11 @@
 - Current state: Routing cannot be verified without submitting; admin confirmation needed.
 
 **Acceptance Criteria**
+
 - Each enquiry type routes to the correct inbox.
 
 **Verification**
+
 - Confirm receipt in the intended inboxes.
 
 ## 9C Add contact details
@@ -598,9 +671,11 @@
 - Current state: Contact page does not list email/address. Privacy policy includes `jordan@drjspremiumblends.com` and “402 Forest Trail, Kingston, TN, 37763, US”.
 
 **Acceptance Criteria**
+
 - Contact email and optional address are visible on the page.
 
 **Verification**
+
 - Visual check on desktop/mobile.
 
 ## 9D Publish and test
@@ -610,9 +685,11 @@
 - Current state: Form exists but has no dropdown; routing cannot be verified without submitting.
 
 **Acceptance Criteria**
+
 - Updated contact form is live and submits successfully.
 
 **Verification**
+
 - Submit test messages for each enquiry type.
 
 ## Inventory Notes
@@ -627,9 +704,11 @@
 - Current state: Not verifiable from public storefront; requires admin/theme inspection.
 
 **Acceptance Criteria**
+
 - All meaningful images have descriptive alt text; decorative images are marked accordingly.
 
 **Verification**
+
 - Inspect rendered HTML or theme assets.
 
 ## 10B Use semantic headings
@@ -639,9 +718,11 @@
 - Current state: Visual headings exist but HTML hierarchy not confirmed; needs theme inspection.
 
 **Acceptance Criteria**
+
 - Each page uses a single H1 and follows a logical hierarchy.
 
 **Verification**
+
 - Inspect DOM heading structure.
 
 ## 10C Write meta titles and descriptions
@@ -651,9 +732,11 @@
 - Current state: Not visible from storefront; admin required.
 
 **Acceptance Criteria**
+
 - Each page has a unique meta title and description.
 
 **Verification**
+
 - Confirm in Shopify admin and in rendered HTML.
 
 ## 10D Sitemap and robots rules
@@ -663,9 +746,11 @@
 - Current state: Not evaluated here.
 
 **Acceptance Criteria**
+
 - Sitemap includes all public pages; sensitive pages are excluded if required.
 
 **Verification**
+
 - Review `/sitemap.xml` and robots settings.
 
 ## 10E Accessibility testing
@@ -675,9 +760,11 @@
 - Current state: Not performed.
 
 **Acceptance Criteria**
+
 - No high-severity accessibility issues remain.
 
 **Verification**
+
 - Run Lighthouse or axe and fix flagged issues.
 
 ## 10F Indexing review
@@ -686,9 +773,11 @@
 - Current state: Not assessed.
 
 **Acceptance Criteria**
+
 - Indexing status matches compliance requirements.
 
 **Verification**
+
 - Review meta robots and Search Console (if available).
 
 ## Inventory Notes
@@ -704,10 +793,12 @@
 - Current state: Header search/account/cart entry points are removed; collection/search/featured/shoppable surfaces show wholesale CTAs and no pricing. Product pages still show price/Add to cart/PayPal buttons unless hidden or edited in Shopify admin.
 
 **Acceptance Criteria**
+
 - Products are not purchasable from the storefront (no cart/checkout flows).
 - Retail purchase buttons are removed or replaced with wholesale CTAs.
 
 **Verification**
+
 - Confirm product pages show no price or add-to-cart.
 - Verify cart/checkout cannot be accessed from the storefront.
 
@@ -718,9 +809,11 @@
 - Current state: Shipping & Returns is a 404; Track Order is an app page (retail-oriented).
 
 **Acceptance Criteria**
+
 - Footer/menu links no longer point to 404s or retail-only pages.
 
 **Verification**
+
 - Click all footer links and confirm no 404s.
 
 ## 11C Update theme styles
@@ -730,10 +823,12 @@
 - Current state: Dark backgrounds with green/white accents; buttons are olive green with white text; hover states subtle.
 
 **Acceptance Criteria**
+
 - Updated palette and typography are consistent across pages.
 - Buttons meet contrast guidelines and have visible hover/focus states.
 
 **Verification**
+
 - Visual spot-check on key pages; run contrast checker if needed.
 
 ## 11D Review for consistency
@@ -745,9 +840,11 @@
 - Current state: Broken links exist (About Us, Shipping & Returns). Compliance & Legal and About Us lack content. Product descriptions vary. Full style audit pending. A wholesale CTA smoke test exists in `tests/smoke/wholesale-cta.spec.ts` (requires `BASE_URL` or `SHOP_URL` for the live check).
 
 **Acceptance Criteria**
+
 - No broken links remain; layout is consistent on desktop/mobile.
 
 **Verification**
+
 - Manual page-by-page review on desktop and mobile.
 
 ## Inventory Notes
@@ -765,10 +862,12 @@
 - Current state: Retail UI is removed from collection/search/featured/shoppable surfaces, but product pages still show price/Add to cart unless hidden in admin. Contact form lacks dropdown. COA links still open in the same tab. Wholesale and compliance content are missing, and `settings.wholesale_page_url` still needs to be configured.
 
 **Acceptance Criteria**
+
 - All navigation/CTA links work without 404s.
 - No retail purchase flows remain.
 
 **Verification**
+
 - Click through header/footer and all CTAs on desktop and mobile.
 
 ## 12B Prepare for content refinement
@@ -779,9 +878,11 @@
 - Current state: Brand story and USPs exist but need final copy; About Us and wholesale details are still missing. Product descriptions vary and need standardisation. Images need selection.
 
 **Acceptance Criteria**
+
 - Content inventory is complete and assigned to owners.
 
 **Verification**
+
 - Review content checklist with stakeholders.
 
 ## 12C Plan wholesale portal implementation (future phase)
@@ -791,9 +892,11 @@
 - Current state: Wholesale functionality not started; no apps confirmed publicly.
 
 **Acceptance Criteria**
+
 - Shortlist of wholesale solutions with pros/cons and recommended path.
 
 **Verification**
+
 - Stakeholder review/approval of the selected approach.
 
 ## Recommended next steps
@@ -808,23 +911,23 @@
 
 ## A. Full storefront site map
 
-| Page name | URL | Where linked | Notes |
-| --- | --- | --- | --- |
-| Home | `/` | Header “Home” | Hero with tagline and CTAs, brand story, USPs, process teaser, newsletter, footer; no product grid |
-| Our Shop / All Products | `/collections/all` | Not linked in menus (direct URL) | Collection cards show wholesale CTAs and no pricing; card links route to the wholesale URL |
-| Headspace Elevate product | `/products/headspace-elevate-2g` | Product card on collection page | Shows product image, price $44.95, variant selector, Add to cart and PayPal buttons; description includes HC content |
-| Whispering Roots product | `/products/whispering-rots-2g` | Product card on collection page | Shows price $44.95; description notes cannabinoid percentages |
-| JennaBoo product | `/products/jennaboo-2g` | Product card on collection page | Price $44.95; minimal description |
-| Contact Us | `/pages/contact` | Header “Contact Us”; footer link | Categories listed in text; form fields Name, Phone number, Email*, Comment; button “SEND A FORM”; no dropdown |
-| Track order status | `/apps/track123` | Not linked in menus (direct URL) | App page with tracking form (order number + email/phone); retail-oriented |
-| Data-sharing opt-out | `/pages/data-sharing-opt-out` | Footer link | Checkbox and OPT OUT button |
-| About Us | `/pages/about-us` | Footer link | 404 Not Found |
-| Our Process | `/pages/our-process` | Footer link | Live; text-only; no CTA |
-| Certificates of Analysis (COAs) | `/pages/certificates-of-analysis-coas` | Home CTA; footer link | Live; needs stronger intro; PDFs open same tab |
-| Compliance & Legal | `/pages/compliance` | Footer link | Empty content (footer only) |
-| Shipping & Returns | `/pages/shipping-returns` | Footer link | 404 Not Found |
-| FAQs | `/pages/faqs` | Footer link | Live |
-| Privacy policy | `/policies/privacy-policy` | Footer link | Live |
-| Refund policy | `/policies/refund-policy` | Footer link | Live |
-| Shipping policy | `/policies/shipping-policy` | Footer link | Live |
-| Terms of Service | `/policies/terms-of-service` | Footer link | Live |
+| Page name                       | URL                                    | Where linked                     | Notes                                                                                                                |
+| ------------------------------- | -------------------------------------- | -------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| Home                            | `/`                                    | Header “Home”                    | Hero with tagline and CTAs, brand story, USPs, process teaser, newsletter, footer; no product grid                   |
+| Our Shop / All Products         | `/collections/all`                     | Not linked in menus (direct URL) | Collection cards show wholesale CTAs and no pricing; card links route to the wholesale URL                           |
+| Headspace Elevate product       | `/products/headspace-elevate-2g`       | Product card on collection page  | Shows product image, price $44.95, variant selector, Add to cart and PayPal buttons; description includes HC content |
+| Whispering Roots product        | `/products/whispering-rots-2g`         | Product card on collection page  | Shows price $44.95; description notes cannabinoid percentages                                                        |
+| JennaBoo product                | `/products/jennaboo-2g`                | Product card on collection page  | Price $44.95; minimal description                                                                                    |
+| Contact Us                      | `/pages/contact`                       | Header “Contact Us”; footer link | Categories listed in text; form fields Name, Phone number, Email\*, Comment; button “SEND A FORM”; no dropdown       |
+| Track order status              | `/apps/track123`                       | Not linked in menus (direct URL) | App page with tracking form (order number + email/phone); retail-oriented                                            |
+| Data-sharing opt-out            | `/pages/data-sharing-opt-out`          | Footer link                      | Checkbox and OPT OUT button                                                                                          |
+| About Us                        | `/pages/about-us`                      | Footer link                      | 404 Not Found                                                                                                        |
+| Our Process                     | `/pages/our-process`                   | Footer link                      | Live; text-only; no CTA                                                                                              |
+| Certificates of Analysis (COAs) | `/pages/certificates-of-analysis-coas` | Home CTA; footer link            | Live; needs stronger intro; PDFs open same tab                                                                       |
+| Compliance & Legal              | `/pages/compliance`                    | Footer link                      | Empty content (footer only)                                                                                          |
+| Shipping & Returns              | `/pages/shipping-returns`              | Footer link                      | 404 Not Found                                                                                                        |
+| FAQs                            | `/pages/faqs`                          | Footer link                      | Live                                                                                                                 |
+| Privacy policy                  | `/policies/privacy-policy`             | Footer link                      | Live                                                                                                                 |
+| Refund policy                   | `/policies/refund-policy`              | Footer link                      | Live                                                                                                                 |
+| Shipping policy                 | `/policies/shipping-policy`            | Footer link                      | Live                                                                                                                 |
+| Terms of Service                | `/policies/terms-of-service`           | Footer link                      | Live                                                                                                                 |

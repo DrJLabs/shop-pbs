@@ -1,45 +1,45 @@
-import Swiper from "./swiper-bundle.esm.browser.min.js";
-import PhotoSwipeLightbox from "./photoswipe-lightbox.esm.min.js";
+import Swiper from './swiper-bundle.esm.browser.min.js';
+import PhotoSwipeLightbox from './photoswipe-lightbox.esm.min.js';
 
-const badges = document.querySelector(".photoswipe > .card__badges");
+const badges = document.querySelector('.photoswipe > .card__badges');
 
 const lightbox = new PhotoSwipeLightbox({
   // may select multiple "galleries"
-  gallery: ".photoswipe",
+  gallery: '.photoswipe',
 
   // Elements within gallery (slides)
-  children: "a",
+  children: 'a',
 
   // setup PhotoSwipe Core dynamic import
-  pswpModule: () => import("./photoswipe.esm.min.js"),
+  pswpModule: () => import('./photoswipe.esm.min.js'),
 
   bgOpacity: 1,
 });
 lightbox.init();
-lightbox.on("beforeOpen", () => {
-  badges?.classList.add("hide");
+lightbox.on('beforeOpen', () => {
+  badges?.classList.add('hide');
 });
 
-lightbox.on("destroy", () => {
-  badges?.classList.remove("hide");
+lightbox.on('destroy', () => {
+  badges?.classList.remove('hide');
 });
 
-if (!customElements.get("gallery-section")) {
+if (!customElements.get('gallery-section')) {
   customElements.define(
-    "gallery-section",
+    'gallery-section',
     class GallerySection extends HTMLElement {
       constructor() {
         super();
       }
 
       connectedCallback() {
-        this.galleryLoader = this.querySelector("#gallery-loader");
+        this.galleryLoader = this.querySelector('#gallery-loader');
         this.renderedSlides = [];
         this.readConfiguration();
         this.initializeGallery();
-        this.galleryLoader?.classList.add("hidden");
-        this.classList.remove("loading");
-        this.classList.add("loaded");
+        this.galleryLoader?.classList.add('hidden');
+        this.classList.remove('loading');
+        this.classList.add('loaded');
       }
 
       disconnectedCallback() {
@@ -52,30 +52,28 @@ if (!customElements.get("gallery-section")) {
 
         this.elements = {
           section: this,
-          gallery: this.querySelector("[data-gallery]"),
-          thumbs: this.querySelector("[data-thumbs]"),
-          galleryContainer: this.querySelector("[data-gallery]").querySelector(
-            "[data-swiper-container]",
-          ),
-          thumbsContainer: this.querySelector("[data-thumbs]").querySelector(
-            "[data-swiper-container]",
-          ),
+          gallery: this.querySelector('[data-gallery]'),
+          thumbs: this.querySelector('[data-thumbs]'),
+          galleryContainer:
+            this.querySelector('[data-gallery]').querySelector('[data-swiper-container]'),
+          thumbsContainer:
+            this.querySelector('[data-thumbs]').querySelector('[data-swiper-container]'),
         };
 
         this.elements.gallerySlides = Array.from(
-          this.elements.gallery.querySelectorAll("[data-swiper-slide]"),
+          this.elements.gallery.querySelectorAll('[data-swiper-slide]'),
         ).map((e) => e.cloneNode(true));
         this.elements.thumbsSlides = Array.from(
-          this.elements.thumbs.querySelectorAll("[data-swiper-slide]"),
+          this.elements.thumbs.querySelectorAll('[data-swiper-slide]'),
         ).map((e) => e.cloneNode(true));
 
         const default_configuration = {
           sliderEnabledBreakpoint: 900,
-          desktopLayout: "carousel-vertical",
+          desktopLayout: 'carousel-vertical',
         };
 
         const custom_configuration = JSON.parse(
-          this.elements.section.querySelector("[data-configuration]").innerHTML,
+          this.elements.section.querySelector('[data-configuration]').innerHTML,
         );
         this.configuration = {
           ...default_configuration,
@@ -90,22 +88,21 @@ if (!customElements.get("gallery-section")) {
           threshold: 10,
           grabCursor: true,
           navigation: {
-            nextEl: ".wt-slider__nav-next",
-            prevEl: ".wt-slider__nav-prev",
+            nextEl: '.wt-slider__nav-next',
+            prevEl: '.wt-slider__nav-prev',
           },
           scrollbar: {
-            el: ".wt-slider__scrollbar",
+            el: '.wt-slider__scrollbar',
             draggable: true,
           },
           pagination: {
-            el: ".swiper-pagination",
-            type: "fraction",
+            el: '.swiper-pagination',
+            type: 'fraction',
           },
         };
 
         const custom_gallery_configuration = JSON.parse(
-          this.elements.gallery.querySelector("[data-swiper-configuration]")
-            .innerHTML,
+          this.elements.gallery.querySelector('[data-swiper-configuration]').innerHTML,
         );
         this.gallery_configuration = {
           ...default_gallery_configuration,
@@ -119,18 +116,17 @@ if (!customElements.get("gallery-section")) {
           slidesPerView: 4,
           freeMode: false,
           threshold: 5,
-          direction: "horizontal",
+          direction: 'horizontal',
           watchSlidesVisibility: true,
           watchSlidesProgress: true,
           navigation: {
-            nextEl: ".wt-slider__nav-next",
-            prevEl: ".wt-slider__nav-prev",
-          }
+            nextEl: '.wt-slider__nav-next',
+            prevEl: '.wt-slider__nav-prev',
+          },
         };
 
         const custom_thumbs_configuration = JSON.parse(
-          this.elements.thumbs.querySelector("[data-swiper-configuration]")
-            .innerHTML,
+          this.elements.thumbs.querySelector('[data-swiper-configuration]').innerHTML,
         );
         this.thumbs_configuration = {
           ...default_thumbs_configuration,
@@ -140,27 +136,27 @@ if (!customElements.get("gallery-section")) {
       }
 
       initializeGallery() {
-        window.addEventListener("resize", () => {
+        window.addEventListener('resize', () => {
           this.updateSwiperAutoHeight(this.gallerySwiper);
         });
 
         switch (this.configuration.desktopLayout) {
-          case "carousel-vertical":
-          case "carousel-horizontal":
+          case 'carousel-vertical':
+          case 'carousel-horizontal':
             this.initializeCarouselGallery();
             break;
-          case "masonry":
+          case 'masonry':
             window.addEventListener(
-              "resize",
+              'resize',
               function () {
                 this.handleMassonry();
               }.bind(this),
             );
             this.handleMassonry();
             break;
-          case "collage":
+          case 'collage':
             window.addEventListener(
-              "resize",
+              'resize',
               function () {
                 this.handleCollage();
               }.bind(this),
@@ -172,19 +168,15 @@ if (!customElements.get("gallery-section")) {
 
       initializeCarouselGallery() {
         if (this.thumbsSwiper == null) {
-          this.decorateSwiper(
-            this.elements.thumbs,
-            "wt-slider__container--thumbs",
-          );
+          this.decorateSwiper(this.elements.thumbs, 'wt-slider__container--thumbs');
           this.thumbsSwiper = this.swiperThumbsInitilize();
         }
         this.decorateSwiper(this.elements.gallery);
         this.swiperGalleryInitilize(this.thumbsSwiper);
 
-        const disableTouchSlide =
-          this.elements.gallery.querySelector(".disable-touch");
+        const disableTouchSlide = this.elements.gallery.querySelector('.disable-touch');
         if (disableTouchSlide) {
-          disableTouchSlide.classList.add("swiper-no-swiping");
+          disableTouchSlide.classList.add('swiper-no-swiping');
         }
       }
 
@@ -202,10 +194,7 @@ if (!customElements.get("gallery-section")) {
               ...thumbs_configuration,
               autoHeight: autoHeightEnabled,
             };
-          this.gallerySwiper = new Swiper(
-            this.elements.gallery,
-            this.gallery_configuration,
-          );
+          this.gallerySwiper = new Swiper(this.elements.gallery, this.gallery_configuration);
         }
       }
 
@@ -215,10 +204,7 @@ if (!customElements.get("gallery-section")) {
           ...this.thumbs_configuration,
           autoHeight: autoHeightEnabled,
         };
-        const swiper = new Swiper(
-          this.elements.thumbs,
-          this.thumbs_configuration,
-        );
+        const swiper = new Swiper(this.elements.thumbs, this.thumbs_configuration);
         return swiper;
       }
 
@@ -234,10 +220,7 @@ if (!customElements.get("gallery-section")) {
         if (this.thumbsSwiper != null) {
           this.thumbsSwiper.destroy();
           this.thumbsSwiper = null;
-          this.undecorateSwiper(
-            this.elements.thumbs,
-            "wt-slider__container--thumbs",
-          );
+          this.undecorateSwiper(this.elements.thumbs, 'wt-slider__container--thumbs');
         }
         if (this.gallerySwiper != null) {
           this.gallerySwiper.destroy();
@@ -247,7 +230,7 @@ if (!customElements.get("gallery-section")) {
       }
 
       handleMassonry() {
-        if (this.matchResolution() == "desktop") {
+        if (this.matchResolution() == 'desktop') {
           this.destroyCarouselGallery();
           this.initializeMasonryGallery();
         } else {
@@ -257,7 +240,7 @@ if (!customElements.get("gallery-section")) {
       }
 
       handleCollage() {
-        if (this.matchResolution() == "desktop") {
+        if (this.matchResolution() == 'desktop') {
           this.destroyCarouselGallery();
           this.initializeCollageGallery();
         } else {
@@ -267,70 +250,70 @@ if (!customElements.get("gallery-section")) {
       }
 
       decorateSwiper(el, element_class) {
-        el.classList.add("swiper", "wt-slider__container", element_class);
-        el.querySelector("[data-swiper-container]")?.classList.add(
-          "swiper-wrapper",
-          "wt-slider__wrapper",
+        el.classList.add('swiper', 'wt-slider__container', element_class);
+        el.querySelector('[data-swiper-container]')?.classList.add(
+          'swiper-wrapper',
+          'wt-slider__wrapper',
         );
-        el.querySelectorAll("[data-swiper-slide]").forEach(function (e) {
-          e.classList.add("swiper-slide", "wt-slider__slide");
+        el.querySelectorAll('[data-swiper-slide]').forEach(function (e) {
+          e.classList.add('swiper-slide', 'wt-slider__slide');
         });
         this.galleryUpdateEvent();
       }
 
       undecorateSwiper(el, element_class) {
-        el.classList.remove("swiper", "wt-slider__container", element_class);
-        el.querySelector("[data-swiper-container]").classList.remove(
-          "swiper-wrapper",
-          "wt-slider__wrapper",
+        el.classList.remove('swiper', 'wt-slider__container', element_class);
+        el.querySelector('[data-swiper-container]').classList.remove(
+          'swiper-wrapper',
+          'wt-slider__wrapper',
         );
-        el.querySelectorAll("[data-swiper-slide]").forEach(function (e) {
-          e.classList.remove("swiper-slide", "wt-slider__slide");
+        el.querySelectorAll('[data-swiper-slide]').forEach(function (e) {
+          e.classList.remove('swiper-slide', 'wt-slider__slide');
         });
       }
 
       decorateCollage(el, element_class) {
-        el.classList.add("wt-" + element_class);
-        el.querySelector("[data-swiper-container]").classList.add(
-          "wt-" + element_class + "__wrapper",
+        el.classList.add('wt-' + element_class);
+        el.querySelector('[data-swiper-container]').classList.add(
+          'wt-' + element_class + '__wrapper',
         );
-        el.querySelectorAll("[data-swiper-slide]").forEach(function (e) {
-          e.classList.add("wt-" + element_class + "__slide");
+        el.querySelectorAll('[data-swiper-slide]').forEach(function (e) {
+          e.classList.add('wt-' + element_class + '__slide');
         });
         this.galleryUpdateEvent();
       }
 
       undecorateCollage(el, element_class) {
-        el.classList.remove("wt-" + element_class);
-        el.querySelector("[data-swiper-container]").classList.remove(
-          "wt-" + element_class + "__wrapper",
+        el.classList.remove('wt-' + element_class);
+        el.querySelector('[data-swiper-container]').classList.remove(
+          'wt-' + element_class + '__wrapper',
         );
-        el.querySelectorAll("[data-swiper-slide]").forEach(function (e) {
-          e.classList.remove("wt-" + element_class + "__slide");
+        el.querySelectorAll('[data-swiper-slide]').forEach(function (e) {
+          e.classList.remove('wt-' + element_class + '__slide');
         });
       }
 
       initializeCollageGallery() {
-        this.decorateCollage(this.elements.gallery, "collage");
+        this.decorateCollage(this.elements.gallery, 'collage');
       }
 
       destroyCollageGallery() {
-        this.undecorateCollage(this.elements.gallery, "collage");
+        this.undecorateCollage(this.elements.gallery, 'collage');
       }
 
       initializeMasonryGallery() {
-        this.decorateCollage(this.elements.gallery, "masonry");
+        this.decorateCollage(this.elements.gallery, 'masonry');
       }
 
       destroyMasonryGallery() {
-        this.undecorateCollage(this.elements.gallery, "masonry");
+        this.undecorateCollage(this.elements.gallery, 'masonry');
       }
 
       sortSlides(slides, featured_media_id) {
         // Find the index of the slide with featured_media_id
         const featuredIndex = slides.findIndex((slide) => {
-          const mediaId = slide.querySelector("img")
-            ? Number(slide.querySelector("img").getAttribute("data-media-id"))
+          const mediaId = slide.querySelector('img')
+            ? Number(slide.querySelector('img').getAttribute('data-media-id'))
             : null;
           return mediaId === Number(featured_media_id);
         });
@@ -346,30 +329,25 @@ if (!customElements.get("gallery-section")) {
       }
 
       beforeGalleryChange() {
-        this.classList.add("loading");
-        this.galleryLoader?.classList.remove("hidden");
+        this.classList.add('loading');
+        this.galleryLoader?.classList.remove('hidden');
         this.style.minHeight = `${this.offsetHeight}px`;
       }
 
       afterGalleryChange() {
-        this.style.minHeight = "unset";
-        this.galleryLoader?.classList.add("hidden");
-        this.classList.remove("loading");
+        this.style.minHeight = 'unset';
+        this.galleryLoader?.classList.add('hidden');
+        this.classList.remove('loading');
       }
 
-      filterSlidesByOptions(
-        slides,
-        options,
-        featured_media_id,
-        matchAll = true,
-      ) {
+      filterSlidesByOptions(slides, options, featured_media_id, matchAll = true) {
         const lowercaseOptions = options.map((option) => option.toLowerCase());
         return slides.filter((slide) => {
-          let media = slide.querySelector("img");
-          if (media == null) media = slide?.querySelector("video");
-          const alt = media ? media.getAttribute("alt") : "";
+          let media = slide.querySelector('img');
+          if (media == null) media = slide?.querySelector('video');
+          const alt = media ? media.getAttribute('alt') : '';
 
-          const mediaId = media ? media.getAttribute("data-media-id") : "";
+          const mediaId = media ? media.getAttribute('data-media-id') : '';
 
           // Include slide if its data-media-id attribute matches the featured_media_id
           if (mediaId === featured_media_id) {
@@ -385,25 +363,21 @@ if (!customElements.get("gallery-section")) {
           }
           if (matchAll) {
             // Check if all altHashtags are included in the options
-            return altHashtags.every((hashtag) =>
-              lowercaseOptions.includes(hashtag),
-            );
+            return altHashtags.every((hashtag) => lowercaseOptions.includes(hashtag));
           } else {
             // Check if at least one altHashtag is included in the options
-            return altHashtags.some((hashtag) =>
-              lowercaseOptions.includes(hashtag),
-            );
+            return altHashtags.some((hashtag) => lowercaseOptions.includes(hashtag));
           }
         });
       }
 
       galleryUpdateEvent(opt) {
-        const galleryEvent = new CustomEvent("gallery:updated", {
+        const galleryEvent = new CustomEvent('gallery:updated', {
           bubbles: true,
           cancelable: true,
           detail: {
-            desc: "gallery updated",
-            selector: ".wt-product__gallery",
+            desc: 'gallery updated',
+            selector: '.wt-product__gallery',
             ...opt,
           },
         });
@@ -412,13 +386,11 @@ if (!customElements.get("gallery-section")) {
 
       filterSlides(options, featured_media_id, matchAll = true, callback) {
         if (!this.elements) return;
-        const originalGallerySlides = Array.from(
-          this.elements.gallerySlides,
-          (el) => el.cloneNode(true),
+        const originalGallerySlides = Array.from(this.elements.gallerySlides, (el) =>
+          el.cloneNode(true),
         );
-        const originalThumbsSlides = Array.from(
-          this.elements.thumbsSlides,
-          (el) => el.cloneNode(true),
+        const originalThumbsSlides = Array.from(this.elements.thumbsSlides, (el) =>
+          el.cloneNode(true),
         );
 
         const getMediaId = (item) => item?.dataset?.mediaId;
@@ -442,14 +414,8 @@ if (!customElements.get("gallery-section")) {
         }
 
         if (featured_media_id) {
-          filteredGallerySlides = this.sortSlides(
-            filteredGallerySlides,
-            featured_media_id,
-          );
-          filteredThumbsSlides = this.sortSlides(
-            filteredThumbsSlides,
-            featured_media_id,
-          );
+          filteredGallerySlides = this.sortSlides(filteredGallerySlides, featured_media_id);
+          filteredThumbsSlides = this.sortSlides(filteredThumbsSlides, featured_media_id);
         }
 
         const renderedSlidesChanged =
@@ -458,23 +424,19 @@ if (!customElements.get("gallery-section")) {
 
         if (this.gallerySwiper && this.thumbsSwiper && renderedSlidesChanged) {
           this.beforeGalleryChange();
-          const thumbSlidesWrapper = this.querySelector(
-            "[data-thumbs] [data-swiper-container]",
-          );
-          const gallerySlidesWrapper = this.querySelector(
-            "[data-gallery] [data-swiper-container]",
-          );
+          const thumbSlidesWrapper = this.querySelector('[data-thumbs] [data-swiper-container]');
+          const gallerySlidesWrapper = this.querySelector('[data-gallery] [data-swiper-container]');
 
           // Assuming this.gallerySwiper is the swiper instance for the main gallery
           this.gallerySwiper.removeAllSlides();
-          gallerySlidesWrapper.innerHTML = "";
-          const swiperContainer = this.querySelector(".swiper-wrapper");
+          gallerySlidesWrapper.innerHTML = '';
+          const swiperContainer = this.querySelector('.swiper-wrapper');
           filteredGallerySlides.forEach((slide, idx) => {
             if (idx === 0) {
-              const slideImg = slide.querySelector("img");
+              const slideImg = slide.querySelector('img');
               if (slideImg)
                 slideImg.onload = function () {
-                  swiperContainer.style.height = "auto";
+                  swiperContainer.style.height = 'auto';
                 };
             }
             this.gallerySwiper.appendSlide(slide);
@@ -483,48 +445,36 @@ if (!customElements.get("gallery-section")) {
 
           // Assuming this.thumbsSwiper is the swiper instance for the thumbnails
           this.thumbsSwiper.removeAllSlides();
-          thumbSlidesWrapper.innerHTML = "";
+          thumbSlidesWrapper.innerHTML = '';
 
-          filteredThumbsSlides.forEach((slide) =>
-            this.thumbsSwiper.appendSlide(slide),
-          );
+          filteredThumbsSlides.forEach((slide) => this.thumbsSwiper.appendSlide(slide));
 
-          this.decorateSwiper(
-            this.elements.thumbs,
-            "wt-slider__container--thumbs",
-          );
+          this.decorateSwiper(this.elements.thumbs, 'wt-slider__container--thumbs');
 
           this.thumbsSwiper.update();
           this.gallerySwiper.update();
         } else if (
-          this.configuration.desktopLayout == "collage" ||
-          this.configuration.desktopLayout == "masonry"
+          this.configuration.desktopLayout == 'collage' ||
+          this.configuration.desktopLayout == 'masonry'
         ) {
           if (renderedSlidesChanged) {
             this.beforeGalleryChange();
             // Remove all existing slides
             this.elements.gallery
-              .querySelectorAll("[data-swiper-slide]")
+              .querySelectorAll('[data-swiper-slide]')
               .forEach((slide) => slide.remove());
             this.elements.thumbs
-              .querySelectorAll("[data-swiper-slide]")
+              .querySelectorAll('[data-swiper-slide]')
               .forEach((slide) => slide.remove());
 
             filteredGallerySlides.forEach((slide) =>
-              this.elements.gallery
-                .querySelector("[data-swiper-container]")
-                .append(slide),
+              this.elements.gallery.querySelector('[data-swiper-container]').append(slide),
             );
             filteredThumbsSlides.forEach((slide) =>
-              this.elements.thumbs
-                .querySelector("[data-swiper-container]")
-                .append(slide),
+              this.elements.thumbs.querySelector('[data-swiper-container]').append(slide),
             );
 
-            this.decorateCollage(
-              this.elements.gallery,
-              this.configuration.desktopLayout,
-            );
+            this.decorateCollage(this.elements.gallery, this.configuration.desktopLayout);
           }
         }
 
@@ -532,9 +482,7 @@ if (!customElements.get("gallery-section")) {
           this.setActiveMedia(featured_media_id, true);
         } else {
           this.setActiveMedia(
-            filteredGallerySlides[0]
-              ?.querySelector("img")
-              ?.getAttribute("data-media-id"),
+            filteredGallerySlides[0]?.querySelector('img')?.getAttribute('data-media-id'),
             true,
           );
         }
@@ -548,9 +496,7 @@ if (!customElements.get("gallery-section")) {
       }
 
       setActiveMedia(mediaId, prepend) {
-        var media = this.elements.gallery.querySelector(
-          `[data-media-id="${mediaId}"]`,
-        );
+        var media = this.elements.gallery.querySelector(`[data-media-id="${mediaId}"]`);
 
         if (this.gallerySwiper != null) {
           this.gallerySwiper.slideTo(this.indexInParent(media));
@@ -560,9 +506,9 @@ if (!customElements.get("gallery-section")) {
 
       matchResolution() {
         if (window.innerWidth < this.configuration.sliderEnabledBreakpoint) {
-          return "mobile";
+          return 'mobile';
         } else {
-          return "desktop";
+          return 'desktop';
         }
       }
 

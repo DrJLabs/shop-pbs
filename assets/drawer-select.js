@@ -1,44 +1,37 @@
-if (!customElements.get("drawer-select")) {
+if (!customElements.get('drawer-select')) {
   customElements.define(
-    "drawer-select",
+    'drawer-select',
     class DrawerSelect extends HTMLElement {
       constructor() {
         super();
 
         this.optionId = this.dataset.optionId;
         this.currentVariant = this.dataset.currentVariant;
-        this.optionTitleLabel = this.querySelector(
-          ".wt-product__option__title .value",
+        this.optionTitleLabel = this.querySelector('.wt-product__option__title .value');
+        this.trigger = this.querySelector('.wt-select__trigger');
+        this.triggerLabel = this.trigger?.querySelector('.wt-select__trigger__label');
+        this.options = this.querySelectorAll('.wt-select__item:not(.wt-select__item--disabled)');
+        this.optionName = this.querySelector('.wt-product__option__title .label').innerText;
+        this.form = document.querySelector(
+          `form[data-type=add-to-cart-form]:has(input[name='id'][value='${this.currentVariant}'])`,
         );
-        this.trigger = this.querySelector(".wt-select__trigger");
-        this.triggerLabel = this.trigger?.querySelector(
-          ".wt-select__trigger__label",
-        );
-        this.options = this.querySelectorAll(
-          ".wt-select__item:not(.wt-select__item--disabled)",
-        );
-        this.optionName = this.querySelector(
-          ".wt-product__option__title .label",
-        ).innerText;
-        this.form = document.querySelector(`form[data-type=add-to-cart-form]:has(input[name='id'][value='${this.currentVariant}'])`)
 
         this.inputType = this.dataset.inputType;
 
         this.body = document.body;
-        this.container = this.querySelector(".wt-select__drawer");
-        this.closeButton = this.querySelector(".wt-select__drawer__close");
+        this.container = this.querySelector('.wt-select__drawer');
+        this.closeButton = this.querySelector('.wt-select__drawer__close');
         this.isDrawerOpen = false;
 
         // Overlay-related variables
-        this.pageOverlayClass = "page-overlay";
-        this.pageBodyActiveClass = "wt-select-opened";
+        this.pageOverlayClass = 'page-overlay';
+        this.pageBodyActiveClass = 'wt-select-opened';
         this.activeOverlayBodyClass = `${this.pageOverlayClass}-on`;
 
         // Bind methods
         this.openDrawer = this.openDrawer.bind(this);
         this.closeDrawer = this.closeDrawer.bind(this);
-        this.handleInteractionOutside =
-          this.handleInteractionOutside.bind(this);
+        this.handleInteractionOutside = this.handleInteractionOutside.bind(this);
         this._keyDownHandler = this._keyDownHandler.bind(this);
         this.setOption = this.setOption.bind(this);
         this.setCheckboxOption = this.setCheckboxOption.bind(this);
@@ -46,7 +39,7 @@ if (!customElements.get("drawer-select")) {
       }
 
       connectedCallback() {
-        if (this.inputType === "dropdown") {
+        if (this.inputType === 'dropdown') {
           this._init();
           this.preselectFirstOption();
         } else {
@@ -60,7 +53,7 @@ if (!customElements.get("drawer-select")) {
 
       createOverlay() {
         if (!this.querySelector(`.${this.pageOverlayClass}`)) {
-          this.overlay = document.createElement("div");
+          this.overlay = document.createElement('div');
           this.overlay.classList.add(this.pageOverlayClass);
           this.appendChild(this.overlay);
         } else {
@@ -69,56 +62,53 @@ if (!customElements.get("drawer-select")) {
       }
 
       addEventListeners() {
-        this.trigger.addEventListener("click", this.openDrawer);
-        this.closeButton.addEventListener("click", this.closeDrawer);
-        this.container.addEventListener("keydown", this._keyDownHandler);
+        this.trigger.addEventListener('click', this.openDrawer);
+        this.closeButton.addEventListener('click', this.closeDrawer);
+        this.container.addEventListener('keydown', this._keyDownHandler);
         this.options.forEach((option) => {
-          option.addEventListener("click", this.setOption);
+          option.addEventListener('click', this.setOption);
         });
         // Add event listener to the overlay to close the drawer when clicked
-        this.overlay.addEventListener("click", this.closeDrawer);
+        this.overlay.addEventListener('click', this.closeDrawer);
       }
 
       setupCheckboxListeners() {
-        this.inputCheckbox = this.querySelector(".form-checkbox__input");
-        this.inputCheckbox.addEventListener("click", this.setCheckboxOption);
+        this.inputCheckbox = this.querySelector('.form-checkbox__input');
+        this.inputCheckbox.addEventListener('click', this.setCheckboxOption);
       }
 
       cleanupListeners() {
-        if (this.inputType === "dropdown") {
-          this.trigger.removeEventListener("click", this.openDrawer);
-          this.closeButton.removeEventListener("click", this.closeDrawer);
-          this.container.removeEventListener("keydown", this._keyDownHandler);
+        if (this.inputType === 'dropdown') {
+          this.trigger.removeEventListener('click', this.openDrawer);
+          this.closeButton.removeEventListener('click', this.closeDrawer);
+          this.container.removeEventListener('keydown', this._keyDownHandler);
           this.options.forEach((option) => {
-            option.removeEventListener("click", this.setOption);
+            option.removeEventListener('click', this.setOption);
           });
-          this.overlay.removeEventListener("click", this.closeDrawer);
+          this.overlay.removeEventListener('click', this.closeDrawer);
         } else {
-          this.inputCheckbox.removeEventListener(
-            "click",
-            this.setCheckboxOption,
-          );
+          this.inputCheckbox.removeEventListener('click', this.setCheckboxOption);
         }
       }
 
       openDrawer() {
-        this.container.classList.add("wt-select__drawer--open");
-        this.overlay.classList.remove("hidden");
+        this.container.classList.add('wt-select__drawer--open');
+        this.overlay.classList.remove('hidden');
         this.body.classList.add(this.activeOverlayBodyClass);
         this.body.classList.add(this.pageBodyActiveClass);
         this.isDrawerOpen = true;
         this._handleTabindex();
-        document.addEventListener("click", this.handleInteractionOutside);
+        document.addEventListener('click', this.handleInteractionOutside);
       }
 
       closeDrawer() {
-        this.container.classList.remove("wt-select__drawer--open");
-        this.overlay.classList.add("hidden");
+        this.container.classList.remove('wt-select__drawer--open');
+        this.overlay.classList.add('hidden');
         this.body.classList.remove(this.activeOverlayBodyClass);
         this.body.classList.remove(this.pageBodyActiveClass);
         this.isDrawerOpen = false;
         this._handleTabindex();
-        document.removeEventListener("click", this.handleInteractionOutside);
+        document.removeEventListener('click', this.handleInteractionOutside);
       }
 
       handleInteractionOutside(event) {
@@ -154,12 +144,12 @@ if (!customElements.get("drawer-select")) {
         this.optionTitleLabel.innerHTML = value;
 
         this.options.forEach((option) => {
-          option.classList.remove("wt-select__item--current");
-          option.setAttribute("aria-selected", "false");
+          option.classList.remove('wt-select__item--current');
+          option.setAttribute('aria-selected', 'false');
         });
 
-        target.classList.add("wt-select__item--current");
-        target.setAttribute("aria-selected", "true");
+        target.classList.add('wt-select__item--current');
+        target.setAttribute('aria-selected', 'true');
 
         this.updateHiddenInput(value);
         this.closeDrawer();
@@ -168,14 +158,12 @@ if (!customElements.get("drawer-select")) {
 
       setCheckboxOption(event) {
         const target = event.currentTarget || event;
-        const value = target.checked ? target.value : "";
+        const value = target.checked ? target.value : '';
         this.updateHiddenInput(value);
       }
 
       preselectFirstOption() {
-        const currentOption = this.container.querySelector(
-          ".wt-select__item--current",
-        );
+        const currentOption = this.container.querySelector('.wt-select__item--current');
         if (currentOption) {
           this.setOption(currentOption);
         } else if (this.options[0]) {
@@ -188,8 +176,8 @@ if (!customElements.get("drawer-select")) {
           `input[type="hidden"][name="properties[${this.optionName}]"]`,
         );
         if (!hiddenInput) {
-          hiddenInput = document.createElement("input");
-          hiddenInput.type = "hidden";
+          hiddenInput = document.createElement('input');
+          hiddenInput.type = 'hidden';
           hiddenInput.name = `properties[${this.optionName}]`;
           this.form.appendChild(hiddenInput);
         }
@@ -203,9 +191,9 @@ if (!customElements.get("drawer-select")) {
       }
 
       _keyDownHandler(e) {
-        const isTabPressed = e.key === "Tab" || e.keyCode === 9;
+        const isTabPressed = e.key === 'Tab' || e.keyCode === 9;
 
-        if (e.key === "Escape" || e.keyCode === 27) {
+        if (e.key === 'Escape' || e.keyCode === 27) {
           if (this.isDrawerOpen) {
             this.closeDrawer();
             this.trigger.focus();
@@ -226,10 +214,10 @@ if (!customElements.get("drawer-select")) {
 
       _handleTabindex() {
         const interactiveElements = this.container.querySelectorAll(
-          ".wt-select__item, .wt-select__drawer__close",
+          '.wt-select__item, .wt-select__drawer__close',
         );
         interactiveElements.forEach((el) => {
-          el.setAttribute("tabindex", this.isDrawerOpen ? "0" : "-1");
+          el.setAttribute('tabindex', this.isDrawerOpen ? '0' : '-1');
         });
       }
     },

@@ -13,6 +13,7 @@
 ### Task 1: Add a failing smoke test for the section file
 
 **Files:**
+
 - Create: `tests/smoke/pb-hero-topo.spec.ts`
 
 **Step 1: Write the failing test**
@@ -41,9 +42,11 @@ test('pb hero topo section defines required schema and markup', async () => {
 **Step 2: Run test to verify it fails**
 
 Run:
+
 ```
 BASE_URL=http://127.0.0.1:9292 npm run test:smoke -- tests/smoke/pb-hero-topo.spec.ts
 ```
+
 Expected: FAIL (file missing or required strings absent).
 
 ---
@@ -51,6 +54,7 @@ Expected: FAIL (file missing or required strings absent).
 ### Task 2: Implement the new section file
 
 **Files:**
+
 - Create: `sections/pb-hero-topo.liquid`
 
 **Step 1: Implement the section**
@@ -377,9 +381,11 @@ Expected: FAIL (file missing or required strings absent).
 **Step 2: Run test to verify it passes**
 
 Run:
+
 ```
 BASE_URL=http://127.0.0.1:9292 npm run test:smoke -- tests/smoke/pb-hero-topo.spec.ts
 ```
+
 Expected: PASS.
 
 **Step 3: Commit**
@@ -394,14 +400,17 @@ git commit -m "feat: add pb hero topo section"
 ### Task 3: Update documentation + task list
 
 **Files:**
+
 - Modify: `docs/wholesale-conversion/storefront-wholesale-tasklist.md`
 - Modify: `docs/plans/2025-12-25-pb-hero-topo-design.md`
 
 **Step 1: Update task list**
+
 - Under **1D Create the hero section**, add a completed bullet noting the new OS 2.0 hero section file exists and can be added to the homepage in the Theme Editor.
 - Update the current state note to mention the new section is available but not yet placed.
 
 **Step 2: Confirm design doc reflects final behavior**
+
 - Ensure the design doc matches the disabled-button behavior for blank links.
 
 **Step 3: Commit**

@@ -1,6 +1,6 @@
-if (!customElements.get("model-element")) {
+if (!customElements.get('model-element')) {
   customElements.define(
-    "model-element",
+    'model-element',
     class ModelElement extends HTMLElement {
       constructor() {
         super();
@@ -10,24 +10,23 @@ if (!customElements.get("model-element")) {
       }
 
       connectedCallback() {
-        this.modelBtn = this.querySelector(".model-btn");
+        this.modelBtn = this.querySelector('.model-btn');
 
         // Add the show model event listener to modelBtn
-        this.modelBtn?.addEventListener("click", this.showModelBound);
+        this.modelBtn?.addEventListener('click', this.showModelBound);
       }
 
       disconnectedCallback() {
         // Remove the show model event listener to avoid memory leaks
-        this.modelBtn?.removeEventListener("click", this.showModelBound);
+        this.modelBtn?.removeEventListener('click', this.showModelBound);
       }
 
       getFocusableElements() {
-        const focusableElementsSelector =
-          "button, [href], input, select, [tabindex], iframe";
+        const focusableElementsSelector = 'button, [href], input, select, [tabindex], iframe';
         const focusableElements = () =>
-          Array.from(
-            this.modelContainer.querySelectorAll(focusableElementsSelector)
-          ).filter((el) => !el.hasAttribute("disabled") && el.tabIndex >= 0);
+          Array.from(this.modelContainer.querySelectorAll(focusableElementsSelector)).filter(
+            (el) => !el.hasAttribute('disabled') && el.tabIndex >= 0,
+          );
 
         return {
           focusableElements,
@@ -39,20 +38,19 @@ if (!customElements.get("model-element")) {
       initialize() {
         const els = this.querySelectorAll('[data-model="true"]');
         this.elsArr = Array.from(els);
-        this.ul = this.querySelectorAll("ul");
+        this.ul = this.querySelectorAll('ul');
 
-        this.modelContainer = document.querySelector(".model-container");
-        this.modelWrapper = this.modelContainer?.querySelector(".model");
-        this.closeBtn = this.modelContainer?.querySelector(".close-btn");
-        this.iframe = this.querySelector("iframe");
+        this.modelContainer = document.querySelector('.model-container');
+        this.modelWrapper = this.modelContainer?.querySelector('.model');
+        this.closeBtn = this.modelContainer?.querySelector('.close-btn');
+        this.iframe = this.querySelector('iframe');
 
         // Modal keyboard navigation handling
-        this.modelContainer.addEventListener("keydown", (e) => {
-          const isTabPressed =
-            e.key === "Tab" || e.keyCode === 9 || e.code === "Tab";
+        this.modelContainer.addEventListener('keydown', (e) => {
+          const isTabPressed = e.key === 'Tab' || e.keyCode === 9 || e.code === 'Tab';
           const { first, last } = this.getFocusableElements();
 
-          if (e.key === "Escape" || e.keyCode === 27 || e.code === "Escape") {
+          if (e.key === 'Escape' || e.keyCode === 27 || e.code === 'Escape') {
             this.closeBtn.click();
           }
 
@@ -70,44 +68,40 @@ if (!customElements.get("model-element")) {
 
       showModel(e) {
         this.trigger = e.currentTarget;
-        document.body.style.overflow = "hidden";
+        document.body.style.overflow = 'hidden';
 
         // Dynamically add event listeners for backBtn and closeBtn
-        this.backBtn = this.modelWrapper.querySelector(".hero__button--link");
-        this.backBtn?.addEventListener("click", this.closeButtonBound);
-        this.closeBtn?.addEventListener("click", this.closeButtonBound);
+        this.backBtn = this.modelWrapper.querySelector('.hero__button--link');
+        this.backBtn?.addEventListener('click', this.closeButtonBound);
+        this.closeBtn?.addEventListener('click', this.closeButtonBound);
 
         // Clone and show the model
-        this.modelViewer = this.querySelector("model-viewer") || this.iframe;
-        this.modelWrapper?.insertBefore(
-          this.modelViewer.cloneNode(true),
-          this.backBtn
-        );
+        this.modelViewer = this.querySelector('model-viewer') || this.iframe;
+        this.modelWrapper?.insertBefore(this.modelViewer.cloneNode(true), this.backBtn);
 
         // Show the modal
-        this.modelContainer?.classList.remove("hidden");
-        this.closeBtn.setAttribute("tabindex", "0");
+        this.modelContainer?.classList.remove('hidden');
+        this.closeBtn.setAttribute('tabindex', '0');
         this.closeBtn.focus();
-
       }
 
       closeButton(e) {
         e?.stopPropagation();
-        document.body.style.overflow = "auto";
-        this.modelContainer?.classList.add("hidden");
+        document.body.style.overflow = 'auto';
+        this.modelContainer?.classList.add('hidden');
 
         // Remove dynamically added event listeners for backBtn and closeBtn
-        this.backBtn?.removeEventListener("click", this.closeButtonBound);
-        this.closeBtn?.removeEventListener("click", this.closeButtonBound);
+        this.backBtn?.removeEventListener('click', this.closeButtonBound);
+        this.closeBtn?.removeEventListener('click', this.closeButtonBound);
 
         const elementToRemove =
-          this.modelWrapper.querySelector("model-viewer") ||
-          this.modelWrapper.querySelector("iframe");
+          this.modelWrapper.querySelector('model-viewer') ||
+          this.modelWrapper.querySelector('iframe');
         if (elementToRemove) this.modelWrapper.removeChild(elementToRemove);
-        this.closeBtn.setAttribute("tabindex", "-1");
+        this.closeBtn.setAttribute('tabindex', '-1');
         this.trigger?.focus();
       }
-    }
+    },
   );
 }
 
@@ -115,8 +109,8 @@ window.ProductModel = {
   loadShopifyXR() {
     Shopify.loadFeatures([
       {
-        name: "shopify-xr",
-        version: "1.0",
+        name: 'shopify-xr',
+        version: '1.0',
         onLoad: this.setupShopifyXR.bind(this),
       },
     ]);
@@ -126,9 +120,7 @@ window.ProductModel = {
     if (errors) return;
 
     if (!window.ShopifyXR) {
-      document.addEventListener("shopify_xr_initialized", () =>
-        this.setupShopifyXR()
-      );
+      document.addEventListener('shopify_xr_initialized', () => this.setupShopifyXR());
       return;
     }
 
@@ -140,6 +132,6 @@ window.ProductModel = {
   },
 };
 
-window.addEventListener("DOMContentLoaded", () => {
+window.addEventListener('DOMContentLoaded', () => {
   if (window.ProductModel) window.ProductModel.loadShopifyXR();
 });

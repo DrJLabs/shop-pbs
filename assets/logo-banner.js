@@ -1,16 +1,16 @@
-if (!customElements.get("logo-banner")) {
+if (!customElements.get('logo-banner')) {
   customElements.define(
-    "logo-banner",
+    'logo-banner',
     class LogoBanner extends HTMLElement {
       constructor() {
         super();
-        this.section = this.closest("section");
+        this.section = this.closest('section');
         this.logoBanner = this;
-        this.video = this.querySelector(".wt-video__movie video");
-        this.lowBatteryClass = "low-battery-mode";
+        this.video = this.querySelector('.wt-video__movie video');
+        this.lowBatteryClass = 'low-battery-mode';
         this.isLowBattery = false;
-        this.isMobile = window.matchMedia("(max-width: 899px)").matches;
-        this.elementToScale = this.querySelector(".wt-logo-banner__logo");
+        this.isMobile = window.matchMedia('(max-width: 899px)').matches;
+        this.elementToScale = this.querySelector('.wt-logo-banner__logo');
       }
 
       connectedCallback() {
@@ -18,16 +18,16 @@ if (!customElements.get("logo-banner")) {
       }
 
       isFirstSection() {
-        const sectionWrapper = document.querySelector("#root");
-        const firstSection = sectionWrapper.querySelector("section");
+        const sectionWrapper = document.querySelector('#root');
+        const firstSection = sectionWrapper.querySelector('section');
         const currentSection = this.section;
 
         return firstSection === currentSection;
       }
 
       observeHeader() {
-        const header = document.querySelector(".wt-header");
-        const activeTransparentClass = "wt-header--transparent";
+        const header = document.querySelector('.wt-header');
+        const activeTransparentClass = 'wt-header--transparent';
         const observer = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
@@ -45,14 +45,10 @@ if (!customElements.get("logo-banner")) {
       }
 
       getNominalWidth() {
-        const header = document.querySelector("header");
+        const header = document.querySelector('header');
         const comuptedStyle = window.getComputedStyle(header);
-        const nominalWidthMobile = comuptedStyle
-          .getPropertyValue("--logo-width")
-          .trim();
-        const nominalWidth = comuptedStyle
-          .getPropertyValue("--logo-width-desk")
-          .trim();
+        const nominalWidthMobile = comuptedStyle.getPropertyValue('--logo-width').trim();
+        const nominalWidth = comuptedStyle.getPropertyValue('--logo-width-desk').trim();
         return parseInt(this.isMobile ? nominalWidthMobile : nominalWidth);
       }
 
@@ -71,16 +67,14 @@ if (!customElements.get("logo-banner")) {
       handleLogoSize() {
         const logoBanner = this.logoBanner;
         const elementToScale = this.elementToScale;
-        const logoWrapper = this.logoBanner.querySelector(
-          ".wt-logo-banner__picture",
-        );
+        const logoWrapper = this.logoBanner.querySelector('.wt-logo-banner__picture');
         const calculateMaxScale = this.calculateMaxScale.bind(this);
 
         const containerBottom = logoBanner.getBoundingClientRect().bottom;
         const visibilityRatio = containerBottom / window.innerHeight;
         const logoWrapperHeight = Math.max(0, containerBottom);
-        const vanishingClass = "wt-logo-banner--vanishing";
-        const inactiveClass = "inactive";
+        const vanishingClass = 'wt-logo-banner--vanishing';
+        const inactiveClass = 'inactive';
 
         let scale = Math.max(
           1,
@@ -110,18 +104,16 @@ if (!customElements.get("logo-banner")) {
 
       observeAndScaleElement() {
         this.setInitialScale();
-        document.addEventListener("scroll", this.handleLogoSize.bind(this));
+        document.addEventListener('scroll', this.handleLogoSize.bind(this));
       }
 
       calculateOffset() {
-        const header = document.querySelector("header");
+        const header = document.querySelector('header');
         const headerHeight = header.offsetHeight;
 
-        const announcment = document.querySelector(".wt-announcement");
+        const announcment = document.querySelector('.wt-announcement');
         const announcmentHeight = announcment ? announcment.offsetHeight : 0;
-        const offset = this.isTransparentHeaderEnabled()
-          ? headerHeight + announcmentHeight
-          : 0;
+        const offset = this.isTransparentHeaderEnabled() ? headerHeight + announcmentHeight : 0;
 
         return offset;
       }
@@ -132,27 +124,22 @@ if (!customElements.get("logo-banner")) {
       }
 
       isTransparentHeaderEnabled() {
-        const header = document.querySelector(".wt-header");
+        const header = document.querySelector('.wt-header');
         return (
           header.dataset.transparent &&
           this.isFirstSection() &&
-          header.classList.contains("wt-header--v3")
+          header.classList.contains('wt-header--v3')
         );
       }
 
       init() {
         if (this.isTransparentHeaderEnabled()) {
-          const header = document.querySelector(".wt-header");
-          const stickyHeaderThreshold = document.querySelector(
-            ".sticky-header__threshold",
-          );
-          const isHeaderTransparent = header.classList.contains(
-            "wt-header--transparent",
-          );
-          const isHeaderSticky =
-            document.body.classList.contains("page-header-sticky");
+          const header = document.querySelector('.wt-header');
+          const stickyHeaderThreshold = document.querySelector('.sticky-header__threshold');
+          const isHeaderTransparent = header.classList.contains('wt-header--transparent');
+          const isHeaderSticky = document.body.classList.contains('page-header-sticky');
           if (isHeaderSticky) {
-            stickyHeaderThreshold.style.height = "110vh";
+            stickyHeaderThreshold.style.height = '110vh';
             this.setTopMargin();
           } else if (isHeaderTransparent) {
             this.setTopMargin();
