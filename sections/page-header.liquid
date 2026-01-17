@@ -2,6 +2,15 @@
 <script src="{{ 'page-header.js' | asset_url }}" defer="defer"></script>
 
 {% assign transparent_header_rgb = section.settings.transparent_header_color | color_to_rgb %}
+{% assign drawer_title_rgb = section.settings.drawer_title_color | color_to_rgb %}
+{% assign has_transparent_header_color = false %}
+{% assign has_drawer_title_color = false %}
+{% if transparent_header_rgb != 'rgba(0, 0, 0, 0.0)' %}
+  {% assign has_transparent_header_color = true %}
+{% endif %}
+{% if drawer_title_rgb != 'rgba(0, 0, 0, 0.0)' %}
+  {% assign has_drawer_title_color = true %}
+{% endif %}
 <style>
     :root{
       --logo-width: {{ section.settings.mobile_screen_logo_width }}px;
@@ -9,9 +18,14 @@
       --logo-width-desk: {{ section.settings.large_screen_logo_width }}px;
     }
 
-    {% if transparent_header_rgb != 'rgba(0, 0, 0, 0.0)' %}
+    {% if has_transparent_header_color or has_drawer_title_color %}
     header[id="shopify-section-{{ section.id }}"]{
-      --color-transparent-header: {{ section.settings.transparent_header_color }};
+      {% if has_transparent_header_color %}
+        --color-transparent-header: {{ section.settings.transparent_header_color }};
+      {% endif %}
+      {% if has_drawer_title_color %}
+        --color-drawer-title: {{ section.settings.drawer_title_color }};
+      {% endif %}
     }
   {% endif %}
 </style>
@@ -397,6 +411,13 @@
     {
       "type": "header",
       "content": "t:sections.header.settings.drawer.label"
+    },
+    {
+      "type": "color",
+      "id": "drawer_title_color",
+      "default": "transparent",
+      "label": "t:sections.header.settings.drawer_title_color.label",
+      "info": "t:sections.header.settings.drawer_title_color.info"
     },
     {
       "type": "text",

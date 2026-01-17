@@ -141,6 +141,7 @@
           "menu": "main-menu",
           "mobile_footer_menu": "",
           "transparent_header_color": "",
+          "drawer_title_color": "#5b894d",
           "drawer_title": "Menu",
           "typing_search": "Start typing for search",
           "suggestions_title": "",

@@ -3417,6 +3417,7 @@ mega-menu-section {
   align-items: center;
   border-bottom: 1px solid var(--color-border);
   padding: calc(var(--gap, 8px) * 2) calc(var(--gap, 8px) * 4);
+  color: var(--color-drawer-title, var(--color-menu-text));
   display: none;
 }
 .wt-drawer__title__text {
