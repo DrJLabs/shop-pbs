@@ -267,9 +267,7 @@
     transform: scale(1.03);
   }
 
-  .card-wrapper:hover
-    .media.media--hover-effect
-    > img:first-child:not(:only-child) {
+  .card-wrapper:hover .media.media--hover-effect > img:first-child:not(:only-child) {
     opacity: 0;
   }
 
@@ -292,16 +290,16 @@
   .card--search img {
     transition: transform var(--duration-default) ease;
   }
-  
+
   .card-wrapper:hover .card--search img {
     transform: scale(1.05);
   }
-  
+
   .card-wrapper:hover .card__heading {
     text-decoration: underline;
     text-underline-offset: 0.3rem;
   }
-  
+
   .card-wrapper:hover .card.card--search {
     background-color: rgba(var(--color-card-hover), 0.06);
     transition: background-color var(--duration-long) ease;

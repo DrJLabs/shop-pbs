@@ -7,8 +7,7 @@ test('footer disclaimer styles and headline alignment remain configurable', () =
   expect(css).toContain('.wt-footer__disclaimer');
   expect(css).toContain('.wt-footer__disclaimer p');
 
-  const headlineAlignRegex =
-    /\.headline\s*\{[^}]*text-align:\s*var\(--heading-align,\s*center\);/s;
+  const headlineAlignRegex = /\.headline\s*\{[^}]*text-align:\s*var\(--heading-align,\s*center\);/s;
   expect(css).toMatch(headlineAlignRegex);
 });
 

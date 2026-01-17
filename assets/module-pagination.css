@@ -52,7 +52,7 @@
 }
 .wt-pagination__item--current::after {
   height: 0.1rem;
-  content: "";
+  content: '';
   display: block;
   width: 2rem;
   position: absolute;

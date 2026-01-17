@@ -1,6 +1,6 @@
-if (!customElements.get("shoppable-video")) {
+if (!customElements.get('shoppable-video')) {
   customElements.define(
-    "shoppable-video",
+    'shoppable-video',
     class ShoppableVideo extends HTMLElement {
       constructor() {
         super();
@@ -11,12 +11,8 @@ if (!customElements.get("shoppable-video")) {
         this.toggleVideoIcon = this.toggleVideoIcon.bind(this);
         this.playVideo = this.playVideo.bind(this);
         this.updateScrollPosition = this.updateScrollPosition.bind(this);
-        this.throttleUpdateScroll = this.throttle(
-          this.updateScrollPosition,
-          250,
-        );
-        this.checkDominantProductElement =
-          this.checkDominantProductElement.bind(this);
+        this.throttleUpdateScroll = this.throttle(this.updateScrollPosition, 250);
+        this.checkDominantProductElement = this.checkDominantProductElement.bind(this);
         this.handleScrollAndUpdateVideoPosition =
           this.handleScrollAndUpdateVideoPosition.bind(this);
         this.handleTouchEnd = this.handleTouchEnd.bind(this);
@@ -26,21 +22,13 @@ if (!customElements.get("shoppable-video")) {
       setupElements() {
         this.productsInfo = JSON.parse(this.dataset.products);
         this.productsInfoArr = Object.entries(this.productsInfo);
-        this.video = this.querySelector("video");
-        this.productsContainer = this.querySelector(
-          ".shoppable-video__products",
-        );
-        this.controlButton = this.querySelector(
-          ".shoppable-video__control-button",
-        );
-        this.products = this.productsContainer.querySelectorAll(
-          ".shoppable-video__product",
-        );
-        this.emptyProduct = this.productsContainer.querySelector(
-          ".shoppable-video__empty-product",
-        );
+        this.video = this.querySelector('video');
+        this.productsContainer = this.querySelector('.shoppable-video__products');
+        this.controlButton = this.querySelector('.shoppable-video__control-button');
+        this.products = this.productsContainer.querySelectorAll('.shoppable-video__product');
+        this.emptyProduct = this.productsContainer.querySelector('.shoppable-video__empty-product');
         this.playButtons = this.productsContainer.querySelectorAll(
-          ".shoppable-video__rewind-button",
+          '.shoppable-video__rewind-button',
         );
         this.lastScrolledToProductIndex = null;
 
@@ -59,30 +47,21 @@ if (!customElements.get("shoppable-video")) {
       }
 
       addEventListeners() {
-        this.controlButton.addEventListener("click", this.togglePlayPause);
+        this.controlButton.addEventListener('click', this.togglePlayPause);
 
-        this.video?.addEventListener("click", this.togglePlayPause);
-        this.video?.addEventListener("timeupdate", this.throttleUpdateScroll);
-        this.video?.addEventListener("play", this.toggleVideoIcon);
-        this.video?.addEventListener("pause", this.toggleVideoIcon);
+        this.video?.addEventListener('click', this.togglePlayPause);
+        this.video?.addEventListener('timeupdate', this.throttleUpdateScroll);
+        this.video?.addEventListener('play', this.toggleVideoIcon);
+        this.video?.addEventListener('pause', this.toggleVideoIcon);
 
-        this.productsContainer.addEventListener(
-          "touchstart",
-          this.handleTouchStart,
-        );
+        this.productsContainer.addEventListener('touchstart', this.handleTouchStart);
 
-        this.productsContainer.addEventListener(
-          "scroll",
-          this.handleScrollAndUpdateVideoPosition,
-        );
-        this.productsContainer.addEventListener(
-          "touchend",
-          this.handleTouchEnd,
-        );
+        this.productsContainer.addEventListener('scroll', this.handleScrollAndUpdateVideoPosition);
+        this.productsContainer.addEventListener('touchend', this.handleTouchEnd);
 
         this.playButtons.forEach((btn, index) => {
           const boundClickRewindButton = this.clickRewindButton.bind(this, btn);
-          btn.addEventListener("click", boundClickRewindButton);
+          btn.addEventListener('click', boundClickRewindButton);
           // Store the bound function for later removal
           this.playButtonsListeners.push({ btn, boundClickRewindButton });
         });
@@ -119,10 +98,9 @@ if (!customElements.get("shoppable-video")) {
           this.scrollTimeout = setTimeout(() => {
             if (this.touchEnded) {
               this.touchEnded = false;
-              const startSecond =
-                this.productsInfoArr[this.dominantProductIndex][1];
+              const startSecond = this.productsInfoArr[this.dominantProductIndex][1];
               this.lastScrolledToProductIndex = this.dominantProductIndex - 1;
-              if(this.video){
+              if (this.video) {
                 this.video.currentTime = startSecond;
                 this.video.play();
               }
@@ -141,8 +119,7 @@ if (!customElements.get("shoppable-video")) {
 
           // Calculate visibility
           const visibleWidth =
-            Math.min(containerRect.right, right) -
-            Math.max(containerRect.left, left);
+            Math.min(containerRect.right, right) - Math.max(containerRect.left, left);
 
           if (visibleWidth > maxVisibleWidth) {
             maxVisibleWidth = visibleWidth;
@@ -159,9 +136,7 @@ if (!customElements.get("shoppable-video")) {
       calculateEmptyProductWidth() {
         const firstProductWidth = this.products[1].offsetWidth;
         this.gap = parseFloat(
-          window
-            .getComputedStyle(this.productsContainer)
-            .getPropertyValue("gap"),
+          window.getComputedStyle(this.productsContainer).getPropertyValue('gap'),
         );
         this.emptyProduct.style.width = `calc(100% - ${firstProductWidth}px - ${this.gap}px)`;
       }
@@ -192,40 +167,28 @@ if (!customElements.get("shoppable-video")) {
 
       toggleVideoIcon() {
         const isPlaying = !this.video.paused;
-        this.controlButton.classList.toggle(
-          "shoppable-video__control-button--play",
-          isPlaying,
-        );
-        this.controlButton.classList.toggle(
-          "shoppable-video__control-button--pause",
-          !isPlaying,
-        );
+        this.controlButton.classList.toggle('shoppable-video__control-button--play', isPlaying);
+        this.controlButton.classList.toggle('shoppable-video__control-button--pause', !isPlaying);
       }
 
       removeEventListeners() {
-        this.controlButton.removeEventListener("click", this.togglePlayPause);
+        this.controlButton.removeEventListener('click', this.togglePlayPause);
 
-        this.video?.removeEventListener("click", this.togglePlayPause);
-        this.video?.removeEventListener("timeupdate", this.throttleUpdateScroll);
-        this.video?.removeEventListener("play", this.toggleVideoIcon);
-        this.video?.removeEventListener("pause", this.toggleVideoIcon);
+        this.video?.removeEventListener('click', this.togglePlayPause);
+        this.video?.removeEventListener('timeupdate', this.throttleUpdateScroll);
+        this.video?.removeEventListener('play', this.toggleVideoIcon);
+        this.video?.removeEventListener('pause', this.toggleVideoIcon);
 
-        this.productsContainer.removeEventListener(
-          "touchstart",
-          this.handleTouchStart,
-        );
+        this.productsContainer.removeEventListener('touchstart', this.handleTouchStart);
 
         this.productsContainer.removeEventListener(
-          "scroll",
+          'scroll',
           this.handleScrollAndUpdateVideoPosition,
         );
-        this.productsContainer.removeEventListener(
-          "touchend",
-          this.handleTouchEnd,
-        );
+        this.productsContainer.removeEventListener('touchend', this.handleTouchEnd);
 
         this.playButtonsListeners.forEach(({ btn, boundClickPlayButton }) => {
-          btn.removeEventListener("click", boundClickPlayButton);
+          btn.removeEventListener('click', boundClickPlayButton);
         });
       }
 
@@ -240,19 +203,14 @@ if (!customElements.get("shoppable-video")) {
       animateScrollToNextProduct(productIndex) {
         const productWidth = this.products[productIndex]?.offsetWidth;
         const nextScrollPosition =
-          (Number(this.productsInfoArr[productIndex][0]) + 1) *
-          (productWidth + this.gap);
-          
-          // this.lastScrolledToProductIndex = i;
-          const maxScrollLeft =
-          this.productsContainer.scrollWidth -
-          this.productsContainer.clientWidth;
-          const clampedNextScrollPosition = Math.min(
-            nextScrollPosition,
-            maxScrollLeft,
-          ); // Clamp the position
-          
-          const startPosition = this.productsContainer.scrollLeft;
+          (Number(this.productsInfoArr[productIndex][0]) + 1) * (productWidth + this.gap);
+
+        // this.lastScrolledToProductIndex = i;
+        const maxScrollLeft =
+          this.productsContainer.scrollWidth - this.productsContainer.clientWidth;
+        const clampedNextScrollPosition = Math.min(nextScrollPosition, maxScrollLeft); // Clamp the position
+
+        const startPosition = this.productsContainer.scrollLeft;
         const duration = 250; // duration in milliseconds
         this.animateScroll(startPosition, clampedNextScrollPosition, duration);
         this.lastScrolledToProductIndex = productIndex;
@@ -286,28 +244,19 @@ if (!customElements.get("shoppable-video")) {
         const isMobile = window.innerWidth <= 400; // Adjust this to match your mobile breakpoint
 
         // Scroll to start if the video just started
-        if (
-          currentTime < 1 &&
-          currentTime > 0 &&
-          this.lastScrolledToProductIndex !== 0
-        ) {
+        if (currentTime < 1 && currentTime > 0 && this.lastScrolledToProductIndex !== 0) {
           this.lastScrolledToProductIndex = 0;
           this.productsContainer.scrollTo({
             left: 0,
-            behavior: "smooth",
+            behavior: 'smooth',
           });
           return;
         }
 
         // Find and scroll to the current product, if needed
-        for (
-          let i = this.lastScrolledToProductIndex || 0;
-          i < this.productsInfoArr.length;
-          i++
-        ) {
+        for (let i = this.lastScrolledToProductIndex || 0; i < this.productsInfoArr.length; i++) {
           const itemTime = Number(this.productsInfoArr[i][1]);
-          const shouldScrollMove =
-            currentTime > itemTime && currentTime < itemTime + 1;
+          const shouldScrollMove = currentTime > itemTime && currentTime < itemTime + 1;
           let nextScrollPosition;
 
           if (isMobile) {
@@ -334,17 +283,12 @@ if (!customElements.get("shoppable-video")) {
             this.lastScrolledToProductIndex = i;
             const clampedNextScrollPosition = Math.min(
               nextScrollPosition,
-              this.productsContainer.scrollWidth -
-                this.productsContainer.clientWidth,
+              this.productsContainer.scrollWidth - this.productsContainer.clientWidth,
             ); // Clamp the position
 
             const startPosition = this.productsContainer.scrollLeft;
             const duration = 250; // duration in milliseconds
-            this.animateScroll(
-              startPosition,
-              clampedNextScrollPosition,
-              duration,
-            );
+            this.animateScroll(startPosition, clampedNextScrollPosition, duration);
             break; // No need to continue once we've found our product
           }
         }
@@ -369,8 +313,7 @@ if (!customElements.get("shoppable-video")) {
           const timeElapsed = time - start;
           const progress = Math.min(timeElapsed / duration, 1);
           const currentPosition =
-            startPosition +
-            (endPosition - startPosition) * this.easeOutSine(progress);
+            startPosition + (endPosition - startPosition) * this.easeOutSine(progress);
           this.productsContainer.scrollLeft = currentPosition;
 
           if (timeElapsed < duration) {

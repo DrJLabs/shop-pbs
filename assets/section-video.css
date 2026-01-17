@@ -89,39 +89,39 @@
     display: none;
   }
 }
-.wt-video[data-mobile=video] {
+.wt-video[data-mobile='video'] {
   position: relative;
 }
 @media (max-width: 899px) {
-  .wt-video[data-mobile=video] .wt-video__item {
+  .wt-video[data-mobile='video'] .wt-video__item {
     position: relative;
     z-index: 1;
   }
-  .wt-video[data-mobile=video] .wt-video__item .hero__pic,
-  .wt-video[data-mobile=video] .wt-video__item .hero__img {
+  .wt-video[data-mobile='video'] .wt-video__item .hero__pic,
+  .wt-video[data-mobile='video'] .wt-video__item .hero__img {
     visibility: hidden;
   }
-  .wt-video[data-mobile=video] .wt-video__movie {
+  .wt-video[data-mobile='video'] .wt-video__movie {
     position: absolute;
     display: block;
     z-index: 0;
     width: 100%;
     height: 100%;
   }
-  .wt-video[data-mobile=video] .hero__overlay {
+  .wt-video[data-mobile='video'] .hero__overlay {
     background-color: transparent;
   }
 }
 @media (max-width: 899px) {
-  .wt-video[data-mobile=hero] .wt-video__movie {
+  .wt-video[data-mobile='hero'] .wt-video__movie {
     display: none;
   }
 }
 @media (min-width: 900px) {
-  .wt-video[data-height=adapt_to_first_image] .wt-video__movie {
+  .wt-video[data-height='adapt_to_first_image'] .wt-video__movie {
     position: relative;
   }
-  .wt-video[data-height=adapt_to_first_image] .wt-video__movie video {
+  .wt-video[data-height='adapt_to_first_image'] .wt-video__movie video {
     position: absolute;
   }
 }

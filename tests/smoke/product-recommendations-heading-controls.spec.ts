@@ -4,7 +4,9 @@ const baseUrlSupplied = Boolean(process.env.BASE_URL ?? process.env.SHOP_URL);
 
 test.skip(!baseUrlSupplied, 'Set BASE_URL or SHOP_URL to run smoke checks against a live theme.');
 
-test('product recommendations heading controls are reflected in CSS variables', async ({ page }) => {
+test('product recommendations heading controls are reflected in CSS variables', async ({
+  page,
+}) => {
   const productsResponse = await page.request.get('/products.json?limit=1');
   if (!productsResponse.ok()) {
     test.skip(true, 'No product listing available for product recommendations.');

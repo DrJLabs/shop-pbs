@@ -66,7 +66,8 @@
   border-radius: 0;
   padding: 8px;
 }
-.search-results-tab__item:hover, .search-results-tab__item.active {
+.search-results-tab__item:hover,
+.search-results-tab__item.active {
   background: none;
   color: var(--color-links-active);
   border-bottom: 2px solid var(--color-links-active);

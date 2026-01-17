@@ -1,32 +1,23 @@
-if (!customElements.get("page-header-image-banner")) {
+if (!customElements.get('page-header-image-banner')) {
   customElements.define(
-    "page-header-image-banner",
+    'page-header-image-banner',
     class ImageBanner extends HTMLElement {
       constructor() {
         super();
-        this.section = this.closest("section");
+        this.section = this.closest('section');
         this.logoBanner = this;
-        this.header = document.querySelector(".wt-header");
-        this.isMobile = window.matchMedia("(max-width: 899px)").matches;
-        this.logoWrapper = this.header.querySelector(".wt-header__logo");
-        this.showLogoClass = "wt-header__logo--show";
+        this.header = document.querySelector('.wt-header');
+        this.isMobile = window.matchMedia('(max-width: 899px)').matches;
+        this.logoWrapper = this.header.querySelector('.wt-header__logo');
+        this.showLogoClass = 'wt-header__logo--show';
       }
 
       connectedCallback() {
         this.init();
 
-        document.addEventListener(
-          "shopify:section:load",
-          this.handleAdminEditing.bind(this),
-        );
-        document.addEventListener(
-          "shopify:section:unload",
-          this.handleAdminEditing.bind(this),
-        );
-        document.addEventListener(
-          "shopify:section:reorder",
-          this.handleAdminEditing.bind(this),
-        );
+        document.addEventListener('shopify:section:load', this.handleAdminEditing.bind(this));
+        document.addEventListener('shopify:section:unload', this.handleAdminEditing.bind(this));
+        document.addEventListener('shopify:section:reorder', this.handleAdminEditing.bind(this));
       }
 
       handleAdminEditing() {
@@ -34,7 +25,7 @@ if (!customElements.get("page-header-image-banner")) {
       }
 
       init() {
-        const logoWrapper = document.querySelector(".wt-header__logo");
+        const logoWrapper = document.querySelector('.wt-header__logo');
 
         if (this.isTransparentHeaderEnabled()) {
           this.setTopMargin();
@@ -56,7 +47,7 @@ if (!customElements.get("page-header-image-banner")) {
       }
 
       resetTopMargin() {
-        this.section.style.marginTop = "0";
+        this.section.style.marginTop = '0';
       }
 
       disconnectedCallback() {
@@ -66,27 +57,18 @@ if (!customElements.get("page-header-image-banner")) {
 
         // Remove scroll event listener if it exists
         if (this.scrollListener) {
-          document.removeEventListener("scroll", this.scrollListener);
+          document.removeEventListener('scroll', this.scrollListener);
           this.scrollListener = null;
         }
 
-        document.removeEventListener(
-          "shopify:section:load",
-          this.handleAdminEditing.bind(this),
-        );
-        document.removeEventListener(
-          "shopify:section:unload",
-          this.handleAdminEditing.bind(this),
-        );
-        document.removeEventListener(
-          "shopify:section:reorder",
-          this.handleAdminEditing.bind(this),
-        );
+        document.removeEventListener('shopify:section:load', this.handleAdminEditing.bind(this));
+        document.removeEventListener('shopify:section:unload', this.handleAdminEditing.bind(this));
+        document.removeEventListener('shopify:section:reorder', this.handleAdminEditing.bind(this));
       }
 
       observeHeader() {
-        const header = document.querySelector(".wt-header");
-        const activeTransparentClass = "wt-header--transparent";
+        const header = document.querySelector('.wt-header');
+        const activeTransparentClass = 'wt-header--transparent';
         this.observer = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
@@ -104,7 +86,7 @@ if (!customElements.get("page-header-image-banner")) {
       }
 
       isValidSectionsOrder() {
-        const pageHeader = document.body.querySelector("header.page-header");
+        const pageHeader = document.body.querySelector('header.page-header');
         const currentSection = this.section;
 
         if (pageHeader && currentSection) {
@@ -114,22 +96,18 @@ if (!customElements.get("page-header-image-banner")) {
       }
 
       isTransparentHeaderEnabled() {
-        const header = document.querySelector(".wt-header");
+        const header = document.querySelector('.wt-header');
 
-        return (
-          this.isValidSectionsOrder() && Boolean(header?.dataset.transparent)
-        );
+        return this.isValidSectionsOrder() && Boolean(header?.dataset.transparent);
       }
 
       calculateOffset() {
-        const header = document.querySelector("header");
+        const header = document.querySelector('header');
         const headerHeight = header.offsetHeight;
 
-        const announcment = document.querySelector(".wt-announcement");
+        const announcment = document.querySelector('.wt-announcement');
         const announcmentHeight = announcment ? announcment.offsetHeight : 0;
-        const offset = this.isTransparentHeaderEnabled()
-          ? headerHeight + announcmentHeight
-          : 0;
+        const offset = this.isTransparentHeaderEnabled() ? headerHeight + announcmentHeight : 0;
 
         return offset;
       }

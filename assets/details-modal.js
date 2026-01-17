@@ -1,52 +1,40 @@
 class DetailsModal extends HTMLElement {
   constructor() {
     super();
-    this.detailsContainer = this.querySelector("details");
-    this.summaryToggle = this.querySelector("summary");
-    this.modalToggleOpen = this.querySelector("modal__toggle");
+    this.detailsContainer = this.querySelector('details');
+    this.summaryToggle = this.querySelector('summary');
+    this.modalToggleOpen = this.querySelector('modal__toggle');
 
     this.detailsContainer.addEventListener(
-      "keyup",
-      (event) => event.code.toUpperCase() === "ESCAPE" && this.close(),
+      'keyup',
+      (event) => event.code.toUpperCase() === 'ESCAPE' && this.close(),
     );
-    this.summaryToggle.addEventListener(
-      "click",
-      this.onSummaryClick.bind(this),
-    );
-    this.querySelector('button[type="button"]').addEventListener(
-      "click",
-      this.close.bind(this),
-    );
+    this.summaryToggle.addEventListener('click', this.onSummaryClick.bind(this));
+    this.querySelector('button[type="button"]').addEventListener('click', this.close.bind(this));
 
-    this.summaryToggle.setAttribute("role", "button");
+    this.summaryToggle.setAttribute('role', 'button');
   }
 
   isOpen() {
-    return this.detailsContainer.hasAttribute("open");
+    return this.detailsContainer.hasAttribute('open');
   }
 
   onSummaryClick(event) {
     event.preventDefault();
-    event.target.closest("details").hasAttribute("open")
-      ? this.close()
-      : this.open(event);
+    event.target.closest('details').hasAttribute('open') ? this.close() : this.open(event);
   }
 
   onBodyClick(event) {
-    if (
-      !this.contains(event.target) ||
-      event.target.classList.contains("modal-overlay")
-    )
+    if (!this.contains(event.target) || event.target.classList.contains('modal-overlay'))
       this.close(false);
   }
 
   open(event) {
-    this.onBodyClickEvent =
-      this.onBodyClickEvent || this.onBodyClick.bind(this);
-    event.target.closest("details").setAttribute("open", true);
-    document.body.addEventListener("click", this.onBodyClickEvent);
-    document.body.classList.add("overflow-hidden");
-    this.summaryToggle.classList.add("hidden");
+    this.onBodyClickEvent = this.onBodyClickEvent || this.onBodyClick.bind(this);
+    event.target.closest('details').setAttribute('open', true);
+    document.body.addEventListener('click', this.onBodyClickEvent);
+    document.body.classList.add('overflow-hidden');
+    this.summaryToggle.classList.add('hidden');
 
     trapFocus(
       this.detailsContainer.querySelector('[tabindex="-1"]'),
@@ -56,11 +44,11 @@ class DetailsModal extends HTMLElement {
 
   close(focusToggle = true) {
     removeTrapFocus(focusToggle ? this.summaryToggle : null);
-    this.detailsContainer.removeAttribute("open");
-    document.body.removeEventListener("click", this.onBodyClickEvent);
-    document.body.classList.remove("overflow-hidden");
-    this.summaryToggle.classList.remove("hidden");
+    this.detailsContainer.removeAttribute('open');
+    document.body.removeEventListener('click', this.onBodyClickEvent);
+    document.body.classList.remove('overflow-hidden');
+    this.summaryToggle.classList.remove('hidden');
   }
 }
 
-customElements.define("details-modal", DetailsModal);
+customElements.define('details-modal', DetailsModal);

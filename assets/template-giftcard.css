@@ -326,7 +326,8 @@ h2,
 *:focus-visible {
   outline: 0.2rem solid rgba(var(--color-base-text), 0.5);
   outline-offset: 0.3rem;
-  box-shadow: 0 0 0 0.3rem rgb(var(--color-base-background-1)),
+  box-shadow:
+    0 0 0 0.3rem rgb(var(--color-base-background-1)),
     0 0 0.5rem 0.4rem rgba(var(--color-base-text), 0.3);
 }
 
@@ -334,7 +335,8 @@ h2,
 *:focus {
   outline: 0.2rem solid rgba(var(--color-base-text), 0.5);
   outline-offset: 0.3rem;
-  box-shadow: 0 0 0 0.3rem rgb(var(--color-base-background-1)),
+  box-shadow:
+    0 0 0 0.3rem rgb(var(--color-base-background-1)),
     0 0 0.5rem 0.4rem rgba(var(--color-base-text), 0.3);
 }
 
@@ -345,25 +347,29 @@ h2,
 }
 
 .button:focus-visible {
-  box-shadow: 0 0 0 0.1rem rgb(var(--color-base-accent-1)),
+  box-shadow:
+    0 0 0 0.1rem rgb(var(--color-base-accent-1)),
     0 0 0 0.3rem rgb(var(--color-base-background-1)),
     0 0 0.5rem 0.4rem rgba(var(--color-base-text), 0.3);
 }
 
 .button:focus {
-  box-shadow: 0 0 0 0.1rem rgb(var(--color-base-accent-1)),
+  box-shadow:
+    0 0 0 0.1rem rgb(var(--color-base-accent-1)),
     0 0 0 0.3rem rgb(var(--color-base-background-1)),
     0 0 0.5rem 0.4rem rgba(var(--color-base-text), 0.3);
 }
 
 .button--secondary:focus-visible {
-  box-shadow: 0 0 0 0.1rem rgb(var(--color-base-outline-button-labels)),
+  box-shadow:
+    0 0 0 0.1rem rgb(var(--color-base-outline-button-labels)),
     0 0 0 0.3rem rgb(var(--color-base-background-1)),
     0 0 0.5rem 0.4rem rgba(var(--color-base-text), 0.3);
 }
 
 .button--secondary:focus {
-  box-shadow: 0 0 0 0.1rem rgb(var(--color-base-outline-button-labels)),
+  box-shadow:
+    0 0 0 0.1rem rgb(var(--color-base-outline-button-labels)),
     0 0 0 0.3rem rgb(var(--color-base-background-1)),
     0 0 0.5rem 0.4rem rgba(var(--color-base-text), 0.3);
 }

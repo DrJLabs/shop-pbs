@@ -1,3 +1,3 @@
 class SlideshowSection extends Slider {}
 
-customElements.define("slideshow-section", SlideshowSection);
+customElements.define('slideshow-section', SlideshowSection);

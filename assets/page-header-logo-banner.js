@@ -1,16 +1,16 @@
-if (!customElements.get("page-header-logo-banner")) {
+if (!customElements.get('page-header-logo-banner')) {
   customElements.define(
-    "page-header-logo-banner",
+    'page-header-logo-banner',
     class PageHeaderLogoBannerSection extends HTMLElement {
       constructor() {
         super();
-        this.section = this.closest("section");
+        this.section = this.closest('section');
         this.logoBanner = this;
-        this.video = this.querySelector(".wt-video__movie video");
-        this.lowBatteryClass = "low-battery-mode";
+        this.video = this.querySelector('.wt-video__movie video');
+        this.lowBatteryClass = 'low-battery-mode';
         this.isLowBattery = false;
-        this.isMobile = window.matchMedia("(max-width: 899px)").matches;
-        this.elementToScale = this.querySelector(".wt-logo-banner__logo");
+        this.isMobile = window.matchMedia('(max-width: 899px)').matches;
+        this.elementToScale = this.querySelector('.wt-logo-banner__logo');
 
         this.isSticky = false;
         this.observer = null;
@@ -22,10 +22,7 @@ if (!customElements.get("page-header-logo-banner")) {
       }
 
       disconnectedCallback() {
-        document.removeEventListener(
-          "shopify:section:load",
-          this.handleShopifyEditorEvent,
-        );
+        document.removeEventListener('shopify:section:load', this.handleShopifyEditorEvent);
 
         // Disconnect observer if it exists
         if (this.observer) {
@@ -35,7 +32,7 @@ if (!customElements.get("page-header-logo-banner")) {
 
         // Remove scroll event listener if it exists
         if (this.scrollListener) {
-          document.removeEventListener("scroll", this.scrollListener);
+          document.removeEventListener('scroll', this.scrollListener);
           this.scrollListener = null;
         }
       }
@@ -45,7 +42,7 @@ if (!customElements.get("page-header-logo-banner")) {
       }
 
       isValidSectionsOrder() {
-        const pageHeader = document.body.querySelector("header.page-header");
+        const pageHeader = document.body.querySelector('header.page-header');
         const currentSection = this.section;
 
         if (pageHeader && currentSection) {
@@ -55,8 +52,8 @@ if (!customElements.get("page-header-logo-banner")) {
       }
 
       observeHeader() {
-        const header = document.querySelector(".wt-header");
-        const activeTransparentClass = "wt-header--transparent";
+        const header = document.querySelector('.wt-header');
+        const activeTransparentClass = 'wt-header--transparent';
         this.observer = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
@@ -74,14 +71,10 @@ if (!customElements.get("page-header-logo-banner")) {
       }
 
       getNominalWidth() {
-        const header = document.querySelector("header");
+        const header = document.querySelector('header');
         const computedStyle = window.getComputedStyle(header);
-        const nominalWidthMobile = computedStyle
-          .getPropertyValue("--logo-width")
-          .trim();
-        const nominalWidth = computedStyle
-          .getPropertyValue("--logo-width-desk")
-          .trim();
+        const nominalWidthMobile = computedStyle.getPropertyValue('--logo-width').trim();
+        const nominalWidth = computedStyle.getPropertyValue('--logo-width-desk').trim();
 
         return parseInt(this.isMobile ? nominalWidthMobile : nominalWidth);
       }
@@ -101,16 +94,14 @@ if (!customElements.get("page-header-logo-banner")) {
       handleLogoSize() {
         const logoBanner = this.logoBanner;
         const elementToScale = this.elementToScale;
-        const logoWrapper = this.logoBanner.querySelector(
-          ".wt-logo-banner__picture",
-        );
+        const logoWrapper = this.logoBanner.querySelector('.wt-logo-banner__picture');
         const calculateMaxScale = this.calculateMaxScale.bind(this);
 
         const containerBottom = logoBanner.getBoundingClientRect().bottom;
         const visibilityRatio = containerBottom / window.innerHeight;
         const logoWrapperHeight = Math.max(0, containerBottom);
-        const vanishingClass = "wt-logo-banner--vanishing";
-        const inactiveClass = "inactive";
+        const vanishingClass = 'wt-logo-banner--vanishing';
+        const inactiveClass = 'inactive';
 
         let scale = Math.max(
           1,
@@ -141,18 +132,16 @@ if (!customElements.get("page-header-logo-banner")) {
       observeAndScaleElement() {
         this.setInitialScale();
         this.scrollListener = this.handleLogoSize.bind(this);
-        document.addEventListener("scroll", this.scrollListener);
+        document.addEventListener('scroll', this.scrollListener);
       }
 
       calculateOffset() {
-        const header = document.querySelector("header");
+        const header = document.querySelector('header');
         const headerHeight = header.offsetHeight;
 
-        const announcement = document.querySelector(".wt-announcement");
+        const announcement = document.querySelector('.wt-announcement');
         const announcementHeight = announcement ? announcement.offsetHeight : 0;
-        const offset = this.isTransparentHeaderEnabled()
-          ? headerHeight + announcementHeight
-          : 0;
+        const offset = this.isTransparentHeaderEnabled() ? headerHeight + announcementHeight : 0;
 
         return offset;
       }
@@ -163,46 +152,38 @@ if (!customElements.get("page-header-logo-banner")) {
       }
 
       isTransparentHeaderEnabled() {
-        const header = document.querySelector(".wt-header");
+        const header = document.querySelector('.wt-header');
         return (
           header.dataset.transparent &&
           this.isValidSectionsOrder() &&
-          header.classList.contains("wt-header--v3")
+          header.classList.contains('wt-header--v3')
         );
       }
 
       init() {
-        document.addEventListener(
-          "shopify:section:load",
-          this.handleShopifyEditorEvent.bind(this),
-        );
+        document.addEventListener('shopify:section:load', this.handleShopifyEditorEvent.bind(this));
 
         this.setupHeaderAndObservers();
         this.initializeVideoAndScaling();
       }
 
       setupHeaderMode() {
-        const header = document.querySelector(".wt-header");
-        const stickyHeaderThreshold = document.querySelector(
-          ".sticky-header__threshold",
-        );
-        const isHeaderSticky =
-          document.body.classList.contains("page-header-sticky");
+        const header = document.querySelector('.wt-header');
+        const stickyHeaderThreshold = document.querySelector('.sticky-header__threshold');
+        const isHeaderSticky = document.body.classList.contains('page-header-sticky');
 
         if (this.isTransparentHeaderEnabled()) {
-          const isHeaderTransparent = header.classList.contains(
-            "wt-header--transparent",
-          );
+          const isHeaderTransparent = header.classList.contains('wt-header--transparent');
 
           if (isHeaderSticky) {
-            stickyHeaderThreshold.style.height = "110vh";
+            stickyHeaderThreshold.style.height = '110vh';
             this.setTopMargin();
           } else if (isHeaderTransparent) {
             this.setTopMargin();
           }
         } else if (isHeaderSticky) {
-          stickyHeaderThreshold.style.height = "200px";
-          this.section.style.marginTop = "0";
+          stickyHeaderThreshold.style.height = '200px';
+          this.section.style.marginTop = '0';
         }
       }
 

@@ -1,10 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { parseJsonWithComments, readThemeFile } from './test-utils';
-import type {
-  ShopifySection,
-  ShopifySettingsData,
-  ShopifyTemplate,
-} from './test-utils';
+import type { ShopifySection, ShopifySettingsData, ShopifyTemplate } from './test-utils';
 
 test('parses JSON with multiple block comments', () => {
   const sample = '/*first*/\n{"key": "value"}\n/*second*/';
@@ -13,14 +9,13 @@ test('parses JSON with multiple block comments', () => {
 
 test('blend page text blocks avoid inline FDA disclaimers', () => {
   const settingsData = parseJsonWithComments(
-    readThemeFile('config/settings_data.json')
+    readThemeFile('config/settings_data.json'),
   ) as ShopifySettingsData;
   const templates = settingsData.current?.templates ?? {};
   const disclaimerNeedle =
     'These statements have not been evaluated by the Food and Drug Administration';
   const coaLinkRegex = /View the batch-specific COA:\s*https:\/\/[^\s<]+/;
-  const duplicateCannabinoidRegex =
-    /(\b[A-Z]{2,}(?:-[A-Z]{1,})?\b)\s*\/\s*\1\b(?!-)/i;
+  const duplicateCannabinoidRegex = /(\b[A-Z]{2,}(?:-[A-Z]{1,})?\b)\s*\/\s*\1\b(?!-)/i;
   const blendTexts: string[] = [];
 
   Object.values(templates).forEach((template) => {
@@ -53,12 +48,11 @@ test('blend page text blocks avoid inline FDA disclaimers', () => {
 
 test('home blends section keeps the large headline defaults', () => {
   const indexTemplate = parseJsonWithComments(
-    readThemeFile('templates/index.json')
+    readThemeFile('templates/index.json'),
   ) as ShopifyTemplate;
   const multicolumnSection = Object.values(indexTemplate.sections ?? {}).find(
     (section) =>
-      section.type === 'multicolumn' &&
-      section.settings?.heading === 'Our Signature Blends'
+      section.type === 'multicolumn' && section.settings?.heading === 'Our Signature Blends',
   ) as ShopifySection | undefined;
 
   expect(multicolumnSection).toBeDefined();
@@ -69,7 +63,7 @@ test('home blends section keeps the large headline defaults', () => {
 
 test('wholesale portal keeps large heading sizes with transparent colors', () => {
   const wholesaleTemplate = parseJsonWithComments(
-    readThemeFile('templates/page.wholesale-portal.json')
+    readThemeFile('templates/page.wholesale-portal.json'),
   ) as ShopifyTemplate;
   const mainSection = wholesaleTemplate.sections?.main as ShopifySection | undefined;
 
@@ -80,7 +74,8 @@ test('wholesale portal keeps large heading sizes with transparent colors', () =>
   expect(mainSection?.settings?.['color-body-text']).toBe('transparent');
   expect(mainSection?.settings?.['color-bg-overlay']).toBe('transparent');
 
-  const formSection =
-    wholesaleTemplate.sections?.form as Pick<ShopifySection, 'settings'> | undefined;
+  const formSection = wholesaleTemplate.sections?.form as
+    | Pick<ShopifySection, 'settings'>
+    | undefined;
   expect(formSection?.settings?.background_color).toBe('transparent');
 });

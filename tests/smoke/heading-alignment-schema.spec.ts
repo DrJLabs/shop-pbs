@@ -14,15 +14,15 @@ test('main 404 and multicolumn sections retain heading alignment setting', () =>
 
 test('templates keep heading alignment defaults', () => {
   const indexTemplate = parseJsonWithComments(
-    readThemeFile('templates/index.json')
+    readThemeFile('templates/index.json'),
   ) as ShopifyTemplate;
   const blendsTemplate = parseJsonWithComments(
-    readThemeFile('templates/page.blends.json')
+    readThemeFile('templates/page.blends.json'),
   ) as ShopifyTemplate;
 
   const hasHeadingAlignment = (template: ShopifyTemplate) =>
     Object.values(template.sections ?? {}).some(
-      (section) => section.settings?.heading_alignment !== undefined
+      (section) => section.settings?.heading_alignment !== undefined,
     );
 
   expect(hasHeadingAlignment(indexTemplate)).toBe(true);

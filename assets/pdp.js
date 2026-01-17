@@ -2,7 +2,7 @@ class StickyBuyButton extends HTMLElement {
   constructor() {
     super();
 
-    this.activeClass = "wt-product__sticky-buy--show";
+    this.activeClass = 'wt-product__sticky-buy--show';
   }
 
   connectedCallback() {
@@ -10,20 +10,20 @@ class StickyBuyButton extends HTMLElement {
   }
 
   initialize() {
-    const addToCartModule = document.querySelector(".wt-product__add-to-cart");
-    const btn = this.querySelector("button");
+    const addToCartModule = document.querySelector('.wt-product__add-to-cart');
+    const btn = this.querySelector('button');
 
     const forObserver = document.querySelectorAll(
-      ".wt-product__add-to-cart, .wt-footer, .wt-product__name",
+      '.wt-product__add-to-cart, .wt-footer, .wt-product__name',
     );
 
     let intersected = [];
 
-    btn.addEventListener("click", (e) => {
+    btn.addEventListener('click', (e) => {
       e.preventDefault();
       addToCartModule.scrollIntoView({
-        behavior: "smooth",
-        block: "center",
+        behavior: 'smooth',
+        block: 'center',
       });
     });
 
@@ -47,15 +47,15 @@ class StickyBuyButton extends HTMLElement {
   }
 }
 
-customElements.define("sticky-buy-button", StickyBuyButton);
+customElements.define('sticky-buy-button', StickyBuyButton);
 
-if (!customElements.get("gallery-fashion")) {
+if (!customElements.get('gallery-fashion')) {
   customElements.define(
-    "gallery-fashion",
+    'gallery-fashion',
     class GalleryFashion extends HTMLElement {
       constructor() {
         super();
-        this.section = this.closest("section");
+        this.section = this.closest('section');
         this.logoBanner = this;
       }
 
@@ -69,27 +69,15 @@ if (!customElements.get("gallery-fashion")) {
 
       addEventsWhenDesignMode() {
         if (Shopify.designMode) {
-          document.addEventListener(
-            "shopify:section:load",
-            this.reinitAfterDelay,
-          );
-          document.addEventListener(
-            "shopify:section:unload",
-            this.reinitAfterDelay,
-          );
+          document.addEventListener('shopify:section:load', this.reinitAfterDelay);
+          document.addEventListener('shopify:section:unload', this.reinitAfterDelay);
         }
       }
 
       removeEventsWhenDesignMode() {
         if (Shopify.designMode) {
-          document.removeEventListener(
-            "shopify:section:load",
-            this.reinitAfterDelay,
-          );
-          document.removeEventListener(
-            "shopify:section:unload",
-            this.reinitAfterDelay,
-          );
+          document.removeEventListener('shopify:section:load', this.reinitAfterDelay);
+          document.removeEventListener('shopify:section:unload', this.reinitAfterDelay);
         }
       }
 
@@ -98,9 +86,9 @@ if (!customElements.get("gallery-fashion")) {
       }
 
       isFirstSection() {
-        const sectionWrapper = document.querySelector("#root");
-        const firstSection = sectionWrapper.querySelector("section");
-        this.section = this.closest("section");
+        const sectionWrapper = document.querySelector('#root');
+        const firstSection = sectionWrapper.querySelector('section');
+        this.section = this.closest('section');
         const currentSection = this.section;
 
         return firstSection === currentSection;
@@ -112,8 +100,8 @@ if (!customElements.get("gallery-fashion")) {
       }
 
       observeHeader() {
-        const header = document.querySelector(".wt-header");
-        const activeTransparentClass = "wt-header--fashion-transparent";
+        const header = document.querySelector('.wt-header');
+        const activeTransparentClass = 'wt-header--fashion-transparent';
 
         const observer = new IntersectionObserver(
           (entries) => {
@@ -128,16 +116,14 @@ if (!customElements.get("gallery-fashion")) {
           { root: null, threshold: 0.05 },
         );
 
-        observer.observe(this.querySelector(".wt-product__gallery"));
+        observer.observe(this.querySelector('.wt-product__gallery'));
       }
 
       calculateOffset() {
-        const header = document.querySelector("header");
+        const header = document.querySelector('header');
         const headerHeight = header.offsetHeight;
         const offset =
-          this.isTransparentHeaderEnabled() && this.isFirstSection()
-            ? headerHeight
-            : 0;
+          this.isTransparentHeaderEnabled() && this.isFirstSection() ? headerHeight : 0;
 
         return offset;
       }
@@ -152,26 +138,21 @@ if (!customElements.get("gallery-fashion")) {
       }
 
       isTransparentHeaderEnabled() {
-        const header = document.querySelector(".wt-header");
-        return (
-          header.dataset.transparent &&
-          header.classList.contains("wt-header--v3")
-        );
+        const header = document.querySelector('.wt-header');
+        return header.dataset.transparent && header.classList.contains('wt-header--v3');
       }
 
       renderProgressBar() {
-        const thumbsGallery = this.querySelector("[data-thumbs]");
-        const progressBarElement = document.createElement("div");
-        progressBarElement.classList.add("gallery-fashion__progress-bar");
-        const progressBarIndicatorElement = document.createElement("div");
-        progressBarIndicatorElement.classList.add(
-          "gallery-fashion__progress-bar-indicator",
-        );
+        const thumbsGallery = this.querySelector('[data-thumbs]');
+        const progressBarElement = document.createElement('div');
+        progressBarElement.classList.add('gallery-fashion__progress-bar');
+        const progressBarIndicatorElement = document.createElement('div');
+        progressBarIndicatorElement.classList.add('gallery-fashion__progress-bar-indicator');
         progressBarElement.appendChild(progressBarIndicatorElement);
         thumbsGallery.appendChild(progressBarElement);
 
         function updateProgressBar() {
-          const images = this.querySelector("gallery-section");
+          const images = this.querySelector('gallery-section');
           const progressBar = progressBarIndicatorElement;
 
           const scrolled = window.scrollY;
@@ -181,43 +162,38 @@ if (!customElements.get("gallery-fashion")) {
           const progressBarHeight = progressBarElement.clientHeight;
           const progressHeight = progressBar.clientHeight;
           const maxProgressTop = progressBarHeight - progressHeight;
-          const progressTop = Math.min(
-            (scrollPercentage / 100) * maxProgressTop,
-            maxProgressTop,
-          );
+          const progressTop = Math.min((scrollPercentage / 100) * maxProgressTop, maxProgressTop);
 
           progressBar.style.top = `${progressTop}px`;
 
           if (progressTop === maxProgressTop) {
-            thumbsGallery.classList.add("finished");
+            thumbsGallery.classList.add('finished');
           } else {
-            thumbsGallery.classList.remove("finished");
+            thumbsGallery.classList.remove('finished');
           }
         }
 
-        window.addEventListener("scroll", updateProgressBar.bind(this));
+        window.addEventListener('scroll', updateProgressBar.bind(this));
 
         function handleThumbsClick(event) {
-          if (event.target.className === "wt-product__img") {
-            const thumbnails = Array.from(
-              event.currentTarget.querySelectorAll("img"),
-            );
+          if (event.target.className === 'wt-product__img') {
+            const thumbnails = Array.from(event.currentTarget.querySelectorAll('img'));
             const index = thumbnails.indexOf(event.target);
 
             const fullImage = this.querySelectorAll(
-              ".wt-masonry__wrapper .wt-product__img, .wt-masonry__wrapper .wt-product__thumbnail-video",
+              '.wt-masonry__wrapper .wt-product__img, .wt-masonry__wrapper .wt-product__thumbnail-video',
             )[index];
 
-            fullImage.scrollIntoView({ behavior: "smooth", block: "start" });
+            fullImage.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }
         }
 
-        thumbsGallery.addEventListener("click", handleThumbsClick.bind(this));
+        thumbsGallery.addEventListener('click', handleThumbsClick.bind(this));
       }
 
       positioningProductInfo() {
-        const productInfo = this.querySelector(".wt-product__main");
-        const mediaDesktop = window.matchMedia("(min-width: 1200px)");
+        const productInfo = this.querySelector('.wt-product__main');
+        const mediaDesktop = window.matchMedia('(min-width: 1200px)');
 
         if (mediaDesktop.matches) {
           productInfo.style.top = `${Math.max((window.innerHeight - productInfo.offsetHeight) / 2, 0)}px`;
@@ -236,19 +212,16 @@ if (!customElements.get("gallery-fashion")) {
       }
 
       attachEvents() {
-        window.addEventListener("resize", this.handleResize.bind(this));
+        window.addEventListener('resize', this.handleResize.bind(this));
       }
 
       init() {
         this.reinitAfterDelay = this.reinitAfterDelay.bind(this);
         if (this.isTransparentHeaderEnabled()) {
-          const stickyHeaderThreshold = document.querySelector(
-            ".sticky-header__threshold",
-          );
-          const isHeaderSticky =
-            document.body.classList.contains("page-header-sticky");
+          const stickyHeaderThreshold = document.querySelector('.sticky-header__threshold');
+          const isHeaderSticky = document.body.classList.contains('page-header-sticky');
           if (isHeaderSticky) {
-            stickyHeaderThreshold.style.height = `${this.querySelector(".swiper-wrapper--masonry").offsetHeight}px`;
+            stickyHeaderThreshold.style.height = `${this.querySelector('.swiper-wrapper--masonry').offsetHeight}px`;
           }
           this.setTopMargin();
           this.observeHeader();
@@ -262,13 +235,10 @@ if (!customElements.get("gallery-fashion")) {
 
       reinit() {
         if (this.isTransparentHeaderEnabled()) {
-          const stickyHeaderThreshold = document.querySelector(
-            ".sticky-header__threshold",
-          );
-          const isHeaderSticky =
-            document.body.classList.contains("page-header-sticky");
+          const stickyHeaderThreshold = document.querySelector('.sticky-header__threshold');
+          const isHeaderSticky = document.body.classList.contains('page-header-sticky');
           if (isHeaderSticky) {
-            stickyHeaderThreshold.style.height = `${this.querySelector(".swiper-wrapper--masonry").offsetHeight}px`;
+            stickyHeaderThreshold.style.height = `${this.querySelector('.swiper-wrapper--masonry').offsetHeight}px`;
           }
           this.setTopMargin();
           this.observeHeader();

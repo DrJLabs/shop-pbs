@@ -11,6 +11,7 @@
 ### Task 1: Add a failing smoke test and seed CTA data
 
 **Files:**
+
 - Modify: `tests/smoke/blends.spec.ts`
 - Modify: `templates/page.blends.json`
 
@@ -49,6 +50,7 @@ git commit -m "test: require blends CTA link"
 ### Task 2: Add CTA fields and render logic in blends profiles
 
 **Files:**
+
 - Modify: `sections/blends-profiles.liquid`
 - Modify: `assets/section-blends-profiles.css`
 
@@ -78,7 +80,7 @@ In the card body, add logic:
 {% assign cta_label = block.settings.cta_label | default: 'Learn more' %}
 
 {% if cta_url != blank %}
-  <a class="hero__button hero__button--primary blends-profiles__cta" href="{{ cta_url }}">
+  <a class='hero__button hero__button--primary blends-profiles__cta' href='{{ cta_url }}'>
     {{ cta_label }}
   </a>
 {% endif %}
@@ -118,6 +120,7 @@ git commit -m "feat: add per-blend CTA button"
 ### Task 3: Verify CTA on the blends page
 
 **Files:**
+
 - None (manual QA)
 
 **Step 1: Run smoke test again**
@@ -136,5 +139,6 @@ Expected: PASS (CTA appears and has a link).
 - Confirm CTA is hidden when URL is blank (remove CTA URL in theme editor to verify).
 
 ## Notes
+
 - Validate Liquid changes with `shopify-dev-mcp-full` after edits.
 - Keep `page.blends` edits minimal and avoid overwriting admin-managed data beyond CTA fields.

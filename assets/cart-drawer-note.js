@@ -3,17 +3,17 @@ class DrawerCartNote extends HTMLElement {
     super();
 
     this.triggers = [
-      this.querySelector(".giftnote__drawercart__addnote"),
-      this.querySelector(".giftnote__body__close"),
-      this.querySelector(".giftnote__overlay"),
+      this.querySelector('.giftnote__drawercart__addnote'),
+      this.querySelector('.giftnote__body__close'),
+      this.querySelector('.giftnote__overlay'),
     ];
-    this.saveBtn = this.querySelector(".giftnote__save");
+    this.saveBtn = this.querySelector('.giftnote__save');
 
     this.addEventListener(
-      "change",
+      'change',
       debounce((event) => {
         const body = JSON.stringify({
-          note: document.getElementById("CartDrawer-note").value,
+          note: document.getElementById('CartDrawer-note').value,
         });
         fetch(`${routes.cart_update_url}`, { ...fetchConfig(), ...{ body } });
       }, ON_CHANGE_DEBOUNCE_TIMER),
@@ -23,14 +23,9 @@ class DrawerCartNote extends HTMLElement {
   }
 
   getFocusableElements() {
-    const focusableElementsSelector =
-      "button, [href], input, select, textarea, [tabindex]";
+    const focusableElementsSelector = 'button, [href], input, select, textarea, [tabindex]';
     const focusableElements = () =>
-      Array.from(
-        this.querySelector(".giftnote__body").querySelectorAll(
-          focusableElementsSelector,
-        ),
-      );
+      Array.from(this.querySelector('.giftnote__body').querySelectorAll(focusableElementsSelector));
 
     return {
       focusableElements,
@@ -45,7 +40,7 @@ class DrawerCartNote extends HTMLElement {
 
   onSave() {
     const body = JSON.stringify({
-      note: document.getElementById("CartDrawer-note").value,
+      note: document.getElementById('CartDrawer-note').value,
     });
     fetch(`${routes.cart_update_url}`, { ...fetchConfig(), ...{ body } });
     this.onToggle();
@@ -54,36 +49,35 @@ class DrawerCartNote extends HTMLElement {
   onToggle() {
     const { focusableElements } = this.getFocusableElements();
 
-    if (this.hasAttribute("open")) {
-      this.removeAttribute("open");
-      setTabindex(focusableElements(), "-1");
+    if (this.hasAttribute('open')) {
+      this.removeAttribute('open');
+      setTabindex(focusableElements(), '-1');
       this.triggers[0].focus();
     } else {
-      this.setAttribute("open", true);
-      setTabindex(focusableElements(), "0");
+      this.setAttribute('open', true);
+      setTabindex(focusableElements(), '0');
       this.triggers[1].focus();
     }
   }
 
   init() {
     this.triggers.forEach((trigger) => {
-      trigger?.addEventListener("click", (e) => {
+      trigger?.addEventListener('click', (e) => {
         e.preventDefault();
         this.onToggle();
       });
     });
 
-    this.saveBtn.addEventListener("click", (e) => {
+    this.saveBtn.addEventListener('click', (e) => {
       e.preventDefault();
       this.onSave();
     });
 
-    this.addEventListener("keydown", (e) => {
-      const isTabPressed =
-        e.key === "Tab" || e.keyCode === 9 || e.code === "Tab";
+    this.addEventListener('keydown', (e) => {
+      const isTabPressed = e.key === 'Tab' || e.keyCode === 9 || e.code === 'Tab';
       const { first, last } = this.getFocusableElements();
 
-      if (e.key === "Escape" || e.keyCode === 27 || e.code === "Escape") {
+      if (e.key === 'Escape' || e.keyCode === 27 || e.code === 'Escape') {
         if (this.isOpen) {
           this.onToggle();
         }
@@ -102,4 +96,4 @@ class DrawerCartNote extends HTMLElement {
   }
 }
 
-customElements.define("drawer-cart-note", DrawerCartNote);
+customElements.define('drawer-cart-note', DrawerCartNote);

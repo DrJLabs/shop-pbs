@@ -16,7 +16,7 @@
     transform: scale(0);
     z-index: 15;
     transition: opacity 0.3s ease-in-out;
-    content: "";
+    content: '';
     display: block;
     position: fixed;
     inset: 0;
@@ -31,7 +31,9 @@
 }
 custom-select [custom-select-body] {
   background-color: white;
-  transition: transform 0.3s cubic-bezier(0.12, 0.67, 0.53, 1), opacity 0.2s linear;
+  transition:
+    transform 0.3s cubic-bezier(0.12, 0.67, 0.53, 1),
+    opacity 0.2s linear;
   z-index: 40;
   position: relative;
 }
@@ -56,7 +58,7 @@ custom-select [custom-select-body] {
   custom-select [custom-select-body]::before {
     width: 0;
     height: 0;
-    content: "";
+    content: '';
     position: absolute;
     top: calc(var(--gap, 8px) * -1);
     right: 2rem;
@@ -177,7 +179,7 @@ custom-select[open] [custom-select-body] {
   border-radius: var(--border-radius-button);
 }
 .wt-options__list__item[selected]::after {
-  content: "";
+  content: '';
   display: block;
   border-style: solid;
   border-width: 0 0 1px 1px;

@@ -10,7 +10,10 @@
   opacity: 1;
   visibility: visible;
   transform-origin: initial;
-  transition: visibility 0.4s cubic-bezier(0.75, 0, 0.175, 1), opacity 0.4s cubic-bezier(0.75, 0, 0.175, 1), transform 0.4s cubic-bezier(0.75, 0, 0.175, 1);
+  transition:
+    visibility 0.4s cubic-bezier(0.75, 0, 0.175, 1),
+    opacity 0.4s cubic-bezier(0.75, 0, 0.175, 1),
+    transform 0.4s cubic-bezier(0.75, 0, 0.175, 1);
   border-radius: var(--border-radius);
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
   max-width: 90vw;
@@ -64,7 +67,9 @@
   width: auto;
   box-sizing: border-box;
 }
-.shoppable-product-card .wt-dot__brand, .shoppable-product-card .wt-dot__title, .shoppable-product-card .wt-dot__price {
+.shoppable-product-card .wt-dot__brand,
+.shoppable-product-card .wt-dot__title,
+.shoppable-product-card .wt-dot__price {
   margin-top: 6px;
 }
 .shoppable-product-card__add-button {
@@ -84,7 +89,9 @@
   border-radius: var(--border-radius-button);
   -webkit-appearance: none;
   cursor: pointer;
-  transition: background 0.3s ease-in, color 0.3s ease-in;
+  transition:
+    background 0.3s ease-in,
+    color 0.3s ease-in;
   width: 34px;
   height: 34px;
   padding: 0;
@@ -150,7 +157,9 @@
   backdrop-filter: blur(3px);
   color: white;
   border: none;
-  transition: scale 0.2s ease-out, opacity 0.2s ease-out;
+  transition:
+    scale 0.2s ease-out,
+    opacity 0.2s ease-out;
   opacity: 0;
   transform: scaleX(0);
 }
@@ -220,16 +229,20 @@
   top: 45% !important;
 }
 
-.wt-slider__container--video-carousel[data-sound=off] .wt-video__sound-toggle .svg-icon--volume {
+.wt-slider__container--video-carousel[data-sound='off'] .wt-video__sound-toggle .svg-icon--volume {
   display: none;
 }
-.wt-slider__container--video-carousel[data-sound=off] .wt-video__sound-toggle .svg-icon--volume-muted {
+.wt-slider__container--video-carousel[data-sound='off']
+  .wt-video__sound-toggle
+  .svg-icon--volume-muted {
   display: block;
 }
 
-.wt-slider__container--video-carousel[data-sound=on] .wt-video__sound-toggle .svg-icon--volume {
+.wt-slider__container--video-carousel[data-sound='on'] .wt-video__sound-toggle .svg-icon--volume {
   display: block;
 }
-.wt-slider__container--video-carousel[data-sound=on] .wt-video__sound-toggle .svg-icon--volume-muted {
+.wt-slider__container--video-carousel[data-sound='on']
+  .wt-video__sound-toggle
+  .svg-icon--volume-muted {
   display: none;
 }

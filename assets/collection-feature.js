@@ -1,6 +1,6 @@
-if (!customElements.get("collection-feature")) {
+if (!customElements.get('collection-feature')) {
   customElements.define(
-    "collection-feature",
+    'collection-feature',
     class CollectionFeature extends HTMLElement {
       constructor() {
         super();
@@ -19,24 +19,20 @@ if (!customElements.get("collection-feature")) {
       // Initialize component properties
       _initProperties() {
         this.sectionId = this.dataset.sectionId;
-        this.section = document.querySelector(
-          `[data-section-id="${this.sectionId}"]`,
-        );
+        this.section = document.querySelector(`[data-section-id="${this.sectionId}"]`);
         if (!this.section) {
-          console.error("Section not found");
+          console.error('Section not found');
           return;
         }
-        this.items = this.section.querySelectorAll(".collection-feature__item");
+        this.items = this.section.querySelectorAll('.collection-feature__item');
       }
 
       // Attach event listeners to items
       _attachEventListeners() {
         this.items.forEach((item) =>
-          item.addEventListener("mouseover", () => this.changeColors(item)),
+          item.addEventListener('mouseover', () => this.changeColors(item)),
         );
-        this.items.forEach((item) =>
-          item.addEventListener("mouseleave", this.resetColors),
-        );
+        this.items.forEach((item) => item.addEventListener('mouseleave', this.resetColors));
       }
 
       // Handle color changes on mouseover
@@ -44,20 +40,20 @@ if (!customElements.get("collection-feature")) {
         const color = item.dataset.hoverColor;
         const background = item.dataset.hoverBackground;
 
-        this.section.style.color = color || "";
-        this.section.style.background = background || "";
+        this.section.style.color = color || '';
+        this.section.style.background = background || '';
       }
 
       resetColors() {
-        this.section.style.color = "";
-        this.section.style.background = "";
+        this.section.style.color = '';
+        this.section.style.background = '';
       }
 
       disconnectedCallback() {
         // Properly remove event listeners
         this.items.forEach((item) => {
-          item.removeEventListener("mouseover", this.changeColors);
-          item.removeEventListener("mouseleave", this.resetColors);
+          item.removeEventListener('mouseover', this.changeColors);
+          item.removeEventListener('mouseleave', this.resetColors);
         });
       }
     },

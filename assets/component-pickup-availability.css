@@ -16,19 +16,19 @@ pickup-availability[available] {
 .pickup-availability-preview-text {
   display: flex;
   align-items: center;
-  gap:16px;
+  gap: 16px;
   line-height: 1.4;
 }
 
-
-.pickup-availability-preview .icon, .pickup-availability-preview-text .icon {
+.pickup-availability-preview .icon,
+.pickup-availability-preview-text .icon {
   flex-shrink: 0;
   width: var(--size-icon);
   height: var(--size-icon);
-  
-  @media (min-width: 600px){
-    width:var(--size-icon-desk);
-    height:var(--size-icon-desk);
+
+  @media (min-width: 600px) {
+    width: var(--size-icon-desk);
+    height: var(--size-icon-desk);
   }
 }
 
@@ -38,7 +38,7 @@ pickup-availability[available] {
 }
 
 .pickup-availability-preview p {
-  margin:0;
+  margin: 0;
 }
 
 .pickup-availability-button {
@@ -53,7 +53,6 @@ pickup-availability[available] {
 
 .pickup-availability-button:hover {
   background-color: transparent;
-
 }
 
 .pickup-availability-info * {
@@ -71,10 +70,12 @@ pickup-availability-drawer {
   width: 100%;
   max-width: 50rem;
   filter: drop-shadow(
-    var(--drawer-shadow-horizontal-offset) var(--drawer-shadow-vertical-offset) var(--drawer-shadow-blur-radius)
-      rgba(var(--color-shadow), var(--drawer-shadow-opacity))
+    var(--drawer-shadow-horizontal-offset) var(--drawer-shadow-vertical-offset)
+      var(--drawer-shadow-blur-radius) rgba(var(--color-shadow), var(--drawer-shadow-opacity))
   );
-  transition: transform .3s cubic-bezier(.12,.67,.53,1), opacity .3s cubic-bezier(.12,.67,.53,1);
+  transition:
+    transform 0.3s cubic-bezier(0.12, 0.67, 0.53, 1),
+    opacity 0.3s cubic-bezier(0.12, 0.67, 0.53, 1);
   transform: translate(100%);
   -ms-transform: translateX(100%);
   -webkit-transform: translateX(100%);
@@ -117,13 +118,13 @@ pickup-availability-drawer[open] {
 }
 
 .pickup-availability-header .icon {
-  width:20px;
-  height:20px;
+  width: 20px;
+  height: 20px;
   /* margin-top:5px; */
 
-  @media (min-width:1200px){
-    width:22px;
-    height:22px;
+  @media (min-width: 1200px) {
+    width: 22px;
+    height: 22px;
   }
 }
 
@@ -131,13 +132,13 @@ pickup-availability-drawer[open] {
   background-color: transparent;
   color: rgb(var(--color-foreground));
   cursor: pointer;
-  border:none;
+  border: none;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding:0;
-  width:22px;
-  height:22px;
+  padding: 0;
+  width: 22px;
+  height: 22px;
 }
 
 .pickup-availability-drawer-button:hover {
@@ -156,9 +157,9 @@ pickup-availability-drawer[open] {
 }
 
 .pickup-availability-list {
-  display:flex;
+  display: flex;
   flex-direction: column;
-  gap:32px;
+  gap: 32px;
   padding: 32px 32px 0 32px;
 }
 
@@ -169,7 +170,6 @@ pickup-availability-drawer[open] {
 
 .pickup-availability-list__item p {
   font-size: 16px;
-
 }
 
 .pickup-availability-list__item:first-child {
@@ -193,7 +193,6 @@ pickup-availability-drawer[open] {
   margin: 0;
   padding-left: 44px;
   font-size: 16px;
-
 }
 
 @keyframes animateDrawerOpen {
@@ -222,20 +221,20 @@ pickup-availability-drawer[open] {
   }
 }
 
-.pickup-availability--page-overlay{
-    position: fixed;
-    height: 100vh;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    top: 0;
-    left: 0;
-    opacity: 0;
-    transform: scale(0);
-    transition: opacity 0.3s ease-in-out;
-    z-index: 100;
+.pickup-availability--page-overlay {
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transform: scale(0);
+  transition: opacity 0.3s ease-in-out;
+  z-index: 100;
 }
 
-.pickup-availability--page-overlay.open{
+.pickup-availability--page-overlay.open {
   opacity: 1;
   transform: scale(1);
   backdrop-filter: blur(4px);
@@ -275,7 +274,6 @@ pickup-availability-drawer .wt-product__info .wt-product__details .product-info 
   margin: 0;
   color: var(--color-text-inactive);
   font-size: var(--font-base-size);
-
 }
 
 pickup-availability-drawer .wt-product__info .wt-product__details .product-title {
@@ -289,8 +287,6 @@ pickup-availability-drawer .wt-product__info .wt-product__options {
   padding: 16px 0;
 }
 
-
-.overflow-hidden{
+.overflow-hidden {
   overflow-y: hidden;
 }
-

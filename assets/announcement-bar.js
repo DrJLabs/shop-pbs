@@ -5,7 +5,7 @@ class AnnouncementBar extends HTMLElement {
     this.currentIndex = 0;
     this.touchStartX = 0;
     this.touchEndX = 0;
-    this.announcementBar = this.querySelector("#wt-announcement__container");
+    this.announcementBar = this.querySelector('#wt-announcement__container');
     this.announcementInterval = null;
 
     this.changeAnnouncement = this.changeAnnouncement.bind(this);
@@ -19,70 +19,50 @@ class AnnouncementBar extends HTMLElement {
   }
 
   connectedCallback() {
-    const isHidden = localStorage.getItem("wt-announcement-hidden");
-    const announcementCount =
-      Number(this.announcementBar?.dataset.announcementsCount) || 0;
+    const isHidden = localStorage.getItem('wt-announcement-hidden');
+    const announcementCount = Number(this.announcementBar?.dataset.announcementsCount) || 0;
 
-    if (
-      (!isHidden || new Date().getTime() > Number(isHidden)) &&
-      announcementCount > 0
-    ) {
-      this.style.display = "block";
+    if ((!isHidden || new Date().getTime() > Number(isHidden)) && announcementCount > 0) {
+      this.style.display = 'block';
     }
 
-    if (
-      !this.announcementBar?.classList.contains(
-        "wt-announcement__container--marquee",
-      )
-    ) {
+    if (!this.announcementBar?.classList.contains('wt-announcement__container--marquee')) {
       this.announcementInterval = setInterval(this.changeAnnouncement, 5000);
 
       if (this.announcementBar) {
-        this.announcementBar.addEventListener(
-          "touchstart",
-          this.handleTouchStart,
-          { passive: true },
-        );
-        this.announcementBar.addEventListener(
-          "touchmove",
-          this.handleTouchMove,
-          {
-            passive: true,
-          },
-        );
-        this.announcementBar.addEventListener("touchend", this.handleTouchEnd, {
+        this.announcementBar.addEventListener('touchstart', this.handleTouchStart, {
+          passive: true,
+        });
+        this.announcementBar.addEventListener('touchmove', this.handleTouchMove, {
+          passive: true,
+        });
+        this.announcementBar.addEventListener('touchend', this.handleTouchEnd, {
           passive: true,
         });
         this.announcementBar.addEventListener(
-          "touchstart",
+          'touchstart',
           () => clearInterval(this.announcementInterval),
           { passive: true },
         );
-        this.announcementBar.addEventListener(
-          "touchend",
-          this.restartInterval,
-          {
-            passive: true,
-          },
-        );
+        this.announcementBar.addEventListener('touchend', this.restartInterval, {
+          passive: true,
+        });
       }
     }
 
-    if (this.announcementBar)
-      this.announcementBar.style.transition = "transform 0.5s ease-in-out";
+    if (this.announcementBar) this.announcementBar.style.transition = 'transform 0.5s ease-in-out';
 
-    this.closeButton = this.querySelector(".wt-announcement__close");
-    if (this.closeButton)
-      this.closeButton.addEventListener("click", this.hideForOneDay);
+    this.closeButton = this.querySelector('.wt-announcement__close');
+    if (this.closeButton) this.closeButton.addEventListener('click', this.hideForOneDay);
 
-    window.addEventListener("resize", this.handleResize.bind(this));
+    window.addEventListener('resize', this.handleResize.bind(this));
   }
 
   handleResize() {
     if (window.innerWidth >= 900) {
       // Reset the translateX to its initial state
       if (this.announcementBar) {
-        this.announcementBar.style.transform = "translateX(0)";
+        this.announcementBar.style.transform = 'translateX(0)';
         this.currentIndex = 0;
       }
     }
@@ -99,8 +79,8 @@ class AnnouncementBar extends HTMLElement {
 
   hideForOneDay() {
     const oneDayLater = new Date().getTime() + 24 * 60 * 60 * 1000;
-    localStorage.setItem("wt-announcement-hidden", oneDayLater);
-    this.style.display = "none";
+    localStorage.setItem('wt-announcement-hidden', oneDayLater);
+    this.style.display = 'none';
   }
 
   changeAnnouncement() {
@@ -114,18 +94,17 @@ class AnnouncementBar extends HTMLElement {
     this.currentIndex = (this.currentIndex + 1) % totalSlides;
     const newPosition = -(this.currentIndex * 100);
 
-    if (this.announcementBar)
-      this.announcementBar.style.transform = `translateX(${newPosition}vw)`;
+    if (this.announcementBar) this.announcementBar.style.transform = `translateX(${newPosition}vw)`;
 
     if (this.currentIndex === 0 && this.announcementBar) {
       // When we're back at the start, reset position with transition.
       setTimeout(() => {
-        this.announcementBar.style.transition = "none";
-        this.announcementBar.style.transform = "translateX(0)";
+        this.announcementBar.style.transition = 'none';
+        this.announcementBar.style.transform = 'translateX(0)';
         this.currentIndex = 0;
         // Restore transition after resetting position
         setTimeout(() => {
-          this.announcementBar.style.transition = "transform 0.5s ease-in-out";
+          this.announcementBar.style.transition = 'transform 0.5s ease-in-out';
         }, 0);
       }, 490); // Just slightly before 0.5s to ensure it happens before next slide movement.
     }
@@ -136,8 +115,7 @@ class AnnouncementBar extends HTMLElement {
 
     this.currentIndex = (this.currentIndex - 1 + totalSlides) % totalSlides;
     const newPosition = -(this.currentIndex * 100);
-    if (this.announcementBar)
-      this.announcementBar.style.transform = `translateX(${newPosition}vw)`;
+    if (this.announcementBar) this.announcementBar.style.transform = `translateX(${newPosition}vw)`;
   }
 
   handleTouchStart(e) {
@@ -166,14 +144,11 @@ class AnnouncementBar extends HTMLElement {
 
   disconnectedCallback() {
     clearInterval(this.announcementInterval);
-    this.announcementBar.removeEventListener(
-      "touchstart",
-      this.handleTouchStart,
-    );
-    this.announcementBar.removeEventListener("touchmove", this.handleTouchMove);
-    this.announcementBar.removeEventListener("touchend", this.handleTouchEnd);
-    window.removeEventListener("resize", this.handleResize.bind(this));
+    this.announcementBar.removeEventListener('touchstart', this.handleTouchStart);
+    this.announcementBar.removeEventListener('touchmove', this.handleTouchMove);
+    this.announcementBar.removeEventListener('touchend', this.handleTouchEnd);
+    window.removeEventListener('resize', this.handleResize.bind(this));
   }
 }
 
-customElements.define("announcement-bar", AnnouncementBar);
+customElements.define('announcement-bar', AnnouncementBar);

@@ -40,10 +40,7 @@ test('preview url script trims unquoted env values', async () => {
   const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), 'preview-url-'));
   const envPath = path.join(tmpDir, '.env');
 
-  const envContents = [
-    'SHOPIFY_SHOP=   test-shop   ',
-    'SHOPIFY_DEV_THEME_ID=  123  ',
-  ].join('\n');
+  const envContents = ['SHOPIFY_SHOP=   test-shop   ', 'SHOPIFY_DEV_THEME_ID=  123  '].join('\n');
 
   await fs.writeFile(envPath, envContents);
 

@@ -7,4 +7,4 @@ class StickyFilters extends HTMLElement {
 }
 
 // Define the web component
-customElements.define("sticky-filters", StickyFilters);
+customElements.define('sticky-filters', StickyFilters);

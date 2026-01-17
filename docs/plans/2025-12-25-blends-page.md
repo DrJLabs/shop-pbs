@@ -11,6 +11,7 @@
 ### Task 1: Add blends profiles section, template, and smoke test
 
 **Files:**
+
 - Create: `sections/blends-profiles.liquid`
 - Create: `assets/section-blends-profiles.css`
 - Create: `templates/page.blends.json`
@@ -152,17 +153,19 @@ Create `sections/blends-profiles.liquid`:
   }
 </style>
 
-<section class="blends-profiles" data-section-id="{{ section.id }}">
-  <div class="hero__wrapper blends-profiles__inner">
+<section class='blends-profiles' data-section-id='{{ section.id }}'>
+  <div class='hero__wrapper blends-profiles__inner'>
     {% if section.settings.heading != blank %}
-      <h2 class="headline__title blends-profiles__heading">{{ section.settings.heading | escape }}</h2>
+      <h2 class='headline__title blends-profiles__heading'>
+        {{ section.settings.heading | escape }}
+      </h2>
     {% endif %}
 
     {% if section.settings.intro != blank %}
-      <div class="rte blends-profiles__intro">{{ section.settings.intro }}</div>
+      <div class='rte blends-profiles__intro'>{{ section.settings.intro }}</div>
     {% endif %}
 
-    <div class="blends-profiles__grid">
+    <div class='blends-profiles__grid'>
       {% for block in section.blocks %}
         {% assign product = block.settings.product %}
         {% assign display_title = block.settings.custom_title %}
@@ -186,7 +189,10 @@ Create `sections/blends-profiles.liquid`:
         {% endif %}
 
         {% assign coa_url = block.settings.coa_url %}
-        {% if coa_url == blank and product != blank and product.metafields.custom.coa_url.value != blank %}
+        {% if coa_url == blank
+          and product != blank
+          and product.metafields.custom.coa_url.value != blank
+        %}
           {% assign coa_url = product.metafields.custom.coa_url.value %}
         {% endif %}
 
@@ -198,33 +204,40 @@ Create `sections/blends-profiles.liquid`:
           {% endif %}
         {% endfor %}
 
-        <article class="blends-profiles__card" data-block-id="{{ block.id }}" {{ block.shopify_attributes }}>
-          <div class="blends-profiles__media">
+        <article
+          class='blends-profiles__card'
+          data-block-id='{{ block.id }}'
+          {{ block.shopify_attributes }}
+        >
+          <div class='blends-profiles__media'>
             {% if image != blank %}
               {{
                 image
                 | image_url: width: 900
                 | image_tag:
-                  widths: '360, 540, 720, 900',
-                  sizes: '(min-width: 990px) 45vw, 100vw',
-                  alt: image.alt | escape,
-                  loading: 'lazy',
-                  class: 'blends-profiles__image'
+                widths: '360, 540, 720, 900',
+                sizes: '(min-width: 990px) 45vw, 100vw',
+                alt: image.alt | escape,
+                loading: 'lazy',
+                class: 'blends-profiles__image'
               }}
             {% else %}
-              {{ 'collection-apparel-1' | placeholder_svg_tag: 'blends-profiles__image blends-profiles__image--placeholder' }}
+              {{
+                'collection-apparel-1'
+                | placeholder_svg_tag: 'blends-profiles__image blends-profiles__image--placeholder'
+              }}
             {% endif %}
           </div>
 
-          <div class="blends-profiles__content">
-            <h3 class="blends-profiles__title">{{ display_title }}</h3>
+          <div class='blends-profiles__content'>
+            <h3 class='blends-profiles__title'>{{ display_title }}</h3>
 
             {% if description != blank %}
-              <p class="blends-profiles__description">{{ description }}</p>
+              <p class='blends-profiles__description'>{{ description }}</p>
             {% endif %}
 
             {% if has_highlights %}
-              <ul class="blends-profiles__highlights">
+              <ul class='blends-profiles__highlights'>
                 {% for line in highlight_lines %}
                   {% assign highlight = line | strip %}
                   {% if highlight != blank %}
@@ -239,7 +252,12 @@ Create `sections/blends-profiles.liquid`:
               {% if coa_label == blank %}
                 {% assign coa_label = 'View ' | append: display_title | append: ' COA (PDF)' %}
               {% endif %}
-              <a class="hero__button hero__button--secondary blends-profiles__coa" href="{{ coa_url }}" target="_blank" rel="noopener">
+              <a
+                class='hero__button hero__button--secondary blends-profiles__coa'
+                href='{{ coa_url }}'
+                target='_blank'
+                rel='noopener'
+              >
                 {{ coa_label }}
               </a>
             {% endif %}
@@ -434,11 +452,7 @@ Create `templates/page.blends.json`:
           }
         }
       },
-      "block_order": [
-        "blend_headspace",
-        "blend_whispering",
-        "blend_jennaboo"
-      ],
+      "block_order": ["blend_headspace", "blend_whispering", "blend_jennaboo"],
       "settings": {
         "heading": "Our blends",
         "intro": "<p>Explore our current lineup and review COAs for batch-specific details.</p>",
@@ -451,10 +465,7 @@ Create `templates/page.blends.json`:
       }
     }
   },
-  "order": [
-    "main",
-    "blends_profiles"
-  ]
+  "order": ["main", "blends_profiles"]
 }
 ```
 
@@ -474,6 +485,7 @@ git commit -m "feat: add blends page profiles section"
 ### Task 2: Update wholesale tasklist + phase tracker docs
 
 **Files:**
+
 - Modify: `docs/wholesale-conversion/storefront-wholesale-tasklist.md`
 - Modify: `docs/phase-tracker.md`
 
@@ -488,11 +500,13 @@ Not applicable.
 **Step 3: Write minimal implementation**
 
 Update `docs/wholesale-conversion/storefront-wholesale-tasklist.md`:
+
 - Mark 5B and 5D as completed.
 - Add a brief current-state note that the Blends page template and profile section exist, with COA link sourcing via `product.metafields.custom.coa_url` and manual highlight overrides.
 - Note that admin must create `/pages/blends` and assign the template if not yet done.
 
 Update `docs/phase-tracker.md`:
+
 - Refresh the `_Last updated_` date to today and add a short note in the Phase Overview or checklist if desired to reflect the new Blends page template work.
 
 **Step 4: Run test to verify it passes**
@@ -511,6 +525,7 @@ git commit -m "docs: record blends page progress"
 ### Task 3: Theme check before push
 
 **Files:**
+
 - None (command only)
 
 **Step 1: Write the failing test**
@@ -536,6 +551,7 @@ Expected: If it fails with known pre-existing issues, capture the output and pro
 Not applicable.
 
 ## Manual admin steps (outside git)
+
 - Create a page named “Blends” with handle `blends`, assign the `page.blends` template, and verify `/pages/blends` renders.
 - Update header/footer menus to point to `/pages/blends` if not already present.
 - Populate highlights and COA overrides in the theme editor blocks if product metafields are incomplete.
