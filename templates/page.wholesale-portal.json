@@ -15,8 +15,8 @@
         "compact-size-enabled": false,
         "size_heading": 200,
         "size_heading_mobile": 200,
-        "color-body-text": "transparent",
-        "color-bg-overlay": "transparent",
+        "color-body-text": "rgba(0,0,0,0)",
+        "color-bg-overlay": "rgba(0,0,0,0)",
         "color-overlay-opacity": 100,
         "margin-top": 40,
         "margin-bottom": 28
@@ -27,6 +27,7 @@
       "blocks": {
         "heading": {
           "type": "heading",
+          "disabled": true,
           "settings": {
             "heading": "Wholesale intake form",
             "heading_disable_on_mobile": false,
@@ -55,7 +56,7 @@
       ],
       "settings": {
         "color-body-text": "#000000",
-        "background_color": "transparent",
+        "background_color": "rgba(0,0,0,0)",
         "margin-top": 12,
         "margin-bottom": 100
       }
